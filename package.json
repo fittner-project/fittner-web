@@ -15,9 +15,11 @@
     "docker:build": "tsc && docker build -t docker-react .",
     "docker:run": "docker rm -f docker-react && docker run --name docker-react -d -p 80:8082 docker-react",
     "release:local": "pnpm docker:build && pnpm docker:run",
-    "log:tree": "tree -N -I \"node_modules|.git|.idea\" -a"
+    "log:tree": "tree -N -I \"node_modules|.git|.idea\" -a",
+    "generate-api": "orval --config orval.config.cjs"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.62.15",
     "axios": "^1.7.9",
     "classnames": "^2.5.1",
     "framer-motion": "^11.13.1",
@@ -40,6 +42,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "husky": "^9.1.7",
+    "orval": "^7.3.0",
     "prettier": "^3.4.2",
     "sass": "^1.82.0",
     "stylelint": "^16.11.0",

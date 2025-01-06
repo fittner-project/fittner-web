@@ -1,0 +1,225 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Fittner API",
+    "description": "Fittner API with Spring Boot",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.fittner.co.kr",
+      "description": "server"
+    }
+  ],
+  "security": [
+    {
+      "Authorization": []
+    }
+  ],
+  "paths": {
+    "/api/v1/auth/refresh-token": {
+      "post": {
+        "tags": ["auth-controller"],
+        "summary": "엑세스 토큰 재발급 API",
+        "description": "엑세스 토큰을 재발급 받습니다.",
+        "operationId": "makeAccessToken",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccessTokenReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageTokenResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "tags": ["auth-controller"],
+        "summary": "트레이너 로그아웃 API",
+        "description": "트레이너 로그아웃 API 입니다.",
+        "operationId": "logout",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": ["auth-controller"],
+        "summary": "트레이너 로그인 API",
+        "description": "트레이너 로그인 API 입니다.",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageTokenResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessTokenReqDto": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "만료된 토큰값",
+            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNkZWYiLCJleHAiOjE3MzU1NDI0OTh9.KU9cRantYrLEFmMyExdedwpuz10k76JeaYDR1D2bPGI"
+          },
+          "refreshTokenId": {
+            "type": "string",
+            "description": "리프레시 토큰 키값",
+            "example": "alskdnksla"
+          }
+        }
+      },
+      "ApiResponseMessageTokenResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/TokenResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "TokenResDto": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "액세스 토큰",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0cmFpbmVyQG5hdmVyLmNvbSIsImV4cCI6MTYzNzQwNjQwNn0.7"
+          },
+          "refreshTokenId": {
+            "type": "string",
+            "description": "리프레시 토큰",
+            "example": "alskdnksla"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageObject": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "object",
+            "description": "응답 데이터"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "LoginRequestDto": {
+        "type": "object",
+        "properties": {
+          "trainerEmail": {
+            "type": "string",
+            "description": "이메일",
+            "example": "newy12@naver.com"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Authorization": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
