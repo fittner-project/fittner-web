@@ -1,19 +1,12 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
-const apiBaseUrl =
-  process.env.VITE_API_BASE_URL || import.meta.env.VITE_API_BASE_URL;
-
-if (!apiBaseUrl) {
+if (!import.meta.env.VITE_API_BASE_URL) {
   throw new Error("VITE_API_BASE_URL is not defined");
 }
 
-const axiosInstance = axios.create({
-  baseURL: apiBaseUrl,
+export const customInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
 });
-
-export const customInstance = <T>(config: AxiosRequestConfig): Promise<T> => {
-  return axiosInstance(config).then((response) => response.data);
-};

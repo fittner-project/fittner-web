@@ -9,6 +9,7 @@ import { eventBus } from "@/utils";
 import { cs } from "@/utils";
 
 import HomeStyle from "./index.module.scss";
+import { useLogin } from "@/api/generated/auth-controller/auth-controller";
 
 const publicPath = import.meta.env.VITE_PUBLIC_PATH;
 function Home() {
@@ -17,6 +18,21 @@ function Home() {
   const goAboutPage = () => {
     navigate("/about");
   };
+  const { mutate: login } = useLogin({
+    mutation: {
+      onSuccess: (data) => {
+        console.log(data);
+      },
+    },
+  });
+
+  useEffect(() => {
+    login({
+      data: {
+        trainerEmail: "test@test.com",
+      },
+    });
+  }, []);
 
   return (
     <div className={HomeStyle.home}>
