@@ -63,9 +63,7 @@ function Home() {
           <motion.button {...button} onClick={changeNum}>
             UserStore&apos;s count is {num}
           </motion.button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
+          <p>안뇽</p>
         </div>
         <p className="read-the-docs">
           Click on the Vite and React logos to learn more
