@@ -26,8 +26,6 @@ function Home() {
     },
   });
 
-  const aoiUrl = process.env.VITE_API_BASE_URL || "default url";
-
   useEffect(() => {
     login({
       data: {
@@ -65,7 +63,7 @@ function Home() {
           <motion.button {...button} onClick={changeNum}>
             UserStore&apos;s count is {num}
           </motion.button>
-          <p>${aoiUrl}</p>
+          <p>안</p>
         </div>
         <p className="read-the-docs">
           Click on the Vite and React logos to learn more
