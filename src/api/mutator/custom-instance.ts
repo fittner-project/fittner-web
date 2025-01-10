@@ -1,7 +1,7 @@
 import axios from "axios";
 
-if (!import.meta.env.VITE_API_BASE_URL) {
-  throw new Error("VITE_API_BASE_URL is not defined");
+if (process.env.VITE_API_BASE_URL != null ) {
+  console.log("apiUrl" + process.env.VITE_API_BASE_URL);
 }
 
 export const customInstance = axios.create({
