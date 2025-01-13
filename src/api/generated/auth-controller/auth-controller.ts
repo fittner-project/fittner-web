@@ -5,197 +5,232 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
-import {
-  useMutation
-} from '@tanstack/react-query'
+import { useMutation } from "@tanstack/react-query";
 import type {
   MutationFunction,
   UseMutationOptions,
-  UseMutationResult
-} from '@tanstack/react-query'
+  UseMutationResult,
+} from "@tanstack/react-query";
 import type {
   AccessTokenReqDto,
   ApiResponseMessageObject,
   ApiResponseMessageTokenResDto,
-  LoginRequestDto
-} from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
-
-
+  LoginRequestDto,
+} from ".././models";
+import { customInstance } from "../../mutator/custom-instance";
 
 /**
  * 엑세스 토큰을 재발급 받습니다.
  * @summary 엑세스 토큰 재발급 API
  */
 export const makeAccessToken = (
-    accessTokenReqDto: AccessTokenReqDto,
- signal?: AbortSignal
+  accessTokenReqDto: AccessTokenReqDto,
+  signal?: AbortSignal
 ) => {
-      
-      
-      return customInstance<ApiResponseMessageTokenResDto>(
-      {url: `/api/v1/auth/refresh-token`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: accessTokenReqDto, signal
-    },
-      );
-    }
-  
+  return customInstance<ApiResponseMessageTokenResDto>({
+    url: `/api/v1/auth/refresh-token`,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: accessTokenReqDto,
+    signal,
+  });
+};
 
+export const getMakeAccessTokenMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof makeAccessToken>>,
+    TError,
+    { data: AccessTokenReqDto },
+    TContext
+  >;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof makeAccessToken>>,
+  TError,
+  { data: AccessTokenReqDto },
+  TContext
+> => {
+  const { mutation: mutationOptions } = options ?? {};
 
-export const getMakeAccessTokenMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof makeAccessToken>>, TError,{data: AccessTokenReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof makeAccessToken>>, TError,{data: AccessTokenReqDto}, TContext> => {
-const {mutation: mutationOptions} = options ?? {};
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof makeAccessToken>>,
+    { data: AccessTokenReqDto }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return makeAccessToken(data);
+  };
 
+  return { mutationFn, ...mutationOptions };
+};
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof makeAccessToken>>, {data: AccessTokenReqDto}> = (props) => {
-          const {data} = props ?? {};
+export type MakeAccessTokenMutationResult = NonNullable<
+  Awaited<ReturnType<typeof makeAccessToken>>
+>;
+export type MakeAccessTokenMutationBody = AccessTokenReqDto;
+export type MakeAccessTokenMutationError = unknown;
 
-          return  makeAccessToken(data,)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type MakeAccessTokenMutationResult = NonNullable<Awaited<ReturnType<typeof makeAccessToken>>>
-    export type MakeAccessTokenMutationBody = AccessTokenReqDto
-    export type MakeAccessTokenMutationError = unknown
-
-    /**
+/**
  * @summary 엑세스 토큰 재발급 API
  */
-export const useMakeAccessToken = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof makeAccessToken>>, TError,{data: AccessTokenReqDto}, TContext>, }
-): UseMutationResult<
-        Awaited<ReturnType<typeof makeAccessToken>>,
-        TError,
-        {data: AccessTokenReqDto},
-        TContext
-      > => {
+export const useMakeAccessToken = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof makeAccessToken>>,
+    TError,
+    { data: AccessTokenReqDto },
+    TContext
+  >;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof makeAccessToken>>,
+  TError,
+  { data: AccessTokenReqDto },
+  TContext
+> => {
+  const mutationOptions = getMakeAccessTokenMutationOptions(options);
 
-      const mutationOptions = getMakeAccessTokenMutationOptions(options);
-
-      return useMutation(mutationOptions);
-    }
-    /**
+  return useMutation(mutationOptions);
+};
+/**
  * 트레이너 로그아웃 API 입니다.
  * @summary 트레이너 로그아웃 API
  */
-export const logout = (
-    
- signal?: AbortSignal
-) => {
-      
-      
-      return customInstance<ApiResponseMessageObject>(
-      {url: `/api/v1/auth/logout`, method: 'POST', signal
-    },
-      );
-    }
-  
+export const logout = (signal?: AbortSignal) => {
+  return customInstance<ApiResponseMessageObject>({
+    url: `/api/v1/auth/logout`,
+    method: "POST",
+    signal,
+  });
+};
 
+export const getLogoutMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof logout>>,
+    TError,
+    void,
+    TContext
+  >;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof logout>>,
+  TError,
+  void,
+  TContext
+> => {
+  const { mutation: mutationOptions } = options ?? {};
 
-export const getLogoutMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof logout>>, TError,void, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof logout>>, TError,void, TContext> => {
-const {mutation: mutationOptions} = options ?? {};
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof logout>>,
+    void
+  > = () => {
+    return logout();
+  };
 
-      
+  return { mutationFn, ...mutationOptions };
+};
 
+export type LogoutMutationResult = NonNullable<
+  Awaited<ReturnType<typeof logout>>
+>;
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof logout>>, void> = () => {
-          
+export type LogoutMutationError = unknown;
 
-          return  logout()
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type LogoutMutationResult = NonNullable<Awaited<ReturnType<typeof logout>>>
-    
-    export type LogoutMutationError = unknown
-
-    /**
+/**
  * @summary 트레이너 로그아웃 API
  */
-export const useLogout = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof logout>>, TError,void, TContext>, }
-): UseMutationResult<
-        Awaited<ReturnType<typeof logout>>,
-        TError,
-        void,
-        TContext
-      > => {
+export const useLogout = <TError = unknown, TContext = unknown>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof logout>>,
+    TError,
+    void,
+    TContext
+  >;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof logout>>,
+  TError,
+  void,
+  TContext
+> => {
+  const mutationOptions = getLogoutMutationOptions(options);
 
-      const mutationOptions = getLogoutMutationOptions(options);
-
-      return useMutation(mutationOptions);
-    }
-    /**
+  return useMutation(mutationOptions);
+};
+/**
  * 트레이너 로그인 API 입니다.
  * @summary 트레이너 로그인 API
  */
 export const login = (
-    loginRequestDto: LoginRequestDto,
- signal?: AbortSignal
+  loginRequestDto: LoginRequestDto,
+  signal?: AbortSignal
 ) => {
-      
-      
-      return customInstance<ApiResponseMessageTokenResDto>(
-      {url: `/api/v1/auth/login`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: loginRequestDto, signal
-    },
-      );
-    }
-  
+  return customInstance<ApiResponseMessageTokenResDto>({
+    url: `/api/v1/auth/login`,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: loginRequestDto,
+    signal,
+  });
+};
 
+export const getLoginMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof login>>,
+    TError,
+    { data: LoginRequestDto },
+    TContext
+  >;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof login>>,
+  TError,
+  { data: LoginRequestDto },
+  TContext
+> => {
+  const { mutation: mutationOptions } = options ?? {};
 
-export const getLoginMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{data: LoginRequestDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{data: LoginRequestDto}, TContext> => {
-const {mutation: mutationOptions} = options ?? {};
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof login>>,
+    { data: LoginRequestDto }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return login(data);
+  };
 
+  return { mutationFn, ...mutationOptions };
+};
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof login>>, {data: LoginRequestDto}> = (props) => {
-          const {data} = props ?? {};
+export type LoginMutationResult = NonNullable<
+  Awaited<ReturnType<typeof login>>
+>;
+export type LoginMutationBody = LoginRequestDto;
+export type LoginMutationError = unknown;
 
-          return  login(data,)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type LoginMutationResult = NonNullable<Awaited<ReturnType<typeof login>>>
-    export type LoginMutationBody = LoginRequestDto
-    export type LoginMutationError = unknown
-
-    /**
+/**
  * @summary 트레이너 로그인 API
  */
-export const useLogin = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{data: LoginRequestDto}, TContext>, }
-): UseMutationResult<
-        Awaited<ReturnType<typeof login>>,
-        TError,
-        {data: LoginRequestDto},
-        TContext
-      > => {
+export const useLogin = <TError = unknown, TContext = unknown>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof login>>,
+    TError,
+    { data: LoginRequestDto },
+    TContext
+  >;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof login>>,
+  TError,
+  { data: LoginRequestDto },
+  TContext
+> => {
+  const mutationOptions = getLoginMutationOptions(options);
 
-      const mutationOptions = getLoginMutationOptions(options);
-
-      return useMutation(mutationOptions);
-    }
-    
+  return useMutation(mutationOptions);
+};
