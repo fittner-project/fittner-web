@@ -1,6 +1,6 @@
 import styles from "./SignIn.module.scss";
 import logo from "@/assets/logo/logo.svg";
-import Image from "@/components/image";
+
 import google from "@/assets/social/google.png";
 import apple from "@/assets/social/apple.png";
 import kakao from "@/assets/social/kakao.png";
@@ -8,6 +8,7 @@ import classNames from "classnames";
 import BackgroundContainer from "@/layout/containers/background-container/BackgroundContainer";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import { useSocialAuth } from "./hooks/useSocialAuth";
+import Image from "@/components/image/Image";
 
 function SignIn() {
   const { initSocialLogin } = useSocialAuth();

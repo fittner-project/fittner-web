@@ -1,4 +1,4 @@
-import styles from "./index.module.scss";
+import styles from "./Image.module.scss";
 
 interface ImageProps {
   src: string;
