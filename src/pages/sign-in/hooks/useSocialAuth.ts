@@ -43,8 +43,10 @@ export const useSocialAuth = () => {
 
       switch (socialType) {
         case "kakao": {
-          const accessToken = await kakaoLoginService.getToken(code);
-          const userInfo = await kakaoLoginService.getUserInfo(accessToken);
+          const accessToken = await kakaoLoginService.getToken({ code });
+          const userInfo = await kakaoLoginService.getUserInfo({
+            accessToken,
+          });
           email = userInfo.email;
           break;
         }
