@@ -4,9 +4,9 @@
   @include flex_col(space-between, center);
 
   .logo_section {
+    flex: 1;
     @include flex_col();
     @include flex_col_gap(1.5rem);
-    flex: 1;
 
     .logo_text {
       color: $grey_4;
@@ -23,11 +23,10 @@
   }
 
   .login_section {
-    @include flex_col();
-    @include flex_col_gap(1rem);
-
     width: 100%;
     margin-top: auto;
+    @include flex_col();
+    @include flex_col_gap(1rem);
 
     .login_button {
       position: relative;
