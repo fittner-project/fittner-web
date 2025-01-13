@@ -50,7 +50,13 @@ export default ({ command, mode }: ConfigEnv) => {
     css: {
       // css预处理器
       preprocessorOptions: {
-        sass: {},
+        scss: {
+          additionalData: `
+            @use "@/styles/variables" as *;
+            @use "@/styles/mixin" as *;
+            @use "@/styles/color" as *;
+          `,
+        },
       },
     },
     //构建
