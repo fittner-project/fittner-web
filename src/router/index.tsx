@@ -4,6 +4,7 @@ import RootLayout from "@/layout/default.tsx";
 import About from "@/pages/about";
 import Home from "@/pages/home";
 import SignIn from "@/pages/sign-in/SignIn";
+import Redirect from "@/pages/redirect/Redirect";
 
 const router = createBrowserRouter(
   [
@@ -22,6 +23,10 @@ const router = createBrowserRouter(
         {
           path: "/sign-in",
           element: <SignIn />,
+        },
+        {
+          path: "/redirect",
+          element: <Redirect />,
         },
       ],
     },

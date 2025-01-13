@@ -7,8 +7,11 @@ import kakao from "@/assets/social/kakao.png";
 import classNames from "classnames";
 import BackgroundContainer from "@/layout/containers/background-container/BackgroundContainer";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
+import { useSocialLogin } from "./hooks/useSocialLogin";
 
 function SignIn() {
+  const { handleSocialLogin } = useSocialLogin();
+
   return (
     <BackgroundContainer>
       <PaddingContainer>
@@ -22,6 +25,7 @@ function SignIn() {
           <section className={styles.login_section}>
             <button
               className={classNames(styles.login_button, styles.kakao_button)}
+              onClick={() => handleSocialLogin("kakao")}
             >
               <Image width={2.4} height={2.4} src={kakao} alt="kakao" />
               <p className={styles.login_button_text}>카카오로 시작하기</p>
