@@ -1,8 +1,16 @@
+import EntryPoint from "@/entryPoint";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet } from "react-router-dom";
 
-// 这个是全局的页面 还可以做一些其他的操作
+const queryClient = new QueryClient();
 
 export default function RootLayout() {
   useEffect(() => {}, []);
-  return <Outlet />;
+  return (
+    <EntryPoint>
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+      </QueryClientProvider>
+    </EntryPoint>
+  );
 }
