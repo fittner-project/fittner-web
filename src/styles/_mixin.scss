@@ -1,0 +1,25 @@
+@mixin flex_row($justify-content: center, $align-item: center) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify-content;
+  align-items: $align-item;
+}
+
+@mixin flex_row_gap($gap) {
+  & > * + * {
+    margin-left: $gap;
+  }
+}
+
+@mixin flex_col($justify-content: center, $align-item: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify-content;
+  align-items: $align-item;
+}
+
+@mixin flex_col_gap($gap) {
+  & > * + * {
+    margin-top: $gap;
+  }
+}

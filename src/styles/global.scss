@@ -1,0 +1,180 @@
+@import "./mixin";
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  user-drag: none;
+  -webkit-user-drag: none; /* for iOS Safari */
+}
+
+*:not(input, textarea) {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:root {
+  --app_statusbar_height: max(env(safe-area-inset-top), 4rem);
+
+  --main_header_bar_height: 4.6rem;
+  --main_header_height: calc(
+    var(--main_header_bar_height) + var(--app_statusbar_height)
+  );
+  --sub_header_bar_height: 4.6rem;
+  --sub_header_height: calc(
+    var(--sub_header_bar_height) + var(--app_statusbar_height)
+  );
+
+  --material_tab_height: 4rem;
+
+  --fs_modal_header_height: calc(5rem + var(--app_statusbar_height));
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+input {
+  border-radius: 0;
+}
+
+html,
+body {
+  width: 100%;
+  font-size: 62.5%;
+
+  display: flex;
+  flex-direction: column;
+  flex: content;
+  text-rendering: optimizelegib;
+  background-color: #000;
+  overscroll-behavior: none;
+
+  -webkit-text-size-adjust: none;
+
+  //웹, 앱에서 기본적으로 보여지는 스크롤바 스타일 제거
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+}

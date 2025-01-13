@@ -1,24 +1,24 @@
-import react from '@vitejs/plugin-react-swc'
-import { resolve } from 'path'
-import AutoImport from 'unplugin-auto-import/vite'
-import type { ConfigEnv } from 'vite'
-import { defineConfig, loadEnv } from 'vite'
+import react from "@vitejs/plugin-react-swc";
+import { resolve } from "path";
+import AutoImport from "unplugin-auto-import/vite";
+import type { ConfigEnv } from "vite";
+import { defineConfig, loadEnv } from "vite";
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv) => {
-  const currentEnv = loadEnv(mode, process.cwd())
-  console.log('Current mode:', command)
-  console.log('Current environment configuration:', currentEnv) //loadEnv即加载根目录下.env.[mode]环境配置文件
+  const currentEnv = loadEnv(mode, process.cwd());
+  console.log("Current mode:", command);
+  console.log("Current environment configuration:", currentEnv); //loadEnv即加载根目录下.env.[mode]环境配置文件
   return defineConfig({
     plugins: [
       react(),
       AutoImport({
-        imports: ['react', 'react-router-dom'],
-        dts: './src/auto-imports.d.ts',
-        dirs: ['src/store'],
+        imports: ["react", "react-router-dom"],
+        dts: "./src/auto-imports.d.ts",
+        dirs: ["src/store"],
         eslintrc: {
           enabled: true, // Default `false`
-          filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+          filepath: "./.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`
         },
       }),
     ],
@@ -28,7 +28,7 @@ export default ({ command, mode }: ConfigEnv) => {
     resolve: {
       //别名
       alias: {
-        '@': resolve(__dirname, './src'),
+        "@": resolve(__dirname, "./src"),
       },
     },
     //服务
@@ -55,13 +55,13 @@ export default ({ command, mode }: ConfigEnv) => {
     },
     //构建
     build: {
-      outDir: mode === 'docker' ? 'dist' : 'docs', //输出路径
+      outDir: mode === "docker" ? "dist" : "docs", //输出路径
       //构建后是否生成 source map 文件
-      sourcemap: mode != 'production',
+      sourcemap: mode != "production",
       rollupOptions: {
         output: {
           manualChunks: {
-            vc: ['vconsole'],
+            vc: ["vconsole"],
           },
         },
       },
@@ -74,5 +74,5 @@ export default ({ command, mode }: ConfigEnv) => {
       //   },
       // },
     },
-  })
-}
+  });
+};
