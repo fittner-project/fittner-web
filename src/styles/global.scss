@@ -11,23 +11,6 @@
   -webkit-user-select: none;
 }
 
-:root {
-  --app_statusbar_height: max(env(safe-area-inset-top), 4rem);
-
-  --main_header_bar_height: 4.6rem;
-  --main_header_height: calc(
-    var(--main_header_bar_height) + var(--app_statusbar_height)
-  );
-  --sub_header_bar_height: 4.6rem;
-  --sub_header_height: calc(
-    var(--sub_header_bar_height) + var(--app_statusbar_height)
-  );
-
-  --material_tab_height: 4rem;
-
-  --fs_modal_header_height: calc(5rem + var(--app_statusbar_height));
-}
-
 html,
 body,
 div,
