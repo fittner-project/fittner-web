@@ -1,8 +1,11 @@
+@import "@/styles/mixin.scss";
+
 .home {
   .logo {
     height: 6em;
     padding: 1.5em;
     will-change: filter;
+    @include flex_row();
   }
 
   .logo:hover {

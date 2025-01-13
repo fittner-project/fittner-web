@@ -26,13 +26,13 @@ function Home() {
     },
   });
 
-  useEffect(() => {
-    login({
-      data: {
-        trainerEmail: "test@test.com",
-      },
-    });
-  }, []);
+  // useEffect(() => {
+  //   login({
+  //     data: {
+  //       trainerEmail: "test@test.com",
+  //     },
+  //   });
+  // }, []);
 
   return (
     <div className={HomeStyle.home}>
