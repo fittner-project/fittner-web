@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
-  useEffect(() => {}, []);
   return (
     <EntryPoint>
       <QueryClientProvider client={queryClient}>
