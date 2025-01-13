@@ -9,7 +9,6 @@ const EntryPoint: FC<IProps> = ({ children }) => {
 };
 
 export default EntryPoint;
-
 const Authorized = ({ children }: IProps) => {
   //인증이 된 이후 앱 전체 적용 로직들
 

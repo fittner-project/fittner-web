@@ -39,6 +39,8 @@
     "useSyncExternalStore": true,
     "useTransition": true,
     "useUserStore": true,
-    "useSignInStore": true
+    "useSignInStore": true,
+    "useAppStore": true,
+    "useColorStore": true
   }
 }
