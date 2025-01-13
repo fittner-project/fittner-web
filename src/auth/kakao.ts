@@ -1,7 +1,7 @@
 import { SocialLoginResponse } from "./socialType";
 
 export const kakaoLoginService = {
-  getToken: async (code: string): Promise<string> => {
+  getToken: async ({ code }: { code: string }): Promise<string> => {
     const tokenResponse = await fetch("https://kauth.kakao.com/oauth/token", {
       method: "POST",
       headers: {
@@ -24,7 +24,11 @@ export const kakaoLoginService = {
     return access_token;
   },
 
-  getUserInfo: async (accessToken: string): Promise<SocialLoginResponse> => {
+  getUserInfo: async ({
+    accessToken,
+  }: {
+    accessToken: string;
+  }): Promise<SocialLoginResponse> => {
     const userResponse = await fetch("https://kapi.kakao.com/v2/user/me", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
