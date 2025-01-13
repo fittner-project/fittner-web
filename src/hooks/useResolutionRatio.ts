@@ -4,13 +4,13 @@ function useResolutionRatio(targetRatio = 0.47368421052) {
   const [isBreakPoint, setIsBreakPoint] = useState(true);
 
   useEffect(() => {
-    function updateVisibility() {
+    const updateVisibility = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
       const currentRatio = width / height;
 
       setIsBreakPoint(currentRatio >= targetRatio);
-    }
+    };
 
     updateVisibility();
 
