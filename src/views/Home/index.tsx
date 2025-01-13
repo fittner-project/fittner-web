@@ -5,8 +5,6 @@ import dockerLogo from "@/assets/Docker.svg";
 import { button } from "@/assets/motion";
 import reactLogo from "@/assets/react.svg";
 import { useUserStore } from "@/store/user";
-import { eventBus } from "@/utils";
-import { cs } from "@/utils";
 
 import HomeStyle from "./index.module.scss";
 import { useLogin } from "@/api/generated/auth-controller/auth-controller";
@@ -42,11 +40,7 @@ function Home() {
         transition={{ type: "spring" }}
       >
         <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img
-            src={reactLogo}
-            className={cs(HomeStyle.logo, HomeStyle.react)}
-            alt="React logo"
-          />
+          <img src={reactLogo} alt="React logo" />
         </a>
         <a href="https://forums.docker.com/" target="_blank" rel="noreferrer">
           <img src={dockerLogo} className={HomeStyle.logo} alt="Docker logo" />
@@ -72,17 +66,7 @@ function Home() {
           click to jump to the about page
         </motion.button>
         <br />
-        <motion.button
-          style={{ marginTop: "80px" }}
-          onClick={() =>
-            eventBus.emit("WelcomeModal:open", {
-              title: "welcome",
-              content: "Vite + React + Docker",
-            })
-          }
-        >
-          welcome
-        </motion.button>
+        <motion.button style={{ marginTop: "80px" }}>welcome</motion.button>
       </motion.div>
     </div>
   );
