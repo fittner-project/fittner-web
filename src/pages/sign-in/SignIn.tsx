@@ -1,9 +1,6 @@
 import styles from "./SignIn.module.scss";
-import logo from "@/assets/logo/logo.svg";
+import { logo, google, apple, kakao } from "@/assets/assets";
 
-import google from "@/assets/social/google.png";
-import apple from "@/assets/social/apple.png";
-import kakao from "@/assets/social/kakao.png";
 import classNames from "classnames";
 import BackgroundContainer from "@/layout/containers/background-container/BackgroundContainer";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
