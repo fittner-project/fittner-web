@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import styles from "./Redirect.module.scss";
 
@@ -8,44 +8,20 @@ import { useSocialAuth } from "../sign-in/hooks/useSocialAuth";
 
 function SocialCallback() {
   const [searchParams] = useSearchParams();
-  const location = useLocation();
+  const state = searchParams.get("state");
+  const code = searchParams.get("code");
   const { handleSocialCallback } = useSocialAuth();
-  const [isProcessing, setIsProcessing] = useState(false);
+  console.log("code", code);
 
   useEffect(() => {
-    const handleCallback = async () => {
-      try {
-        setIsProcessing(true);
-
-        let state = searchParams.get("state");
-        let code = searchParams.get("code");
-
-        console.log("State:", state);
-        console.log("Code:", code);
-
-        if (state && code) {
-          await handleSocialCallback({
-            socialType: state as SocialType,
-            code,
-          });
-        } else {
-          console.error("Missing state or code");
-        }
-      } catch (error) {
-        console.error("Callback handling failed:", error);
-      } finally {
-        setIsProcessing(false);
-      }
-    };
-
-    handleCallback();
-  }, [searchParams, location, handleSocialCallback]);
+    if (state && code) {
+      handleSocialCallback({ socialType: state as SocialType, code });
+    }
+  }, [state, code, handleSocialCallback]);
 
   return (
     <div className={styles.container}>
-      <p className={styles.loading_text}>
-        {isProcessing ? "로그인 중..." : "잠시만 기다려주세요..."}
-      </p>
+      <p className={styles.loading_text}>로그인 중...</p>
     </div>
   );
 }

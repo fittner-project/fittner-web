@@ -30,16 +30,7 @@ export const useSocialAuth = () => {
       apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&response_mode=form_post&state=${socialType}`,
     };
 
-    if (socialType === "apple") {
-      const form = document.createElement("form");
-      form.method = "GET";
-      form.action = socialLoginUrls[socialType];
-      document.body.appendChild(form);
-      form.submit();
-      document.body.removeChild(form);
-    } else {
-      window.location.href = socialLoginUrls[socialType];
-    }
+    window.location.href = socialLoginUrls[socialType];
   };
 
   const handleSocialCallback = async ({
