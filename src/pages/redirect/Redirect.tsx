@@ -20,11 +20,8 @@ function SocialCallback() {
         let state = searchParams.get("state");
         let code = searchParams.get("code");
 
-        if (!state && !code && location.search === "") {
-          const urlParams = new URLSearchParams(location.search);
-          state = urlParams.get("state");
-          code = urlParams.get("code");
-        }
+        console.log("State:", state);
+        console.log("Code:", code);
 
         if (state && code) {
           await handleSocialCallback({
