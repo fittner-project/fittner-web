@@ -4,6 +4,7 @@
   @include flex_col();
 
   .title {
+    height: 2.5rem;
     margin-top: 1.265rem;
     color: $text_1;
     text-align: center;
@@ -18,6 +19,7 @@
   }
 
   .description {
+    height: 1.9rem;
     margin-top: 0.7rem;
     color: $grey-3;
     text-align: center;

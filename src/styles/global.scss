@@ -6,6 +6,7 @@
   box-sizing: border-box;
   user-drag: none;
   -webkit-user-drag: none;
+  word-break: keep-all;
 }
 
 // 입력 요소 외에는 텍스트 선택 방지

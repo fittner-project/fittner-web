@@ -5,7 +5,7 @@ import { kakaoLoginService } from "@/auth/kakao";
 import { googleLoginService } from "@/auth/google";
 import { appleLoginService } from "@/auth/apple";
 import { openModal } from "@/utils/modal";
-import AuthModal from "../components/auth-modal/AuthModal";
+import SignUpModal from "../components/sign-up-modal/SignUpModal";
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export const useSocialAuth = () => {
         navigate("/");
       },
       onError: () => {
-        openModal({ component: AuthModal });
+        openModal({ component: SignUpModal });
         navigate("/sign-in");
       },
     },

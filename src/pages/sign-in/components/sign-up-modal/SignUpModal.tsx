@@ -1,5 +1,5 @@
 import Modal from "@/components/modal/Modal";
-import styles from "./AuthModal.module.scss";
+import styles from "./SignUpModal.module.scss";
 import Image from "@/components/image/Image";
 import { alertTriangle } from "@/assets/assets";
 import Button from "@/components/button/Button";
@@ -14,8 +14,8 @@ function AuthModal() {
           src={alertTriangle}
           alt="alert-triangle"
         />
-        <div className={styles.title}>신규회원이시네요.</div>
-        <div className={styles.description}>기본 정보를 추가해주세요.</div>
+        <div className={styles.title}>신규회원이시네요</div>
+        <div className={styles.description}>기본 정보를 추가해주세요</div>
         <Button
           backgroundColor="primary_1"
           fullWidth
