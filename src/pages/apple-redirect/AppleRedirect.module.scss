@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  .loading_text {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}

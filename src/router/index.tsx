@@ -5,6 +5,7 @@ import About from "@/pages/about";
 import Home from "@/pages/home";
 import SignIn from "@/pages/sign-in/SignIn";
 import Redirect from "@/pages/redirect/Redirect";
+import AppleRedirect from "@/pages/apple-redirect/AppleRedirect";
 
 const router = createBrowserRouter(
   [
@@ -27,6 +28,10 @@ const router = createBrowserRouter(
         {
           path: "/redirect",
           element: <Redirect />,
+        },
+        {
+          path: "/apple-redirect",
+          element: <AppleRedirect />,
         },
       ],
     },
