@@ -30,6 +30,7 @@ function SignIn() {
             </button>
             <button
               className={classNames(styles.login_button, styles.google_button)}
+              onClick={() => initSocialLogin({ socialType: "google" })}
             >
               <Image width={2.4} height={2.4} src={google} alt="google" />
               <p className={styles.login_button_text}>구글로 시작하기</p>

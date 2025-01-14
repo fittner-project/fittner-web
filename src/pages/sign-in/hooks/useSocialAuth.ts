@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useLogin } from "@/api/generated/auth-controller/auth-controller";
 import { SocialType } from "@/auth/socialType";
 import { kakaoLoginService } from "@/auth/kakao";
+import { googleLoginService } from "@/auth/google";
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export const useSocialAuth = () => {
 
     const socialLoginUrls = {
       kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
-      google: "",
+      google: `https://accounts.google.com/o/oauth2/v2/auth?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&state=${socialType}`,
       apple: "",
     };
 
@@ -50,7 +51,14 @@ export const useSocialAuth = () => {
           email = userInfo.email;
           break;
         }
-        case "google":
+        case "google": {
+          const accessToken = await googleLoginService.getToken({ code });
+          const userInfo = await googleLoginService.getUserInfo({
+            accessToken,
+          });
+          email = userInfo.email;
+          break;
+        }
         case "apple":
           throw new Error("Not implemented");
         default:
