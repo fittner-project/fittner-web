@@ -33,6 +33,7 @@ declare global {
   const useLinkClickHandler: typeof import('react-router-dom')['useLinkClickHandler']
   const useLocation: typeof import('react-router-dom')['useLocation']
   const useMemo: typeof import('react')['useMemo']
+  const useModalStore: typeof import('./store/modal')['useModalStore']
   const useNavigate: typeof import('react-router-dom')['useNavigate']
   const useNavigationType: typeof import('react-router-dom')['useNavigationType']
   const useOutlet: typeof import('react-router-dom')['useOutlet']

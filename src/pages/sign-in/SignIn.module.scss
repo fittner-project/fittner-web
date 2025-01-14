@@ -79,3 +79,42 @@
     }
   }
 }
+
+.modal_content {
+  padding: 2.4rem;
+  @include flex_col(flex-start, stretch);
+  @include flex_col_gap(2rem);
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $grey_4;
+  }
+
+  p {
+    font-size: 1.6rem;
+    color: $grey_3;
+  }
+
+  .buttons {
+    @include flex_row(flex-end);
+    @include flex_row_gap(1rem);
+
+    button {
+      padding: 1rem 2rem;
+      border-radius: 0.8rem;
+      font-size: 1.6rem;
+      font-weight: 500;
+
+      &:first-child {
+        background-color: $grey_1;
+        color: $grey_3;
+      }
+
+      &:last-child {
+        background-color: #646cff;
+        color: white;
+      }
+    }
+  }
+}
