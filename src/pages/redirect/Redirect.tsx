@@ -11,6 +11,7 @@ function SocialCallback() {
   const state = searchParams.get("state");
   const code = searchParams.get("code");
   const { handleSocialCallback } = useSocialAuth();
+  console.log("인가 code", code);
 
   useEffect(() => {
     if (state && code) {
