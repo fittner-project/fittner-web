@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import styles from "./Redirect.module.scss";
-
 import { SocialType } from "@/auth/socialType";
 import { useSocialAuth } from "../sign-in/hooks/useSocialAuth";
+import SignIn from "../sign-in/SignIn";
 
 function SocialCallback() {
   const [searchParams] = useSearchParams();
@@ -19,11 +18,7 @@ function SocialCallback() {
     }
   }, [state, code, handleSocialCallback]);
 
-  return (
-    <div className={styles.container}>
-      <p className={styles.loading_text}>로그인 중...</p>
-    </div>
-  );
+  return <SignIn />;
 }
 
 export default SocialCallback;
