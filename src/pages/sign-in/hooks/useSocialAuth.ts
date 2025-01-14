@@ -4,6 +4,8 @@ import { SocialType } from "@/auth/socialType";
 import { kakaoLoginService } from "@/auth/kakao";
 import { googleLoginService } from "@/auth/google";
 import { appleLoginService } from "@/auth/apple";
+import { openModal } from "@/utils/modal";
+import AuthModal from "../components/auth-modal/AuthModal";
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
@@ -14,8 +16,8 @@ export const useSocialAuth = () => {
         console.log("로그인 성공:", data);
         navigate("/");
       },
-      onError: (error) => {
-        console.error("로그인 실패:", error);
+      onError: () => {
+        openModal({ component: AuthModal });
         navigate("/sign-in");
       },
     },

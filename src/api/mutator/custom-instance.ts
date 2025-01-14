@@ -15,7 +15,6 @@ customInstance.interceptors.response.use(
   (response) => {
     if (response.data && response.data.status === "FAIL") {
       const alertMessage = response.data.errorMessage || response.data.message;
-      alert(alertMessage);
 
       return Promise.reject(new Error(alertMessage));
     }
