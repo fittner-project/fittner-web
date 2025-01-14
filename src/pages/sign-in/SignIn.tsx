@@ -37,6 +37,7 @@ function SignIn() {
             </button>
             <button
               className={classNames(styles.login_button, styles.apple_button)}
+              onClick={() => initSocialLogin({ socialType: "apple" })}
             >
               <Image width={2.4} height={2.4} src={apple} alt="apple" />
               <p className={styles.login_button_text}>애플로 시작하기</p>

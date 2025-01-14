@@ -3,6 +3,7 @@ import { useLogin } from "@/api/generated/auth-controller/auth-controller";
 import { SocialType } from "@/auth/socialType";
 import { kakaoLoginService } from "@/auth/kakao";
 import { googleLoginService } from "@/auth/google";
+import { appleLoginService } from "@/auth/apple";
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export const useSocialAuth = () => {
     const socialLoginUrls = {
       kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
       google: `https://accounts.google.com/o/oauth2/v2/auth?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&state=${socialType}`,
-      apple: "",
+      apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&response_mode=form_post&state=${socialType}`,
     };
 
     window.location.href = socialLoginUrls[socialType];
@@ -59,8 +60,12 @@ export const useSocialAuth = () => {
           email = userInfo.email;
           break;
         }
-        case "apple":
-          throw new Error("Not implemented");
+        case "apple": {
+          const accessToken = await appleLoginService.getToken({ code });
+          const userInfo = await appleLoginService.getUserInfo({ accessToken });
+          email = userInfo.email;
+          break;
+        }
         default:
           throw new Error("Unknown social type");
       }
