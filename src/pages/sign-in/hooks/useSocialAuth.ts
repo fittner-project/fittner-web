@@ -24,16 +24,10 @@ export const useSocialAuth = () => {
   const initSocialLogin = ({ socialType }: { socialType: SocialType }) => {
     const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
 
-    if (socialType === "apple") {
-      const tempRedirectUri = `${window.location.origin}/apple-redirect`;
-      const appleUrl = `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${tempRedirectUri}&response_type=code&scope=email&response_mode=form_post&state=${socialType}`;
-      window.location.href = appleUrl;
-      return;
-    }
-
     const socialLoginUrls = {
       kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
       google: `https://accounts.google.com/o/oauth2/v2/auth?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&state=${socialType}`,
+      apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&response_mode=form_post&state=${socialType}`,
     };
 
     window.location.href = socialLoginUrls[socialType];
