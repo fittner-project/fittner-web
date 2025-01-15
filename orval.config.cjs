@@ -10,8 +10,8 @@ module.exports = {
       client: "react-query",
       override: {
         mutator: {
-          path: "./src/api/mutator/custom-instance.ts",
-          name: "customInstance",
+          path: "./src/api/mutator/instance-wrapper.ts",
+          name: "axiosInstance",
         },
         query: {
           useQuery: true,
@@ -19,7 +19,6 @@ module.exports = {
           useInfiniteQueryParam: "page",
         },
       },
-      format: "esm",
     },
   },
 };

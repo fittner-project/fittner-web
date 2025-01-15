@@ -44,7 +44,7 @@ import type {
   MemberRegisterReqDto,
   MembersParams
 } from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
+import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
@@ -58,7 +58,7 @@ export const register = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageObject>(
+      return axiosInstance<ApiResponseMessageObject>(
       {url: `/api/v1/user/register`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: memberRegisterReqDto, signal
@@ -117,7 +117,7 @@ export const login = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageObject>(
+      return axiosInstance<ApiResponseMessageObject>(
       {url: `/api/v1/user/join`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: joinReqDto, signal
@@ -176,7 +176,7 @@ export const registerCenter = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageObject>(
+      return axiosInstance<ApiResponseMessageObject>(
       {url: `/api/v1/user/center`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: centerRegisterReqDto, signal
@@ -234,7 +234,7 @@ export const cancelCenterApproval = (
  ) => {
       
       
-      return customInstance<ApiResponseMessageObject>(
+      return axiosInstance<ApiResponseMessageObject>(
       {url: `/api/v1/user/center`, method: 'DELETE',
       headers: {'Content-Type': 'application/json', },
       data: cancelCenterApprovalReqDto
@@ -293,7 +293,7 @@ export const getTerms = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageListTermsResDto>(
+      return axiosInstance<ApiResponseMessageListTermsResDto>(
       {url: `/api/v1/user/terms`, method: 'GET', signal
     },
       );
@@ -447,7 +447,7 @@ export const members = (
 ) => {
       
       
-      return customInstance<ApiResponseMessagePageResponseDtoMemberListResDto>(
+      return axiosInstance<ApiResponseMessagePageResponseDtoMemberListResDto>(
       {url: `/api/v1/user/members`, method: 'GET',
         params, signal
     },
@@ -602,7 +602,7 @@ export const mainCenterList = (
 ) => {
       
       
-      return customInstance<ApiResponseMessagePageResponseDtoMainUserCenterListResDto>(
+      return axiosInstance<ApiResponseMessagePageResponseDtoMainUserCenterListResDto>(
       {url: `/api/v1/user/main/centers`, method: 'GET',
         params, signal
     },
@@ -757,7 +757,7 @@ export const getUserInfo = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageUserInfoResDto>(
+      return axiosInstance<ApiResponseMessageUserInfoResDto>(
       {url: `/api/v1/user/info`, method: 'GET', signal
     },
       );
@@ -911,7 +911,7 @@ export const centerList = (
 ) => {
       
       
-      return customInstance<ApiResponseMessagePageResponseDtoUserCenterListResDto>(
+      return axiosInstance<ApiResponseMessagePageResponseDtoUserCenterListResDto>(
       {url: `/api/v1/user/centers`, method: 'GET',
         params, signal
     },
@@ -1066,7 +1066,7 @@ export const centerList1 = (
 ) => {
       
       
-      return customInstance<ApiResponseMessagePageResponseDtoCenterListResDto>(
+      return axiosInstance<ApiResponseMessagePageResponseDtoCenterListResDto>(
       {url: `/api/v1/user/center/list`, method: 'GET',
         params, signal
     },

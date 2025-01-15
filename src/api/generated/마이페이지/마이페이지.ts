@@ -30,7 +30,7 @@ import type {
   GetSalesDetailParams,
   GetSalesParams
 } from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
+import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
@@ -45,7 +45,7 @@ export const getSales = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageListSalesResDto>(
+      return axiosInstance<ApiResponseMessageListSalesResDto>(
       {url: `/api/v1/user/myPage/sales/${reservationStartMonth}`, method: 'GET',
         params, signal
     },
@@ -211,7 +211,7 @@ export const getSalesDetail = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageListSalesDetailResDto>(
+      return axiosInstance<ApiResponseMessageListSalesDetailResDto>(
       {url: `/api/v1/user/myPage/sales/detail`, method: 'GET',
         params, signal
     },
@@ -366,7 +366,7 @@ export const getSalesInfo = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageSalesInfoResDto>(
+      return axiosInstance<ApiResponseMessageSalesInfoResDto>(
       {url: `/api/v1/user/myPage/sales-info`, method: 'GET', signal
     },
       );

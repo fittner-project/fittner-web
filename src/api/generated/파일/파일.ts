@@ -31,7 +31,7 @@ import type {
   UploadImage200,
   UploadImageParams
 } from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
+import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
@@ -45,7 +45,7 @@ export const uploadImage = (
 ) => {
       
       
-      return customInstance<UploadImage200>(
+      return axiosInstance<UploadImage200>(
       {url: `/api/v1/common/file/upload`, method: 'POST',
         params, signal
     },
@@ -103,7 +103,7 @@ export const showImage = (
 ) => {
       
       
-      return customInstance<string[]>(
+      return axiosInstance<string[]>(
       {url: `/api/v1/common/file/show/${fileId}`, method: 'GET', signal
     },
       );
@@ -257,7 +257,7 @@ export const getPrivacyClause = (
 ) => {
       
       
-      return customInstance<string[]>(
+      return axiosInstance<string[]>(
       {url: `/api/v1/common/file/privacy-clause`, method: 'GET', signal
     },
       );

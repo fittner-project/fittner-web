@@ -26,7 +26,7 @@ import type {
 import type {
   ApiResponseMessagePushChkResDto
 } from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
+import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
@@ -40,7 +40,7 @@ export const pushChk = (
 ) => {
       
       
-      return customInstance<ApiResponseMessagePushChkResDto>(
+      return axiosInstance<ApiResponseMessagePushChkResDto>(
       {url: `/api/v1/user/push/chk`, method: 'GET', signal
     },
       );

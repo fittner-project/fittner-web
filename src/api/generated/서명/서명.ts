@@ -35,7 +35,7 @@ import type {
   GetReservationsParams,
   SignReqDto
 } from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
+import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
@@ -49,7 +49,7 @@ export const sign = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageObject>(
+      return axiosInstance<ApiResponseMessageObject>(
       {url: `/api/v1/user/sign`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: signReqDto, signal
@@ -108,7 +108,7 @@ export const getReservations = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageSignResrvationResDto>(
+      return axiosInstance<ApiResponseMessageSignResrvationResDto>(
       {url: `/api/v1/user/sign/reservations`, method: 'GET',
         params, signal
     },
@@ -264,7 +264,7 @@ export const getReservationsForMember = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageSignResrvationForMemberResDto>(
+      return axiosInstance<ApiResponseMessageSignResrvationForMemberResDto>(
       {url: `/api/v1/user/sign/reservations/${ticketId}`, method: 'GET',
         params, signal
     },

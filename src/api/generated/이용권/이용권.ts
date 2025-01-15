@@ -28,7 +28,7 @@ import type {
   ApiResponseMessageTicketDetailResDto,
   GetTicketsParams
 } from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
+import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
@@ -42,7 +42,7 @@ export const getTickets = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageListTicketListResDto>(
+      return axiosInstance<ApiResponseMessageListTicketListResDto>(
       {url: `/api/v1/user/tickets`, method: 'GET',
         params, signal
     },
@@ -197,7 +197,7 @@ export const getTicketDetail = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageTicketDetailResDto>(
+      return axiosInstance<ApiResponseMessageTicketDetailResDto>(
       {url: `/api/v1/user/ticket/${ticketId}`, method: 'GET', signal
     },
       );

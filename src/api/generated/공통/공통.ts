@@ -30,7 +30,7 @@ import type {
   GetSplashParams,
   HardUpdateParams
 } from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
+import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
@@ -44,7 +44,7 @@ export const statusChk = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageStatusChkResDto>(
+      return axiosInstance<ApiResponseMessageStatusChkResDto>(
       {url: `/api/v1/user/common/status-chk`, method: 'GET', signal
     },
       );
@@ -198,7 +198,7 @@ export const getSplash = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageSplashResDto>(
+      return axiosInstance<ApiResponseMessageSplashResDto>(
       {url: `/api/v1/user/common/splash`, method: 'GET',
         params, signal
     },
@@ -353,7 +353,7 @@ export const hardUpdate = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageHardUpdateResDto>(
+      return axiosInstance<ApiResponseMessageHardUpdateResDto>(
       {url: `/api/v1/user/common/app/version-chk`, method: 'GET',
         params, signal
     },

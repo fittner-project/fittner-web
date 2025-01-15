@@ -21,7 +21,7 @@ import type {
   AppleInfoReqDto,
   LoginRequestDto
 } from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
+import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
@@ -35,7 +35,7 @@ export const makeAccessToken = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageTokenResDto>(
+      return axiosInstance<ApiResponseMessageTokenResDto>(
       {url: `/api/v1/auth/refresh-token`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: accessTokenReqDto, signal
@@ -94,7 +94,7 @@ export const logout = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageObject>(
+      return axiosInstance<ApiResponseMessageObject>(
       {url: `/api/v1/auth/logout`, method: 'POST', signal
     },
       );
@@ -151,7 +151,7 @@ export const login1 = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageTokenResDto>(
+      return axiosInstance<ApiResponseMessageTokenResDto>(
       {url: `/api/v1/auth/login`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: loginRequestDto, signal
@@ -210,7 +210,7 @@ export const appleInfo = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageAppleInfoResDto>(
+      return axiosInstance<ApiResponseMessageAppleInfoResDto>(
       {url: `/api/v1/auth/apple-info`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: appleInfoReqDto, signal

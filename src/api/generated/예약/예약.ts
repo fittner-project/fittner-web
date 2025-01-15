@@ -32,7 +32,7 @@ import type {
   ApiResponseMessageReservationColorResDto,
   ReservationReqDto
 } from '.././models'
-import { customInstance } from '../../mutator/custom-instance';
+import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
@@ -46,7 +46,7 @@ export const reservation = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageObject>(
+      return axiosInstance<ApiResponseMessageObject>(
       {url: `/api/v1/user/reservation`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: reservationReqDto, signal
@@ -105,7 +105,7 @@ export const getColors = (
 ) => {
       
       
-      return customInstance<ApiResponseMessageReservationColorResDto>(
+      return axiosInstance<ApiResponseMessageReservationColorResDto>(
       {url: `/api/v1/user/reservation/colors`, method: 'GET', signal
     },
       );
