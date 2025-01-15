@@ -19,6 +19,7 @@ module.exports = {
           useInfiniteQueryParam: "page",
         },
       },
+      format: "esm",
     },
   },
 };
