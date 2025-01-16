@@ -7,11 +7,13 @@ import { defineConfig, loadEnv } from "vite";
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv) => {
   const currentEnv = loadEnv(mode, process.cwd());
-  console.log("Current mode:", command);
-  console.log("Current environment configuration:", currentEnv); //loadEnv即加载根目录下.env.[mode]环境配置文件
+  const isProd = mode === "production" || mode === "docker"; // docker도 production으로 처리
+
   return defineConfig({
     define: {
-      "process.env.NODE_ENV": JSON.stringify(mode),
+      "process.env.NODE_ENV": JSON.stringify(
+        isProd ? "production" : "development"
+      ),
     },
     plugins: [
       react(),
