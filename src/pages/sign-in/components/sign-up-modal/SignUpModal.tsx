@@ -4,6 +4,7 @@ import Image from "@/components/image/Image";
 import { alertTriangle } from "@/assets/assets";
 import Button from "@/components/button/Button";
 import PATH from "@/router/path";
+import { closeModal } from "@/utils/modal";
 
 function AuthModal() {
   return (
@@ -22,6 +23,9 @@ function AuthModal() {
           fullWidth
           className={styles.sign_up_button}
           href={PATH.SIGN_UP}
+          onClick={() => {
+            closeModal();
+          }}
         >
           회원가입
         </Button>

@@ -8,8 +8,6 @@ import Redirect from "@/pages/redirect/Redirect";
 import SignUp from "@/pages/sign-up/SignUp";
 import PATH from "./path";
 
-const { HOME, ABOUT, SIGN_IN, SIGN_UP, REDIRECT } = PATH;
-
 const router = createBrowserRouter(
   [
     {
@@ -17,23 +15,23 @@ const router = createBrowserRouter(
       element: <RootLayout />,
       children: [
         {
-          path: HOME,
+          path: PATH.HOME,
           element: <Home />,
         },
         {
-          path: ABOUT,
+          path: PATH.ABOUT,
           element: <About />,
         },
         {
-          path: SIGN_IN,
+          path: PATH.SIGN_IN,
           element: <SignIn />,
         },
         {
-          path: REDIRECT,
+          path: PATH.REDIRECT,
           element: <Redirect />,
         },
         {
-          path: SIGN_UP,
+          path: PATH.SIGN_UP,
           element: <SignUp />,
         },
       ],

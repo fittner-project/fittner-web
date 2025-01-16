@@ -35,11 +35,8 @@ function Button({
   };
 
   const handleClick = () => {
-    if (href) {
-      navigate(href);
-    } else {
-      onClick?.();
-    }
+    if (href) navigate(href);
+    if (onClick) onClick();
   };
 
   const currentStyle = disabled
