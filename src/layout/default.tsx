@@ -7,11 +7,11 @@ const queryClient = new QueryClient();
 
 export default function RootLayout() {
   return (
-    <EntryPoint>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <EntryPoint>
         <Outlet />
         <ModalManager />
-      </QueryClientProvider>
-    </EntryPoint>
+      </EntryPoint>
+    </QueryClientProvider>
   );
 }
