@@ -15,14 +15,22 @@ function SignUpName() {
   const { register, handleSubmit, watch } = useForm<SignUpNameForm>({
     mode: "onChange",
     defaultValues: {
-      name: storage.get("trainerName", "local") || "",
+      name:
+        storage.get({
+          key: "trainerName",
+          type: "local",
+        }) || "",
     },
   });
 
   const name = watch("name");
 
   const onSubmit = () => {
-    storage.set("trainerName", name, "local");
+    storage.set({
+      key: "trainerName",
+      value: name,
+      type: "local",
+    });
     navigate(PATH.FIND_CENTERS);
   };
 

@@ -18,7 +18,11 @@ function SignUpPhoneNumber() {
       mode: "onChange",
       defaultValues: {
         phoneNumber: formatPhoneNumber({
-          value: storage.get("trainerPhone", "local") || "",
+          value:
+            storage.get({
+              key: "trainerPhone",
+              type: "local",
+            }) || "",
         }),
       },
     });
@@ -29,7 +33,11 @@ function SignUpPhoneNumber() {
     phoneNumber?.replace(/[^0-9]/g, "").length === 11;
 
   const onSubmit = () => {
-    storage.set("trainerPhone", phoneNumber.replace(/-/g, ""), "local");
+    storage.set({
+      key: "trainerPhone",
+      value: phoneNumber.replace(/-/g, ""),
+      type: "local",
+    });
     navigate(PATH.SIGN_UP_NAME);
   };
 

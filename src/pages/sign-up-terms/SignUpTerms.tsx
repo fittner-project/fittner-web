@@ -19,10 +19,10 @@ function SignUpTerms() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedCheckedState = storage.get<Record<string, boolean>>(
-      "termsAgreement",
-      "local"
-    );
+    const savedCheckedState = storage.get<Record<string, boolean>>({
+      key: "termsAgreement",
+      type: "local",
+    });
     if (savedCheckedState) {
       setCheckedState(savedCheckedState);
     }
@@ -37,7 +37,11 @@ function SignUpTerms() {
     };
 
     setCheckedState(newCheckedState);
-    storage.set("termsAgreement", newCheckedState, "local");
+    storage.set({
+      key: "termsAgreement",
+      value: newCheckedState,
+      type: "local",
+    });
   };
 
   const isAllEssentialTermsChecked = () => {
@@ -48,7 +52,11 @@ function SignUpTerms() {
 
   const handleNext = () => {
     if (isAllEssentialTermsChecked()) {
-      storage.set("termsAgreement", checkedState, "local");
+      storage.set({
+        key: "termsAgreement",
+        value: checkedState,
+        type: "local",
+      });
       navigate(PATH.SIGN_UP_PHONE_NUMBER);
     }
   };

@@ -28,7 +28,11 @@ export const useSocialAuth = () => {
 
   const initSocialLogin = ({ socialType }: { socialType: SocialType }) => {
     const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
-    storage.set("trainerSnsKind", socialType.toUpperCase(), "local");
+    storage.set({
+      key: "trainerSnsKind",
+      value: socialType.toUpperCase(),
+      type: "local",
+    });
 
     const socialLoginUrls = {
       kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
@@ -53,7 +57,11 @@ export const useSocialAuth = () => {
           const userInfo = await kakaoLoginService.getUserInfo({
             accessToken,
           });
-          storage.set("trainerEmail", userInfo.email, "local");
+          storage.set({
+            key: "trainerEmail",
+            value: userInfo.email,
+            type: "local",
+          });
           login({ data: { trainerEmail: userInfo.email } });
           break;
         }
@@ -62,7 +70,11 @@ export const useSocialAuth = () => {
           const userInfo = await googleLoginService.getUserInfo({
             accessToken,
           });
-          storage.set("trainerEmail", userInfo.email, "local");
+          storage.set({
+            key: "trainerEmail",
+            value: userInfo.email,
+            type: "local",
+          });
           login({ data: { trainerEmail: userInfo.email } });
           break;
         }
