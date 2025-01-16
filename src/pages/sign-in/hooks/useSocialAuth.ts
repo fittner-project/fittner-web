@@ -11,15 +11,7 @@ import { useAppleInfo } from "@/api/generated/권한/권한";
 export const useSocialAuth = () => {
   const navigate = useNavigate();
 
-  const { mutateAsync: appleInfo } = useAppleInfo({
-    mutation: {
-      onSuccess: (data) => {
-        if (data.result?.userEmail) {
-          login({ data: { trainerEmail: data.result.userEmail } });
-        }
-      },
-    },
-  });
+  const { mutateAsync: appleInfo } = useAppleInfo();
 
   const { mutate: login } = useLogin({
     mutation: {
