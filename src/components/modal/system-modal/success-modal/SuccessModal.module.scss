@@ -3,9 +3,9 @@
   padding-bottom: 4em;
   @include flex_col();
 
-  .error_message {
+  .success_message {
     white-space: pre-line;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     color: $text_1;
     text-align: center;
     font-feature-settings:
