@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 
 interface ButtonProps {
+  href?: string;
   backgroundColor: "primary_1" | "sub_1" | "grey_1";
   disabled?: boolean;
   fullWidth?: boolean;
@@ -9,6 +10,7 @@ interface ButtonProps {
 }
 
 function Button({
+  href,
   children,
   backgroundColor,
   fullWidth,
@@ -16,6 +18,7 @@ function Button({
   className,
   onClick,
 }: PropsWithChildren<ButtonProps>) {
+  const navigate = useNavigate();
   const colorStyle = {
     primary_1: {
       backgroundColor: "#4C6AFF",
@@ -31,6 +34,14 @@ function Button({
     },
   };
 
+  const handleClick = () => {
+    if (href) {
+      navigate(href);
+    } else {
+      onClick?.();
+    }
+  };
+
   const currentStyle = disabled
     ? colorStyle.grey_1
     : colorStyle[backgroundColor];
@@ -38,7 +49,7 @@ function Button({
   return (
     <button
       disabled={disabled}
-      onClick={onClick}
+      onClick={handleClick}
       style={{
         background: currentStyle.backgroundColor,
         color: currentStyle.color,

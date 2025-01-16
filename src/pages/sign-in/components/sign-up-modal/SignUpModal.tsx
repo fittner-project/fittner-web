@@ -20,9 +20,7 @@ function AuthModal() {
           backgroundColor="primary_1"
           fullWidth
           className={styles.sign_up_button}
-          onClick={() => {
-            console.log("회원가입");
-          }}
+          href="/sign-up"
         >
           회원가입
         </Button>
