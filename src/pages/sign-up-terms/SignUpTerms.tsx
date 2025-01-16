@@ -6,6 +6,7 @@ import { checkNor, checkSel } from "@/assets/assets";
 import { useState } from "react";
 import Button from "@/components/button/Button";
 import Skeleton from "@/components/skeleton/Skeleton";
+import PATH from "@/router/path";
 
 function SignUpTerms() {
   const { data: termsData, isLoading } = useGetTerms();
@@ -39,7 +40,7 @@ function SignUpTerms() {
           </p>
 
           <div className={styles.terms_container}>
-            {!isLoading
+            {isLoading
               ? Array.from({ length: terms?.length || 3 }).map((_, index) => (
                   <div key={index} className={styles.term}>
                     <div className={styles.term_content}>
@@ -83,6 +84,7 @@ function SignUpTerms() {
           backgroundColor="primary_1"
           fullWidth
           className={styles.next_button}
+          href={PATH.SIGN_UP_NAME}
           disabled={isLoading || !isAllEssentialTermsChecked()}
         >
           다음

@@ -1,24 +1,23 @@
-import { PropsWithChildren } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren } from "react";
+import { useNavigate } from "react-router-dom";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   backgroundColor: "primary_1" | "sub_1" | "grey_1";
-  disabled?: boolean;
   fullWidth?: boolean;
-  className?: string;
-  onClick?: () => void;
   width?: number | string;
 }
 
 function Button({
   href,
-  children,
   backgroundColor,
   width,
   fullWidth,
   disabled,
   className,
   onClick,
+  children,
+  ...props
 }: PropsWithChildren<ButtonProps>) {
   const navigate = useNavigate();
   const colorStyle = {
@@ -36,9 +35,9 @@ function Button({
     },
   };
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (href) navigate(href);
-    if (onClick) onClick();
+    if (onClick) onClick(e);
   };
 
   const currentStyle = disabled
@@ -47,7 +46,7 @@ function Button({
 
   return (
     <button
-      disabled={disabled}
+      {...props}
       onClick={handleClick}
       style={{
         background: currentStyle.backgroundColor,
@@ -62,6 +61,7 @@ function Button({
         fontStyle: "normal",
         fontWeight: "500",
         lineHeight: "2.2rem",
+        transition: "background-color 0.2s ease-in-out",
       }}
       className={className}
     >

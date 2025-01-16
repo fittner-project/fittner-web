@@ -1,0 +1,90 @@
+@mixin common-font {
+  font-feature-settings:
+    "liga" off,
+    "clig" off;
+  font-family: Pretendard;
+  font-style: normal;
+  line-height: 2.2rem;
+}
+
+@mixin search-icon-position {
+  position: absolute;
+  right: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.default {
+  &_input {
+    @include common-font;
+    padding: 1.4rem;
+    color: $grey_4;
+    background-color: $grey_1;
+    border-radius: 1rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+
+    &::placeholder {
+      color: $grey_3;
+    }
+  }
+
+  &_input_container {
+    width: 100%;
+    position: relative;
+  }
+
+  &_search_input {
+    padding-right: 4.5rem;
+  }
+
+  &_search_icon {
+    @include search-icon-position;
+  }
+}
+
+.line {
+  &_input {
+    @include common-font;
+    border-bottom: 2px solid $grey_1;
+    font-size: 1.9rem;
+    font-weight: 500;
+    padding-bottom: 1.1rem;
+    padding-top: 1.1rem;
+    color: $grey_4;
+
+    &:focus {
+      border-bottom: 2px solid $primary_1;
+    }
+
+    &::placeholder {
+      color: $grey_2;
+    }
+  }
+
+  &_input_container {
+    width: 100%;
+  }
+
+  &_search_input {
+    padding-right: 3.9rem;
+  }
+
+  &_search_icon {
+    @include search-icon-position;
+  }
+}
+
+.search {
+  &_container {
+    position: relative;
+  }
+
+  &_icon {
+    position: absolute;
+    right: 0;
+    bottom: 1.1rem;
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}

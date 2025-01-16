@@ -25,7 +25,7 @@ export type SubHeaderRightSection = {
   actionType?: string | "none";
 };
 
-type RouteKeys = "sign-in" | "lobby" | "sign-up-terms";
+type RouteKeys = "sign-in" | "lobby" | "sign-up-terms" | "sign-up-name";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -52,6 +52,19 @@ export const Routes: Routes = {
   "sign-up-terms": {
     name: "sign-up-terms",
     path: PATH.SIGN_UP_TERMS,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+    subHeaderConfig: {
+      rightSection: {
+        type: "none",
+      },
+    },
+  },
+
+  "sign-up-name": {
+    name: "sign-up-name",
+    path: PATH.SIGN_UP_NAME,
     fallback: "none",
     headerType: "sub",
     navType: "none",
