@@ -5,10 +5,11 @@ import Image from "@/components/image/Image";
 import { checkNor, checkSel } from "@/assets/assets";
 import { useState } from "react";
 import Button from "@/components/button/Button";
+import Skeleton from "@/components/skeleton/Skeleton";
 
 function SignUpTerms() {
-  const { data } = useGetTerms();
-  const terms = data?.result;
+  const { data: termsData, isLoading } = useGetTerms();
+  const terms = termsData?.result;
   const [checkedState, setCheckedState] = useState<Record<string, boolean>>({});
   const essentialTerms =
     terms?.filter((term) => term.termsEssentialYn === "Y") || [];
@@ -38,41 +39,51 @@ function SignUpTerms() {
           </p>
 
           <div className={styles.terms_container}>
-            {terms?.map((term) => (
-              <div key={term.termsTitle} className={styles.term}>
-                <div
-                  onClick={() => handleCheck(term.termsTitle)}
-                  className={styles.term_content}
-                >
-                  <Image
-                    width={1.6}
-                    height={1.6}
-                    src={
-                      checkedState[term.termsTitle as string]
-                        ? checkSel
-                        : checkNor
-                    }
-                    alt="check"
-                  />
-                  <p className={styles.term_title}>{term.termsTitle}</p>
-                </div>
+            {!isLoading
+              ? Array.from({ length: terms?.length || 3 }).map((_, index) => (
+                  <div key={index} className={styles.term}>
+                    <div className={styles.term_content}>
+                      <Skeleton width={2.2} height={2.2} borderRadius={1000} />
+                      <Skeleton width={15} height={2.2} borderRadius={0.4} />
+                    </div>
+                    <Skeleton width={4} height={2.2} borderRadius={0.4} />
+                  </div>
+                ))
+              : terms?.map((term) => (
+                  <div key={term.termsTitle} className={styles.term}>
+                    <div
+                      onClick={() => handleCheck(term.termsTitle)}
+                      className={styles.term_content}
+                    >
+                      <Image
+                        width={1.6}
+                        height={1.6}
+                        src={
+                          checkedState[term.termsTitle as string]
+                            ? checkSel
+                            : checkNor
+                        }
+                        alt="check"
+                      />
+                      <p className={styles.term_title}>{term.termsTitle}</p>
+                    </div>
 
-                <Link
-                  target="_BLANK"
-                  to={term.termsUrl || ""}
-                  className={styles.more_button}
-                >
-                  더보기
-                </Link>
-              </div>
-            ))}
+                    <Link
+                      target="_BLANK"
+                      to={term.termsUrl || ""}
+                      className={styles.more_button}
+                    >
+                      더보기
+                    </Link>
+                  </div>
+                ))}
           </div>
         </div>
         <Button
           backgroundColor="primary_1"
           fullWidth
           className={styles.next_button}
-          disabled={!isAllEssentialTermsChecked()}
+          disabled={isLoading || !isAllEssentialTermsChecked()}
         >
           다음
         </Button>

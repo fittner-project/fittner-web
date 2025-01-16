@@ -7,12 +7,14 @@ interface ButtonProps {
   fullWidth?: boolean;
   className?: string;
   onClick?: () => void;
+  width?: number | string;
 }
 
 function Button({
   href,
   children,
   backgroundColor,
+  width,
   fullWidth,
   disabled,
   className,
@@ -50,7 +52,8 @@ function Button({
       style={{
         background: currentStyle.backgroundColor,
         color: currentStyle.color,
-        width: fullWidth ? "100%" : "auto",
+        width: typeof width === "number" ? `${width}rem` : width,
+        ...(fullWidth && { width: "100%" }),
         borderRadius: "1.6rem",
         height: "6rem",
         fontFeatureSettings: "liga off, clig off",
