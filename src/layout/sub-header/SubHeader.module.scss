@@ -1,2 +1,26 @@
-.wrapper {
+.container {
+  @include flex_row(space-between, center);
+  height: 5.8rem;
+  padding-left: 1.2rem;
+
+  .right_section {
+    margin-left: auto;
+  }
+
+  .right_section_text {
+    margin-right: 1.9rem;
+    color: $primary_1;
+    font-feature-settings:
+      "liga" off,
+      "clig" off;
+    font-family: Pretendard;
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.2rem;
+  }
+
+  .right_section_image {
+    margin-right: 2.7rem;
+  }
 }

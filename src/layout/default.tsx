@@ -4,12 +4,27 @@ import { Outlet } from "react-router-dom";
 import ModalManager from "@/components/modal/modal-manager/ModalManager";
 import { useMemo } from "react";
 
+import Header from "./header/Header";
+import { SubHeader } from "./sub-header/SubHeader";
+import useGetCurrentRoute from "@/hooks/useGetCurrentRoute";
+
 export default function RootLayout() {
   const queryClient = useMemo(() => new QueryClient(), []);
+  const { currentRoute } = useGetCurrentRoute();
+
+  const renderHeader = () => {
+    if (!currentRoute || currentRoute.headerType === "none") {
+      return null;
+    }
+
+    if (currentRoute.headerType === "default") return <Header />;
+    if (currentRoute.headerType === "sub") return <SubHeader />;
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
       <EntryPoint>
+        {renderHeader()}
         <Outlet />
         <ModalManager />
       </EntryPoint>

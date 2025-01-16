@@ -2,18 +2,30 @@ import PATH from "./path";
 
 export type HeaderType = "default" | "sub" | "none";
 
-export type NavigatorType = "default" | "none";
+export type NavigationType = "default" | "none";
 
 export type RouteSpec = {
   name: string;
   path: string;
-  headerName: string;
+  headerName?: string;
   headerType: HeaderType;
-  navType?: NavigatorType;
+  navType?: NavigationType;
   fallback?: string | "none";
+  subHeaderConfig?: SubHeaderConfig;
 };
 
-type RouteKeys = "sign-in" | "lobby";
+export type SubHeaderConfig = {
+  rightSection?: SubHeaderRightSection;
+};
+
+export type SubHeaderRightSection = {
+  type: "text" | "image";
+  textContent?: string;
+  src?: string;
+  actionType?: string | "none";
+};
+
+type RouteKeys = "sign-in" | "lobby" | "sign-up";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -33,8 +45,22 @@ export const Routes: Routes = {
     name: "sign-in",
     path: PATH.SIGN_IN,
     fallback: "none",
-    headerName: "",
     headerType: "none",
     navType: "none",
+  },
+
+  "sign-up": {
+    name: "sign-up",
+    path: PATH.SIGN_UP,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+    subHeaderConfig: {
+      rightSection: {
+        type: "text",
+        textContent: "회원가입",
+        actionType: "none",
+      },
+    },
   },
 };
