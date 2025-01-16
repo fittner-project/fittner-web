@@ -6,6 +6,7 @@ import { googleLoginService } from "@/auth/google";
 
 import { openModal } from "@/utils/modal";
 import SignUpModal from "../components/sign-up-modal/SignUpModal";
+import PATH from "@/router/path";
 //import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
@@ -15,11 +16,11 @@ export const useSocialAuth = () => {
     mutation: {
       onSuccess: (data) => {
         console.log("로그인 성공:", data);
-        navigate("/");
+        navigate(PATH.HOME);
       },
       onError: () => {
         openModal({ component: SignUpModal });
-        navigate("/sign-in");
+        navigate(PATH.SIGN_IN);
       },
     },
   });
@@ -74,7 +75,7 @@ export const useSocialAuth = () => {
       }
     } catch (error) {
       console.error(`${socialType} 로그인 처리 실패:`, error);
-      navigate("/sign-in");
+      navigate(PATH.SIGN_IN);
     }
   };
 

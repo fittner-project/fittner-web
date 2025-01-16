@@ -3,6 +3,7 @@ import styles from "./SignUpModal.module.scss";
 import Image from "@/components/image/Image";
 import { alertTriangle } from "@/assets/assets";
 import Button from "@/components/button/Button";
+import PATH from "@/router/path";
 
 function AuthModal() {
   return (
@@ -20,7 +21,7 @@ function AuthModal() {
           backgroundColor="primary_1"
           fullWidth
           className={styles.sign_up_button}
-          href="/sign-up"
+          href={PATH.SIGN_UP}
         >
           회원가입
         </Button>

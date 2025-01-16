@@ -5,6 +5,10 @@ import About from "@/pages/about";
 import Home from "@/pages/home";
 import SignIn from "@/pages/sign-in/SignIn";
 import Redirect from "@/pages/redirect/Redirect";
+import SignUp from "@/pages/sign-up/SignUp";
+import PATH from "./path";
+
+const { HOME, ABOUT, SIGN_IN, SIGN_UP, REDIRECT } = PATH;
 
 const router = createBrowserRouter(
   [
@@ -13,20 +17,24 @@ const router = createBrowserRouter(
       element: <RootLayout />,
       children: [
         {
-          path: "",
+          path: HOME,
           element: <Home />,
         },
         {
-          path: "/about",
+          path: ABOUT,
           element: <About />,
         },
         {
-          path: "/sign-in",
+          path: SIGN_IN,
           element: <SignIn />,
         },
         {
-          path: "/redirect",
+          path: REDIRECT,
           element: <Redirect />,
+        },
+        {
+          path: SIGN_UP,
+          element: <SignUp />,
         },
       ],
     },
