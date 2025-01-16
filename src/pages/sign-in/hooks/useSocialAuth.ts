@@ -81,7 +81,9 @@ export const useSocialAuth = () => {
           throw new Error("Unknown social type");
       }
 
-      login({ data: { trainerEmail: email } });
+      if (email) {
+        login({ data: { trainerEmail: email } });
+      }
     } catch (error) {
       console.error(`${socialType} 로그인 처리 실패:`, error);
       navigate("/sign-in");
