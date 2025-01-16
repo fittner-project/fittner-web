@@ -10,6 +10,9 @@ export default ({ command, mode }: ConfigEnv) => {
   console.log("Current mode:", command);
   console.log("Current environment configuration:", currentEnv); //loadEnv即加载根目录下.env.[mode]环境配置文件
   return defineConfig({
+    define: {
+      "process.env.NODE_ENV": JSON.stringify(mode),
+    },
     plugins: [
       react(),
       AutoImport({
