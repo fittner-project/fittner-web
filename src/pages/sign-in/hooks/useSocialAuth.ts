@@ -62,11 +62,11 @@ export const useSocialAuth = () => {
           break;
         }
         case "apple": {
-          console.log("애플 로그인 요청");
-          const response = await appleInfo({ data: { code } });
-          if (response.result?.userEmail) {
-            login({ data: { trainerEmail: response.result.userEmail } });
-          }
+          console.log("애플 로그인 요청 인가 코드", code);
+          // const response = await appleInfo({ data: { code } });
+          // if (response.result?.userEmail) {
+          //   login({ data: { trainerEmail: response.result.userEmail } });
+          // }
           break;
         }
         default:

@@ -13,12 +13,9 @@ function SocialCallback() {
 
   useEffect(() => {
     if (state && code) {
-      console.log("소셜 콜백 요청");
       handleSocialCallback({ socialType: state as SocialType, code });
     }
   }, [state, code]);
-
-  console.log("리렌더링");
 
   return <SignIn />;
 }
