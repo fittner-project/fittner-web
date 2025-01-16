@@ -10,13 +10,12 @@ import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>("");
 
   const { mutate: appleInfo } = useAppleInfo({
     mutation: {
       onSuccess: (data) => {
         if (data.result?.userEmail) {
-          setEmail(data.result?.userEmail);
+          login({ data: { trainerEmail: data.result.userEmail } });
         }
       },
     },
@@ -34,12 +33,6 @@ export const useSocialAuth = () => {
       },
     },
   });
-
-  useEffect(() => {
-    if (email) {
-      login({ data: { trainerEmail: email } });
-    }
-  }, [email]);
 
   const initSocialLogin = ({ socialType }: { socialType: SocialType }) => {
     const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
@@ -67,7 +60,7 @@ export const useSocialAuth = () => {
           const userInfo = await kakaoLoginService.getUserInfo({
             accessToken,
           });
-          setEmail(userInfo.email);
+          login({ data: { trainerEmail: userInfo.email } });
           break;
         }
         case "google": {
@@ -75,7 +68,7 @@ export const useSocialAuth = () => {
           const userInfo = await googleLoginService.getUserInfo({
             accessToken,
           });
-          setEmail(userInfo.email);
+          login({ data: { trainerEmail: userInfo.email } });
           break;
         }
         case "apple": {
