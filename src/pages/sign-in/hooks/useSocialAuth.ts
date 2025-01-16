@@ -35,6 +35,12 @@ export const useSocialAuth = () => {
     },
   });
 
+  useEffect(() => {
+    if (email) {
+      login({ data: { trainerEmail: email } });
+    }
+  }, [email]);
+
   const initSocialLogin = ({ socialType }: { socialType: SocialType }) => {
     const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
 
@@ -76,13 +82,8 @@ export const useSocialAuth = () => {
           appleInfo({ data: { code } });
           break;
         }
-
         default:
           throw new Error("Unknown social type");
-      }
-
-      if (email) {
-        login({ data: { trainerEmail: email } });
       }
     } catch (error) {
       console.error(`${socialType} 로그인 처리 실패:`, error);
