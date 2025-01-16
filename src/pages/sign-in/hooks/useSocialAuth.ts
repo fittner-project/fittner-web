@@ -7,6 +7,7 @@ import { googleLoginService } from "@/auth/google";
 import { openModal } from "@/utils/modal";
 import SignUpModal from "../components/sign-up-modal/SignUpModal";
 import PATH from "@/router/path";
+import { storage } from "@/utils/storage";
 //import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
@@ -27,6 +28,7 @@ export const useSocialAuth = () => {
 
   const initSocialLogin = ({ socialType }: { socialType: SocialType }) => {
     const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
+    storage.set("trainerSnsKind", socialType.toUpperCase(), "local");
 
     const socialLoginUrls = {
       kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
@@ -51,6 +53,7 @@ export const useSocialAuth = () => {
           const userInfo = await kakaoLoginService.getUserInfo({
             accessToken,
           });
+          storage.set("trainerEmail", userInfo.email, "local");
           login({ data: { trainerEmail: userInfo.email } });
           break;
         }
@@ -59,6 +62,7 @@ export const useSocialAuth = () => {
           const userInfo = await googleLoginService.getUserInfo({
             accessToken,
           });
+          storage.set("trainerEmail", userInfo.email, "local");
           login({ data: { trainerEmail: userInfo.email } });
           break;
         }
@@ -66,6 +70,7 @@ export const useSocialAuth = () => {
           console.log("애플 로그인 요청 인가 코드", code);
           // const response = await appleInfo({ data: { code } });
           // if (response.result?.userEmail) {
+          //   storage.set("trainerEmail", response.result.userEmail, "local");
           //   login({ data: { trainerEmail: response.result.userEmail } });
           // }
           break;

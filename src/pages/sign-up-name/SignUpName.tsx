@@ -4,6 +4,7 @@ import styles from "./SignUpName.module.scss";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import Button from "@/components/button/Button";
 import PATH from "@/router/path";
+import { storage } from "@/utils/storage";
 
 interface SignUpNameForm {
   name: string;
@@ -13,11 +14,15 @@ function SignUpName() {
   const navigate = useNavigate();
   const { register, handleSubmit, watch } = useForm<SignUpNameForm>({
     mode: "onChange",
+    defaultValues: {
+      name: storage.get("trainerName", "local") || "",
+    },
   });
 
   const name = watch("name");
 
   const onSubmit = () => {
+    storage.set("trainerName", name, "local");
     navigate(PATH.FIND_CENTERS);
   };
 

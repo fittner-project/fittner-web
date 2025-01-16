@@ -3,10 +3,12 @@ import styles from "./SignUpTerms.module.scss";
 import { useGetTerms } from "@/api/generated/유저/유저";
 import Image from "@/components/image/Image";
 import { checkNor, checkSel } from "@/assets/assets";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@/components/button/Button";
 import Skeleton from "@/components/skeleton/Skeleton";
 import PATH from "@/router/path";
+import { useNavigate } from "react-router-dom";
+import { storage } from "@/utils/storage";
 
 function SignUpTerms() {
   const { data: termsData, isLoading } = useGetTerms();
@@ -14,20 +16,41 @@ function SignUpTerms() {
   const [checkedState, setCheckedState] = useState<Record<string, boolean>>({});
   const essentialTerms =
     terms?.filter((term) => term.termsEssentialYn === "Y") || [];
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedCheckedState = storage.get<Record<string, boolean>>(
+      "termsAgreement",
+      "local"
+    );
+    if (savedCheckedState) {
+      setCheckedState(savedCheckedState);
+    }
+  }, []);
 
   const handleCheck = (termsTitle: string | undefined) => {
     if (!termsTitle) return;
 
-    setCheckedState((prev) => ({
-      ...prev,
-      [termsTitle]: !prev[termsTitle],
-    }));
+    const newCheckedState = {
+      ...checkedState,
+      [termsTitle]: !checkedState[termsTitle],
+    };
+
+    setCheckedState(newCheckedState);
+    storage.set("termsAgreement", newCheckedState, "local");
   };
 
   const isAllEssentialTermsChecked = () => {
     return essentialTerms.every(
       (term) => checkedState[term.termsTitle as string] === true
     );
+  };
+
+  const handleNext = () => {
+    if (isAllEssentialTermsChecked()) {
+      storage.set("termsAgreement", checkedState, "local");
+      navigate(PATH.SIGN_UP_PHONE_NUMBER);
+    }
   };
 
   return (
@@ -84,7 +107,7 @@ function SignUpTerms() {
           backgroundColor="primary_1"
           fullWidth
           className={styles.next_button}
-          href={PATH.SIGN_UP_PHONE_NUMBER}
+          onClick={handleNext}
           disabled={isLoading || !isAllEssentialTermsChecked()}
         >
           다음

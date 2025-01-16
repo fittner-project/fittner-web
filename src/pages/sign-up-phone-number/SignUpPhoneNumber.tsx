@@ -5,6 +5,7 @@ import Input from "@/components/input/Input";
 import Button from "@/components/button/Button";
 import formatPhoneNumber from "@/utils/formatPhoneNumber";
 import PATH from "@/router/path";
+import { storage } from "@/utils/storage";
 
 interface SignUpPhoneNumberForm {
   phoneNumber: string;
@@ -15,6 +16,11 @@ function SignUpPhoneNumber() {
   const { register, handleSubmit, setValue, watch } =
     useForm<SignUpPhoneNumberForm>({
       mode: "onChange",
+      defaultValues: {
+        phoneNumber: formatPhoneNumber({
+          value: storage.get("trainerPhone", "local") || "",
+        }),
+      },
     });
 
   const phoneNumber = watch("phoneNumber");
@@ -23,6 +29,7 @@ function SignUpPhoneNumber() {
     phoneNumber?.replace(/[^0-9]/g, "").length === 11;
 
   const onSubmit = () => {
+    storage.set("trainerPhone", phoneNumber.replace(/-/g, ""), "local");
     navigate(PATH.SIGN_UP_NAME);
   };
 
