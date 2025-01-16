@@ -16,7 +16,7 @@ function SocialCallback() {
     if (state && code) {
       handleSocialCallback({ socialType: state as SocialType, code });
     }
-  }, [state, code, handleSocialCallback]);
+  }, [state, code]);
 
   return <SignIn />;
 }
