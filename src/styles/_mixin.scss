@@ -23,3 +23,9 @@
     margin-top: $gap;
   }
 }
+
+@mixin text_ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

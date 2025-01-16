@@ -5,8 +5,9 @@ import About from "@/pages/about";
 import Home from "@/pages/home";
 import SignIn from "@/pages/sign-in/SignIn";
 import Redirect from "@/pages/redirect/Redirect";
-import SignUp from "@/pages/sign-up/SignUp";
+
 import PATH from "./path";
+import SignUpTerms from "@/pages/sign-up-terms/SignUpTerms";
 
 const router = createBrowserRouter(
   [
@@ -31,8 +32,8 @@ const router = createBrowserRouter(
           element: <Redirect />,
         },
         {
-          path: PATH.SIGN_UP,
-          element: <SignUp />,
+          path: PATH.SIGN_UP_TERMS,
+          element: <SignUpTerms />,
         },
       ],
     },

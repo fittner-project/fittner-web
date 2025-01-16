@@ -22,7 +22,7 @@ function AuthModal() {
           backgroundColor="primary_1"
           fullWidth
           className={styles.sign_up_button}
-          href={PATH.SIGN_UP}
+          href={PATH.SIGN_UP_TERMS}
           onClick={() => {
             closeModal();
           }}

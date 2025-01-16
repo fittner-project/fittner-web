@@ -19,13 +19,13 @@ export type SubHeaderConfig = {
 };
 
 export type SubHeaderRightSection = {
-  type: "text" | "image";
+  type: "text" | "image" | "none";
   textContent?: string;
   src?: string;
   actionType?: string | "none";
 };
 
-type RouteKeys = "sign-in" | "lobby" | "sign-up";
+type RouteKeys = "sign-in" | "lobby" | "sign-up-terms";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -49,17 +49,15 @@ export const Routes: Routes = {
     navType: "none",
   },
 
-  "sign-up": {
-    name: "sign-up",
-    path: PATH.SIGN_UP,
+  "sign-up-terms": {
+    name: "sign-up-terms",
+    path: PATH.SIGN_UP_TERMS,
     fallback: "none",
     headerType: "sub",
     navType: "none",
     subHeaderConfig: {
       rightSection: {
-        type: "text",
-        textContent: "회원가입",
-        actionType: "none",
+        type: "none",
       },
     },
   },
