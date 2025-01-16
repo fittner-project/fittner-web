@@ -7,17 +7,9 @@ import { defineConfig, loadEnv } from "vite";
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv) => {
   const currentEnv = loadEnv(mode, process.cwd());
-
-  console.log("Build Mode:", mode); // 빌드 시 mode 확인
-  console.log("Command:", command); // command 확인
-
-  const nodeEnv = mode === "production" ? "production" : "development";
-  console.log("Node ENV will be:", nodeEnv); // 설정될 NODE_ENV 확인
-
+  console.log("Current mode:", command);
+  console.log("Current environment configuration:", currentEnv); //loadEnv即加载根目录下.env.[mode]环境配置文件
   return defineConfig({
-    define: {
-      "process.env.NODE_ENV": JSON.stringify(nodeEnv),
-    },
     plugins: [
       react(),
       AutoImport({
