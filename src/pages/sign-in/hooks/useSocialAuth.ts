@@ -3,13 +3,14 @@ import { useLogin } from "@/api/generated/auth-controller/auth-controller";
 import { SocialType } from "@/auth/socialType";
 import { kakaoLoginService } from "@/auth/kakao";
 import { googleLoginService } from "@/auth/google";
-import { appleLoginService } from "@/auth/apple";
+
 import { openModal } from "@/utils/modal";
 import SignUpModal from "../components/sign-up-modal/SignUpModal";
+import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
-
+  const { mutateAsync: appleInfo } = useAppleInfo();
   const { mutate: login } = useLogin({
     mutation: {
       onSuccess: (data) => {
@@ -29,8 +30,7 @@ export const useSocialAuth = () => {
     const socialLoginUrls = {
       kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
       google: `https://accounts.google.com/o/oauth2/v2/auth?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&state=${socialType}`,
-      apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&response_mode=query&scope=email&state=${socialType}`,
-
+      apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&response_mode=query&state=${socialType}`,
     };
 
     window.location.href = socialLoginUrls[socialType];
@@ -44,15 +44,13 @@ export const useSocialAuth = () => {
     code: string;
   }) => {
     try {
-      let email: string;
-
       switch (socialType) {
         case "kakao": {
           const accessToken = await kakaoLoginService.getToken({ code });
           const userInfo = await kakaoLoginService.getUserInfo({
             accessToken,
           });
-          email = userInfo.email;
+          login({ data: { trainerEmail: userInfo.email } });
           break;
         }
         case "google": {
@@ -60,20 +58,20 @@ export const useSocialAuth = () => {
           const userInfo = await googleLoginService.getUserInfo({
             accessToken,
           });
-          email = userInfo.email;
+          login({ data: { trainerEmail: userInfo.email } });
           break;
         }
         case "apple": {
-          const accessToken = await appleLoginService.getToken({ code });
-          const userInfo = await appleLoginService.getUserInfo({ accessToken });
-          email = userInfo.email;
+          console.log("애플 로그인 요청 인가 코드", code);
+          // const response = await appleInfo({ data: { code } });
+          // if (response.result?.userEmail) {
+          //   login({ data: { trainerEmail: response.result.userEmail } });
+          // }
           break;
         }
         default:
           throw new Error("Unknown social type");
       }
-
-      login({ data: { trainerEmail: email } });
     } catch (error) {
       console.error(`${socialType} 로그인 처리 실패:`, error);
       navigate("/sign-in");

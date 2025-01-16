@@ -10,13 +10,12 @@ function SocialCallback() {
   const state = searchParams.get("state");
   const code = searchParams.get("code");
   const { handleSocialCallback } = useSocialAuth();
-  console.log("code", code);
 
   useEffect(() => {
     if (state && code) {
       handleSocialCallback({ socialType: state as SocialType, code });
     }
-  }, [state, code, handleSocialCallback]);
+  }, [state, code]);
 
   return <SignIn />;
 }

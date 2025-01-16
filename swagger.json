@@ -16,10 +16,256 @@
       "Authorization": []
     }
   ],
+  "tags": [
+    {
+      "name": "유저",
+      "description": "유저 관련 처리입니다."
+    },
+    {
+      "name": "푸시",
+      "description": "푸시 알람입니다.)"
+    },
+    {
+      "name": "예약",
+      "description": "예약 처리입니다."
+    },
+    {
+      "name": "서명",
+      "description": "서명 및 노쇼 처리입니다."
+    },
+    {
+      "name": "이용권",
+      "description": "이용권(티켓) 처리입니다."
+    },
+    {
+      "name": "마이페이지",
+      "description": "마이페이지 내 기능들입니다."
+    },
+    {
+      "name": "파일",
+      "description": "파일 처리"
+    },
+    {
+      "name": "공통",
+      "description": "공통"
+    },
+    {
+      "name": "권한",
+      "description": "권한 처리입니다."
+    }
+  ],
   "paths": {
+    "/api/v1/user/sign": {
+      "post": {
+        "tags": ["서명"],
+        "summary": "서명 요청 API",
+        "description": "서명 요청 API 입니다.",
+        "operationId": "sign",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/reservation": {
+      "post": {
+        "tags": ["예약"],
+        "summary": "트레이너가 수업 등록하는 API",
+        "description": "트레이너가 수업을 등록하는 API 입니다.",
+        "operationId": "reservation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/register": {
+      "post": {
+        "tags": ["유저"],
+        "summary": "트레이너가 회원을 등록하는 API",
+        "description": "트레이너가 회원을 등록하는 API 입니다.",
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberRegisterReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/join": {
+      "post": {
+        "tags": ["유저"],
+        "summary": "트레이너 회원가입 API",
+        "description": "트레이너 회원가입 API 입니다.",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JoinReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/center": {
+      "post": {
+        "tags": ["유저"],
+        "summary": "트레이너의 센터 등록 API",
+        "description": "트레이너의 센터 등록 API 입니다.",
+        "operationId": "registerCenter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CenterRegisterReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["유저"],
+        "summary": "트레이너 본인이 승인요청한걸 승인취소하는 API",
+        "description": "트레이너 본인이 승인요청한걸 승인취소하는 API 입니다.",
+        "operationId": "cancelCenterApproval",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelCenterApprovalReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/common/file/upload": {
+      "post": {
+        "tags": ["파일"],
+        "summary": "이미지 업로드",
+        "description": "이미지를 업로드 합니다.",
+        "operationId": "uploadImage",
+        "parameters": [
+          {
+            "name": "fileReqDto",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FileReqDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/auth/refresh-token": {
       "post": {
-        "tags": ["auth-controller"],
+        "tags": ["권한"],
         "summary": "엑세스 토큰 재발급 API",
         "description": "엑세스 토큰을 재발급 받습니다.",
         "operationId": "makeAccessToken",
@@ -49,7 +295,7 @@
     },
     "/api/v1/auth/logout": {
       "post": {
-        "tags": ["auth-controller"],
+        "tags": ["권한"],
         "summary": "트레이너 로그아웃 API",
         "description": "트레이너 로그아웃 API 입니다.",
         "operationId": "logout",
@@ -74,10 +320,10 @@
     },
     "/api/v1/auth/login": {
       "post": {
-        "tags": ["auth-controller"],
+        "tags": ["권한"],
         "summary": "트레이너 로그인 API",
         "description": "트레이너 로그인 API 입니다.",
-        "operationId": "login",
+        "operationId": "login_1",
         "requestBody": {
           "content": {
             "application/json": {
@@ -101,10 +347,876 @@
           }
         }
       }
+    },
+    "/api/v1/auth/apple-info": {
+      "post": {
+        "tags": ["권한"],
+        "summary": "애플 로그인 시 필요한 유저이메일 전달 API",
+        "description": "애플 로그인 시 필요한 유저이메일 전달 API 입니다.",
+        "operationId": "appleInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppleInfoReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageAppleInfoResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/tickets": {
+      "get": {
+        "tags": ["이용권"],
+        "summary": "전체 이용권 리스트 조회 API",
+        "description": "전체 이용권 리스트 조회 API 입니다.",
+        "operationId": "getTickets",
+        "parameters": [
+          {
+            "name": "ticketListReqDto",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TicketListReqDto"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FittnerPageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageListTicketListResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/ticket/{ticketId}": {
+      "get": {
+        "tags": ["이용권"],
+        "summary": "이용권 상세 조회 API",
+        "description": "이용권 상세 조회 API 입니다.",
+        "operationId": "getTicketDetail",
+        "parameters": [
+          {
+            "name": "ticketId",
+            "in": "path",
+            "description": "티켓ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "ec4b8eb6-d01e-11ef-b7c9-0242ac190002"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageTicketDetailResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/terms": {
+      "get": {
+        "tags": ["유저"],
+        "summary": "약관 조회 API",
+        "description": "약관 조회 API 입니다.",
+        "operationId": "getTerms",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageListTermsResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/sign/reservations": {
+      "get": {
+        "tags": ["서명"],
+        "summary": "전체 예약 리스트 조회 API",
+        "description": "전체 예약 리스트 조회 API 입니다.",
+        "operationId": "getReservations",
+        "parameters": [
+          {
+            "name": "reservationStartDate",
+            "in": "query",
+            "description": "예약 시작 일자",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": 20250101
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageSignResrvationResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/sign/reservations/{ticketId}": {
+      "get": {
+        "tags": ["서명"],
+        "summary": "회원 예약 리스트 조회 API",
+        "description": "회원 예약 리스트 조회 API 입니다.",
+        "operationId": "getReservationsForMember",
+        "parameters": [
+          {
+            "name": "ticketId",
+            "in": "path",
+            "description": "이용권ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "55531c95-cb79-11ef-b7c9-0242ac190002"
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FittnerPageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageSignResrvationForMemberResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/reservation/colors": {
+      "get": {
+        "tags": ["예약"],
+        "summary": "트레이너가 수업 등록할때 필요한 색상 리스트 API",
+        "description": "트레이너가 수업 등록할때 필요한 색상 리스트 API입니다.",
+        "operationId": "getColors",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageReservationColorResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/push/chk": {
+      "get": {
+        "tags": ["푸시"],
+        "summary": "신규 알림 여부 조회 API",
+        "description": "신규 알림이 있는지(안읽은 알림) 확인하는 API 입니다.",
+        "operationId": "pushChk",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessagePushChkResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/myPage/sales/{reservationStartMonth}": {
+      "get": {
+        "tags": ["마이페이지"],
+        "summary": "수익관리 조회 API",
+        "description": "수익관리 조회 API 입니다.",
+        "operationId": "getSales",
+        "parameters": [
+          {
+            "name": "reservationStartMonth",
+            "in": "path",
+            "description": "예약시작월",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": 202501
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FittnerPageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageListSalesResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/myPage/sales/detail": {
+      "get": {
+        "tags": ["마이페이지"],
+        "summary": "수익관리 상세 조회 API",
+        "description": "수익관리 상세 조회 API 입니다.",
+        "operationId": "getSalesDetail",
+        "parameters": [
+          {
+            "name": "reservationStartMonth",
+            "in": "query",
+            "description": "예약시작월",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": 202501
+          },
+          {
+            "name": "ticketId",
+            "in": "query",
+            "description": "티켓ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "dfb99734-ccd9-11ef-b7c9-0242ac190002"
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FittnerPageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageListSalesDetailResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/myPage/sales-info": {
+      "get": {
+        "tags": ["마이페이지"],
+        "summary": "수익관리 요약 조회 API",
+        "description": "수익관리 요약 API 입니다.",
+        "operationId": "getSalesInfo",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageSalesInfoResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/members": {
+      "get": {
+        "tags": ["유저"],
+        "summary": "트레이너의 회원 목록 조회 API",
+        "description": "트레이너의 회원 목록 조회 API 입니다.",
+        "operationId": "members",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FittnerPageable"
+            }
+          },
+          {
+            "name": "memberListSearchDto",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MemberListSearchDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessagePageResponseDtoMemberListResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/main/centers": {
+      "get": {
+        "tags": ["유저"],
+        "summary": "메인에서 트레이너가 지정한 센터 목록 조회 API",
+        "description": "트레이너가 지정한 센터 목록 조회 API 입니다.",
+        "operationId": "mainCenterList",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FittnerPageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessagePageResponseDtoMainUserCenterListResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/info": {
+      "get": {
+        "tags": ["유저"],
+        "summary": "트레이너 정보 조회 API",
+        "description": "트레이너 정보 조회 API 입니다.",
+        "operationId": "getUserInfo",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageUserInfoResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/common/status-chk": {
+      "get": {
+        "tags": ["공통"],
+        "summary": "트레이너 상태 체크 API",
+        "description": "트레이너 상태 체크 API 입니다.</br>(trainerStatus 응답 필드가 'STOP'일때만 잠금팝업)",
+        "operationId": "statusChk",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageStatusChkResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/common/splash": {
+      "get": {
+        "tags": ["공통"],
+        "summary": "스플래시 API",
+        "description": "스플래시 조회 API 입니다.",
+        "operationId": "getSplash",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "query",
+            "description": "승인토큰",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageSplashResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/common/app/version-chk": {
+      "get": {
+        "tags": ["공통"],
+        "summary": "앱 버전 확인 조회 API",
+        "description": "앱 버전 확인 API 입니다.",
+        "operationId": "hardUpdate",
+        "parameters": [
+          {
+            "name": "appOsType",
+            "in": "query",
+            "description": "앱os종류 (AOS | IOS)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "AOS"
+          },
+          {
+            "name": "appVersion",
+            "in": "query",
+            "description": "앱버전",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1.0.1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageHardUpdateResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/centers": {
+      "get": {
+        "tags": ["유저"],
+        "summary": "트레이너가 지정한 센터 목록 조회 API",
+        "description": "트레이너가 지정한 센터 목록 조회 API 입니다.",
+        "operationId": "centerList",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FittnerPageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessagePageResponseDtoUserCenterListResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/center/list": {
+      "get": {
+        "tags": ["유저"],
+        "summary": "센터 목록 조회 API",
+        "description": "센터 목록 조회 API 입니다.",
+        "operationId": "centerList_1",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FittnerPageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessagePageResponseDtoCenterListResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/common/file/show/{fileId}": {
+      "get": {
+        "tags": ["파일"],
+        "summary": "이미지 열기",
+        "description": "url 입력시 해당 이미지를 노출합니다.",
+        "operationId": "showImage",
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "description": "파일ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "6j4trvC7ac"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "byte"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/common/file/privacy-clause": {
+      "get": {
+        "tags": ["파일"],
+        "summary": "개인정보 이용약관",
+        "description": "현재 적용중인 개인정보 이용약관을 조회 합니다.",
+        "operationId": "getPrivacyClause",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "byte"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "SignReqDto": {
+        "type": "object",
+        "properties": {
+          "reservationId": {
+            "type": "string"
+          },
+          "memberId": {
+            "type": "string"
+          },
+          "fileGroupId": {
+            "type": "string"
+          },
+          "signType": {
+            "type": "string"
+          },
+          "signMemo": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiResponseMessageObject": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "object",
+            "description": "응답 데이터"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "ReservationReqDto": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "description": "회원 키값",
+            "example": "1"
+          },
+          "reservationStartDate": {
+            "type": "string",
+            "description": "예약 시작일자",
+            "example": "20250105"
+          },
+          "reservationEndDate": {
+            "type": "string",
+            "description": "예약 종료일자",
+            "example": "20250106"
+          },
+          "reservationStartTime": {
+            "type": "string",
+            "description": "예약 시작시간",
+            "example": "2030"
+          },
+          "reservationEndTime": {
+            "type": "string",
+            "description": "예약 종료일자",
+            "example": "2130"
+          },
+          "reservationColor": {
+            "type": "string",
+            "description": "색상 태그",
+            "example": "007AFF"
+          },
+          "reservationPush": {
+            "type": "string",
+            "description": "예약 푸시",
+            "example": "before_5m"
+          },
+          "reservationMemo": {
+            "type": "string",
+            "description": "예약 메모",
+            "example": "예약 메모입니다."
+          }
+        }
+      },
+      "MemberRegisterReqDto": {
+        "type": "object",
+        "properties": {
+          "memberName": {
+            "type": "string",
+            "description": "회원 이름",
+            "example": "홍길동"
+          },
+          "memberPhone": {
+            "type": "string",
+            "description": "회원 전화번호",
+            "example": "01012345678"
+          },
+          "memberGender": {
+            "type": "string",
+            "description": "회원 성별",
+            "example": "M"
+          },
+          "memberBirth": {
+            "type": "string",
+            "description": "회원 생년월일",
+            "example": "960615"
+          },
+          "memberAddress": {
+            "type": "string",
+            "description": "회원 주소",
+            "example": "서울시 강남구"
+          },
+          "productName": {
+            "type": "string",
+            "description": "상품명",
+            "example": "프리미엄PT20"
+          },
+          "productStartDate": {
+            "type": "string",
+            "description": "상품 시작일",
+            "example": "2021-01-01"
+          },
+          "productEndDate": {
+            "type": "string",
+            "description": "상품 종료일",
+            "example": "2021-12-31"
+          },
+          "productCount": {
+            "type": "integer",
+            "description": "상품 횟수",
+            "format": "int32",
+            "example": 20
+          },
+          "productPrice": {
+            "type": "integer",
+            "description": "상품 가격",
+            "format": "int32",
+            "example": 100000
+          },
+          "memberMemo": {
+            "type": "string",
+            "description": "회원 메모",
+            "example": "특이사항 없음"
+          },
+          "memberJoinPath": {
+            "type": "string",
+            "description": "가입 경로",
+            "example": "지인 소개"
+          }
+        }
+      },
+      "JoinReqDto": {
+        "type": "object",
+        "properties": {
+          "trainerPhone": {
+            "type": "string",
+            "description": "트레이너 휴대폰 번호",
+            "example": "01012345678"
+          },
+          "trainerName": {
+            "type": "string",
+            "description": "트레이너 이름",
+            "example": "홍길동"
+          },
+          "trainerEmail": {
+            "type": "string",
+            "description": "트레이너 이메일",
+            "example": "newy12@naver.com"
+          },
+          "trainerSnsKind": {
+            "type": "string",
+            "description": "소셜 로그인 종류",
+            "example": " KAKAO || APPLE || GOOGLE",
+            "enum": ["KAKAO", "APPLE", "GOOGLE"]
+          },
+          "trainerFcmToken": {
+            "type": "string",
+            "description": "fcm 토큰 (현재는 빈값으로 넣으세요)"
+          },
+          "trainerCiNo": {
+            "type": "string",
+            "description": "CI NUM (현재는 빈값으로 넣으세요)"
+          },
+          "centerId": {
+            "type": "string",
+            "description": "센터 지점 키값",
+            "example": "1"
+          }
+        }
+      },
+      "CenterRegisterReqDto": {
+        "type": "object",
+        "properties": {
+          "centerId": {
+            "type": "string",
+            "description": "센터 키값",
+            "example": "e7d5eeb6-cda6-11ef-b7c9-0242ac190002"
+          }
+        }
+      },
+      "FileReqDto": {
+        "type": "object",
+        "properties": {
+          "encryptYn": {
+            "type": "string"
+          }
+        }
+      },
       "AccessTokenReqDto": {
         "type": "object",
         "properties": {
@@ -169,7 +1281,27 @@
         },
         "description": "응답 데이터"
       },
-      "ApiResponseMessageObject": {
+      "LoginRequestDto": {
+        "type": "object",
+        "properties": {
+          "trainerEmail": {
+            "type": "string",
+            "description": "이메일",
+            "example": "newy12@naver.com"
+          }
+        }
+      },
+      "AppleInfoReqDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "애플 로그인 시 필요한 인증코드",
+            "example": "201205211618573161SP"
+          }
+        }
+      },
+      "ApiResponseMessageAppleInfoResDto": {
         "type": "object",
         "properties": {
           "status": {
@@ -193,8 +1325,7 @@
             "example": ""
           },
           "result": {
-            "type": "object",
-            "description": "응답 데이터"
+            "$ref": "#/components/schemas/AppleInfoResDto"
           },
           "error": {
             "type": "string",
@@ -203,13 +1334,1216 @@
           }
         }
       },
-      "LoginRequestDto": {
+      "AppleInfoResDto": {
+        "type": "object",
+        "properties": {
+          "userEmail": {
+            "type": "string",
+            "description": "애플 로그인 시 필요한 유저이메일",
+            "example": "newy12@naver.com"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "TicketListReqDto": {
+        "required": ["ticketStatus"],
+        "type": "object",
+        "properties": {
+          "ticketStatus": {
+            "pattern": "TOTAL|ING|STOP|ASSIGN_TO|ASSIGN_FROM|REFUND|BEFORE|AFTER",
+            "type": "string",
+            "description": "티켓상태",
+            "example": "TOTAL | ING | STOP | ASSIGN_TO | ASSIGN_FROM | REFUND | BEFORE | AFTER"
+          }
+        }
+      },
+      "FittnerPageable": {
+        "type": "object",
+        "properties": {
+          "currentPageNo": {
+            "type": "integer",
+            "description": "현재 페이지 번호",
+            "format": "int32",
+            "example": 1
+          }
+        }
+      },
+      "ApiResponseMessageListTicketListResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/TicketListResDto"
+            }
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "TicketListResDto": {
+        "type": "object",
+        "properties": {
+          "ticketId": {
+            "type": "string"
+          },
+          "ticketStatus": {
+            "type": "string"
+          },
+          "memeberName": {
+            "type": "string"
+          },
+          "ticketName": {
+            "type": "string"
+          },
+          "ticketStartEndDate": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageTicketDetailResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/TicketDetailResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "TicketDetailResDto": {
+        "type": "object",
+        "properties": {
+          "ticketId": {
+            "type": "string"
+          },
+          "memeberName": {
+            "type": "string"
+          },
+          "memberPhone": {
+            "type": "string"
+          },
+          "memberGender": {
+            "type": "string"
+          },
+          "memberBirth": {
+            "type": "string"
+          },
+          "memberAddress": {
+            "type": "string"
+          },
+          "memberMomo": {
+            "type": "string"
+          },
+          "memberJoinPath": {
+            "type": "string"
+          },
+          "ticketCode": {
+            "type": "string"
+          },
+          "ticketName": {
+            "type": "string"
+          },
+          "ticketStartDate": {
+            "type": "string"
+          },
+          "ticketEndDate": {
+            "type": "string"
+          },
+          "remainingCnt": {
+            "type": "string"
+          },
+          "ticketPrice": {
+            "type": "string"
+          },
+          "refundId": {
+            "type": "string"
+          },
+          "refundCnt": {
+            "type": "string"
+          },
+          "refundPrice": {
+            "type": "string"
+          },
+          "refundDateTime": {
+            "type": "string"
+          },
+          "originalTicketId": {
+            "type": "string"
+          },
+          "assignCenterName": {
+            "type": "string"
+          },
+          "assignTrainerName": {
+            "type": "string"
+          },
+          "assignDate": {
+            "type": "string"
+          },
+          "assignCnt": {
+            "type": "string"
+          },
+          "assignName": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageListTermsResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/TermsResDto"
+            }
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "TermsResDto": {
+        "type": "object",
+        "properties": {
+          "termsEssentialYn": {
+            "type": "string"
+          },
+          "termsTitle": {
+            "type": "string"
+          },
+          "termsUrl": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageSignResrvationResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/SignResrvationResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "SignResrvationDto": {
+        "type": "object",
+        "properties": {
+          "memberName": {
+            "type": "string"
+          },
+          "reservationUseCnt": {
+            "type": "string"
+          },
+          "reservationTime": {
+            "type": "string"
+          },
+          "reservationMemo": {
+            "type": "string"
+          },
+          "ticketId": {
+            "type": "string"
+          },
+          "reservationStartDate": {
+            "type": "string"
+          }
+        }
+      },
+      "SignResrvationResDto": {
+        "type": "object",
+        "properties": {
+          "reservationTotalCnt": {
+            "type": "string"
+          },
+          "reservationList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SignResrvationDto"
+            }
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageSignResrvationForMemberResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/SignResrvationForMemberResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "SignResrvationForMemberResDto": {
+        "type": "object",
+        "properties": {
+          "reservationId": {
+            "type": "string"
+          },
+          "memberId": {
+            "type": "string"
+          },
+          "memberName": {
+            "type": "string"
+          },
+          "reservationStatus": {
+            "type": "string"
+          },
+          "reservationTime": {
+            "type": "string"
+          },
+          "reservationUseCnt": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageReservationColorResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/ReservationColorResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "ReservationColorResDto": {
+        "type": "object",
+        "properties": {
+          "colors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessagePushChkResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/PushChkResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "PushChkResDto": {
+        "type": "object",
+        "properties": {
+          "pushChkYn": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageListSalesResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/SalesResDto"
+            }
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "SalesResDto": {
+        "type": "object",
+        "properties": {
+          "memeberName": {
+            "type": "string"
+          },
+          "ticetName": {
+            "type": "string"
+          },
+          "ticketStartEndDate": {
+            "type": "string"
+          },
+          "ticketStartEndTime": {
+            "type": "string"
+          },
+          "ticketUseCnt": {
+            "type": "string"
+          },
+          "totalSettlementAmount": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageListSalesDetailResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/SalesDetailResDto"
+            }
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "SalesDetailResDto": {
+        "type": "object",
+        "properties": {
+          "memeberName": {
+            "type": "string"
+          },
+          "ticetName": {
+            "type": "string"
+          },
+          "reservationStartDate": {
+            "type": "string"
+          },
+          "reservationStartEndTime": {
+            "type": "string"
+          },
+          "ticketUseCnt": {
+            "type": "string"
+          },
+          "reservationStatus": {
+            "type": "string"
+          },
+          "settlementAmount": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageSalesInfoResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/SalesInfoResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "SalesInfoResDto": {
+        "type": "object",
+        "properties": {
+          "projectionSales": {
+            "type": "string"
+          },
+          "nowSales": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "MemberListSearchDto": {
+        "type": "object",
+        "properties": {
+          "memberName": {
+            "type": "string",
+            "description": "회원명",
+            "example": "홍길동"
+          },
+          "memberNo": {
+            "type": "string",
+            "description": "회원 휴대폰 끝번호",
+            "example": "2058"
+          }
+        }
+      },
+      "ApiResponseMessagePageResponseDtoMemberListResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/PageResponseDtoMemberListResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "MemberListResDto": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "description": "회원 ID",
+            "example": "1"
+          },
+          "memberName": {
+            "type": "string",
+            "description": "회원 이름",
+            "example": "홍길동"
+          },
+          "memberPhone": {
+            "type": "string",
+            "description": "회원 전화번호",
+            "example": "010-1234-5678"
+          },
+          "memberAge": {
+            "type": "string",
+            "description": "회원 나이",
+            "example": "30"
+          },
+          "memberTotalCount": {
+            "type": "integer",
+            "description": "회원 총 수",
+            "format": "int64",
+            "example": 10
+          }
+        }
+      },
+      "PageResponseDtoMemberListResDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberListResDto"
+            }
+          },
+          "paginationInfo": {
+            "$ref": "#/components/schemas/PaginationInfo"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "PaginationInfo": {
+        "type": "object",
+        "properties": {
+          "totalRecordCount": {
+            "type": "integer",
+            "description": "전체 레코드 수",
+            "format": "int64",
+            "example": 100
+          },
+          "totalPageCount": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int32",
+            "example": 10
+          },
+          "recordsPerPage": {
+            "type": "integer",
+            "description": "페이지 당 레코드 수",
+            "format": "int32",
+            "example": 10
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "페이지 수",
+            "format": "int32",
+            "example": 10
+          },
+          "firstPage": {
+            "type": "integer",
+            "description": "시작 페이지 번호",
+            "format": "int32",
+            "example": 1
+          },
+          "lastPage": {
+            "type": "integer",
+            "description": "마지막 페이지 번호",
+            "format": "int32",
+            "example": 10
+          },
+          "startPage": {
+            "type": "boolean",
+            "description": "시작 페이지 여부",
+            "example": true
+          },
+          "endPage": {
+            "type": "boolean",
+            "description": "마지막 페이지 여부",
+            "example": false
+          },
+          "currentPageNo": {
+            "type": "integer",
+            "description": "현재 페이지 번호",
+            "format": "int32",
+            "example": 1
+          },
+          "empty": {
+            "type": "boolean",
+            "description": "빈 페이지 여부",
+            "example": false
+          }
+        }
+      },
+      "ApiResponseMessagePageResponseDtoMainUserCenterListResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/PageResponseDtoMainUserCenterListResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "MainUserCenterListResDto": {
+        "type": "object",
+        "properties": {
+          "centerJoinId": {
+            "type": "string",
+            "description": "센터 가입 ID",
+            "example": "1"
+          },
+          "centerName": {
+            "type": "string",
+            "description": "센터 이름",
+            "example": "피트너 센터"
+          }
+        }
+      },
+      "PageResponseDtoMainUserCenterListResDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MainUserCenterListResDto"
+            }
+          },
+          "paginationInfo": {
+            "$ref": "#/components/schemas/PaginationInfo"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageUserInfoResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/UserInfoResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "UserInfoResDto": {
         "type": "object",
         "properties": {
           "trainerEmail": {
+            "type": "string"
+          },
+          "trainerSnsKind": {
+            "type": "string"
+          },
+          "trainerName": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageStatusChkResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
             "type": "string",
-            "description": "이메일",
-            "example": "newy12@naver.com"
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/StatusChkResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "StatusChkResDto": {
+        "type": "object",
+        "properties": {
+          "trainerStatus": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageSplashResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/SplashResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "SplashResDto": {
+        "type": "object",
+        "properties": {
+          "splashImgUrl": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageHardUpdateResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/HardUpdateResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "HardUpdateResDto": {
+        "type": "object",
+        "properties": {
+          "hardUpdateYn": {
+            "type": "string"
+          },
+          "appUpadateUrl": {
+            "type": "string"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessagePageResponseDtoUserCenterListResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/PageResponseDtoUserCenterListResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "PageResponseDtoUserCenterListResDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserCenterListResDto"
+            }
+          },
+          "paginationInfo": {
+            "$ref": "#/components/schemas/PaginationInfo"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "UserCenterListResDto": {
+        "type": "object",
+        "properties": {
+          "centerJoinId": {
+            "type": "string",
+            "description": "센터 가입 ID",
+            "example": "1"
+          },
+          "centerName": {
+            "type": "string",
+            "description": "센터 이름",
+            "example": "피트너 센터"
+          },
+          "centerAddress": {
+            "type": "string",
+            "description": "센터 주소",
+            "example": "서울시 강남구"
+          },
+          "centerJoinApprovalYn": {
+            "type": "string",
+            "description": "센터 승인여부",
+            "example": "N"
+          },
+          "centerJoinMainYn": {
+            "type": "string",
+            "description": "주 센터 여부",
+            "example": "Y"
+          }
+        }
+      },
+      "ApiResponseMessagePageResponseDtoCenterListResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "$ref": "#/components/schemas/PageResponseDtoCenterListResDto"
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "CenterFileResDto": {
+        "type": "object",
+        "properties": {
+          "fileUrl": {
+            "type": "string"
+          }
+        },
+        "description": "센터 이미지",
+        "example": "http://www.fittner.co.kr/images/center/1.jpg"
+      },
+      "CenterListResDto": {
+        "type": "object",
+        "properties": {
+          "centerId": {
+            "type": "string",
+            "description": "센터 ID",
+            "example": "1"
+          },
+          "centerName": {
+            "type": "string",
+            "description": "센터 이름",
+            "example": "피트너 센터"
+          },
+          "centerAddress": {
+            "type": "string",
+            "description": "센터 주소",
+            "example": "서울시 강남구"
+          },
+          "centerTel": {
+            "type": "string",
+            "description": "센터 전화번호",
+            "example": "02-1234-5678"
+          },
+          "centerImage": {
+            "type": "array",
+            "description": "센터 이미지",
+            "example": "http://www.fittner.co.kr/images/center/1.jpg",
+            "items": {
+              "$ref": "#/components/schemas/CenterFileResDto"
+            }
+          }
+        }
+      },
+      "PageResponseDtoCenterListResDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CenterListResDto"
+            }
+          },
+          "paginationInfo": {
+            "$ref": "#/components/schemas/PaginationInfo"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "CancelCenterApprovalReqDto": {
+        "type": "object",
+        "properties": {
+          "centerJoinId": {
+            "type": "string"
           }
         }
       }
