@@ -30,7 +30,8 @@ type RouteKeys =
   | "lobby"
   | "sign-up-terms"
   | "sign-up-name"
-  | "find-centers";
+  | "find-centers"
+  | "sign-up-phone-number";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -67,17 +68,20 @@ export const Routes: Routes = {
     },
   },
 
+  "sign-up-phone-number": {
+    name: "sign-up-phone-number",
+    path: PATH.SIGN_UP_PHONE_NUMBER,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+
   "sign-up-name": {
     name: "sign-up-name",
     path: PATH.SIGN_UP_NAME,
     fallback: "none",
     headerType: "sub",
     navType: "none",
-    subHeaderConfig: {
-      rightSection: {
-        type: "none",
-      },
-    },
   },
 
   "find-centers": {

@@ -84,7 +84,7 @@ function SignUpTerms() {
           backgroundColor="primary_1"
           fullWidth
           className={styles.next_button}
-          href={PATH.SIGN_UP_NAME}
+          href={PATH.SIGN_UP_PHONE_NUMBER}
           disabled={isLoading || !isAllEssentialTermsChecked()}
         >
           다음
