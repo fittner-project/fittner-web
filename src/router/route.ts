@@ -25,7 +25,12 @@ export type SubHeaderRightSection = {
   actionType?: string | "none";
 };
 
-type RouteKeys = "sign-in" | "lobby" | "sign-up-terms" | "sign-up-name";
+type RouteKeys =
+  | "sign-in"
+  | "lobby"
+  | "sign-up-terms"
+  | "sign-up-name"
+  | "find-centers";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -73,5 +78,13 @@ export const Routes: Routes = {
         type: "none",
       },
     },
+  },
+
+  "find-centers": {
+    name: "find-centers",
+    path: PATH.FIND_CENTERS,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
   },
 };

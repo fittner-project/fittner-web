@@ -30,6 +30,7 @@
           @include flex_row(center, center);
           @include flex_row_gap(1rem);
           max-width: calc(100% - 6rem);
+          cursor: pointer;
 
           .term_title {
             height: 100%;
