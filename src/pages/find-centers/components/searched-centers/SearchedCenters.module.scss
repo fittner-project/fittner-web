@@ -1,11 +1,11 @@
 .container {
   padding: 1.2rem 1.8rem 1.8rem 1.8rem;
-  max-height: calc(100dvh - 15.6rem);
-  min-height: calc(100dvh - 15.6rem);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  will-change: transform;
-  transform: translateZ(0);
+  // max-height: calc(100dvh - 15.6rem);
+  // min-height: calc(100dvh - 15.6rem);
+  // overflow-y: auto;
+  // -webkit-overflow-scrolling: touch;
+  // will-change: transform;
+  // transform: translateZ(0);
 
   .search_result {
     color: $grey_4;

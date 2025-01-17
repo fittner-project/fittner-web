@@ -1,7 +1,6 @@
 import { Sheet } from "react-modal-sheet";
 import { useBottomSheetStore } from "@/store/bottomSheet";
 import styles from "./BottomSheet.module.scss";
-import { useEffect } from "react";
 
 interface BottomSheetProps {
   children: React.ReactNode;
@@ -11,13 +10,6 @@ function BottomSheet({ children }: BottomSheetProps) {
   const { closeBottomSheet, setIsOpen } = useBottomSheetStore();
   const isOpen = useBottomSheetStore((state) => state.isOpen);
 
-  useEffect(() => {
-    return () => {
-      document.body.style.removeProperty("overflow");
-      document.body.style.removeProperty("position");
-    };
-  }, []);
-
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -25,8 +17,6 @@ function BottomSheet({ children }: BottomSheetProps) {
   const handleAnimationEnd = () => {
     if (!isOpen) {
       closeBottomSheet();
-      document.body.style.removeProperty("overflow");
-      document.body.style.removeProperty("position");
     }
   };
 
@@ -41,7 +31,6 @@ function BottomSheet({ children }: BottomSheetProps) {
         ease: "easeInOut",
         duration: 0.3,
       }}
-      disableScrollLocking
     >
       <Sheet.Container className={styles.container}>
         <Sheet.Header className={styles.header}></Sheet.Header>
