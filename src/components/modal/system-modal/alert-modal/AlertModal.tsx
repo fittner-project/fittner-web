@@ -5,6 +5,7 @@ import Modal from "../../Modal";
 import Image from "@/components/image/Image";
 import styles from "./AlertModal.module.scss";
 import { closeModal } from "@/utils/modal";
+import useSafeTimeout from "@/hooks/useSafeTimeout";
 
 interface AlertModalProps {
   errorMessage: string;
@@ -24,19 +25,22 @@ function AlertModal({ errorMessage, onCloseComplete }: AlertModalProps) {
     }
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
+  useSafeTimeout(
+    () => {
       closeModal({ onCloseComplete: handleCloseComplete });
-    }, 2500);
+    },
+    2500,
+    [onCloseComplete]
+  );
 
+  useEffect(() => {
     return () => {
       if (!isFirstRender.current) {
-        clearTimeout(timer);
         handleCloseComplete();
       }
       isFirstRender.current = false;
     };
-  }, [onCloseComplete]);
+  }, []);
 
   useEffect(() => {
     if (!isFirstRender.current && prevPathRef.current !== location.pathname) {

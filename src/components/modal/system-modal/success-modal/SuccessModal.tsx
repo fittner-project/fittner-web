@@ -5,6 +5,7 @@ import { checkSel } from "@/assets/assets";
 import { closeModal } from "@/utils/modal";
 import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import useSafeTimeout from "@/hooks/useSafeTimeout";
 
 interface SuccessModalProps {
   successMessage: string;
@@ -24,19 +25,22 @@ function SuccessModal({ successMessage, onCloseComplete }: SuccessModalProps) {
     }
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
+  useSafeTimeout(
+    () => {
       closeModal({ onCloseComplete: handleCloseComplete });
-    }, 2500);
+    },
+    2500,
+    [onCloseComplete]
+  );
 
+  useEffect(() => {
     return () => {
       if (!isFirstRender.current) {
-        clearTimeout(timer);
         handleCloseComplete();
       }
       isFirstRender.current = false;
     };
-  }, [onCloseComplete]);
+  }, []);
 
   useEffect(() => {
     if (!isFirstRender.current && prevPathRef.current !== location.pathname) {
