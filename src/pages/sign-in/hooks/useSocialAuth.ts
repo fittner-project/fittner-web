@@ -30,7 +30,8 @@ export const useSocialAuth = () => {
     const socialLoginUrls = {
       kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
       google: `https://accounts.google.com/o/oauth2/v2/auth?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&state=${socialType}`,
-      apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&response_mode=query&state=${socialType}`,
+      //apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&response_mode=query&state=${socialType}`,
+      apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=id_token&response_mode=query&state=${socialType}`,
     };
 
     window.location.href = socialLoginUrls[socialType];
@@ -39,9 +40,11 @@ export const useSocialAuth = () => {
   const handleSocialCallback = async ({
     socialType,
     code,
+    id_token
   }: {
     socialType: SocialType;
     code: string;
+    id_token: string;
   }) => {
     try {
       switch (socialType) {
@@ -63,6 +66,7 @@ export const useSocialAuth = () => {
         }
         case "apple": {
           console.log("애플 로그인 요청 인가 코드", code);
+          console.log("애플 로그인 요청 인가 코드", id_token);
           // const response = await appleInfo({ data: { code } });
           // if (response.result?.userEmail) {
           //   login({ data: { trainerEmail: response.result.userEmail } });
