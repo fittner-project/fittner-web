@@ -6,6 +6,9 @@ import CenterSearchTips from "./components/center-search-tips/CenterSearchTips";
 import SearchedCenters from "./components/searched-centers/SearchedCenters";
 import { useCenterList1 } from "@/api/generated/유저/유저";
 import { useSearch } from "@/hooks/useSearch";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import SelectCenterBottomSheet from "./components/searched-centers/select-center-bottom-sheet/SelectCenterBottomSheet";
+import { CenterListResDto } from "@/api/generated/models";
 
 interface SearchCenterForm {
   searchCenterValue: string;
@@ -27,6 +30,15 @@ function FindCenters() {
     searchFields: ["centerName", "centerAddress"],
   });
 
+  const handleCenterClick = (center: CenterListResDto) => {
+    openBottomSheet({
+      component: SelectCenterBottomSheet,
+      props: {
+        center,
+      },
+    });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.search_container}>
@@ -45,6 +57,7 @@ function FindCenters() {
         <SearchedCenters
           centerList={filteredCenterList}
           isCenterListLoading={isCenterListLoading}
+          handleCenterClick={handleCenterClick}
         />
       )}
     </div>

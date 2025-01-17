@@ -11,7 +11,7 @@ interface ModalStore {
   openModal: (component: React.ComponentType<any>, props?: any) => void;
   closeModal: () => void;
   isLoading: boolean;
-  setLoading: (loading: boolean) => void;
+  setIsLoading: (isLoading: boolean) => void;
 }
 
 export const useModalStore = create<ModalStore>((set) => ({
@@ -25,5 +25,5 @@ export const useModalStore = create<ModalStore>((set) => ({
     set((state) => ({
       modals: state.modals.slice(0, -1),
     })),
-  setLoading: (loading: boolean) => set({ isLoading: loading }),
+  setIsLoading: (isLoading: boolean) => set({ isLoading }),
 }));

@@ -3,11 +3,12 @@ import styles from "./Center.module.scss";
 
 interface CenterProps {
   center: CenterListResDto;
+  handleCenterClick?: () => void;
 }
 
-export default function Center({ center }: CenterProps) {
+export default function Center({ center, handleCenterClick }: CenterProps) {
   return (
-    <div className={styles.container}>
+    <div onClick={handleCenterClick} className={styles.container}>
       <div
         className={styles.center_image}
         style={{ backgroundImage: `url(${center.centerImage})` }}

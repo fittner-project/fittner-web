@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import Header from "./header/Header";
 import { SubHeader } from "./sub-header/SubHeader";
 import useGetCurrentRoute from "@/hooks/useGetCurrentRoute";
+import BottomSheetManager from "@/components/bottom-sheet/bottom-sheet-manager/BottomSheetManager";
 
 export default function RootLayout() {
   const queryClient = useMemo(() => new QueryClient(), []);
@@ -27,6 +28,7 @@ export default function RootLayout() {
         {renderHeader()}
         <Outlet />
         <ModalManager />
+        <BottomSheetManager />
       </EntryPoint>
     </QueryClientProvider>
   );

@@ -15,15 +15,15 @@ export const openModal = async <T>({
   children,
   preloadCallback,
 }: OpenModalParams<T>) => {
-  const { openModal: openModalWithStore, setLoading } =
+  const { openModal: openModalWithStore, setIsLoading } =
     useModalStore.getState();
 
   if (preloadCallback) {
     try {
-      setLoading(true);
+      setIsLoading(true);
       await preloadCallback();
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
 
@@ -31,7 +31,7 @@ export const openModal = async <T>({
 };
 
 export const closeModal = ({ onClose }: CloseModalParams = {}) => {
-  const { closeModal } = useModalStore.getState();
+  const { closeModal: closeModalWithStore } = useModalStore.getState();
   onClose?.();
-  closeModal();
+  closeModalWithStore();
 };

@@ -42,6 +42,7 @@
     "useSignInStore": true,
     "useAppStore": true,
     "useColorStore": true,
-    "useModalStore": true
+    "useModalStore": true,
+    "useBottomSheetStore": true
   }
 }

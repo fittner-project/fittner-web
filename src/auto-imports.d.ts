@@ -18,6 +18,7 @@ declare global {
   const memo: typeof import('react')['memo']
   const startTransition: typeof import('react')['startTransition']
   const useAppStore: typeof import('./store/app')['useAppStore']
+  const useBottomSheetStore: typeof import('./store/bottomSheet')['useBottomSheetStore']
   const useCallback: typeof import('react')['useCallback']
   const useColorStore: typeof import('./store/color')['useColorStore']
   const useContext: typeof import('react')['useContext']

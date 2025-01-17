@@ -6,11 +6,13 @@ import styles from "./SearchedCenters.module.scss";
 interface SearchedCentersProps {
   centerList: CenterListResDto[] | undefined;
   isCenterListLoading: boolean;
+  handleCenterClick?: (center: CenterListResDto) => void;
 }
 
 export default function SearchedCenters({
   centerList,
   isCenterListLoading,
+  handleCenterClick,
 }: SearchedCentersProps) {
   return (
     <div className={styles.container}>
@@ -65,7 +67,11 @@ export default function SearchedCenters({
               </Skeleton>
             ))
           : centerList?.map((center) => (
-              <Center key={center.centerId} center={center} />
+              <Center
+                handleCenterClick={() => handleCenterClick?.(center)}
+                key={center.centerId}
+                center={center}
+              />
             ))}
       </div>
     </div>
