@@ -8,6 +8,7 @@ import { openModal } from "@/utils/modal";
 import SignUpModal from "../components/sign-up-modal/SignUpModal";
 import PATH from "@/router/path";
 import { storage } from "@/utils/storage";
+import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
 //import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
@@ -19,8 +20,16 @@ export const useSocialAuth = () => {
         console.log("로그인 성공:", data);
         navigate(PATH.HOME);
       },
-      onError: () => {
-        openModal({ component: SignUpModal });
+      onError: (error) => {
+        if (!error) return;
+        if (error.toString().includes("트레이너를 찾을 수 없습니다.")) {
+          openModal({ component: SignUpModal });
+        } else {
+          openModal({
+            component: AlertModal,
+            props: { errorMessage: error.toString() },
+          });
+        }
         navigate(PATH.SIGN_IN);
       },
     },
@@ -47,7 +56,7 @@ export const useSocialAuth = () => {
   const handleSocialCallback = async ({
     socialType,
     code,
-    id_token
+    id_token,
   }: {
     socialType: SocialType;
     code: string;

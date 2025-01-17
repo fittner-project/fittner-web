@@ -9,7 +9,6 @@ import Image from "@/components/image/Image";
 
 function SignIn() {
   const { initSocialLogin } = useSocialAuth();
-  console.log("Current NODE_ENV:", process.env.NODE_ENV);
 
   return (
     <BackgroundContainer>
