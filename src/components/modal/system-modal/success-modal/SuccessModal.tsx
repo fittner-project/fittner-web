@@ -4,6 +4,7 @@ import styles from "./SuccessModal.module.scss";
 import { checkSel } from "@/assets/assets";
 import { closeModal } from "@/utils/modal";
 import { useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 interface SuccessModalProps {
   successMessage: string;
@@ -13,6 +14,8 @@ interface SuccessModalProps {
 function SuccessModal({ successMessage, onCloseComplete }: SuccessModalProps) {
   const isFirstRender = useRef(true);
   const isCompleted = useRef(false);
+  const location = useLocation();
+  const prevPathRef = useRef(location.pathname);
 
   const handleCloseComplete = () => {
     if (!isCompleted.current) {
@@ -34,6 +37,13 @@ function SuccessModal({ successMessage, onCloseComplete }: SuccessModalProps) {
       isFirstRender.current = false;
     };
   }, [onCloseComplete]);
+
+  useEffect(() => {
+    if (!isFirstRender.current && prevPathRef.current !== location.pathname) {
+      closeModal();
+    }
+    prevPathRef.current = location.pathname;
+  }, [location]);
 
   return (
     <Modal>
