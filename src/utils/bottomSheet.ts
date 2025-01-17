@@ -6,7 +6,7 @@ interface OpenBottomSheetParams<T> {
 }
 
 interface CloseBottomSheetParams {
-  onClose?: () => void;
+  onCloseComplete?: () => void;
 }
 
 export const openBottomSheet = async <T>({
@@ -30,9 +30,10 @@ export const openBottomSheet = async <T>({
   openBottomSheetWithStore(component, { ...props, children } as T);
 };
 
-export const closeBottomSheet = ({ onClose }: CloseBottomSheetParams = {}) => {
+export const closeBottomSheet = ({
+  onCloseComplete,
+}: CloseBottomSheetParams = {}) => {
   const { setIsOpen } = useBottomSheetStore.getState();
-
+  onCloseComplete?.();
   setIsOpen(false);
-  onClose?.();
 };

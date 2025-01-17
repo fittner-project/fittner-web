@@ -4,10 +4,9 @@ import styles from "./BottomSheet.module.scss";
 
 interface BottomSheetProps {
   children: React.ReactNode;
-  onClose?: () => void;
 }
 
-function BottomSheet({ children, onClose }: BottomSheetProps) {
+function BottomSheet({ children }: BottomSheetProps) {
   const { closeBottomSheet, setIsOpen } = useBottomSheetStore();
   const isOpen = useBottomSheetStore((state) => state.isOpen);
 

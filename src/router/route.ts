@@ -31,7 +31,8 @@ type RouteKeys =
   | "sign-up-terms"
   | "sign-up-name"
   | "find-centers"
-  | "sign-up-phone-number";
+  | "sign-up-phone-number"
+  | "sign-up-complete";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -87,6 +88,14 @@ export const Routes: Routes = {
   "find-centers": {
     name: "find-centers",
     path: PATH.FIND_CENTERS,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+
+  "sign-up-complete": {
+    name: "sign-up-complete",
+    path: PATH.SIGN_UP_COMPLETE,
     fallback: "none",
     headerType: "sub",
     navType: "none",

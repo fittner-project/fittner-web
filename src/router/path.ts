@@ -7,6 +7,7 @@ const PATH = {
   SIGN_UP_NAME: "/sign-up-name",
   REDIRECT: "/redirect",
   FIND_CENTERS: "/find-centers",
+  SIGN_UP_COMPLETE: "/sign-up-complete",
 };
 
 export default PATH;

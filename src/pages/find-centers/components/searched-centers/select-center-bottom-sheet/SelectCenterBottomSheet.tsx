@@ -5,12 +5,34 @@ import Image from "@/components/image/Image";
 import { infoCircle } from "@/assets/assets";
 import Button from "@/components/button/Button";
 import { closeBottomSheet } from "@/utils/bottomSheet";
+import { useRegisterCenter } from "@/api/generated/유저/유저";
+import { openModal } from "@/utils/modal";
+import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
+import PATH from "@/router/path";
 
 interface SelectCenterBottomSheetProps {
   center: CenterListResDto;
 }
 
 function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
+  const navigate = useNavigate();
+  const { mutate: registerCenter } = useRegisterCenter({
+    mutation: {
+      onSuccess: () => {
+        closeBottomSheet();
+        openModal({
+          component: SuccessModal,
+          props: {
+            successMessage: "센터 등록 신청이\n 완료 되었습니다",
+            onCloseComplete: () => {
+              navigate(PATH.SIGN_UP_COMPLETE);
+            },
+          },
+        });
+      },
+    },
+  });
+
   return (
     <BottomSheet>
       <div className={styles.container}>
@@ -37,7 +59,13 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
           >
             취소
           </Button>
-          <Button backgroundColor="primary_1" fullWidth>
+          <Button
+            backgroundColor="primary_1"
+            fullWidth
+            onClick={() =>
+              registerCenter({ data: { centerId: center.centerId } })
+            }
+          >
             신청
           </Button>
         </div>

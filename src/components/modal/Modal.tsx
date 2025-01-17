@@ -3,16 +3,13 @@ import styles from "./Modal.module.scss";
 export interface ModalProps {
   children: React.ReactNode;
   width?: number;
-  onClose?: () => void;
 }
 
-function Modal({ children, width = 32, onClose }: ModalProps) {
+function Modal({ children, width = 32 }: ModalProps) {
   const { modals, closeModal } = useModalStore();
-
   if (modals.length === 0) return null;
 
   const handleClose = () => {
-    onClose?.();
     closeModal();
   };
 

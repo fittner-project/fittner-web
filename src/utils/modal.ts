@@ -6,7 +6,7 @@ interface OpenModalParams<T> {
 }
 
 interface CloseModalParams {
-  onClose?: () => void;
+  onCloseComplete?: () => void;
 }
 
 export const openModal = async <T>({
@@ -30,8 +30,8 @@ export const openModal = async <T>({
   openModalWithStore(component, { ...props, children });
 };
 
-export const closeModal = ({ onClose }: CloseModalParams = {}) => {
+export const closeModal = ({ onCloseComplete }: CloseModalParams = {}) => {
   const { closeModal: closeModalWithStore } = useModalStore.getState();
-  onClose?.();
+  onCloseComplete?.();
   closeModalWithStore();
 };
