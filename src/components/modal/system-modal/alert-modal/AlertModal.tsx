@@ -6,13 +6,19 @@ import { closeModal } from "@/utils/modal";
 
 interface AlertModalProps {
   errorMessage: string;
+  onCloseComplete?: () => void;
 }
 
-function AlertModal({ errorMessage }: AlertModalProps) {
+function AlertModal({ errorMessage, onCloseComplete }: AlertModalProps) {
   useEffect(() => {
-    setTimeout(() => {
-      closeModal();
+    const timer = setTimeout(() => {
+      closeModal({ onCloseComplete });
     }, 2500);
+
+    return () => {
+      onCloseComplete?.();
+      clearTimeout(timer);
+    };
   }, []);
 
   return (

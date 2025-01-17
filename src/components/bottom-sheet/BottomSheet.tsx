@@ -27,6 +27,10 @@ function BottomSheet({ children }: BottomSheetProps) {
       isOpen={isOpen}
       onClose={handleClose}
       onCloseEnd={handleAnimationEnd}
+      tweenConfig={{
+        ease: "easeInOut",
+        duration: 0.3,
+      }}
     >
       <Sheet.Container className={styles.container}>
         <Sheet.Header className={styles.header}></Sheet.Header>

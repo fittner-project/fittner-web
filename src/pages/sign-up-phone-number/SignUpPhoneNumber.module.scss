@@ -1,5 +1,5 @@
 .container {
-  min-height: calc(100dvh - 5.8rem);
+  min-height: calc(100dvh - $sub_header_height);
   @include flex_col(_, flex-start);
 
   .content {
@@ -39,7 +39,7 @@
   }
 
   .next_button {
-    margin-top: 2.9rem;
-    margin-bottom: 2.9rem;
+    margin-top: 2.1rem;
+    margin-bottom: 2.1rem;
   }
 }

@@ -1,2 +1,41 @@
 .container {
+  position: relative;
+  padding-bottom: 2.1rem;
+  min-height: calc(100vh - $sub_header_height);
+  @include flex_col(center, center);
+
+  .content {
+    flex: 1;
+    @include flex_col(center, center);
+
+    .title {
+      text-wrap: nowrap;
+      text-align: center;
+      margin-top: 2.6rem;
+      color: $text_1;
+      font-feature-settings:
+        "liga" off,
+        "clig" off;
+      font-family: Pretendard;
+      font-size: 2.2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 3rem;
+    }
+
+    .description {
+      text-wrap: nowrap;
+      text-align: center;
+      margin-top: 0.3rem;
+      color: $grey_3;
+      font-feature-settings:
+        "liga" off,
+        "clig" off;
+      font-family: Pretendard;
+      font-size: 1.6rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 2.2rem;
+    }
+  }
 }
