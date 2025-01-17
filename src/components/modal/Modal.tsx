@@ -5,9 +5,9 @@ export interface ModalProps {
   width?: number;
 }
 
-function Modal({ children, width = 32 }: ModalProps) {
+export default function Modal({ children, width = 32 }: ModalProps) {
   const { modals, closeModal } = useModalStore();
-  if (modals.length === 0) return null;
+  if (modals.length === 0) return;
 
   const handleClose = () => {
     closeModal();
@@ -29,5 +29,3 @@ function Modal({ children, width = 32 }: ModalProps) {
     </div>
   );
 }
-
-export default Modal;

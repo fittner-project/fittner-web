@@ -1,21 +1,25 @@
 import { useBottomSheetStore } from "@/store/bottomSheet";
 import styles from "./BottomSheetManager.module.scss";
+import { closeBottomSheet } from "@/utils/bottomSheet";
 
-function BottomSheetManager() {
-  const { currentSheet, isLoading, setIsOpen } = useBottomSheetStore();
+export default function BottomSheetManager() {
+  const { currentSheet, isLoading } = useBottomSheetStore();
 
-  if (!currentSheet && !isLoading) return null;
+  if (!currentSheet && !isLoading) return;
 
   const handleOverlayClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
+    if (currentSheet && e.target === e.currentTarget) {
       e.preventDefault();
       e.stopPropagation();
-      setIsOpen(false);
+      closeBottomSheet();
     }
   };
 
   return (
-    <div className={styles.overlay} onClick={handleOverlayClick}>
+    <div
+      className={currentSheet ? styles.overlay : undefined}
+      onClick={handleOverlayClick}
+    >
       {isLoading ? (
         <div className={styles.loading}>Loading...</div>
       ) : (
@@ -24,5 +28,3 @@ function BottomSheetManager() {
     </div>
   );
 }
-
-export default BottomSheetManager;

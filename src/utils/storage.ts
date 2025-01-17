@@ -45,19 +45,19 @@ class StorageUtil {
   get<T>({ key, type = "local" }: GetStorageOptions): T | null {
     try {
       const item = this.getStorage(type).getItem(key);
-      if (!item) return null;
+      if (!item) return;
 
       const parsedItem: StorageItem<T> = JSON.parse(item);
 
       if (parsedItem.expires && parsedItem.expires < new Date().getTime()) {
         this.remove({ key, type });
-        return null;
+        return;
       }
 
       return parsedItem.value;
     } catch (error) {
       console.error("Storage get error:", error);
-      return null;
+      return;
     }
   }
 

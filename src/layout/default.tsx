@@ -15,7 +15,7 @@ export default function RootLayout() {
 
   const renderHeader = () => {
     if (!currentRoute || currentRoute.headerType === "none") {
-      return null;
+      return;
     }
 
     if (currentRoute.headerType === "default") return <Header />;

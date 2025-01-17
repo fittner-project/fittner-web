@@ -1,10 +1,9 @@
 import { ComponentType } from "react";
 import styles from "./ModalManager.module.scss";
 
-function ModalManager() {
+export default function ModalManager() {
   const { modals, isLoading } = useModalStore();
-
-  if (modals.length === 0 && !isLoading) return null;
+  if (modals.length === 0 && !isLoading) return;
 
   return (
     <div className={styles.overlay}>
@@ -25,5 +24,3 @@ function ModalManager() {
     </div>
   );
 }
-
-export default ModalManager;

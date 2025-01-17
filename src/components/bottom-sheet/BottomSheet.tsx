@@ -1,32 +1,21 @@
 import { Sheet } from "react-modal-sheet";
 import { useBottomSheetStore } from "@/store/bottomSheet";
 import styles from "./BottomSheet.module.scss";
+import { closeBottomSheet } from "@/utils/bottomSheet";
 
 interface BottomSheetProps {
   children: React.ReactNode;
 }
 
-function BottomSheet({ children }: BottomSheetProps) {
-  const { closeBottomSheet, setIsOpen } = useBottomSheetStore();
-  const isOpen = useBottomSheetStore((state) => state.isOpen);
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  const handleAnimationEnd = () => {
-    if (!isOpen) {
-      closeBottomSheet();
-    }
-  };
+export default function BottomSheet({ children }: BottomSheetProps) {
+  const { isOpen } = useBottomSheetStore();
 
   return (
     <Sheet
       detent="content-height"
       dragVelocityThreshold={300}
       isOpen={isOpen}
-      onClose={handleClose}
-      onCloseEnd={handleAnimationEnd}
+      onClose={closeBottomSheet}
       tweenConfig={{
         ease: "easeInOut",
         duration: 0.3,
@@ -40,5 +29,3 @@ function BottomSheet({ children }: BottomSheetProps) {
     </Sheet>
   );
 }
-
-export default BottomSheet;

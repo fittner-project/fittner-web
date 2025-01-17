@@ -15,6 +15,7 @@ interface SearchCenterForm {
 }
 
 function FindCenters() {
+  const { currentSheet, isLoading, isOpen } = useBottomSheetStore();
   const { register, watch } = useForm<SearchCenterForm>({
     mode: "onChange",
   });
@@ -24,6 +25,8 @@ function FindCenters() {
     useCenterList1();
   const centerList = centerListData?.result;
 
+  console.log("currentSheet", currentSheet?.props.center.centerName);
+  console.log("isOpen", isOpen);
   const { filteredData: filteredCenterList } = useSearch({
     searchValue: searchCenterValue,
     data: centerList,

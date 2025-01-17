@@ -26,5 +26,5 @@ export const useBottomSheetStore = create<BottomSheetStore>((set) => ({
   setIsLoading: (isLoading) => set({ isLoading }),
   openBottomSheet: (component, props) =>
     set({ currentSheet: { component, props }, isOpen: true }),
-  closeBottomSheet: () => set({ currentSheet: null }),
+  closeBottomSheet: () => set({ currentSheet: null, isOpen: false }),
 }));

@@ -33,7 +33,8 @@ export const openBottomSheet = async <T>({
 export const closeBottomSheet = ({
   onCloseComplete,
 }: CloseBottomSheetParams = {}) => {
-  const { setIsOpen } = useBottomSheetStore.getState();
+  const { closeBottomSheet: closeBottomSheetWithStore } =
+    useBottomSheetStore.getState();
   onCloseComplete?.();
-  setIsOpen(false);
+  closeBottomSheetWithStore();
 };
