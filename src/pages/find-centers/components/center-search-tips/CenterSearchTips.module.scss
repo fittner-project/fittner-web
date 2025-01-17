@@ -1,0 +1,48 @@
+.container {
+  margin-top: 3.3rem;
+
+  .title {
+    color: $primary_1;
+    font-feature-settings:
+      "liga" off,
+      "clig" off;
+    font-family: Pretendard;
+    font-size: 1.9rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.2rem;
+  }
+
+  .tips {
+    .tip {
+      margin-top: 2.2rem;
+
+      .tip_title {
+        height: 2.2rem;
+        color: $grey_4;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-family: Pretendard;
+        font-size: 1.7rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 2.2rem;
+      }
+
+      .tip_content {
+        height: 2.2rem;
+        margin-top: 0.5rem;
+        color: $grey_3;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-family: Pretendard;
+        font-size: 1.7rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 2.2rem;
+      }
+    }
+  }
+}

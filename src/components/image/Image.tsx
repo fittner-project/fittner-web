@@ -1,22 +1,30 @@
-import styles from "./Image.module.scss";
-
 interface ImageProps {
   src: string;
-  alt: string;
+  alt?: string;
   width?: number;
   height?: number;
+  onClick?: () => void;
+  className?: string;
 }
 
-function Image({ src, alt, width, height }: ImageProps) {
+function Image({
+  src,
+  alt = "",
+  width,
+  height,
+  onClick,
+  className,
+}: ImageProps) {
   return (
     <img
       src={src}
       alt={alt}
-      className={styles.image}
+      className={className}
       style={{
         width: `${width}rem`,
         height: `${height}rem`,
       }}
+      onClick={onClick}
     />
   );
 }

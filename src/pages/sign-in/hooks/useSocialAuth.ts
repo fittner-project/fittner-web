@@ -6,6 +6,8 @@ import { googleLoginService } from "@/auth/google";
 
 import { openModal } from "@/utils/modal";
 import SignUpModal from "../components/sign-up-modal/SignUpModal";
+import PATH from "@/router/path";
+import { storage } from "@/utils/storage";
 //import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
@@ -15,17 +17,22 @@ export const useSocialAuth = () => {
     mutation: {
       onSuccess: (data) => {
         console.log("로그인 성공:", data);
-        navigate("/");
+        navigate(PATH.HOME);
       },
       onError: () => {
         openModal({ component: SignUpModal });
-        navigate("/sign-in");
+        navigate(PATH.SIGN_IN);
       },
     },
   });
 
   const initSocialLogin = ({ socialType }: { socialType: SocialType }) => {
     const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
+    storage.set({
+      key: "trainerSnsKind",
+      value: socialType.toUpperCase(),
+      type: "local",
+    });
 
     const socialLoginUrls = {
       kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
@@ -53,6 +60,11 @@ export const useSocialAuth = () => {
           const userInfo = await kakaoLoginService.getUserInfo({
             accessToken,
           });
+          storage.set({
+            key: "trainerEmail",
+            value: userInfo.email,
+            type: "local",
+          });
           login({ data: { trainerEmail: userInfo.email } });
           break;
         }
@@ -60,6 +72,11 @@ export const useSocialAuth = () => {
           const accessToken = await googleLoginService.getToken({ code });
           const userInfo = await googleLoginService.getUserInfo({
             accessToken,
+          });
+          storage.set({
+            key: "trainerEmail",
+            value: userInfo.email,
+            type: "local",
           });
           login({ data: { trainerEmail: userInfo.email } });
           break;
@@ -69,6 +86,7 @@ export const useSocialAuth = () => {
           console.log("애플 로그인 요청 인가 코드", id_token);
           // const response = await appleInfo({ data: { code } });
           // if (response.result?.userEmail) {
+          //   storage.set("trainerEmail", response.result.userEmail, "local");
           //   login({ data: { trainerEmail: response.result.userEmail } });
           // }
           break;
@@ -78,7 +96,7 @@ export const useSocialAuth = () => {
       }
     } catch (error) {
       console.error(`${socialType} 로그인 처리 실패:`, error);
-      navigate("/sign-in");
+      navigate(PATH.SIGN_IN);
     }
   };
 
