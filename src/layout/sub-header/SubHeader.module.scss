@@ -2,7 +2,10 @@
   @include flex_row(space-between, center);
   height: 5.8rem;
   padding-left: 1.2rem;
-
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
   .right_section {
     margin-left: auto;
   }

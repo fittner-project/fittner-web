@@ -7,6 +7,9 @@
  */
 import type { CenterFileResDto } from './centerFileResDto';
 
+/**
+ * 응답 데이터
+ */
 export interface CenterListResDto {
   /** 센터 주소 */
   centerAddress?: string;

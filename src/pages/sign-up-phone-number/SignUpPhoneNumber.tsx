@@ -48,7 +48,8 @@ function SignUpPhoneNumber() {
           <p className={styles.title}>휴대폰 번호를 입력해주세요</p>
           <p className={styles.sub_title}>본인 인증을 위해 필요합니다</p>
           <Input
-            type="line"
+            inputType="line"
+            type="tel"
             className={styles.phone_number_input}
             {...register("phoneNumber", {
               required: "휴대폰 번호를 입력해주세요",

@@ -7,6 +7,7 @@
  */
 import {
   useInfiniteQuery,
+  useMutation,
   useQuery
 } from '@tanstack/react-query'
 import type {
@@ -15,18 +16,239 @@ import type {
   DefinedUseInfiniteQueryResult,
   DefinedUseQueryResult,
   InfiniteData,
+  MutationFunction,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query'
 import type {
-  ApiResponseMessagePushChkResDto
+  ApiResponseMessageListPushResDto,
+  ApiResponseMessageObject,
+  ApiResponseMessagePushChkResDto,
+  GetPushsParams,
+  PushReadReqDto
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
+
+
+
+/**
+ * 알림 읽음 API 입니다.
+ * @summary 알림 읽음 API
+ */
+export const pushRead = (
+    pushReadReqDto: PushReadReqDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageObject>(
+      {url: `/api/v1/user/push/read`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: pushReadReqDto, signal
+    },
+      );
+    }
+  
+
+
+export const getPushReadMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof pushRead>>, TError,{data: PushReadReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof pushRead>>, TError,{data: PushReadReqDto}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof pushRead>>, {data: PushReadReqDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  pushRead(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PushReadMutationResult = NonNullable<Awaited<ReturnType<typeof pushRead>>>
+    export type PushReadMutationBody = PushReadReqDto
+    export type PushReadMutationError = unknown
+
+    /**
+ * @summary 알림 읽음 API
+ */
+export const usePushRead = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof pushRead>>, TError,{data: PushReadReqDto}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof pushRead>>,
+        TError,
+        {data: PushReadReqDto},
+        TContext
+      > => {
+
+      const mutationOptions = getPushReadMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * 알림 리스트 조회 API 입니다.
+ * @summary 알림 리스트 조회 API
+ */
+export const getPushs = (
+    params: GetPushsParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageListPushResDto>(
+      {url: `/api/v1/user/pushs`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+export const getGetPushsQueryKey = (params: GetPushsParams,) => {
+    return [`/api/v1/user/pushs`, ...(params ? [params]: [])] as const;
+    }
+
+    
+export const getGetPushsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getPushs>>, GetPushsParams['page']>, TError = unknown>(params: GetPushsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData, Awaited<ReturnType<typeof getPushs>>, QueryKey, GetPushsParams['page']>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetPushsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getPushs>>, QueryKey, GetPushsParams['page']> = ({ signal, pageParam }) => getPushs({...params, page: pageParam || params?.['page']}, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData, Awaited<ReturnType<typeof getPushs>>, QueryKey, GetPushsParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetPushsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getPushs>>>
+export type GetPushsInfiniteQueryError = unknown
+
+
+export function useGetPushsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getPushs>>, GetPushsParams['page']>, TError = unknown>(
+ params: GetPushsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData, Awaited<ReturnType<typeof getPushs>>, QueryKey, GetPushsParams['page']>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getPushs>>,
+          TError,
+          TData, QueryKey
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetPushsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getPushs>>, GetPushsParams['page']>, TError = unknown>(
+ params: GetPushsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData, Awaited<ReturnType<typeof getPushs>>, QueryKey, GetPushsParams['page']>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getPushs>>,
+          TError,
+          TData, QueryKey
+        > , 'initialData'
+      >, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetPushsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getPushs>>, GetPushsParams['page']>, TError = unknown>(
+ params: GetPushsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData, Awaited<ReturnType<typeof getPushs>>, QueryKey, GetPushsParams['page']>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 알림 리스트 조회 API
+ */
+
+export function useGetPushsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getPushs>>, GetPushsParams['page']>, TError = unknown>(
+ params: GetPushsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData, Awaited<ReturnType<typeof getPushs>>, QueryKey, GetPushsParams['page']>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetPushsInfiniteQueryOptions(params,options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const getGetPushsQueryOptions = <TData = Awaited<ReturnType<typeof getPushs>>, TError = unknown>(params: GetPushsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetPushsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getPushs>>> = ({ signal }) => getPushs(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetPushsQueryResult = NonNullable<Awaited<ReturnType<typeof getPushs>>>
+export type GetPushsQueryError = unknown
+
+
+export function useGetPushs<TData = Awaited<ReturnType<typeof getPushs>>, TError = unknown>(
+ params: GetPushsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getPushs>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetPushs<TData = Awaited<ReturnType<typeof getPushs>>, TError = unknown>(
+ params: GetPushsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getPushs>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetPushs<TData = Awaited<ReturnType<typeof getPushs>>, TError = unknown>(
+ params: GetPushsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 알림 리스트 조회 API
+ */
+
+export function useGetPushs<TData = Awaited<ReturnType<typeof getPushs>>, TError = unknown>(
+ params: GetPushsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPushs>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetPushsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
 
 
 

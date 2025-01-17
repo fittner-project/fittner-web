@@ -40,7 +40,7 @@ function SignUpName() {
         <div className={styles.content}>
           <p className={styles.title}>이름을 입력해주세요</p>
           <Input
-            type="line"
+            inputType="line"
             className={styles.name_input}
             {...register("name", {
               required: true,

@@ -1,0 +1,28 @@
+.container {
+  padding: 1.2rem 1.8rem;
+  max-height: calc(100dvh - 15.6rem);
+  min-height: calc(100dvh - 15.6rem);
+  background-color: $grey_1;
+  overflow-y: auto;
+
+  .search_result {
+    color: $grey_4;
+    font-feature-settings:
+      "liga" off,
+      "clig" off;
+    font-family: Pretendard;
+    font-size: 1.7rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.2rem;
+
+    .search_result_count {
+      color: $grey_2;
+    }
+  }
+
+  .center_list {
+    margin-top: 1.8rem;
+    @include flex_col_gap(1.8rem);
+  }
+}

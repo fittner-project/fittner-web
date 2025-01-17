@@ -15,10 +15,8 @@ import type {
 } from '@tanstack/react-query'
 import type {
   AccessTokenReqDto,
-  ApiResponseMessageAppleInfoResDto,
   ApiResponseMessageObject,
   ApiResponseMessageTokenResDto,
-  AppleInfoReqDto,
   LoginRequestDto
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
@@ -197,65 +195,6 @@ export const useLogin1 = <TError = unknown,
       > => {
 
       const mutationOptions = getLogin1MutationOptions(options);
-
-      return useMutation(mutationOptions);
-    }
-    /**
- * 애플 로그인 시 필요한 유저이메일 전달 API 입니다.
- * @summary 애플 로그인 시 필요한 유저이메일 전달 API
- */
-export const appleInfo = (
-    appleInfoReqDto: AppleInfoReqDto,
- signal?: AbortSignal
-) => {
-      
-      
-      return axiosInstance<ApiResponseMessageAppleInfoResDto>(
-      {url: `/api/v1/auth/apple-info`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: appleInfoReqDto, signal
-    },
-      );
-    }
-  
-
-
-export const getAppleInfoMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof appleInfo>>, TError,{data: AppleInfoReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof appleInfo>>, TError,{data: AppleInfoReqDto}, TContext> => {
-const {mutation: mutationOptions} = options ?? {};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof appleInfo>>, {data: AppleInfoReqDto}> = (props) => {
-          const {data} = props ?? {};
-
-          return  appleInfo(data,)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type AppleInfoMutationResult = NonNullable<Awaited<ReturnType<typeof appleInfo>>>
-    export type AppleInfoMutationBody = AppleInfoReqDto
-    export type AppleInfoMutationError = unknown
-
-    /**
- * @summary 애플 로그인 시 필요한 유저이메일 전달 API
- */
-export const useAppleInfo = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof appleInfo>>, TError,{data: AppleInfoReqDto}, TContext>, }
-): UseMutationResult<
-        Awaited<ReturnType<typeof appleInfo>>,
-        TError,
-        {data: AppleInfoReqDto},
-        TContext
-      > => {
-
-      const mutationOptions = getAppleInfoMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

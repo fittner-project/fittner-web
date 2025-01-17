@@ -7,6 +7,7 @@
  */
 import {
   useInfiniteQuery,
+  useMutation,
   useQuery
 } from '@tanstack/react-query'
 import type {
@@ -15,22 +16,243 @@ import type {
   DefinedUseInfiniteQueryResult,
   DefinedUseQueryResult,
   InfiniteData,
+  MutationFunction,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query'
 import type {
+  ApiResponseMessageListNoticeResDto,
   ApiResponseMessageListSalesDetailResDto,
   ApiResponseMessageListSalesResDto,
+  ApiResponseMessageListTermsListResDto,
+  ApiResponseMessageObject,
   ApiResponseMessageSalesInfoResDto,
+  GetNoticesParams,
   GetSalesDetailParams,
-  GetSalesParams
+  GetSalesParams,
+  NoticeReadReqDto
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
+
+
+
+/**
+ * 공지사항 읽음 API 입니다.
+ * @summary 공지사항 읽음 API
+ */
+export const noticeRead = (
+    noticeReadReqDto: NoticeReadReqDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageObject>(
+      {url: `/api/v1/user/myPage/notice/read`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: noticeReadReqDto, signal
+    },
+      );
+    }
+  
+
+
+export const getNoticeReadMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof noticeRead>>, TError,{data: NoticeReadReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof noticeRead>>, TError,{data: NoticeReadReqDto}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof noticeRead>>, {data: NoticeReadReqDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  noticeRead(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type NoticeReadMutationResult = NonNullable<Awaited<ReturnType<typeof noticeRead>>>
+    export type NoticeReadMutationBody = NoticeReadReqDto
+    export type NoticeReadMutationError = unknown
+
+    /**
+ * @summary 공지사항 읽음 API
+ */
+export const useNoticeRead = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof noticeRead>>, TError,{data: NoticeReadReqDto}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof noticeRead>>,
+        TError,
+        {data: NoticeReadReqDto},
+        TContext
+      > => {
+
+      const mutationOptions = getNoticeReadMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * 약관 조회 API 입니다.
+ * @summary 약관 조회 API
+ */
+export const getTerms = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageListTermsListResDto>(
+      {url: `/api/v1/user/myPage/terms`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+export const getGetTermsQueryKey = () => {
+    return [`/api/v1/user/myPage/terms`] as const;
+    }
+
+    
+export const getGetTermsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetTermsQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getTerms>>> = ({ signal }) => getTerms(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetTermsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getTerms>>>
+export type GetTermsInfiniteQueryError = unknown
+
+
+export function useGetTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTerms>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTerms>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 약관 조회 API
+ */
+
+export function useGetTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetTermsInfiniteQueryOptions(options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const getGetTermsQueryOptions = <TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetTermsQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getTerms>>> = ({ signal }) => getTerms(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetTermsQueryResult = NonNullable<Awaited<ReturnType<typeof getTerms>>>
+export type GetTermsQueryError = unknown
+
+
+export function useGetTerms<TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTerms>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetTerms<TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTerms>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetTerms<TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 약관 조회 API
+ */
+
+export function useGetTerms<TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetTermsQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
 
 
 
@@ -500,6 +722,161 @@ export function useGetSalesInfo<TData = Awaited<ReturnType<typeof getSalesInfo>>
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
   const queryOptions = getGetSalesInfoQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+/**
+ * 공지사항 조회 API 입니다.
+ * @summary 공지사항 조회 API
+ */
+export const getNotices = (
+    params: GetNoticesParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageListNoticeResDto>(
+      {url: `/api/v1/user/myPage/notices`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+export const getGetNoticesQueryKey = (params: GetNoticesParams,) => {
+    return [`/api/v1/user/myPage/notices`, ...(params ? [params]: [])] as const;
+    }
+
+    
+export const getGetNoticesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(params: GetNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetNoticesQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']> = ({ signal, pageParam }) => getNotices({...params, page: pageParam || params?.['page']}, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetNoticesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getNotices>>>
+export type GetNoticesInfiniteQueryError = unknown
+
+
+export function useGetNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(
+ params: GetNoticesParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getNotices>>,
+          TError,
+          TData, QueryKey
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(
+ params: GetNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getNotices>>,
+          TError,
+          TData, QueryKey
+        > , 'initialData'
+      >, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(
+ params: GetNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 공지사항 조회 API
+ */
+
+export function useGetNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(
+ params: GetNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetNoticesInfiniteQueryOptions(params,options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const getGetNoticesQueryOptions = <TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(params: GetNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetNoticesQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNotices>>> = ({ signal }) => getNotices(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetNoticesQueryResult = NonNullable<Awaited<ReturnType<typeof getNotices>>>
+export type GetNoticesQueryError = unknown
+
+
+export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(
+ params: GetNoticesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getNotices>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(
+ params: GetNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getNotices>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(
+ params: GetNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 공지사항 조회 API
+ */
+
+export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(
+ params: GetNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetNoticesQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

@@ -6,11 +6,11 @@ import classNames from "classnames";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
-  type?: "line" | "default" | "line-search" | "default-search";
+  inputType?: "line" | "default" | "line-search" | "default-search";
 }
 
 function Input(
-  { className, type = "default", ...props }: InputProps,
+  { className, inputType = "default", ...props }: InputProps,
   ref: React.ForwardedRef<HTMLInputElement>
 ) {
   return {
@@ -76,7 +76,7 @@ function Input(
         />
       </div>
     ),
-  }[type];
+  }[inputType];
 }
 
 export default forwardRef<HTMLInputElement, InputProps>(Input);

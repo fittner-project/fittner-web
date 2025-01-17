@@ -1,6 +1,5 @@
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import styles from "./SignUpTerms.module.scss";
-import { useGetTerms } from "@/api/generated/유저/유저";
 import Image from "@/components/image/Image";
 import { checkNor, checkSel } from "@/assets/assets";
 import { useState, useEffect } from "react";
@@ -9,9 +8,10 @@ import Skeleton from "@/components/skeleton/Skeleton";
 import PATH from "@/router/path";
 import { useNavigate } from "react-router-dom";
 import { storage } from "@/utils/storage";
+import { useGetJoinTerms } from "@/api/generated/유저/유저";
 
 function SignUpTerms() {
-  const { data: termsData, isLoading } = useGetTerms();
+  const { data: termsData, isLoading } = useGetJoinTerms();
   const terms = termsData?.result;
   const [checkedState, setCheckedState] = useState<Record<string, boolean>>({});
   const essentialTerms =
@@ -100,13 +100,12 @@ function SignUpTerms() {
                       <p className={styles.term_title}>{term.termsTitle}</p>
                     </div>
 
-                    <Link
-                      target="_BLANK"
-                      to={term.termsUrl || ""}
+                    <p
+                      onClick={() => (location.href = term.termsUrl || "")}
                       className={styles.more_button}
                     >
                       더보기
-                    </Link>
+                    </p>
                   </div>
                 ))}
           </div>

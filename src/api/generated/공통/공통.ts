@@ -24,6 +24,7 @@ import type {
   UseQueryResult
 } from '@tanstack/react-query'
 import type {
+  ApiResponseMessageBrandColorResDto,
   ApiResponseMessageHardUpdateResDto,
   ApiResponseMessageSplashResDto,
   ApiResponseMessageStatusChkResDto,
@@ -333,6 +334,160 @@ export function useGetSplash<TData = Awaited<ReturnType<typeof getSplash>>, TErr
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
   const queryOptions = getGetSplashQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+/**
+ * 브랜드컬러 조회 API 입니다.
+ * @summary 브랜드컬러 조회 API
+ */
+export const getBrandColor = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageBrandColorResDto>(
+      {url: `/api/v1/user/common/brand-color`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+export const getGetBrandColorQueryKey = () => {
+    return [`/api/v1/user/common/brand-color`] as const;
+    }
+
+    
+export const getGetBrandColorInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetBrandColorQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getBrandColor>>> = ({ signal }) => getBrandColor(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetBrandColorInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getBrandColor>>>
+export type GetBrandColorInfiniteQueryError = unknown
+
+
+export function useGetBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getBrandColor>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getBrandColor>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 브랜드컬러 조회 API
+ */
+
+export function useGetBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetBrandColorInfiniteQueryOptions(options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const getGetBrandColorQueryOptions = <TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetBrandColorQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getBrandColor>>> = ({ signal }) => getBrandColor(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetBrandColorQueryResult = NonNullable<Awaited<ReturnType<typeof getBrandColor>>>
+export type GetBrandColorQueryError = unknown
+
+
+export function useGetBrandColor<TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getBrandColor>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetBrandColor<TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getBrandColor>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetBrandColor<TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 브랜드컬러 조회 API
+ */
+
+export function useGetBrandColor<TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetBrandColorQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

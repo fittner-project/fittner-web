@@ -1,3 +1,4 @@
+import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import styles from "./CenterSearchTips.module.scss";
 
 function CenterSearchTips() {
@@ -17,17 +18,19 @@ function CenterSearchTips() {
   ];
 
   return (
-    <div className={styles.container}>
-      <p className={styles.title}>이렇게 검색해보세요!</p>
-      <div className={styles.tips}>
-        {tips.map((tip) => (
-          <div key={tip.title} className={styles.tip}>
-            <p className={styles.tip_title}>{tip.title}</p>
-            <p className={styles.tip_content}>{tip.content}</p>
-          </div>
-        ))}
+    <PaddingContainer>
+      <div className={styles.container}>
+        <p className={styles.title}>이렇게 검색해보세요!</p>
+        <div className={styles.tips}>
+          {tips.map((tip) => (
+            <div key={tip.title} className={styles.tip}>
+              <p className={styles.tip_title}>{tip.title}</p>
+              <p className={styles.tip_content}>{tip.content}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </PaddingContainer>
   );
 }
 
