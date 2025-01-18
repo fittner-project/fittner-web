@@ -18,11 +18,21 @@ export default function BottomSheet({ children }: BottomSheetProps) {
       onClose={closeBottomSheet}
       tweenConfig={{
         ease: "easeInOut",
-        duration: 0.3,
+        duration: 0.5,
+      }}
+      style={{
+        maxWidth: "100%",
+        height: "100%",
+        WebkitTransform: "translate3d(0,0,0)",
+        transform: "translate3d(0,0,0)",
+        WebkitBackfaceVisibility: "hidden",
+        backfaceVisibility: "hidden",
+        WebkitPerspective: 1000,
+        perspective: 1000,
       }}
     >
       <Sheet.Container className={styles.container}>
-        <Sheet.Header className={styles.header}></Sheet.Header>
+        <Sheet.Header className={styles.header} />
         <Sheet.Content className={styles.content}>{children}</Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop className={styles.backdrop} />
