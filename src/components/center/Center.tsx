@@ -11,7 +11,12 @@ export default function Center({ center, handleCenterClick }: CenterProps) {
     <div onClick={handleCenterClick} className={styles.container}>
       <div
         className={styles.center_image}
-        style={{ backgroundImage: `url(${center.centerImage})` }}
+        style={{
+          backgroundImage: `url(${center.centerImage?.[0]?.fileUrl || "/default-image.png"})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       />
       <div className={styles.center_info}>
         <div className={styles.center_name}>{center.centerName}</div>
