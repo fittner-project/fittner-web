@@ -1,10 +1,21 @@
-$content_layer: 0;
-$priority_content_layer: 99;
-$header_layer: 100;
-$menu_layer: 501;
-$modal_layer: 100000;
-$sub_header_layer: 100;
-$loading_layer: 100000;
-$main_container_padding: 1.8rem;
-$sub_header_height: 5.8rem;
-$sub_search_header_height: 15.55rem;
+// Z-index Layers
+// 레이어 높을수록 화면 전면에 표시
+//----------------------------------------
+// 기본 콘텐츠 레이어
+$content_layer: 0; // 일반 콘텐츠
+$priority_content_layer: 99; // 우선순위가 높은 콘텐츠
+
+// 헤더 관련 레이어
+$header_layer: 100; // 메인 헤더
+$sub_header_layer: 100; // 서브 헤더
+
+// 오버레이 레이어 (모달, 바텀시트 등)
+$modal_overlay_layer: 10000; // 모달 오버레이 (최상단)
+$bottom_sheet_overlay_layer: 200; // 바텀시트 오버레이
+$loading_layer: 10000; // 로딩 스피너 오버레이
+
+// Layout Measurements
+//----------------------------------------
+$main_container_padding: 1.8rem; // 메인 컨테이너 내부 여백
+$sub_header_height: 5.8rem; // 서브 헤더 높이
+$sub_search_header_height: 15.55rem; // 검색 서브 헤더 높이
