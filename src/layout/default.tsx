@@ -8,6 +8,7 @@ import Header from "./header/Header";
 import { SubHeader } from "./sub-header/SubHeader";
 import useGetCurrentRoute from "@/hooks/useGetCurrentRoute";
 import BottomSheetManager from "@/components/bottom-sheet/bottom-sheet-manager/BottomSheetManager";
+import SubSearchHeader from "./sub-search-header/SubSearchHeader";
 
 export default function RootLayout() {
   const queryClient = useMemo(() => new QueryClient(), []);
@@ -18,8 +19,12 @@ export default function RootLayout() {
       return;
     }
 
-    if (currentRoute.headerType === "default") return <Header />;
-    if (currentRoute.headerType === "sub") return <SubHeader />;
+    if (currentRoute.headerType === "default")
+      return <Header fallback={currentRoute.fallback} />;
+    if (currentRoute.headerType === "sub")
+      return <SubHeader fallback={currentRoute.fallback} />;
+    if (currentRoute.headerType === "sub-search")
+      return <SubSearchHeader fallback={currentRoute.fallback} />;
   };
 
   return (

@@ -1,6 +1,5 @@
 import styles from "./FindCenters.module.scss";
-import Input from "@/components/input/Input";
-import { useForm } from "react-hook-form";
+
 import CenterSearchTips from "./components/center-search-tips/CenterSearchTips";
 
 import SearchedCenters from "./components/searched-centers/SearchedCenters";
@@ -10,25 +9,27 @@ import { openBottomSheet } from "@/utils/bottomSheet";
 import SelectCenterBottomSheet from "./components/searched-centers/select-center-bottom-sheet/SelectCenterBottomSheet";
 import { CenterListResDto } from "@/api/generated/models";
 
-interface SearchCenterForm {
-  searchCenterValue: string;
-}
+import { useEffect, useRef } from "react";
+import { useSearchValueStore } from "@/store/searchValue";
 
 function FindCenters() {
-  const { register, watch } = useForm<SearchCenterForm>({
-    mode: "onChange",
-  });
+  const { searchValue, reset } = useSearchValueStore();
   const showCenterList = useRef(false);
-  const searchCenterValue = watch("searchCenterValue");
   const { data: centerListData, isLoading: isCenterListLoading } =
     useCenterList1();
   const centerList = centerListData?.result;
 
   const { filteredData: filteredCenterList } = useSearch({
-    searchValue: searchCenterValue,
+    searchValue,
     data: centerList,
     searchFields: ["centerName", "centerAddress"],
   });
+
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, []);
 
   const handleCenterClick = (center: CenterListResDto) => {
     openBottomSheet({
@@ -39,21 +40,16 @@ function FindCenters() {
     });
   };
 
+  useEffect(() => {
+    if (searchValue) {
+      showCenterList.current = true;
+    }
+  }, [searchValue]);
+
   return (
     <div className={styles.container}>
-      <div className={styles.search_container}>
-        <Input
-          onFocus={() => (showCenterList.current = true)}
-          inputType="line-search"
-          placeholder="센터명, 주소를 입력해주세요"
-          {...register("searchCenterValue", {
-            required: true,
-          })}
-        />
-      </div>
-
-      {!showCenterList.current && !searchCenterValue && <CenterSearchTips />}
-      {(showCenterList.current || searchCenterValue) && (
+      {!showCenterList.current && !searchValue && <CenterSearchTips />}
+      {(showCenterList.current || searchValue) && (
         <SearchedCenters
           centerList={filteredCenterList}
           isCenterListLoading={isCenterListLoading}

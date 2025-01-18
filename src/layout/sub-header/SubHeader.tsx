@@ -5,13 +5,18 @@ import { useNavigate } from "react-router-dom";
 import styles from "./SubHeader.module.scss";
 import useGetCurrentRoute from "@/hooks/useGetCurrentRoute";
 
-export const SubHeader = () => {
+interface SubHeaderProps {
+  fallback: string | "none";
+}
+
+export const SubHeader = ({ fallback }: SubHeaderProps) => {
   const { currentRoute } = useGetCurrentRoute();
   const rightSection = currentRoute?.subHeaderConfig?.rightSection;
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate(-1);
+    if (fallback === "none") navigate(-1);
+    else navigate(fallback);
   };
 
   const handleRightSectionClick = () => {

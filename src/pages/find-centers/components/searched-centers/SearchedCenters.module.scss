@@ -1,8 +1,6 @@
 .container {
   padding: 1.2rem 1.8rem 1.8rem 1.8rem;
-  max-height: calc(100dvh - 15.6rem);
-  min-height: calc(100dvh - 15.6rem);
-  overflow-y: auto;
+  min-height: calc(100dvh - $sub_search_header_height);
 
   .search_result {
     color: $grey_4;

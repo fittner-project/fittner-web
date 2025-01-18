@@ -1,6 +1,6 @@
 import PATH from "./path";
 
-export type HeaderType = "default" | "sub" | "none";
+export type HeaderType = "default" | "sub" | "sub-search" | "none";
 
 export type NavigationType = "default" | "none";
 
@@ -10,12 +10,15 @@ export type RouteSpec = {
   headerName?: string;
   headerType: HeaderType;
   navType?: NavigationType;
-  fallback?: string | "none";
+  fallback: string | "none";
   subHeaderConfig?: SubHeaderConfig;
 };
 
 export type SubHeaderConfig = {
   rightSection?: SubHeaderRightSection;
+  searchConfig?: {
+    placeholder?: string;
+  };
 };
 
 export type SubHeaderRightSection = {
@@ -89,8 +92,13 @@ export const Routes: Routes = {
     name: "find-centers",
     path: PATH.FIND_CENTERS,
     fallback: "none",
-    headerType: "sub",
+    headerType: "sub-search",
     navType: "none",
+    subHeaderConfig: {
+      searchConfig: {
+        placeholder: "센터명, 주소를 입력해주세요",
+      },
+    },
   },
 
   "sign-up-complete": {

@@ -43,6 +43,8 @@
     "useAppStore": true,
     "useColorStore": true,
     "useModalStore": true,
-    "useBottomSheetStore": true
+    "useBottomSheetStore": true,
+    "useSearchStore": true,
+    "useSearchValueStore": true
   }
 }
