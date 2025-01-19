@@ -52,3 +52,18 @@
     weight: $fontWeight;
   }
 }
+
+@mixin fixed_contents_viewport {
+  position: fixed;
+  // max-width: $root_max_width;
+  // min-width: $root_min_width;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin footer {
+  @include fixed_contents_viewport();
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+}

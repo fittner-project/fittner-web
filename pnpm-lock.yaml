@@ -17,6 +17,9 @@ dependencies:
   framer-motion:
     specifier: ^11.13.1
     version: 11.15.0(react-dom@18.3.1)(react@18.3.1)
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   mitt:
     specifier: ^3.0.1
     version: 3.0.1
@@ -49,6 +52,9 @@ devDependencies:
   '@commitlint/config-conventional':
     specifier: ^19.6.0
     version: 19.6.0
+  '@types/lodash':
+    specifier: ^4.17.14
+    version: 4.17.14
   '@types/node':
     specifier: ^22.10.1
     version: 22.10.5
@@ -1549,6 +1555,10 @@ packages:
 
   /@types/json-schema@7.0.15:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
+    dev: true
+
+  /@types/lodash@4.17.14:
+    resolution: {integrity: sha512-jsxagdikDiDBeIRaPYtArcT8my4tN1og7MtMRquFT3XNA6axxyHDRUemqDz/taRDdOUn0GnGHRCuff4q48sW9A==}
     dev: true
 
   /@types/node@22.10.5:
@@ -3689,7 +3699,6 @@ packages:
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /loglevel-plugin-prefix@0.8.4:
     resolution: {integrity: sha512-WpG9CcFAOjz/FtNht+QJeGpvVl/cdR6P0z6OcXSkr8wFJOsV2GRj2j10JLfjuA4aYkcKCNIEqRGCyTife9R8/g==}

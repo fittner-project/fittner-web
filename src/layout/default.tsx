@@ -10,6 +10,7 @@ import useGetCurrentRoute from "@/hooks/useGetCurrentRoute";
 import BottomSheetManager from "@/components/bottom-sheet/bottom-sheet-manager/BottomSheetManager";
 import SubSearchHeader from "./sub-search-header/SubSearchHeader";
 import SubMyHeader from "./sub-my-header/SubMyHeader";
+import Navigation from "./navigation/Navigation";
 
 export default function RootLayout() {
   const queryClient = useMemo(() => new QueryClient(), []);
@@ -29,12 +30,20 @@ export default function RootLayout() {
     if (currentRoute.headerType === "sub-my") return <SubMyHeader />;
   };
 
+  const renderNav = () => {
+    if (!currentRoute || currentRoute.navType === "none") {
+      return;
+    }
+    if (currentRoute.navType === "default") return <Navigation />;
+  };
+
   return (
     <QueryClientProvider client={queryClient}>
       <EntryPoint>
         {renderHeader()}
         <Outlet />
         <ModalManager />
+        {renderNav()}
         <BottomSheetManager />
       </EntryPoint>
     </QueryClientProvider>
