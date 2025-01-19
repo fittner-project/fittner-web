@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  padding: 2rem 2.4rem;
+  background-color: white;
+  @include flex_col(flex-start, flex-start);
+  @include flex_col_gap(2rem);
+
+  .action_button {
+    color: #191f28;
+    font-feature-settings:
+      "liga" off,
+      "clig" off;
+    font-family: Pretendard;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+  }
+}

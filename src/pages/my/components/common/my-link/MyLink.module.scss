@@ -1,0 +1,16 @@
+.link {
+  @include flex_row(space-between, center);
+  width: 100%;
+
+  .title {
+    color: $text_1;
+    font-feature-settings:
+      "liga" off,
+      "clig" off;
+    font-family: Pretendard;
+    font-size: 1.7rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.2rem;
+  }
+}

@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  background-color: white;
+  padding: 2rem 2.4rem;
+
+  .link_container {
+    width: 100%;
+    margin-top: 2rem;
+
+    @include flex_col(flex-start, flex-start);
+    @include flex_col_gap(2rem);
+  }
+}

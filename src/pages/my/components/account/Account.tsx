@@ -3,10 +3,15 @@ import styles from "./Account.module.scss";
 import { storage } from "@/utils/storage";
 import { storageKeys } from "@/constants/storage";
 import { apple, google, kakao } from "@/assets/assets";
+import MyTitle from "../common/my-title/MyTitle";
 
 export default function Account() {
   const social = storage.get({
     key: storageKeys.trainerSnsKind,
+  }) as string;
+
+  const email = storage.get({
+    key: storageKeys.trainerEmail,
   }) as string;
 
   const getSocialIcon = (social: string) => {
@@ -31,7 +36,7 @@ export default function Account() {
 
   return (
     <div className={styles.container}>
-      <p className={styles.title}>계정관리</p>
+      <MyTitle>계정관리</MyTitle>
       <div className={styles.email_container}>
         <p className={styles.email_title}>이메일</p>
         <div className={styles.email_section}>
@@ -43,7 +48,7 @@ export default function Account() {
               alt={getSocialIcon(social)?.alt ?? ""}
             />
           )}
-          <p className={styles.email}>asdf@asdf.com</p>
+          <p className={styles.email}>{email}</p>
         </div>
       </div>
     </div>
