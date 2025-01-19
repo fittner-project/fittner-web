@@ -9,6 +9,8 @@
   .center_image {
     width: 100%;
     height: 22rem;
+    object-fit: cover;
+    object-position: center;
     background-color: $grey_2;
   }
 
