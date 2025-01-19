@@ -1,0 +1,27 @@
+.container {
+  @include flex-row;
+  width: fit-content;
+  height: 5.4rem;
+  .member_color {
+    width: 0.6rem;
+    height: 5.4rem;
+    border-radius: 0.1rem;
+    margin-right: 0.8rem;
+  }
+
+  .member_info {
+    height: 100%;
+    @include flex_col(space-between);
+    align-items: flex-start;
+    & > .member_name {
+      @include fm-ar(1.8rem, $text_1, 1.6rem, 500);
+      span {
+        font-weight: 700;
+      }
+    }
+
+    & > .time {
+      @include fm-ar(1.6rem, $grey_4, 1.2rem, 500);
+    }
+  }
+}

@@ -2,11 +2,10 @@
   @include footer();
   @include flex-row(space-between);
   height: 5rem;
-  border: 1px solid red;
   z-index: $navigation_layer;
   padding: 1.2rem 2rem 1.2rem 2rem;
   border-top: 1px solid #dadada;
-  z-index: $navigation_layer;
+  min-height: $navigation_height;
 
   .item {
     border: 1px solid blue;

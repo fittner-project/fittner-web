@@ -10,3 +10,4 @@ export { default as search } from "./icon/search.svg";
 export { default as infoCircle } from "./icon/info-circle.svg";
 export { default as bell } from "./icon/bell.png";
 export { default as chevronRight } from "./icon/chevron-right.svg";
+export { default as dumbbell } from "./images/dumbbell.png";

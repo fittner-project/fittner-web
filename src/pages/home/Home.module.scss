@@ -1,4 +1,28 @@
 .container {
   width: 100%;
-  border: 1px solid red;
+  height: calc(100vh - $navigation_height - $main_header_height);
+  border: 1px solid blue;
+  position: relative;
+
+  & > .dumbbell {
+    position: absolute;
+    top: 3.8rem;
+    right: -2rem;
+  }
+
+  & > .class_info {
+    .day {
+      @include fm-ar(2.2rem, $text_1, 2.2rem, 700);
+      margin-bottom: 1rem;
+    }
+
+    .guide {
+      @include fm-ar(2.8rem, $text_1, 2.2rem, 500);
+      span {
+        color: $primary_1;
+        font-weight: 700;
+      }
+      margin-bottom: 2.5rem;
+    }
+  }
 }
