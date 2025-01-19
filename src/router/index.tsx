@@ -12,6 +12,7 @@ import SignUpName from "@/pages/sign-up-name/SignUpName";
 import FindCenters from "@/pages/find-centers/FindCenters";
 import SignUpPhoneNumber from "@/pages/sign-up-phone-number/SignUpPhoneNumber";
 import SignUpComplete from "@/pages/sign-up-complete/SignUpComplete";
+import My from "@/pages/my/My";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: PATH.SIGN_UP_COMPLETE,
         element: <SignUpComplete />,
+      },
+      {
+        path: PATH.MY,
+        element: <My />,
       },
     ],
   },

@@ -1,6 +1,5 @@
 import { chevronLeft } from "@/assets/assets";
 import Image from "@/components/image/Image";
-import { useEffect } from "react";
 
 import styles from "./SubSearchHeader.module.scss";
 import Input from "@/components/input/Input";

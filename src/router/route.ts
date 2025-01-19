@@ -1,6 +1,6 @@
 import PATH from "./path";
 
-export type HeaderType = "default" | "sub" | "sub-search" | "none";
+export type HeaderType = "default" | "sub" | "sub-search" | "sub-my" | "none";
 
 export type NavigationType = "default" | "none";
 
@@ -35,7 +35,8 @@ type RouteKeys =
   | "sign-up-name"
   | "find-centers"
   | "sign-up-phone-number"
-  | "sign-up-complete";
+  | "sign-up-complete"
+  | "my";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -106,6 +107,14 @@ export const Routes: Routes = {
     path: PATH.SIGN_UP_COMPLETE,
     fallback: "none",
     headerType: "sub",
+    navType: "none",
+  },
+
+  my: {
+    name: "my",
+    path: PATH.MY,
+    fallback: "none",
+    headerType: "sub-my",
     navType: "none",
   },
 };

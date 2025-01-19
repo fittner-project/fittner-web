@@ -5,6 +5,7 @@ import PaddingContainer from "@/layout/containers/padding-container/PaddingConta
 import Button from "@/components/button/Button";
 import PATH from "@/router/path";
 import { storage } from "@/utils/storage";
+import { storageKeys } from "@/constants/storage";
 
 interface SignUpNameForm {
   name: string;
@@ -17,7 +18,7 @@ function SignUpName() {
     defaultValues: {
       name:
         storage.get({
-          key: "trainerName",
+          key: storageKeys.trainerName,
           type: "local",
         }) || "",
     },
@@ -27,7 +28,7 @@ function SignUpName() {
 
   const onSubmit = () => {
     storage.set({
-      key: "trainerName",
+      key: storageKeys.trainerName,
       value: name,
       type: "local",
     });

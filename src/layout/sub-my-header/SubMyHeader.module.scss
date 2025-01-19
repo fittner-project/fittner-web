@@ -1,0 +1,22 @@
+.container {
+  height: $sub_header_height;
+  @include flex_row(space-between, center);
+  padding-left: 2.5rem;
+  padding-right: 2rem;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: $sub_header_layer;
+
+  .trainer_name {
+    color: $text_1;
+    font-feature-settings:
+      "liga" off,
+      "clig" off;
+    font-family: Pretendard;
+    font-size: 2.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.2rem;
+  }
+}

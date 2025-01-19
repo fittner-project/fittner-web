@@ -9,6 +9,7 @@ import SignUpModal from "../components/sign-up-modal/SignUpModal";
 import PATH from "@/router/path";
 import { storage } from "@/utils/storage";
 import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
+import { storageKeys } from "@/constants/storage";
 //import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
@@ -38,7 +39,7 @@ export const useSocialAuth = () => {
   const initSocialLogin = ({ socialType }: { socialType: SocialType }) => {
     const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
     storage.set({
-      key: "trainerSnsKind",
+      key: storageKeys.trainerSnsKind,
       value: socialType.toUpperCase(),
       type: "local",
     });
@@ -70,7 +71,7 @@ export const useSocialAuth = () => {
             accessToken,
           });
           storage.set({
-            key: "trainerEmail",
+            key: storageKeys.trainerEmail,
             value: userInfo.email,
             type: "local",
           });
@@ -83,7 +84,7 @@ export const useSocialAuth = () => {
             accessToken,
           });
           storage.set({
-            key: "trainerEmail",
+            key: storageKeys.trainerEmail,
             value: userInfo.email,
             type: "local",
           });
@@ -95,7 +96,11 @@ export const useSocialAuth = () => {
           console.log("애플 로그인 요청 인가 코드", id_token);
           // const response = await appleInfo({ data: { code } });
           // if (response.result?.userEmail) {
-          //   storage.set("trainerEmail", response.result.userEmail, "local");
+          // storage.set({
+          //   key: storageKeys.trainerEmail,
+          //   value: response.result.userEmail,
+          //   type: "local",
+          // });
           //   login({ data: { trainerEmail: response.result.userEmail } });
           // }
           break;

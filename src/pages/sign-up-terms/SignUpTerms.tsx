@@ -9,6 +9,7 @@ import PATH from "@/router/path";
 import { useNavigate } from "react-router-dom";
 import { storage } from "@/utils/storage";
 import { useGetJoinTerms } from "@/api/generated/유저/유저";
+import { storageKeys } from "@/constants/storage";
 
 function SignUpTerms() {
   const { data: termsData, isLoading } = useGetJoinTerms();
@@ -20,7 +21,7 @@ function SignUpTerms() {
 
   useEffect(() => {
     const savedCheckedState = storage.get<Record<string, boolean>>({
-      key: "termsAgreement",
+      key: storageKeys.termsAgreement,
       type: "local",
     });
     if (savedCheckedState) {
@@ -38,7 +39,7 @@ function SignUpTerms() {
 
     setCheckedState(newCheckedState);
     storage.set({
-      key: "termsAgreement",
+      key: storageKeys.termsAgreement,
       value: newCheckedState,
       type: "local",
     });
@@ -53,7 +54,7 @@ function SignUpTerms() {
   const handleNext = () => {
     if (isAllEssentialTermsChecked()) {
       storage.set({
-        key: "termsAgreement",
+        key: storageKeys.termsAgreement,
         value: checkedState,
         type: "local",
       });

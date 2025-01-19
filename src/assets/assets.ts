@@ -8,3 +8,4 @@ export { default as checkNor } from "./icon/check-nor.svg";
 export { default as chevronLeft } from "./icon/chevron-left.svg";
 export { default as search } from "./icon/search.svg";
 export { default as infoCircle } from "./icon/info-circle.svg";
+export { default as bell } from "./icon/bell.svg";

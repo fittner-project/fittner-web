@@ -6,6 +6,7 @@ import Button from "@/components/button/Button";
 import formatPhoneNumber from "@/utils/formatPhoneNumber";
 import PATH from "@/router/path";
 import { storage } from "@/utils/storage";
+import { storageKeys } from "@/constants/storage";
 
 interface SignUpPhoneNumberForm {
   phoneNumber: string;
@@ -20,7 +21,7 @@ function SignUpPhoneNumber() {
         phoneNumber: formatPhoneNumber({
           value:
             storage.get({
-              key: "trainerPhone",
+              key: storageKeys.trainerPhone,
               type: "local",
             }) || "",
         }),
@@ -34,7 +35,7 @@ function SignUpPhoneNumber() {
 
   const onSubmit = () => {
     storage.set({
-      key: "trainerPhone",
+      key: storageKeys.trainerPhone,
       value: phoneNumber.replace(/-/g, ""),
       type: "local",
     });
