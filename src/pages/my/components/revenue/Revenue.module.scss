@@ -1,0 +1,84 @@
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: $grey_1;
+  padding: 1.9rem 1.8rem 1.6rem;
+
+  .top_section {
+    @include flex_row(space-between, center);
+    color: $grey_3;
+    font-feature-settings:
+      "liga" off,
+      "clig" off;
+    font-family: Pretendard;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.2rem;
+
+    .detail_section {
+      cursor: pointer;
+      @include flex_row(flex-start, center);
+      @include flex_row_gap(0.2rem);
+    }
+  }
+
+  .revenue_section {
+    margin-top: 0.9rem;
+    padding: 0.9rem 1.5rem 1.2rem;
+    background-color: white;
+    border-radius: 1rem;
+    @include flex_col();
+    @include flex_col_gap(1.5rem);
+
+    .revenue_item_container {
+      width: 100%;
+      @include flex_row(space-between, center);
+      position: relative;
+
+      .revenue_item_divider {
+        @include absolute_center();
+        background-color: #d9d9d9;
+        width: 0.1rem;
+        height: 4.2rem;
+      }
+
+      .revenue_item {
+        width: 100%;
+        @include flex_col();
+        @include flex_col_gap(0.2rem);
+
+        .revenue_item_title {
+          color: $grey_3;
+          font-feature-settings:
+            "liga" off,
+            "clig" off;
+          font-family: Pretendard;
+          font-size: 1.3rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 2.2rem;
+        }
+
+        .revenue_item_value {
+          font-feature-settings:
+            "liga" off,
+            "clig" off;
+          font-family: Pretendard;
+          font-size: 2.1rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 2.2rem;
+
+          &.expected {
+            color: $grey_2;
+          }
+
+          &.current {
+            color: $text_1;
+          }
+        }
+      }
+    }
+  }
+}
