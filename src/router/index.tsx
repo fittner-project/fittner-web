@@ -7,11 +7,11 @@ import SignIn from "@/pages/sign-in/SignIn";
 import Redirect from "@/pages/redirect/Redirect";
 
 import PATH from "./path";
-import SignUpTerms from "@/pages/sign-up-terms/SignUpTerms";
-import SignUpName from "@/pages/sign-up-name/SignUpName";
+import SignUpTerms from "@/pages/sign-up/sign-up-terms/SignUpTerms";
+import SignUpName from "@/pages/sign-up/sign-up-name/SignUpName";
 import FindCenters from "@/pages/find-centers/FindCenters";
-import SignUpPhoneNumber from "@/pages/sign-up-phone-number/SignUpPhoneNumber";
-import SignUpComplete from "@/pages/sign-up-complete/SignUpComplete";
+import SignUpPhoneNumber from "@/pages/sign-up/sign-up-phone-number/SignUpPhoneNumber";
+import SignUpComplete from "@/pages/sign-up/sign-up-complete/SignUpComplete";
 import My from "@/pages/my/My";
 
 const router = createBrowserRouter([
@@ -36,15 +36,15 @@ const router = createBrowserRouter([
         element: <Redirect />,
       },
       {
-        path: PATH.SIGN_UP_TERMS,
+        path: PATH.SIGN_UP.TERMS,
         element: <SignUpTerms />,
       },
       {
-        path: PATH.SIGN_UP_PHONE_NUMBER,
+        path: PATH.SIGN_UP.PHONE_NUMBER,
         element: <SignUpPhoneNumber />,
       },
       {
-        path: PATH.SIGN_UP_NAME,
+        path: PATH.SIGN_UP.NAME,
         element: <SignUpName />,
       },
       {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         element: <FindCenters />,
       },
       {
-        path: PATH.SIGN_UP_COMPLETE,
+        path: PATH.SIGN_UP.COMPLETE,
         element: <SignUpComplete />,
       },
       {

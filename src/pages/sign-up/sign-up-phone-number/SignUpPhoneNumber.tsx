@@ -39,7 +39,7 @@ function SignUpPhoneNumber() {
       value: phoneNumber.replace(/-/g, ""),
       type: "local",
     });
-    navigate(PATH.SIGN_UP_NAME);
+    navigate(PATH.SIGN_UP.NAME);
   };
 
   return (

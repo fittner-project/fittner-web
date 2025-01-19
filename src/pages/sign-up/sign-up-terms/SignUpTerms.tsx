@@ -58,7 +58,7 @@ function SignUpTerms() {
         value: checkedState,
         type: "local",
       });
-      navigate(PATH.SIGN_UP_PHONE_NUMBER);
+      navigate(PATH.SIGN_UP.PHONE_NUMBER);
     }
   };
 

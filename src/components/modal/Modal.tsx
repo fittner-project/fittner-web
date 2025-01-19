@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "./Modal.module.scss";
 
 export interface ModalProps {
@@ -7,6 +9,23 @@ export interface ModalProps {
 
 export default function Modal({ children, width = 32 }: ModalProps) {
   const { modals, closeModal } = useModalStore();
+  const isFirstRender = useRef(true);
+  const location = useLocation();
+  const prevPathRef = useRef(location.pathname);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (prevPathRef.current !== location.pathname) {
+      closeModal();
+    }
+
+    prevPathRef.current = location.pathname;
+  }, [location.pathname]);
+
   if (modals.length === 0) return;
 
   const handleClose = () => {

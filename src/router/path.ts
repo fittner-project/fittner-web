@@ -2,12 +2,14 @@ const PATH = {
   HOME: "/",
   ABOUT: "/about",
   SIGN_IN: "/sign-in",
-  SIGN_UP_TERMS: "/sign-up-terms",
-  SIGN_UP_PHONE_NUMBER: "/sign-up-phone-number",
-  SIGN_UP_NAME: "/sign-up-name",
+  SIGN_UP: {
+    TERMS: "/sign-up-terms",
+    PHONE_NUMBER: "/sign-up-phone-number",
+    NAME: "/sign-up-name",
+    COMPLETE: "/sign-up-complete",
+  },
   REDIRECT: "/redirect",
   FIND_CENTERS: "/find-centers",
-  SIGN_UP_COMPLETE: "/sign-up-complete",
   MY: "/my",
 };
 

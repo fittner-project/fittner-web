@@ -2,6 +2,8 @@ import { Sheet } from "react-modal-sheet";
 import { useBottomSheetStore } from "@/store/bottomSheet";
 import styles from "./BottomSheet.module.scss";
 import { closeBottomSheet } from "@/utils/bottomSheet";
+import { useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 interface BottomSheetProps {
   children: React.ReactNode;
@@ -9,6 +11,22 @@ interface BottomSheetProps {
 
 export default function BottomSheet({ children }: BottomSheetProps) {
   const { isOpen } = useBottomSheetStore();
+  const isFirstRender = useRef(true);
+  const location = useLocation();
+  const prevPathRef = useRef(location.pathname);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (prevPathRef.current !== location.pathname) {
+      closeBottomSheet();
+    }
+
+    prevPathRef.current = location.pathname;
+  }, [location.pathname]);
 
   return (
     <Sheet

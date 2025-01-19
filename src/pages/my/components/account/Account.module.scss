@@ -1,0 +1,52 @@
+.container {
+  width: 100%;
+  background-color: white;
+  padding: 2rem 2.4rem;
+
+  .title {
+    color: $grey_3;
+    font-feature-settings:
+      "liga" off,
+      "clig" off;
+    font-family: Pretendard;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.2rem;
+  }
+
+  .email_container {
+    margin-top: 1.5rem;
+    @include flex_row(space-between, center);
+
+    .email_title {
+      color: $text_1;
+      font-feature-settings:
+        "liga" off,
+        "clig" off;
+      font-family: Pretendard;
+      font-size: 1.7rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 2.2rem;
+    }
+
+    .email_section {
+      @include flex_row();
+      @include flex_row_gap(0.5rem);
+
+      .email {
+        color: $grey_3;
+        text-align: right;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-family: Pretendard;
+        font-size: 1.9rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 2.2rem;
+      }
+    }
+  }
+}

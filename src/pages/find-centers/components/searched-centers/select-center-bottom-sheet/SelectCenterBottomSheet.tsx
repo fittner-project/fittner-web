@@ -19,13 +19,12 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const { mutate: registerCenter } = useRegisterCenter({
     mutation: {
       onSuccess: () => {
-        closeBottomSheet();
         openModal({
           component: SuccessModal,
           props: {
             successMessage: "센터 등록 신청이\n 완료 되었습니다",
             onCloseComplete: () => {
-              navigate(PATH.SIGN_UP_COMPLETE);
+              navigate(PATH.SIGN_UP.COMPLETE);
             },
           },
         });

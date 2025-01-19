@@ -1,5 +1,4 @@
 import { useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { alertTriangle } from "@/assets/assets";
 import Modal from "../../Modal";
 import Image from "@/components/image/Image";
@@ -15,8 +14,6 @@ interface AlertModalProps {
 function AlertModal({ errorMessage, onCloseComplete }: AlertModalProps) {
   const isFirstRender = useRef(true);
   const isCompleted = useRef(false);
-  const location = useLocation();
-  const prevPathRef = useRef(location.pathname);
 
   const handleCloseComplete = () => {
     if (!isCompleted.current) {
@@ -41,13 +38,6 @@ function AlertModal({ errorMessage, onCloseComplete }: AlertModalProps) {
       isFirstRender.current = false;
     };
   }, []);
-
-  useEffect(() => {
-    if (!isFirstRender.current && prevPathRef.current !== location.pathname) {
-      closeModal();
-    }
-    prevPathRef.current = location.pathname;
-  }, [location]);
 
   return (
     <Modal>

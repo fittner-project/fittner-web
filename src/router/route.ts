@@ -62,7 +62,7 @@ export const Routes: Routes = {
 
   "sign-up-terms": {
     name: "sign-up-terms",
-    path: PATH.SIGN_UP_TERMS,
+    path: PATH.SIGN_UP.TERMS,
     fallback: "none",
     headerType: "sub",
     navType: "none",
@@ -75,7 +75,7 @@ export const Routes: Routes = {
 
   "sign-up-phone-number": {
     name: "sign-up-phone-number",
-    path: PATH.SIGN_UP_PHONE_NUMBER,
+    path: PATH.SIGN_UP.PHONE_NUMBER,
     fallback: "none",
     headerType: "sub",
     navType: "none",
@@ -83,7 +83,7 @@ export const Routes: Routes = {
 
   "sign-up-name": {
     name: "sign-up-name",
-    path: PATH.SIGN_UP_NAME,
+    path: PATH.SIGN_UP.NAME,
     fallback: "none",
     headerType: "sub",
     navType: "none",
@@ -104,7 +104,7 @@ export const Routes: Routes = {
 
   "sign-up-complete": {
     name: "sign-up-complete",
-    path: PATH.SIGN_UP_COMPLETE,
+    path: PATH.SIGN_UP.COMPLETE,
     fallback: "none",
     headerType: "sub",
     navType: "none",

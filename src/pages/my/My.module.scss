@@ -1,0 +1,8 @@
+.container {
+  min-height: calc(100dvh - $sub_header_height);
+
+  .user_section {
+    @include flex_col(flex-start, center);
+    @include flex_col_gap(0.8rem);
+  }
+}
