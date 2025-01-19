@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import RootLayout from "@/layout/default.tsx";
-import About from "@/pages/about";
 import Home from "@/pages/home";
 import SignIn from "@/pages/sign-in/SignIn";
 import Redirect from "@/pages/redirect/Redirect";
@@ -22,10 +21,6 @@ const router = createBrowserRouter([
       {
         path: PATH.HOME,
         element: <Home />,
-      },
-      {
-        path: PATH.ABOUT,
-        element: <About />,
       },
       {
         path: PATH.SIGN_IN,
