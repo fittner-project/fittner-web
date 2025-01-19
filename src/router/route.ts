@@ -112,7 +112,7 @@ export const Routes: Routes = {
 
   my: {
     name: "my",
-    path: PATH.MY,
+    path: PATH.MY.DEFAULT,
     fallback: "none",
     headerType: "sub-my",
     navType: "none",

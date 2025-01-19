@@ -1,5 +1,5 @@
 import styles from "./Setting.module.scss";
-import MyTitle from "../common/my-title/MyTitle";
+import MyTitle from "../../../components/my-title/MyTitle";
 import MyLink from "../common/my-link/MyLink";
 
 export default function Setting() {

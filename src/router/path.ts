@@ -10,7 +10,9 @@ const PATH = {
   },
   REDIRECT: "/redirect",
   FIND_CENTERS: "/find-centers",
-  MY: "/my",
+  MY: {
+    DEFAULT: "/my",
+  },
 };
 
 export default PATH;

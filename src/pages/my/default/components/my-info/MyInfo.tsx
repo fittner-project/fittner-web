@@ -1,5 +1,5 @@
 import MyLink from "../common/my-link/MyLink";
-import MyTitle from "../common/my-title/MyTitle";
+import MyTitle from "../../../components/my-title/MyTitle";
 import styles from "./MyInfo.module.scss";
 
 export default function MyInfo() {

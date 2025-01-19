@@ -3,7 +3,7 @@ import styles from "./Account.module.scss";
 import { storage } from "@/utils/storage";
 import { storageKeys } from "@/constants/storage";
 import { apple, google, kakao } from "@/assets/assets";
-import MyTitle from "../common/my-title/MyTitle";
+import MyTitle from "../../../components/my-title/MyTitle";
 
 export default function Account() {
   const social = storage.get({
