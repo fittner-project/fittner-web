@@ -6,7 +6,7 @@
   @include flex_col_gap(2rem);
 
   .action_button {
-    color: #191f28;
+    color: $text_1;
     font-feature-settings:
       "liga" off,
       "clig" off;
@@ -15,5 +15,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: 22px;
+    width: 100%;
+    text-align: left;
   }
 }
