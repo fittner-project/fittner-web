@@ -17,6 +17,7 @@ export function useSearch<T extends Record<string, any>>({
 
     const searchTerm = searchValue.toLowerCase();
     const { result: searchChosung } = getChosung({ str: searchValue });
+    const isChosungSearch = searchValue === searchChosung;
 
     return data.filter((item) => {
       return searchFields.some((field) => {
@@ -24,10 +25,11 @@ export function useSearch<T extends Record<string, any>>({
         const fieldValueLower = fieldValue.toLowerCase();
         const fieldValueChosung = getChosung({ str: fieldValue }).result;
 
-        return (
-          fieldValueLower.includes(searchTerm) ||
-          fieldValueChosung.includes(searchChosung)
-        );
+        if (isChosungSearch) {
+          return fieldValueChosung.includes(searchChosung);
+        } else {
+          return fieldValueLower.includes(searchTerm);
+        }
       });
     });
   }, [searchValue, data, searchFields]);
