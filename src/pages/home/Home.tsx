@@ -16,12 +16,20 @@ function Home() {
     <BackgroundContainer>
       <PaddingContainer>
         <MotionDiv className={styles.container}>
-          <Image
-            src={dumbbell}
-            width={13.3}
-            height={19}
-            className={styles.dumbbell}
-          />
+          <MotionDiv
+            className={styles.dumbbell_container}
+            transition={{ duration: 0.4, delay: 0.6 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <Image
+              src={dumbbell}
+              width={13.3}
+              height={19}
+              className={styles.dumbbell}
+            />
+          </MotionDiv>
+
           <MotionDiv
             className={styles.class_info}
             transition={{ duration: 1 }}
@@ -42,6 +50,24 @@ function Home() {
             </div>
 
             <Training />
+          </MotionDiv>
+
+          <MotionDiv
+            className={styles.calendar_container}
+            transition={{ duration: 0.4, delay: 0.6 }}
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+          >
+            달력달력
+          </MotionDiv>
+
+          <MotionDiv
+            className={styles.menu_container}
+            transition={{ duration: 0.4, delay: 0.6 }}
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+          >
+            메뉴들
           </MotionDiv>
         </MotionDiv>
       </PaddingContainer>
