@@ -2,6 +2,7 @@ import Image from "@/components/image/Image";
 import styles from "./Revenue.module.scss";
 import { chevronRight } from "@/assets/assets";
 import RevenueCard from "@/pages/my/components/revenue-card/RevenueCard";
+import { Link } from "react-router-dom";
 
 export default function Revenue() {
   return (

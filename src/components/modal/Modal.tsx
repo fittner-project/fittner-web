@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Modal.module.scss";
+import { SlideUp } from "../animation/SlideUp";
 
 export interface ModalProps {
   children: React.ReactNode;
