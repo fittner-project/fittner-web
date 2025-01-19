@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 import styles from "./animation.module.scss";
-import { BaseMotionProps, MotionDiv } from "./motion";
+import { BaseMotionProps, MotionDiv } from "./Motion";
 
 const spring = {
   duration: 1,

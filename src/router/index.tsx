@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import RootLayout from "@/layout/default.tsx";
-import Home from "@/pages/home";
+import Home from "@/pages/home/Home";
 import SignIn from "@/pages/sign-in/SignIn";
 import Redirect from "@/pages/redirect/Redirect";
 

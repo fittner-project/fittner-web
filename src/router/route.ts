@@ -47,7 +47,7 @@ export const Routes: Routes = {
     name: "lobby",
     path: "/",
     fallback: "/",
-    headerName: "Fittner",
+    headerName: "",
     headerType: "default",
     navType: "default",
   },

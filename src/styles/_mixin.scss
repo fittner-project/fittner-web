@@ -36,3 +36,19 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin fm-ar(
+  $fontSize: 1.6rem,
+  $fontColor: $text_1,
+  $lineHeight: 1.8rem,
+  $fontWeight: 400,
+  $fontFamily: "Pretendard"
+) {
+  color: $fontColor;
+  line-height: $lineHeight;
+
+  font: {
+    size: $fontSize;
+    weight: $fontWeight;
+  }
+}

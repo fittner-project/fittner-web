@@ -1,2 +1,11 @@
-.wrapper {
+.container {
+  width: 100%;
+  height: $main_header_height;
+  @include flex-row(space-between);
+  padding: 0 2rem;
+  border-bottom: 1px solid $grey_1;
+
+  & > .title {
+    @include fm-ar(2.2rem, $text_1, 2.2rem, 600);
+  }
 }
