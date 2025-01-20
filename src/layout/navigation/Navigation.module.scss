@@ -8,6 +8,11 @@
   min-height: $navigation_height;
 
   .item {
-    border: 1px solid blue;
+    @include flex-col;
+
+    .name {
+      @include fm-ar(1.3rem, $grey_2, 1.2rem, 600);
+      margin-top: 0.4rem;
+    }
   }
 }
