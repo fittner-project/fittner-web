@@ -2,8 +2,11 @@ import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import styles from "./SignOutBottomSheet.module.scss";
 import Button from "@/components/button/Button";
 import { closeBottomSheet } from "@/utils/bottomSheet";
+import { useLogout } from "@/api/generated/auth-controller/auth-controller";
 
 export default function SignOutBottomSheet() {
+  const { mutate: logout } = useLogout();
+
   return (
     <BottomSheet>
       <div className={styles.container}>
@@ -18,7 +21,11 @@ export default function SignOutBottomSheet() {
           >
             취소
           </Button>
-          <Button backgroundColor="primary_1" fullWidth>
+          <Button
+            onClick={() => logout()}
+            backgroundColor="primary_1"
+            fullWidth
+          >
             로그아웃
           </Button>
         </div>

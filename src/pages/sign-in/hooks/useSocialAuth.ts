@@ -10,15 +10,27 @@ import { storage } from "@/utils/storage";
 import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
 import { storageKeys } from "@/constants/storageKeys";
 import { useLogin } from "@/api/generated/auth-controller/auth-controller";
+import useAuthStore from "@/store/auth";
 //import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuthStore();
   //const { mutateAsync: appleInfo } = useAppleInfo();
   const { mutate: login } = useLogin({
     mutation: {
       onSuccess: (data) => {
-        console.log("로그인 성공:", data);
+        setIsAuthenticated(true);
+        storage.set({
+          key: storageKeys.accessToken,
+          value: data.data.result?.accessToken,
+          type: "local",
+        });
+        storage.set({
+          key: storageKeys.refreshToken,
+          value: data.data.result?.refreshTokenId,
+          type: "local",
+        });
         navigate(PATH.HOME);
       },
       onError: (error) => {

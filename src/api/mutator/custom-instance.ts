@@ -1,5 +1,7 @@
 import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
+import { storageKeys } from "@/constants/storageKeys";
 import { openModal } from "@/utils/modal";
+import { storage } from "@/utils/storage";
 import axios from "axios";
 
 if (!import.meta.env.VITE_API_BASE_URL) {
@@ -15,6 +17,15 @@ const instance = axios.create({
 
 // 기본 에러 모달을 스킵할 API 목록
 const skipErrorHandlingUrls = ["/api/v1/auth/login"];
+
+instance.interceptors.request.use((config) => {
+  const accessToken = storage.get({ key: storageKeys.accessToken });
+
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+  return config;
+});
 
 instance.interceptors.response.use(
   (response) => {

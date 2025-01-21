@@ -16,9 +16,9 @@ const EntryPoint: FC<IProps> = ({ children }) => {
       return;
     }
 
-    // if (isAuthenticated) {
-    //   navigate(PATH.HOME);
-    // }
+    if (isAuthenticated) {
+      navigate(PATH.HOME);
+    }
 
     // if (!isAuthenticated) {
     //   navigate(PATH.SIGN_IN);
