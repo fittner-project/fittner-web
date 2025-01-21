@@ -1,0 +1,35 @@
+.container {
+  @include flex_row(space-between, center);
+
+  width: 100%;
+  padding: 2rem;
+  border-radius: 0.6rem;
+  border: 0.2rem solid $grey_1;
+
+  .center_info {
+    width: 100%;
+    max-width: 60%;
+    @include flex_col(flex-start, flex-start);
+    @include flex_col_gap(0.6rem);
+
+    .center_name {
+      width: 100%;
+      @include fm-ar(1.9rem, $text_1, 2.2rem, 700, "Pretendard");
+      @include text_ellipsis();
+    }
+
+    .center_address {
+      width: 100%;
+      @include fm-ar(1.4rem, $grey_2, 2.2rem, 500, "Pretendard");
+      @include text_ellipsis();
+    }
+  }
+
+  .action_button {
+    margin-left: auto;
+    padding: 0.6rem 1.8rem;
+    border-radius: 10rem;
+    border: 1px solid $grey_2;
+    @include fm-ar(1.6rem, $grey_3, 2.2rem, 600, "Pretendard");
+  }
+}

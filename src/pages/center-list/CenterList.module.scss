@@ -1,0 +1,12 @@
+.container {
+  @include flex_col(flex-start, flex-start);
+  @include flex_col_gap(2.8rem);
+
+  .title {
+    @include fm-ar(1.4rem, $grey_3, 2.2rem, 600, "Pretendard");
+  }
+
+  .center_list {
+    margin-top: 0.6rem;
+  }
+}

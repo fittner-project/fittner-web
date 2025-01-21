@@ -9,6 +9,7 @@ const PATH = {
   },
   REDIRECT: "/redirect",
   FIND_CENTERS: "/find-centers",
+  CENTER_LIST: "/center-list",
   MY: {
     DEFAULT: "/my",
   },

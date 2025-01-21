@@ -12,14 +12,15 @@ import PATH from "@/router/path";
 import { storageKeys } from "@/constants/storageKeys";
 import { storage } from "@/utils/storage";
 import { SocialType } from "@/auth/socialType";
-import useSignInStore from "@/store/signIn";
+import useAuthStore from "@/store/auth";
+
 interface SelectCenterBottomSheetProps {
   center: CenterListResDto;
 }
 
 function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const navigate = useNavigate();
-  const { isSignedIn } = useSignInStore();
+  const { isAuthenticated } = useAuthStore();
   const { mutate: registerCenter } = useRegisterCenter({
     mutation: {
       onSuccess: () => {
@@ -79,12 +80,12 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
       type: "local",
     });
 
-    if (isSignedIn) {
+    if (isAuthenticated) {
       registerCenter({ data: { centerId: center.centerId } });
       return;
     }
 
-    if (!isSignedIn) {
+    if (!isAuthenticated) {
       const agreements = terms?.map((term) => ({
         termsId: term.termsId,
         agreed: userAgreedTerms?.some(

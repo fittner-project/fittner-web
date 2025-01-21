@@ -20,3 +20,4 @@ export { default as nav_calendar } from "./icon/nav_calendar.png";
 export { default as nav_registration } from "./icon/nav_registration.png";
 export { default as nav_my } from "./icon/nav_my.png";
 export { default as nav_sign } from "./icon/nav_sign.png";
+export { default as registration } from "./icon/registration.png";

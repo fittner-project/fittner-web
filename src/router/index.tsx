@@ -12,6 +12,7 @@ import FindCenters from "@/pages/find-centers/FindCenters";
 import SignUpPhoneNumber from "@/pages/sign-up/sign-up-phone-number/SignUpPhoneNumber";
 import SignUpComplete from "@/pages/sign-up/sign-up-complete/SignUpComplete";
 import My from "@/pages/my/default/My";
+import CenterList from "@/pages/center-list/CenterList";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: PATH.MY.DEFAULT,
         element: <My />,
+      },
+      {
+        path: PATH.CENTER_LIST,
+        element: <CenterList />,
       },
     ],
   },

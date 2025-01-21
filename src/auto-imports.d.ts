@@ -47,7 +47,7 @@ declare global {
   const useRoutes: typeof import('react-router-dom')['useRoutes']
   const useSearchParams: typeof import('react-router-dom')['useSearchParams']
   const useSearchValueStore: typeof import('./store/searchValue')['useSearchValueStore']
-  const useSignInStore: typeof import('./store/signIn')['useSignInStore']
+  const useSignInStore: (typeof import("./store/auth"))["useSignInStore"]
   const useState: typeof import('react')['useState']
   const useSyncExternalStore: typeof import('react')['useSyncExternalStore']
   const useTransition: typeof import('react')['useTransition']

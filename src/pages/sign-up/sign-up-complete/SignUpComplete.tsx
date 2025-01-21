@@ -2,6 +2,7 @@ import Image from "@/components/image/Image";
 import styles from "./SignUpComplete.module.scss";
 import Button from "@/components/button/Button";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
+import PATH from "@/router/path";
 
 export default function SignUpComplete() {
   return (
@@ -15,7 +16,7 @@ export default function SignUpComplete() {
           </p>
         </div>
 
-        <Button backgroundColor="primary_1" fullWidth>
+        <Button href={PATH.CENTER_LIST} backgroundColor="primary_1" fullWidth>
           승인 내역 보기
         </Button>
       </div>

@@ -1,0 +1,13 @@
+.container {
+  .title {
+    @include fm-ar(2.4rem, $text_1, 3.2rem, 500, "Pretendard");
+
+    .title_highlight {
+      font-weight: 700;
+    }
+  }
+
+  .button {
+    margin-top: 10rem;
+  }
+}

@@ -1,3 +1,4 @@
+import { registration } from "@/assets/assets";
 import PATH from "./path";
 
 export type HeaderType = "default" | "sub" | "sub-search" | "sub-my" | "none";
@@ -5,7 +6,7 @@ export type HeaderType = "default" | "sub" | "sub-search" | "sub-my" | "none";
 export type NavigationType = "default" | "none";
 
 export type RouteSpec = {
-  name: string;
+  name: RouteKeys;
   path: string;
   headerName?: string;
   headerType: HeaderType;
@@ -25,7 +26,9 @@ export type SubHeaderRightSection = {
   type: "text" | "image" | "none";
   textContent?: string;
   src?: string;
-  actionType?: string | "none";
+  imageWidth?: number;
+  imageHeight?: number;
+  actionType?: "add-center" | "none";
 };
 
 type RouteKeys =
@@ -36,7 +39,8 @@ type RouteKeys =
   | "find-centers"
   | "sign-up-phone-number"
   | "sign-up-complete"
-  | "my";
+  | "my"
+  | "center-list";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -115,6 +119,23 @@ export const Routes: Routes = {
     path: PATH.MY.DEFAULT,
     fallback: "none",
     headerType: "sub-my",
+    navType: "default",
+  },
+
+  "center-list": {
+    name: "center-list",
+    path: PATH.CENTER_LIST,
+    fallback: "none",
+    headerType: "sub",
     navType: "none",
+    subHeaderConfig: {
+      rightSection: {
+        type: "image",
+        src: registration,
+        imageWidth: 2.4,
+        imageHeight: 2.4,
+        actionType: "add-center",
+      },
+    },
   },
 };

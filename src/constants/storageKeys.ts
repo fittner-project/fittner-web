@@ -6,5 +6,5 @@ export const storageKeys = {
   trainerSnsKind: "trainerSnsKind",
   terms: "terms",
   centerId: "centerId",
-  signIn: "signIn",
+  auth: "auth",
 };
