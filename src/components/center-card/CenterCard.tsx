@@ -1,5 +1,5 @@
 import { CenterListResDto } from "@/api/generated/models";
-import styles from "./Center.module.scss";
+import styles from "./CenterCard.module.scss";
 import Image from "@/components/image/Image";
 
 interface CenterProps {
@@ -7,7 +7,7 @@ interface CenterProps {
   handleCenterClick?: () => void;
 }
 
-export default function Center({ center, handleCenterClick }: CenterProps) {
+export default function CenterCard({ center, handleCenterClick }: CenterProps) {
   return (
     <div onClick={handleCenterClick} className={styles.container}>
       <Image

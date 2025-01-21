@@ -1,5 +1,5 @@
 import { CenterListResDto } from "@/api/generated/models";
-import Center from "@/components/center/Center";
+import CenterCard from "@/components/center-card/CenterCard";
 import Skeleton from "@/components/skeleton/Skeleton";
 import styles from "./SearchedCenters.module.scss";
 import BackgroundContainer from "@/layout/containers/background-container/BackgroundContainer";
@@ -73,7 +73,7 @@ export default function SearchedCenters({
                 </Skeleton>
               ))
             : centerList?.map((center) => (
-                <Center
+                <CenterCard
                   handleCenterClick={() => handleCenterClick?.(center)}
                   key={center.centerId}
                   center={center}
