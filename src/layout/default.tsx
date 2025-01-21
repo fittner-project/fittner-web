@@ -42,8 +42,8 @@ export default function RootLayout() {
       <EntryPoint>
         {renderHeader()}
         <Outlet />
-        <ModalManager />
         {renderNav()}
+        <ModalManager />
         <BottomSheetManager />
       </EntryPoint>
     </QueryClientProvider>

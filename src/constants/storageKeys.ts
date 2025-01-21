@@ -7,4 +7,6 @@ export const storageKeys = {
   terms: "terms",
   centerId: "centerId",
   auth: "auth",
+  accessToken: "accessToken",
+  refreshToken: "refreshToken",
 };

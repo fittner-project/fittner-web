@@ -45,6 +45,7 @@
     "useSyncExternalStore": true,
     "useTransition": true,
     "useUserStore": true,
-    "signIn": true
+    "signIn": true,
+    "auth": true
   }
 }

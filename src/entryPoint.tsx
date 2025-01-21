@@ -1,10 +1,30 @@
 import { FC, Fragment, ReactNode } from "react";
+import useAuthStore from "./store/auth";
+import PATH from "./router/path";
 
 interface IProps {
   children: ReactNode;
 }
 
 const EntryPoint: FC<IProps> = ({ children }) => {
+  const { isAuthenticated, signUpApprovalStatus } = useAuthStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (signUpApprovalStatus === "pending") {
+      navigate(PATH.CENTER_LIST);
+      return;
+    }
+
+    // if (isAuthenticated) {
+    //   navigate(PATH.HOME);
+    // }
+
+    // if (!isAuthenticated) {
+    //   navigate(PATH.SIGN_IN);
+    // }
+  }, [signUpApprovalStatus, isAuthenticated]);
+
   return <Authorized>{children}</Authorized>;
 };
 

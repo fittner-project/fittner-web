@@ -20,7 +20,7 @@ interface SelectCenterBottomSheetProps {
 
 function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, setSignUpApprovalStatus } = useAuthStore();
   const { mutate: registerCenter } = useRegisterCenter({
     mutation: {
       onSuccess: () => {
@@ -36,6 +36,8 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const { mutate: signUp } = useJoin({
     mutation: {
       onSuccess: () => {
+        setSignUpApprovalStatus("pending");
+
         openModal({
           component: SuccessModal,
           props: {
