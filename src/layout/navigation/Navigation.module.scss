@@ -6,6 +6,7 @@
   padding: 1.2rem 2rem 1.2rem 2rem;
   border-top: 1px solid #dadada;
   min-height: $navigation_height;
+  background-color: white;
 
   .item {
     @include flex-col;

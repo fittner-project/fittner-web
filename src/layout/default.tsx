@@ -41,7 +41,13 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <EntryPoint>
         {renderHeader()}
-        <Outlet />
+        <div
+          style={{
+            paddingBottom: currentRoute?.navType !== "none" ? "7rem" : "0",
+          }}
+        >
+          <Outlet />
+        </div>
         {renderNav()}
         <ModalManager />
         <BottomSheetManager />
