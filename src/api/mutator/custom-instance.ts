@@ -1,5 +1,6 @@
 import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
 import { storageKeys } from "@/constants/storageKeys";
+import useAuthStore from "@/store/auth";
 import { openModal } from "@/utils/modal";
 import { storage } from "@/utils/storage";
 import axios from "axios";
@@ -17,11 +18,14 @@ const instance = axios.create({
 
 // 기본 에러 모달을 스킵할 API 목록
 const skipErrorHandlingUrls = ["/api/v1/auth/login"];
+// 토큰을 전송하면 안되는 API 목록
+const skipTokenUrls = ["/api/v1/auth/refresh-token"];
 
 instance.interceptors.request.use((config) => {
-  const accessToken = storage.get({ key: storageKeys.accessToken });
+  const { accessToken } = useAuthStore.getState();
+  console.log(accessToken);
 
-  if (accessToken) {
+  if (accessToken && config.url && !skipTokenUrls.includes(config.url)) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
   return config;

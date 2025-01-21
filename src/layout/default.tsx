@@ -1,8 +1,7 @@
 import EntryPoint from "@/entryPoint";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import { Outlet } from "react-router-dom";
 import ModalManager from "@/components/modal/modal-manager/ModalManager";
-import { useMemo } from "react";
 
 import Header from "./header/Header";
 import { SubHeader } from "./sub-header/SubHeader";
@@ -13,7 +12,6 @@ import SubMyHeader from "./sub-my-header/SubMyHeader";
 import Navigation from "./navigation/Navigation";
 
 export default function RootLayout() {
-  const queryClient = useMemo(() => new QueryClient(), []);
   const { currentRoute } = useGetCurrentRoute();
 
   const renderHeader = () => {
@@ -38,7 +36,7 @@ export default function RootLayout() {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <EntryPoint>
         {renderHeader()}
         <div
@@ -52,6 +50,6 @@ export default function RootLayout() {
         <ModalManager />
         <BottomSheetManager />
       </EntryPoint>
-    </QueryClientProvider>
+    </>
   );
 }

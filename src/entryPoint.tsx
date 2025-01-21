@@ -1,34 +1,21 @@
 import { FC, Fragment, ReactNode } from "react";
-import useAuthStore from "./store/auth";
-import PATH from "./router/path";
+
+import useRefreshToken from "./hooks/useRefreshToken";
+import useAuthRouting from "./hooks/useAuthRouting";
 
 interface IProps {
   children: ReactNode;
 }
 
 const EntryPoint: FC<IProps> = ({ children }) => {
-  const { isAuthenticated, signUpApprovalStatus } = useAuthStore();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (signUpApprovalStatus === "pending") {
-      navigate(PATH.CENTER_LIST);
-      return;
-    }
-
-    if (isAuthenticated) {
-      navigate(PATH.HOME);
-    }
-
-    // if (!isAuthenticated) {
-    //   navigate(PATH.SIGN_IN);
-    // }
-  }, [signUpApprovalStatus, isAuthenticated]);
+  useRefreshToken();
+  useAuthRouting();
 
   return <Authorized>{children}</Authorized>;
 };
 
 export default EntryPoint;
+
 const Authorized = ({ children }: IProps) => {
   //인증이 된 이후 앱 전체 적용 로직들
 

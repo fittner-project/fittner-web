@@ -13,11 +13,18 @@ import SignUpPhoneNumber from "@/pages/sign-up/sign-up-phone-number/SignUpPhoneN
 import SignUpComplete from "@/pages/sign-up/sign-up-complete/SignUpComplete";
 import My from "@/pages/my/default/My";
 import CenterList from "@/pages/center-list/CenterList";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: (
+      <QueryClientProvider client={queryClient}>
+        <RootLayout />
+      </QueryClientProvider>
+    ),
     children: [
       {
         path: PATH.HOME,

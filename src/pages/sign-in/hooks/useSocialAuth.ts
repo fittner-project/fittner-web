@@ -15,22 +15,18 @@ import useAuthStore from "@/store/auth";
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
-  const { setIsAuthenticated } = useAuthStore();
+  const { setIsAuthenticated, setAccessToken, setRefreshToken } =
+    useAuthStore();
   //const { mutateAsync: appleInfo } = useAppleInfo();
   const { mutate: login } = useLogin({
     mutation: {
       onSuccess: (data) => {
         setIsAuthenticated(true);
-        storage.set({
-          key: storageKeys.accessToken,
-          value: data.data.result?.accessToken,
-          type: "local",
-        });
-        storage.set({
-          key: storageKeys.refreshToken,
-          value: data.data.result?.refreshTokenId,
-          type: "local",
-        });
+        if (data.data.result?.accessToken && data.data.result?.refreshTokenId) {
+          setAccessToken(data.data.result?.accessToken);
+          setRefreshToken(data.data.result?.refreshTokenId);
+        }
+
         navigate(PATH.HOME);
       },
       onError: (error) => {
