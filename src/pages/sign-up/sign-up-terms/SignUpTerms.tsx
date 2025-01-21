@@ -9,55 +9,71 @@ import PATH from "@/router/path";
 import { useNavigate } from "react-router-dom";
 import { storage } from "@/utils/storage";
 import { useGetJoinTerms } from "@/api/generated/유저/유저";
-import { storageKeys } from "@/constants/storage";
+import { storageKeys } from "@/constants/storageKeys";
+import { TermsResDto } from "@/api/generated/models";
 
 function SignUpTerms() {
   const { data: termsData, isLoading } = useGetJoinTerms();
   const terms = termsData?.result;
-  const [checkedState, setCheckedState] = useState<Record<string, boolean>>({});
+  const [checkedTerms, setCheckedTerms] = useState<TermsResDto[]>([]);
+
   const essentialTerms =
     terms?.filter((term) => term.termsEssentialYn === "Y") || [];
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedCheckedState = storage.get<Record<string, boolean>>({
+    if (terms) {
+      storage.set({
+        key: storageKeys.terms,
+        value: terms,
+        type: "local",
+      });
+    }
+  }, [terms]);
+
+  useEffect(() => {
+    const savedCheckedTerms = storage.get<TermsResDto[]>({
       key: storageKeys.termsAgreement,
       type: "local",
     });
-    if (savedCheckedState) {
-      setCheckedState(savedCheckedState);
+    if (savedCheckedTerms) {
+      setCheckedTerms(savedCheckedTerms);
     }
   }, []);
 
-  const handleCheck = (termsTitle: string | undefined) => {
-    if (!termsTitle) return;
+  const handleCheck = (term: TermsResDto) => {
+    if (!term) return;
 
-    const newCheckedState = {
-      ...checkedState,
-      [termsTitle]: !checkedState[termsTitle],
-    };
+    setCheckedTerms((prev) => {
+      const isChecked = prev.some(
+        (checkedTerm) => checkedTerm.termsTitle === term.termsTitle
+      );
+      const newCheckedTerms = isChecked
+        ? prev.filter(
+            (checkedTerm) => checkedTerm.termsTitle !== term.termsTitle
+          )
+        : [...prev, term];
 
-    setCheckedState(newCheckedState);
-    storage.set({
-      key: storageKeys.termsAgreement,
-      value: newCheckedState,
-      type: "local",
+      storage.set({
+        key: storageKeys.termsAgreement,
+        value: newCheckedTerms,
+        type: "local",
+      });
+
+      return newCheckedTerms;
     });
   };
 
   const isAllEssentialTermsChecked = () => {
-    return essentialTerms.every(
-      (term) => checkedState[term.termsTitle as string] === true
+    return essentialTerms.every((term) =>
+      checkedTerms.some(
+        (checkedTerm) => checkedTerm.termsTitle === term.termsTitle
+      )
     );
   };
 
   const handleNext = () => {
     if (isAllEssentialTermsChecked()) {
-      storage.set({
-        key: storageKeys.termsAgreement,
-        value: checkedState,
-        type: "local",
-      });
       navigate(PATH.SIGN_UP.PHONE_NUMBER);
     }
   };
@@ -85,14 +101,17 @@ function SignUpTerms() {
               : terms?.map((term) => (
                   <div key={term.termsTitle} className={styles.term}>
                     <div
-                      onClick={() => handleCheck(term.termsTitle)}
+                      onClick={() => handleCheck(term)}
                       className={styles.term_content}
                     >
                       <Image
                         width={1.6}
                         height={1.6}
                         src={
-                          checkedState[term.termsTitle as string]
+                          checkedTerms.some(
+                            (checkedTerm) =>
+                              checkedTerm.termsTitle === term.termsTitle
+                          )
                             ? checkSel
                             : checkNor
                         }

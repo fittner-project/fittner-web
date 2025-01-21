@@ -1,4 +1,4 @@
-export type SocialType = "kakao" | "google" | "apple";
+export type SocialType = "KAKAO" | "GOOGLE" | "APPLE";
 
 export interface SocialLoginResponse {
   email: string;

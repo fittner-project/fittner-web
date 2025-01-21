@@ -10,10 +10,20 @@
  * 응답 데이터
  */
 export interface SignResrvationForMemberResDto {
+  /** 회원ID */
   memberId?: string;
+  /** 회원이름 */
   memberName?: string;
+  /** 예약종료시간 */
+  reservationEndTime?: string;
+  /** 예약ID */
   reservationId?: string;
+  /** 예약시작일 */
+  reservationStartDate?: string;
+  /** 예약시작시간 */
+  reservationStartTime?: string;
+  /** 예약상태 */
   reservationStatus?: string;
-  reservationTime?: string;
+  /** 예약회차 */
   reservationUseCnt?: string;
 }

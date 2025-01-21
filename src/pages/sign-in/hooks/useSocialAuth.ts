@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useLogin } from "@/api/generated/auth-controller/auth-controller";
 import { SocialType } from "@/auth/socialType";
 import { kakaoLoginService } from "@/auth/kakao";
 import { googleLoginService } from "@/auth/google";
@@ -9,7 +8,8 @@ import SignUpModal from "../components/sign-up-modal/SignUpModal";
 import PATH from "@/router/path";
 import { storage } from "@/utils/storage";
 import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
-import { storageKeys } from "@/constants/storage";
+import { storageKeys } from "@/constants/storageKeys";
+import { useLogin } from "@/api/generated/auth-controller/auth-controller";
 //import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
@@ -45,10 +45,10 @@ export const useSocialAuth = () => {
     });
 
     const socialLoginUrls = {
-      kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
-      google: `https://accounts.google.com/o/oauth2/v2/auth?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&state=${socialType}`,
-      //apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&response_mode=query&state=${socialType}`,
-      apple: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=https://api.fittner.co.kr/api/v1/auth/apple-redirect-url&response_type=code&response_mode=form_post&scope=email&state=${socialType}`,
+      KAKAO: `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${socialType}`,
+      GOOGLE: `https://accounts.google.com/o/oauth2/v2/auth?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email&state=${socialType}`,
+      //APPLE: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&response_mode=query&state=${socialType}`,
+      APPLE: `https://appleid.apple.com/auth/authorize?client_id=${import.meta.env.VITE_APPLE_CLIENT_ID}&redirect_uri=https://api.fittner.co.kr/api/v1/auth/apple-redirect-url&response_type=code&response_mode=form_post&scope=email&state=${socialType}`,
     };
 
     window.location.href = socialLoginUrls[socialType];
@@ -65,7 +65,7 @@ export const useSocialAuth = () => {
   }) => {
     try {
       switch (socialType) {
-        case "kakao": {
+        case "KAKAO": {
           const accessToken = await kakaoLoginService.getToken({ code });
           const userInfo = await kakaoLoginService.getUserInfo({
             accessToken,
@@ -78,7 +78,7 @@ export const useSocialAuth = () => {
           login({ data: { trainerEmail: userInfo.email } });
           break;
         }
-        case "google": {
+        case "GOOGLE": {
           const accessToken = await googleLoginService.getToken({ code });
           const userInfo = await googleLoginService.getUserInfo({
             accessToken,
@@ -91,7 +91,7 @@ export const useSocialAuth = () => {
           login({ data: { trainerEmail: userInfo.email } });
           break;
         }
-        case "apple": {
+        case "APPLE": {
           console.log("애플 로그인 요청 인가 코드", code);
           console.log("애플 로그인 요청 인가 코드", id_token);
           // const response = await appleInfo({ data: { code } });

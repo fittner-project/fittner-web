@@ -7,12 +7,11 @@
  */
 
 /**
- * 응답 데이터
+ * 약관 동의 정보 리스트
  */
-export interface TermsResDto {
-  termsEssentialYn?: string;
+export interface AgreementDto {
+  /** 약관 동의 여부 */
+  agreed?: string;
+  /** 약관 ID */
   termsId?: string;
-  termsKind?: string;
-  termsTitle?: string;
-  termsUrl?: string;
 }

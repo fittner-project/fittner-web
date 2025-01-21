@@ -6,7 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface FileReqDto {
-  /** 암호화 여부 */
-  encryptYn?: string;
+export interface PushSetReqDto {
+  /** 푸시종류 */
+  pushKind: string;
+  /** 푸시설정여부 */
+  pushSetYn: string;
 }

@@ -6,7 +6,4 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface FileReqDto {
-  /** 암호화 여부 */
-  encryptYn?: string;
-}
+export type Members200 = { [key: string]: unknown };

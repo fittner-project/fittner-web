@@ -1,22 +1,38 @@
 import BottomSheet from "@/components/bottom-sheet/BottomSheet";
-import { CenterListResDto } from "@/api/generated/models";
+import { CenterListResDto, TermsResDto } from "@/api/generated/models";
 import styles from "./SelectCenterBottomSheet.module.scss";
 import Image from "@/components/image/Image";
 import { infoCircle } from "@/assets/assets";
 import Button from "@/components/button/Button";
 import { closeBottomSheet } from "@/utils/bottomSheet";
-import { useRegisterCenter } from "@/api/generated/유저/유저";
+import { useJoin, useRegisterCenter } from "@/api/generated/유저/유저";
 import { openModal } from "@/utils/modal";
 import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
 import PATH from "@/router/path";
-
+import { storageKeys } from "@/constants/storageKeys";
+import { storage } from "@/utils/storage";
+import { SocialType } from "@/auth/socialType";
+import useSignInStore from "@/store/signIn";
 interface SelectCenterBottomSheetProps {
   center: CenterListResDto;
 }
 
 function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const navigate = useNavigate();
+  const { isSignedIn } = useSignInStore();
   const { mutate: registerCenter } = useRegisterCenter({
+    mutation: {
+      onSuccess: () => {
+        openModal({
+          component: SuccessModal,
+          props: {
+            successMessage: "센터 등록 신청이\n 완료 되었습니다",
+          },
+        });
+      },
+    },
+  });
+  const { mutate: signUp } = useJoin({
     mutation: {
       onSuccess: () => {
         openModal({
@@ -31,6 +47,66 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
       },
     },
   });
+  const trainerSnsKind = storage.get({
+    key: storageKeys.trainerSnsKind,
+    type: "local",
+  });
+  const trainerName = storage.get({
+    key: storageKeys.trainerName,
+    type: "local",
+  });
+  const trainerEmail = storage.get({
+    key: storageKeys.trainerEmail,
+    type: "local",
+  });
+  const trainerPhone = storage.get({
+    key: storageKeys.trainerPhone,
+    type: "local",
+  });
+  const userAgreedTerms = storage.get<TermsResDto[]>({
+    key: storageKeys.termsAgreement,
+    type: "local",
+  });
+  const terms = storage.get<TermsResDto[]>({
+    key: storageKeys.terms,
+    type: "local",
+  });
+
+  const handleRegisterCenter = () => {
+    storage.set({
+      key: storageKeys.centerId,
+      value: center.centerId,
+      type: "local",
+    });
+
+    if (isSignedIn) {
+      registerCenter({ data: { centerId: center.centerId } });
+      return;
+    }
+
+    if (!isSignedIn) {
+      const agreements = terms?.map((term) => ({
+        termsId: term.termsId,
+        agreed: userAgreedTerms?.some(
+          (agreedTerm) => agreedTerm.termsId === term.termsId
+        )
+          ? "Y"
+          : "N",
+      }));
+
+      signUp({
+        data: {
+          agreements: agreements,
+          trainerPhone: trainerPhone as string,
+          trainerName: trainerName as string,
+          trainerEmail: trainerEmail as string,
+          trainerSnsKind: trainerSnsKind as SocialType,
+          centerId: center.centerId,
+        },
+      });
+      return;
+    }
+  };
 
   return (
     <BottomSheet>
@@ -61,9 +137,7 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
           <Button
             backgroundColor="primary_1"
             fullWidth
-            onClick={() =>
-              registerCenter({ data: { centerId: center.centerId } })
-            }
+            onClick={handleRegisterCenter}
           >
             신청
           </Button>

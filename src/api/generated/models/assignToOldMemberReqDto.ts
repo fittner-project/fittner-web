@@ -6,7 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface FileReqDto {
-  /** 암호화 여부 */
-  encryptYn?: string;
+export interface AssignToOldMemberReqDto {
+  /** 회원ID */
+  memberId: string;
+  /** 원이용권ID */
+  originalTicketId: string;
 }

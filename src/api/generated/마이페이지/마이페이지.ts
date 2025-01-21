@@ -29,21 +29,140 @@ import type {
 } from '@tanstack/react-query'
 import type {
   ApiResponseMessageListNoticeResDto,
+  ApiResponseMessageListPushSetResDto,
   ApiResponseMessageListSalesDetailResDto,
   ApiResponseMessageListSalesResDto,
   ApiResponseMessageListTermsListResDto,
+  ApiResponseMessageMyPageInfoResDto,
   ApiResponseMessageObject,
   ApiResponseMessageSalesInfoResDto,
   GetNoticesParams,
   GetSalesDetailParams,
   GetSalesParams,
-  NoticeReadReqDto
+  NoticeReadReqDto,
+  PushSetReqDto
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
 /**
+ * 푸시 설정 조회 API 입니다.
+ * @summary 푸시 설정 조회 API
+ */
+export const getPush = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageListPushSetResDto>(
+      {url: `/api/v1/user/myPage/push`, method: 'POST', signal
+    },
+      );
+    }
+  
+
+
+export const getGetPushMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof getPush>>, TError,void, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof getPush>>, TError,void, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof getPush>>, void> = () => {
+          
+
+          return  getPush()
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GetPushMutationResult = NonNullable<Awaited<ReturnType<typeof getPush>>>
+    
+    export type GetPushMutationError = unknown
+
+    /**
+ * @summary 푸시 설정 조회 API
+ */
+export const useGetPush = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof getPush>>, TError,void, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof getPush>>,
+        TError,
+        void,
+        TContext
+      > => {
+
+      const mutationOptions = getGetPushMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * 푸시 설정 API 입니다.
+ * @summary 푸시 설정 API
+ */
+export const setPush = (
+    pushSetReqDto: PushSetReqDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageObject>(
+      {url: `/api/v1/user/myPage/push-set`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: pushSetReqDto, signal
+    },
+      );
+    }
+  
+
+
+export const getSetPushMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof setPush>>, TError,{data: PushSetReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof setPush>>, TError,{data: PushSetReqDto}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof setPush>>, {data: PushSetReqDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  setPush(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SetPushMutationResult = NonNullable<Awaited<ReturnType<typeof setPush>>>
+    export type SetPushMutationBody = PushSetReqDto
+    export type SetPushMutationError = unknown
+
+    /**
+ * @summary 푸시 설정 API
+ */
+export const useSetPush = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof setPush>>, TError,{data: PushSetReqDto}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof setPush>>,
+        TError,
+        {data: PushSetReqDto},
+        TContext
+      > => {
+
+      const mutationOptions = getSetPushMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * 공지사항 읽음 API 입니다.
  * @summary 공지사항 읽음 API
  */
@@ -877,6 +996,160 @@ export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TE
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
   const queryOptions = getGetNoticesQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+/**
+ * 마이페이지 기본 정보 조회 API 입니다.
+ * @summary 마이페이 기본 정보 조회 API
+ */
+export const myPageInfo = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageMyPageInfoResDto>(
+      {url: `/api/v1/user/myPage/default-info`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+export const getMyPageInfoQueryKey = () => {
+    return [`/api/v1/user/myPage/default-info`] as const;
+    }
+
+    
+export const getMyPageInfoInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getMyPageInfoQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof myPageInfo>>> = ({ signal }) => myPageInfo(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type MyPageInfoInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof myPageInfo>>>
+export type MyPageInfoInfiniteQueryError = unknown
+
+
+export function useMyPageInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof myPageInfo>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useMyPageInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof myPageInfo>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useMyPageInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 마이페이 기본 정보 조회 API
+ */
+
+export function useMyPageInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getMyPageInfoInfiniteQueryOptions(options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const getMyPageInfoQueryOptions = <TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getMyPageInfoQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof myPageInfo>>> = ({ signal }) => myPageInfo(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type MyPageInfoQueryResult = NonNullable<Awaited<ReturnType<typeof myPageInfo>>>
+export type MyPageInfoQueryError = unknown
+
+
+export function useMyPageInfo<TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof myPageInfo>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useMyPageInfo<TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof myPageInfo>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useMyPageInfo<TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 마이페이 기본 정보 조회 API
+ */
+
+export function useMyPageInfo<TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getMyPageInfoQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

@@ -11,6 +11,8 @@ import type { SignResrvationDto } from './signResrvationDto';
  * 응답 데이터
  */
 export interface SignResrvationResDto {
+  /** 예약 데이터 */
   reservationList?: SignResrvationDto[];
+  /** 예약 총갯수 */
   reservationTotalCnt?: string;
 }

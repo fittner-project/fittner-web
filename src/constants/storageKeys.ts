@@ -4,4 +4,7 @@ export const storageKeys = {
   trainerEmail: "trainerEmail",
   termsAgreement: "termsAgreement",
   trainerSnsKind: "trainerSnsKind",
+  terms: "terms",
+  centerId: "centerId",
+  signIn: "signIn",
 };

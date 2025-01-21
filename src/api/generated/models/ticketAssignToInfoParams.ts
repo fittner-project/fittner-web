@@ -5,12 +5,14 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
-import type { FittnerPageable } from './fittnerPageable';
 
-export type GetTicketsParams = {
+export type TicketAssignToInfoParams = {
 /**
- * 티켓상태
+ * 티켓ID
  */
-ticketStatus: string;
-pageable: FittnerPageable;
+ticketId: string;
+/**
+ * 회원ID
+ */
+memberId: string;
 };

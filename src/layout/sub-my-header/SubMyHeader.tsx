@@ -2,7 +2,7 @@ import Image from "@/components/image/Image";
 import styles from "./SubMyHeader.module.scss";
 import { bell } from "@/assets/assets";
 import { storage } from "@/utils/storage";
-import { storageKeys } from "@/constants/storage";
+import { storageKeys } from "@/constants/storageKeys";
 
 export default function SubMyHeader() {
   const trainerName = storage.get({ key: storageKeys.trainerName });

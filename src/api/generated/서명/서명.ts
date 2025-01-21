@@ -28,8 +28,8 @@ import type {
   UseQueryResult
 } from '@tanstack/react-query'
 import type {
+  ApiResponseMessageListSignResrvationForMemberResDto,
   ApiResponseMessageObject,
-  ApiResponseMessageSignResrvationForMemberResDto,
   ApiResponseMessageSignResrvationResDto,
   GetReservationsForMemberParams,
   GetReservationsParams,
@@ -99,8 +99,8 @@ export const useSign = <TError = unknown,
       return useMutation(mutationOptions);
     }
     /**
- * 전체 예약 리스트 조회 API 입니다.
- * @summary 전체 예약 리스트 조회 API
+ * 서명전 날짜별 예약 리스트 조회 API 입니다.
+ * @summary 서명전 날짜별 예약 리스트 조회 API
  */
 export const getReservations = (
     params: GetReservationsParams,
@@ -168,7 +168,7 @@ export function useGetReservationsInfinite<TData = InfiniteData<Awaited<ReturnTy
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
- * @summary 전체 예약 리스트 조회 API
+ * @summary 서명전 날짜별 예약 리스트 조회 API
  */
 
 export function useGetReservationsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getReservations>>, GetReservationsParams['page']>, TError = unknown>(
@@ -234,7 +234,7 @@ export function useGetReservations<TData = Awaited<ReturnType<typeof getReservat
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
- * @summary 전체 예약 리스트 조회 API
+ * @summary 서명전 날짜별 예약 리스트 조회 API
  */
 
 export function useGetReservations<TData = Awaited<ReturnType<typeof getReservations>>, TError = unknown>(
@@ -254,8 +254,8 @@ export function useGetReservations<TData = Awaited<ReturnType<typeof getReservat
 
 
 /**
- * 회원 예약 리스트 조회 API 입니다.
- * @summary 회원 예약 리스트 조회 API
+ * 서명할 예약 리스트 조회 API 입니다.
+ * @summary 서명할 예약 리스트 조회 API
  */
 export const getReservationsForMember = (
     ticketId: string,
@@ -264,7 +264,7 @@ export const getReservationsForMember = (
 ) => {
       
       
-      return axiosInstance<ApiResponseMessageSignResrvationForMemberResDto>(
+      return axiosInstance<ApiResponseMessageListSignResrvationForMemberResDto>(
       {url: `/api/v1/user/sign/reservations/${ticketId}`, method: 'GET',
         params, signal
     },
@@ -329,7 +329,7 @@ export function useGetReservationsForMemberInfinite<TData = InfiniteData<Awaited
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
- * @summary 회원 예약 리스트 조회 API
+ * @summary 서명할 예약 리스트 조회 API
  */
 
 export function useGetReservationsForMemberInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getReservationsForMember>>, GetReservationsForMemberParams['page']>, TError = unknown>(
@@ -400,7 +400,7 @@ export function useGetReservationsForMember<TData = Awaited<ReturnType<typeof ge
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
- * @summary 회원 예약 리스트 조회 API
+ * @summary 서명할 예약 리스트 조회 API
  */
 
 export function useGetReservationsForMember<TData = Awaited<ReturnType<typeof getReservationsForMember>>, TError = unknown>(

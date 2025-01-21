@@ -29,10 +29,10 @@ import type {
 } from '@tanstack/react-query'
 import type {
   ApiResponseMessageListCenterListResDto,
+  ApiResponseMessageListMemberDetailResDto,
   ApiResponseMessageListTermsResDto,
   ApiResponseMessageObject,
   ApiResponseMessagePageResponseDtoMainUserCenterListResDto,
-  ApiResponseMessagePageResponseDtoMemberListResDto,
   ApiResponseMessagePageResponseDtoUserCenterListResDto,
   ApiResponseMessageUserInfoResDto,
   CancelCenterApprovalReqDto,
@@ -41,7 +41,7 @@ import type {
   JoinReqDto,
   MainCenterListParams,
   MemberRegisterReqDto,
-  MembersParams
+  Members200
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
 
@@ -110,7 +110,7 @@ export const useRegister = <TError = unknown,
  * 트레이너 회원가입 API 입니다.
  * @summary 트레이너 회원가입 API
  */
-export const login = (
+export const join = (
     joinReqDto: JoinReqDto,
  signal?: AbortSignal
 ) => {
@@ -126,18 +126,18 @@ export const login = (
   
 
 
-export const getLoginMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{data: JoinReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{data: JoinReqDto}, TContext> => {
+export const getJoinMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof join>>, TError,{data: JoinReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof join>>, TError,{data: JoinReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof login>>, {data: JoinReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof join>>, {data: JoinReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  login(data,)
+          return  join(data,)
         }
 
         
@@ -145,23 +145,80 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type LoginMutationResult = NonNullable<Awaited<ReturnType<typeof login>>>
-    export type LoginMutationBody = JoinReqDto
-    export type LoginMutationError = unknown
+    export type JoinMutationResult = NonNullable<Awaited<ReturnType<typeof join>>>
+    export type JoinMutationBody = JoinReqDto
+    export type JoinMutationError = unknown
 
     /**
  * @summary 트레이너 회원가입 API
  */
-export const useLogin = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{data: JoinReqDto}, TContext>, }
+export const useJoin = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof join>>, TError,{data: JoinReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof login>>,
+        Awaited<ReturnType<typeof join>>,
         TError,
         {data: JoinReqDto},
         TContext
       > => {
 
-      const mutationOptions = getLoginMutationOptions(options);
+      const mutationOptions = getJoinMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * 트레이너 계정 탈퇴 API 입니다.
+ * @summary 트레이너 계정 탈퇴
+ */
+export const dropTrainer = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageObject>(
+      {url: `/api/v1/user/drop`, method: 'POST', signal
+    },
+      );
+    }
+  
+
+
+export const getDropTrainerMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dropTrainer>>, TError,void, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof dropTrainer>>, TError,void, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dropTrainer>>, void> = () => {
+          
+
+          return  dropTrainer()
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DropTrainerMutationResult = NonNullable<Awaited<ReturnType<typeof dropTrainer>>>
+    
+    export type DropTrainerMutationError = unknown
+
+    /**
+ * @summary 트레이너 계정 탈퇴
+ */
+export const useDropTrainer = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dropTrainer>>, TError,void, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof dropTrainer>>,
+        TError,
+        void,
+        TContext
+      > => {
+
+      const mutationOptions = getDropTrainerMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -441,80 +498,79 @@ export function useGetJoinTerms<TData = Awaited<ReturnType<typeof getJoinTerms>>
  * @summary 트레이너의 회원 목록 조회 API
  */
 export const members = (
-    params: MembersParams,
+    
  signal?: AbortSignal
 ) => {
       
       
-      return axiosInstance<ApiResponseMessagePageResponseDtoMemberListResDto>(
-      {url: `/api/v1/user/members`, method: 'GET',
-        params, signal
+      return axiosInstance<Members200>(
+      {url: `/api/v1/user/members`, method: 'GET', signal
     },
       );
     }
   
 
-export const getMembersQueryKey = (params: MembersParams,) => {
-    return [`/api/v1/user/members`, ...(params ? [params]: [])] as const;
+export const getMembersQueryKey = () => {
+    return [`/api/v1/user/members`] as const;
     }
 
     
-export const getMembersInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof members>>, MembersParams['page']>, TError = unknown>(params: MembersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData, Awaited<ReturnType<typeof members>>, QueryKey, MembersParams['page']>>, }
+export const getMembersInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMembersQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getMembersQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof members>>, QueryKey, MembersParams['page']> = ({ signal, pageParam }) => members({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof members>>> = ({ signal }) => members(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData, Awaited<ReturnType<typeof members>>, QueryKey, MembersParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
 export type MembersInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof members>>>
 export type MembersInfiniteQueryError = unknown
 
 
-export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>, MembersParams['page']>, TError = unknown>(
- params: MembersParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData, Awaited<ReturnType<typeof members>>, QueryKey, MembersParams['page']>> & Pick<
+export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof members>>,
           TError,
-          TData, QueryKey
+          TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>, MembersParams['page']>, TError = unknown>(
- params: MembersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData, Awaited<ReturnType<typeof members>>, QueryKey, MembersParams['page']>> & Pick<
+export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof members>>,
           TError,
-          TData, QueryKey
+          TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>, MembersParams['page']>, TError = unknown>(
- params: MembersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData, Awaited<ReturnType<typeof members>>, QueryKey, MembersParams['page']>>, }
+export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너의 회원 목록 조회 API
  */
 
-export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>, MembersParams['page']>, TError = unknown>(
- params: MembersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData, Awaited<ReturnType<typeof members>>, QueryKey, MembersParams['page']>>, }
+export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMembersInfiniteQueryOptions(params,options)
+  const queryOptions = getMembersInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -525,16 +581,16 @@ export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeo
 
 
 
-export const getMembersQueryOptions = <TData = Awaited<ReturnType<typeof members>>, TError = unknown>(params: MembersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
+export const getMembersQueryOptions = <TData = Awaited<ReturnType<typeof members>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMembersQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getMembersQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof members>>> = ({ signal }) => members(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof members>>> = ({ signal }) => members(signal);
 
       
 
@@ -548,7 +604,7 @@ export type MembersQueryError = unknown
 
 
 export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError = unknown>(
- params: MembersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof members>>,
           TError,
@@ -558,7 +614,7 @@ export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError =
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError = unknown>(
- params: MembersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof members>>,
           TError,
@@ -568,7 +624,7 @@ export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError =
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError = unknown>(
- params: MembersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
@@ -576,11 +632,165 @@ export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError =
  */
 
 export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError = unknown>(
- params: MembersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMembersQueryOptions(params,options)
+  const queryOptions = getMembersQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+/**
+ * 트레이너의 회원 상세 조회 API 입니다.
+ * @summary 트레이너의 회원 상세 조회 API
+ */
+export const memberDetail = (
+    memberId: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageListMemberDetailResDto>(
+      {url: `/api/v1/user/member/${memberId}`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+export const getMemberDetailQueryKey = (memberId: string,) => {
+    return [`/api/v1/user/member/${memberId}`] as const;
+    }
+
+    
+export const getMemberDetailInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getMemberDetailQueryKey(memberId);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof memberDetail>>> = ({ signal }) => memberDetail(memberId, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(memberId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type MemberDetailInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof memberDetail>>>
+export type MemberDetailInfiniteQueryError = unknown
+
+
+export function useMemberDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(
+ memberId: string, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof memberDetail>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useMemberDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof memberDetail>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useMemberDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 트레이너의 회원 상세 조회 API
+ */
+
+export function useMemberDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getMemberDetailInfiniteQueryOptions(memberId,options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const getMemberDetailQueryOptions = <TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getMemberDetailQueryKey(memberId);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof memberDetail>>> = ({ signal }) => memberDetail(memberId, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(memberId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type MemberDetailQueryResult = NonNullable<Awaited<ReturnType<typeof memberDetail>>>
+export type MemberDetailQueryError = unknown
+
+
+export function useMemberDetail<TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(
+ memberId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof memberDetail>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useMemberDetail<TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof memberDetail>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useMemberDetail<TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 트레이너의 회원 상세 조회 API
+ */
+
+export function useMemberDetail<TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getMemberDetailQueryOptions(memberId,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

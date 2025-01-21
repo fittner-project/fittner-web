@@ -5,7 +5,7 @@ import PaddingContainer from "@/layout/containers/padding-container/PaddingConta
 import Button from "@/components/button/Button";
 import PATH from "@/router/path";
 import { storage } from "@/utils/storage";
-import { storageKeys } from "@/constants/storage";
+import { storageKeys } from "@/constants/storageKeys";
 
 interface SignUpNameForm {
   name: string;

@@ -13,7 +13,7 @@ export interface TicketDetailResDto {
   assignCenterName?: string;
   assignCnt?: string;
   assignDate?: string;
-  assignName?: string;
+  assignMemberName?: string;
   assignTrainerName?: string;
   memberAddress?: string;
   memberBirth?: string;
@@ -22,16 +22,14 @@ export interface TicketDetailResDto {
   memberMomo?: string;
   memberPhone?: string;
   memeberName?: string;
-  originalTicketId?: string;
   refundCnt?: string;
   refundDateTime?: string;
-  refundId?: string;
   refundPrice?: string;
-  remainingCnt?: string;
-  ticketCode?: string;
+  ticketCodeName?: string;
   ticketEndDate?: string;
-  ticketId?: string;
   ticketName?: string;
   ticketPrice?: string;
   ticketStartDate?: string;
+  ticketTotalCnt?: string;
+  ticketUseCnt?: string;
 }

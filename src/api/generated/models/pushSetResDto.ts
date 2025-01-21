@@ -9,10 +9,7 @@
 /**
  * 응답 데이터
  */
-export interface TermsResDto {
-  termsEssentialYn?: string;
-  termsId?: string;
-  termsKind?: string;
-  termsTitle?: string;
-  termsUrl?: string;
+export interface PushSetResDto {
+  pushKind?: string;
+  pushSetYn?: string;
 }

@@ -5,9 +5,12 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
+import type { AgreementDto } from './agreementDto';
 import type { JoinReqDtoTrainerSnsKind } from './joinReqDtoTrainerSnsKind';
 
 export interface JoinReqDto {
+  /** 약관 동의 정보 리스트 */
+  agreements?: AgreementDto[];
   /** 센터 지점 키값 */
   centerId?: string;
   /** CI NUM (현재는 빈값으로 넣으세요) */

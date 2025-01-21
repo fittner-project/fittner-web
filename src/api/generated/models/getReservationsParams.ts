@@ -5,10 +5,16 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
+import type { FittnerPageable } from './fittnerPageable';
 
 export type GetReservationsParams = {
 /**
  * 예약 시작 일자
  */
 reservationStartDate: string;
+/**
+ * 센터ID
+ */
+centerId: string;
+pageable: FittnerPageable;
 };

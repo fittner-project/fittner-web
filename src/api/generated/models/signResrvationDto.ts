@@ -6,11 +6,22 @@
  * OpenAPI spec version: 1.0.0
  */
 
+/**
+ * 예약 데이터
+ */
 export interface SignResrvationDto {
+  /** 회원이름 */
   memberName?: string;
+  /** 예약종료시간 */
+  reservationEndTime?: string;
+  /** 예약ID */
+  reservationId?: string;
+  /** 예약메모 */
   reservationMemo?: string;
-  reservationStartDate?: string;
-  reservationTime?: string;
+  /** 예약시작시간 */
+  reservationStartTime?: string;
+  /** 예약상태 */
+  reservationStatus?: string;
+  /** 예약회차 */
   reservationUseCnt?: string;
-  ticketId?: string;
 }

@@ -6,7 +6,7 @@ import Button from "@/components/button/Button";
 import formatPhoneNumber from "@/utils/formatPhoneNumber";
 import PATH from "@/router/path";
 import { storage } from "@/utils/storage";
-import { storageKeys } from "@/constants/storage";
+import { storageKeys } from "@/constants/storageKeys";
 
 interface SignUpPhoneNumberForm {
   phoneNumber: string;

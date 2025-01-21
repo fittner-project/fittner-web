@@ -7,9 +7,17 @@
  */
 
 export interface SignReqDto {
-  fileGroupId?: string;
-  memberId?: string;
-  reservationId?: string;
+  /** 파일그룹ID */
+  fileGroupId: string;
+  /** 회원ID */
+  memberId: string;
+  /** 예약ID */
+  reservationId: string;
+  /** 서명메모 */
   signMemo?: string;
-  signType?: string;
+  /**
+   * 서명타입
+   * @pattern SIGN|NOSHOW
+   */
+  signType: string;
 }
