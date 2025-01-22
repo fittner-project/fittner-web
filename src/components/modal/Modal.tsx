@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Modal.module.scss";
-import { SlideUp } from "../animation/SlideUp";
 
 export interface ModalProps {
   children: React.ReactNode;
@@ -12,7 +11,7 @@ export default function Modal({ children, width = 32 }: ModalProps) {
   const { modals, closeModal } = useModalStore();
   const isFirstRender = useRef(true);
   const location = useLocation();
-  const prevPathRef = useRef(location.pathname);
+  const prevUrlRef = useRef(location.pathname + location.search);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -20,12 +19,12 @@ export default function Modal({ children, width = 32 }: ModalProps) {
       return;
     }
 
-    if (prevPathRef.current !== location.pathname) {
+    if (prevUrlRef.current !== location.pathname + location.search) {
       closeModal();
     }
 
-    prevPathRef.current = location.pathname;
-  }, [location.pathname]);
+    prevUrlRef.current = location.pathname + location.search;
+  }, [location.pathname, location.search]);
 
   if (modals.length === 0) return;
 
