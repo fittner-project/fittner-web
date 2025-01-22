@@ -19,7 +19,6 @@ function FindCenters() {
   const { data: centerListData, isLoading: isCenterListLoading } =
     useGetUserCenterList();
   const centerList = centerListData?.result;
-
   const { filteredData: filteredCenterList } = useSearch({
     searchValue,
     data: centerList,

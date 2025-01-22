@@ -25,7 +25,6 @@ export const SubHeader = ({ fallback }: SubHeaderProps) => {
   };
 
   const handleRightSectionClick = () => {
-    console.log("click");
     switch (rightSection?.actionType) {
       case "add-center":
         if (isAuthenticated) {

@@ -4,9 +4,17 @@ import Button from "@/components/button/Button";
 import { closeBottomSheet } from "@/utils/bottomSheet";
 
 import { usePostAuthLogout } from "@/api/generated/권한/권한";
+import useAuthStore from "@/store/auth";
 
 export default function SignOutBottomSheet() {
-  const { mutate: logout } = usePostAuthLogout();
+  const { logout: logoutWithStore } = useAuthStore();
+  const { mutate: logout } = usePostAuthLogout({
+    mutation: {
+      onSuccess: () => {
+        logoutWithStore();
+      },
+    },
+  });
 
   return (
     <BottomSheet>
