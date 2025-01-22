@@ -40,7 +40,8 @@ type RouteKeys =
   | "sign-up-phone-number"
   | "sign-up-complete"
   | "my"
-  | "center-list";
+  | "center-list"
+  | "redirect";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -59,6 +60,14 @@ export const Routes: Routes = {
   "sign-in": {
     name: "sign-in",
     path: PATH.SIGN_IN,
+    fallback: "none",
+    headerType: "none",
+    navType: "none",
+  },
+
+  redirect: {
+    name: "redirect",
+    path: PATH.REDIRECT,
     fallback: "none",
     headerType: "none",
     navType: "none",
