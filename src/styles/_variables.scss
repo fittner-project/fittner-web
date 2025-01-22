@@ -8,9 +8,10 @@ $priority_content_layer: 99; // 우선순위가 높은 콘텐츠
 $root_max_width: 480px;
 $root_min_width: 280px;
 
-// 헤더 관련 레이어
+// 레이아웃 관련 레이어
 $header_layer: 100; // 메인 헤더
 $sub_header_layer: 100; // 서브 헤더
+$main_header_layer: 100; // 메인 헤더
 $navigation_layer: 100; // 네비게이션
 
 // 오버레이 레이어 (모달, 바텀시트 등)

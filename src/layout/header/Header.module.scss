@@ -1,9 +1,13 @@
 .container {
   width: 100%;
+  background-color: white;
   height: $main_header_height;
   @include flex-row(space-between);
   padding: 0 2rem;
   border-bottom: 1px solid $grey_1;
+  position: sticky;
+  top: 0;
+  z-index: $main_header_layer;
 
   & > .title {
     @include fm-ar(2.2rem, $text_1, 2.2rem, 600);

@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: calc(100vh - $navigation_height - $main_header_height);
+  min-height: calc(100vh - $main_header_height);
   position: relative;
   overflow-y: scroll;
   padding-top: 3rem;
