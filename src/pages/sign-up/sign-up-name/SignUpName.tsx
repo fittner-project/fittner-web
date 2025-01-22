@@ -42,6 +42,7 @@ function SignUpName() {
           <p className={styles.title}>이름을 입력해주세요</p>
           <Input
             inputType="line"
+            maxLength={5}
             className={styles.name_input}
             {...register("name", {
               required: true,

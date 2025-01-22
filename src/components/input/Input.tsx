@@ -7,23 +7,37 @@ import classNames from "classnames";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   inputType?: "line" | "default" | "line-search" | "default-search";
+  maxLength?: number;
 }
 
 function Input(
-  { className, inputType = "default", ...props }: InputProps,
+  { className, inputType = "default", maxLength, ...props }: InputProps,
   ref: React.ForwardedRef<HTMLInputElement>
 ) {
+  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const input = e.target as HTMLInputElement;
+    if (maxLength && input.value.length > maxLength) {
+      input.value = input.value.slice(0, maxLength);
+    }
+  };
+
+  const inputProps = {
+    ...props,
+    ref,
+    maxLength,
+    onInput: handleInput,
+  };
+
   return {
     default: (
       <input
-        {...props}
-        ref={ref}
+        {...inputProps}
         className={`${styles.default_input} ${className}`}
       />
     ),
     line: (
       <div className={`${styles.line_input_container} ${className}`}>
-        <input {...props} ref={ref} className={styles.line_input} />
+        <input {...inputProps} className={styles.line_input} />
       </div>
     ),
     "line-search": (
@@ -35,8 +49,7 @@ function Input(
         )}
       >
         <input
-          {...props}
-          ref={ref}
+          {...inputProps}
           className={styles.line_input}
           style={{
             paddingRight: "3.9rem",
@@ -60,8 +73,7 @@ function Input(
         )}
       >
         <input
-          {...props}
-          ref={ref}
+          {...inputProps}
           className={classNames(
             styles.default_input,
             styles.default_search_input
