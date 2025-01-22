@@ -8,12 +8,13 @@ import Skeleton from "@/components/skeleton/Skeleton";
 import PATH from "@/router/path";
 import { useNavigate } from "react-router-dom";
 import { storage } from "@/utils/storage";
-import { useGetJoinTerms } from "@/api/generated/유저/유저";
+
 import { storageKeys } from "@/constants/storageKeys";
 import { TermsResDto } from "@/api/generated/models";
+import { useGetUserTerms } from "@/api/generated/유저/유저";
 
 function SignUpTerms() {
-  const { data: termsData, isLoading } = useGetJoinTerms();
+  const { data: termsData, isLoading } = useGetUserTerms();
   const terms = termsData?.result;
   const [checkedTerms, setCheckedTerms] = useState<TermsResDto[]>([]);
 

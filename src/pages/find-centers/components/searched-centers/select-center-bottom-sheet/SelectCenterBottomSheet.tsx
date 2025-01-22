@@ -5,7 +5,6 @@ import Image from "@/components/image/Image";
 import { infoCircle } from "@/assets/assets";
 import Button from "@/components/button/Button";
 import { closeBottomSheet } from "@/utils/bottomSheet";
-import { useJoin, useRegisterCenter } from "@/api/generated/유저/유저";
 import { openModal } from "@/utils/modal";
 import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
 import PATH from "@/router/path";
@@ -13,6 +12,7 @@ import { storageKeys } from "@/constants/storageKeys";
 import { storage } from "@/utils/storage";
 import { SocialType } from "@/auth/socialType";
 import useAuthStore from "@/store/auth";
+import { usePostUserCenter, usePostUserJoin } from "@/api/generated/유저/유저";
 
 interface SelectCenterBottomSheetProps {
   center: CenterListResDto;
@@ -21,7 +21,7 @@ interface SelectCenterBottomSheetProps {
 function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const navigate = useNavigate();
   const { isAuthenticated, setSignUpApprovalStatus } = useAuthStore();
-  const { mutate: registerCenter } = useRegisterCenter({
+  const { mutate: registerCenter } = usePostUserCenter({
     mutation: {
       onSuccess: () => {
         openModal({
@@ -33,7 +33,7 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
       },
     },
   });
-  const { mutate: signUp } = useJoin({
+  const { mutate: signUp } = usePostUserJoin({
     mutation: {
       onSuccess: () => {
         setSignUpApprovalStatus("INACTIVE");

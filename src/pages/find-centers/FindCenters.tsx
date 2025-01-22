@@ -3,7 +3,7 @@ import styles from "./FindCenters.module.scss";
 import CenterSearchTips from "./components/center-search-tips/CenterSearchTips";
 
 import SearchedCenters from "./components/searched-centers/SearchedCenters";
-import { useCenterList1 } from "@/api/generated/유저/유저";
+
 import { useSearch } from "@/hooks/useSearch";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import SelectCenterBottomSheet from "./components/searched-centers/select-center-bottom-sheet/SelectCenterBottomSheet";
@@ -11,12 +11,13 @@ import { CenterListResDto } from "@/api/generated/models";
 
 import { useEffect, useRef } from "react";
 import { useSearchValueStore } from "@/store/searchValue";
+import { useGetUserCenterList } from "@/api/generated/유저/유저";
 
 function FindCenters() {
   const { searchValue, reset } = useSearchValueStore();
   const showCenterList = useRef(false);
   const { data: centerListData, isLoading: isCenterListLoading } =
-    useCenterList1();
+    useGetUserCenterList();
   const centerList = centerListData?.result;
 
   const { filteredData: filteredCenterList } = useSearch({

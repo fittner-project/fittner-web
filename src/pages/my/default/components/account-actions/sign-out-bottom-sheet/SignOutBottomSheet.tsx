@@ -2,10 +2,11 @@ import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import styles from "./SignOutBottomSheet.module.scss";
 import Button from "@/components/button/Button";
 import { closeBottomSheet } from "@/utils/bottomSheet";
-import { useLogout } from "@/api/generated/auth-controller/auth-controller";
+
+import { usePostAuthLogout } from "@/api/generated/권한/권한";
 
 export default function SignOutBottomSheet() {
-  const { mutate: logout } = useLogout();
+  const { mutate: logout } = usePostAuthLogout();
 
   return (
     <BottomSheet>

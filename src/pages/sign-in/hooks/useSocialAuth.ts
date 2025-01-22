@@ -9,8 +9,9 @@ import PATH from "@/router/path";
 import { storage } from "@/utils/storage";
 import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
 import { storageKeys } from "@/constants/storageKeys";
-import { useLogin } from "@/api/generated/auth-controller/auth-controller";
+
 import useAuthStore from "@/store/auth";
+import { usePostAuthLogin } from "@/api/generated/권한/권한";
 //import { useAppleInfo } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
@@ -18,13 +19,13 @@ export const useSocialAuth = () => {
   const { setIsAuthenticated, setAccessToken, setRefreshToken } =
     useAuthStore();
   //const { mutateAsync: appleInfo } = useAppleInfo();
-  const { mutate: login } = useLogin({
+  const { mutate: login } = usePostAuthLogin({
     mutation: {
       onSuccess: (data) => {
         setIsAuthenticated(true);
-        if (data.data.result?.accessToken && data.data.result?.refreshTokenId) {
-          setAccessToken(data.data.result?.accessToken);
-          setRefreshToken(data.data.result?.refreshTokenId);
+        if (data.result?.accessToken && data.result?.refreshTokenId) {
+          setAccessToken(data.result?.accessToken);
+          setRefreshToken(data.result?.refreshTokenId);
         }
 
         navigate(PATH.HOME);
