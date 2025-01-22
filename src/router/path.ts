@@ -1,5 +1,6 @@
 const PATH = {
-  HOME: "/",
+  ROOT: "/",
+  HOME: "/home",
   SIGN_IN: "/sign-in",
   SIGN_UP: {
     TERMS: "/sign-up-terms",

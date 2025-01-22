@@ -41,17 +41,27 @@ type RouteKeys =
   | "sign-up-complete"
   | "my"
   | "center-list"
-  | "redirect";
+  | "redirect"
+  | "root";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
 };
 
 export const Routes: Routes = {
+  root: {
+    name: "root",
+    path: PATH.ROOT,
+    fallback: PATH.ROOT,
+    headerName: "",
+    headerType: "none",
+    navType: "none",
+  },
+
   lobby: {
     name: "lobby",
-    path: "/",
-    fallback: "/",
+    path: PATH.HOME,
+    fallback: PATH.HOME,
     headerName: "",
     headerType: "default",
     navType: "default",

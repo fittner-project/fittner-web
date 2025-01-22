@@ -19,7 +19,7 @@ const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: PATH.ROOT,
     element: (
       <QueryClientProvider client={queryClient}>
         <RootLayout />

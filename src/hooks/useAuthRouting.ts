@@ -25,7 +25,7 @@ export default function useAuthRouting() {
     ?.trainerStatus as ApprovalStatus;
 
   useEffect(() => {
-    if (location.pathname !== "/" || !trainerStatus) return;
+    if (location.pathname !== PATH.ROOT || !trainerStatus) return;
     if (trainerStatus === "INACTIVE") {
       navigate(PATH.CENTER_LIST);
       return;

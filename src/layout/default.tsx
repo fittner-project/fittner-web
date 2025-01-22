@@ -10,9 +10,14 @@ import BottomSheetManager from "@/components/bottom-sheet/bottom-sheet-manager/B
 import SubSearchHeader from "./sub-search-header/SubSearchHeader";
 import SubMyHeader from "./sub-my-header/SubMyHeader";
 import Navigation from "./navigation/Navigation";
+import useSplash from "@/hooks/useSplash";
+import Image from "@/components/image/Image";
+import PATH from "@/router/path";
 
 export default function RootLayout() {
   const { currentRoute } = useGetCurrentRoute();
+  const { splashImgUrl } = useSplash();
+  const location = useLocation();
 
   const renderHeader = () => {
     if (!currentRoute || currentRoute.headerType === "none") {
@@ -39,6 +44,19 @@ export default function RootLayout() {
     <>
       <EntryPoint>
         {renderHeader()}
+        {location.pathname === PATH.ROOT && splashImgUrl && (
+          <div style={{ width: "100dvw", height: "100dvh" }}>
+            <Image
+              src={splashImgUrl}
+              alt="splash"
+              width="100%"
+              height="100%"
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        )}
         <div
           style={{
             paddingBottom: currentRoute?.navType !== "none" ? "7rem" : "0",
