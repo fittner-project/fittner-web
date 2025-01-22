@@ -6,10 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
+export type GetUserCommonSplashParams = {
 /**
- * 응답 데이터
+ * 승인토큰
  */
-export interface StatusChkResDto {
-  /** 트레이너 상태 */
-  trainerStatus?: string;
-}
+accessToken?: string;
+};

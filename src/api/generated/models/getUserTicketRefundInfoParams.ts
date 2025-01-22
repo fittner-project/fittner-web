@@ -6,10 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
+export type GetUserTicketRefundInfoParams = {
 /**
- * 응답 데이터
+ * 티켓ID
  */
-export interface StatusChkResDto {
-  /** 트레이너 상태 */
-  trainerStatus?: string;
-}
+ticketId: string;
+};

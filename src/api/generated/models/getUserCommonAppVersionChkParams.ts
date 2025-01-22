@@ -6,10 +6,13 @@
  * OpenAPI spec version: 1.0.0
  */
 
+export type GetUserCommonAppVersionChkParams = {
 /**
- * 응답 데이터
+ * 앱os종류 (AOS | IOS)
  */
-export interface StatusChkResDto {
-  /** 트레이너 상태 */
-  trainerStatus?: string;
-}
+appOsType: string;
+/**
+ * 앱버전
+ */
+appVersion: string;
+};

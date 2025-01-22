@@ -27,7 +27,7 @@ import { axiosInstance } from '../../mutator/instance-wrapper';
  * 엑세스 토큰을 재발급 받습니다.
  * @summary 엑세스 토큰 재발급 API
  */
-export const makeAccessToken = (
+export const postAuthRefreshToken = (
     accessTokenReqDto: AccessTokenReqDto,
  signal?: AbortSignal
 ) => {
@@ -43,18 +43,18 @@ export const makeAccessToken = (
   
 
 
-export const getMakeAccessTokenMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof makeAccessToken>>, TError,{data: AccessTokenReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof makeAccessToken>>, TError,{data: AccessTokenReqDto}, TContext> => {
+export const getPostAuthRefreshTokenMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postAuthRefreshToken>>, TError,{data: AccessTokenReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postAuthRefreshToken>>, TError,{data: AccessTokenReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof makeAccessToken>>, {data: AccessTokenReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postAuthRefreshToken>>, {data: AccessTokenReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  makeAccessToken(data,)
+          return  postAuthRefreshToken(data,)
         }
 
         
@@ -62,23 +62,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type MakeAccessTokenMutationResult = NonNullable<Awaited<ReturnType<typeof makeAccessToken>>>
-    export type MakeAccessTokenMutationBody = AccessTokenReqDto
-    export type MakeAccessTokenMutationError = unknown
+    export type PostAuthRefreshTokenMutationResult = NonNullable<Awaited<ReturnType<typeof postAuthRefreshToken>>>
+    export type PostAuthRefreshTokenMutationBody = AccessTokenReqDto
+    export type PostAuthRefreshTokenMutationError = unknown
 
     /**
  * @summary 엑세스 토큰 재발급 API
  */
-export const useMakeAccessToken = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof makeAccessToken>>, TError,{data: AccessTokenReqDto}, TContext>, }
+export const usePostAuthRefreshToken = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postAuthRefreshToken>>, TError,{data: AccessTokenReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof makeAccessToken>>,
+        Awaited<ReturnType<typeof postAuthRefreshToken>>,
         TError,
         {data: AccessTokenReqDto},
         TContext
       > => {
 
-      const mutationOptions = getMakeAccessTokenMutationOptions(options);
+      const mutationOptions = getPostAuthRefreshTokenMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -86,7 +86,7 @@ export const useMakeAccessToken = <TError = unknown,
  * 트레이너 로그아웃 API 입니다.
  * @summary 트레이너 로그아웃 API
  */
-export const logout = (
+export const postAuthLogout = (
     
  signal?: AbortSignal
 ) => {
@@ -100,18 +100,18 @@ export const logout = (
   
 
 
-export const getLogoutMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof logout>>, TError,void, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof logout>>, TError,void, TContext> => {
+export const getPostAuthLogoutMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postAuthLogout>>, TError,void, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postAuthLogout>>, TError,void, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof logout>>, void> = () => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postAuthLogout>>, void> = () => {
           
 
-          return  logout()
+          return  postAuthLogout()
         }
 
         
@@ -119,23 +119,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type LogoutMutationResult = NonNullable<Awaited<ReturnType<typeof logout>>>
+    export type PostAuthLogoutMutationResult = NonNullable<Awaited<ReturnType<typeof postAuthLogout>>>
     
-    export type LogoutMutationError = unknown
+    export type PostAuthLogoutMutationError = unknown
 
     /**
  * @summary 트레이너 로그아웃 API
  */
-export const useLogout = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof logout>>, TError,void, TContext>, }
+export const usePostAuthLogout = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postAuthLogout>>, TError,void, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof logout>>,
+        Awaited<ReturnType<typeof postAuthLogout>>,
         TError,
         void,
         TContext
       > => {
 
-      const mutationOptions = getLogoutMutationOptions(options);
+      const mutationOptions = getPostAuthLogoutMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -143,7 +143,7 @@ export const useLogout = <TError = unknown,
  * 트레이너 로그인 API 입니다.
  * @summary 트레이너 로그인 API
  */
-export const login = (
+export const postAuthLogin = (
     loginRequestDto: LoginRequestDto,
  signal?: AbortSignal
 ) => {
@@ -159,18 +159,18 @@ export const login = (
   
 
 
-export const getLoginMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{data: LoginRequestDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{data: LoginRequestDto}, TContext> => {
+export const getPostAuthLoginMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postAuthLogin>>, TError,{data: LoginRequestDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postAuthLogin>>, TError,{data: LoginRequestDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof login>>, {data: LoginRequestDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postAuthLogin>>, {data: LoginRequestDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  login(data,)
+          return  postAuthLogin(data,)
         }
 
         
@@ -178,23 +178,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type LoginMutationResult = NonNullable<Awaited<ReturnType<typeof login>>>
-    export type LoginMutationBody = LoginRequestDto
-    export type LoginMutationError = unknown
+    export type PostAuthLoginMutationResult = NonNullable<Awaited<ReturnType<typeof postAuthLogin>>>
+    export type PostAuthLoginMutationBody = LoginRequestDto
+    export type PostAuthLoginMutationError = unknown
 
     /**
  * @summary 트레이너 로그인 API
  */
-export const useLogin = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{data: LoginRequestDto}, TContext>, }
+export const usePostAuthLogin = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postAuthLogin>>, TError,{data: LoginRequestDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof login>>,
+        Awaited<ReturnType<typeof postAuthLogin>>,
         TError,
         {data: LoginRequestDto},
         TContext
       > => {
 
-      const mutationOptions = getLoginMutationOptions(options);
+      const mutationOptions = getPostAuthLoginMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

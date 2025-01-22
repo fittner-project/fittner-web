@@ -40,7 +40,7 @@ import { axiosInstance } from '../../mutator/instance-wrapper';
  * 트레이너가 수업을 등록하는 API 입니다.
  * @summary 트레이너가 수업 등록하는 API
  */
-export const reservation = (
+export const postUserReservation = (
     reservationReqDto: ReservationReqDto,
  signal?: AbortSignal
 ) => {
@@ -56,18 +56,18 @@ export const reservation = (
   
 
 
-export const getReservationMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reservation>>, TError,{data: ReservationReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof reservation>>, TError,{data: ReservationReqDto}, TContext> => {
+export const getPostUserReservationMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserReservation>>, TError,{data: ReservationReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserReservation>>, TError,{data: ReservationReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof reservation>>, {data: ReservationReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserReservation>>, {data: ReservationReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  reservation(data,)
+          return  postUserReservation(data,)
         }
 
         
@@ -75,23 +75,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type ReservationMutationResult = NonNullable<Awaited<ReturnType<typeof reservation>>>
-    export type ReservationMutationBody = ReservationReqDto
-    export type ReservationMutationError = unknown
+    export type PostUserReservationMutationResult = NonNullable<Awaited<ReturnType<typeof postUserReservation>>>
+    export type PostUserReservationMutationBody = ReservationReqDto
+    export type PostUserReservationMutationError = unknown
 
     /**
  * @summary 트레이너가 수업 등록하는 API
  */
-export const useReservation = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reservation>>, TError,{data: ReservationReqDto}, TContext>, }
+export const usePostUserReservation = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserReservation>>, TError,{data: ReservationReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof reservation>>,
+        Awaited<ReturnType<typeof postUserReservation>>,
         TError,
         {data: ReservationReqDto},
         TContext
       > => {
 
-      const mutationOptions = getReservationMutationOptions(options);
+      const mutationOptions = getPostUserReservationMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -99,7 +99,7 @@ export const useReservation = <TError = unknown,
  * 트레이너가 수업 등록할때 필요한 색상 리스트 API입니다.
  * @summary 트레이너가 수업 등록할때 필요한 색상 리스트 API
  */
-export const getColors = (
+export const getUserReservationColors = (
     
  signal?: AbortSignal
 ) => {
@@ -112,67 +112,67 @@ export const getColors = (
     }
   
 
-export const getGetColorsQueryKey = () => {
+export const getGetUserReservationColorsQueryKey = () => {
     return [`/api/v1/user/reservation/colors`] as const;
     }
 
     
-export const getGetColorsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getColors>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>>, }
+export const getGetUserReservationColorsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserReservationColors>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetColorsQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserReservationColorsQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getColors>>> = ({ signal }) => getColors(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserReservationColors>>> = ({ signal }) => getUserReservationColors(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetColorsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getColors>>>
-export type GetColorsInfiniteQueryError = unknown
+export type GetUserReservationColorsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserReservationColors>>>
+export type GetUserReservationColorsInfiniteQueryError = unknown
 
 
-export function useGetColorsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getColors>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>> & Pick<
+export function useGetUserReservationColorsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserReservationColors>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getColors>>,
+          Awaited<ReturnType<typeof getUserReservationColors>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetColorsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getColors>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>> & Pick<
+export function useGetUserReservationColorsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserReservationColors>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getColors>>,
+          Awaited<ReturnType<typeof getUserReservationColors>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetColorsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getColors>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>>, }
+export function useGetUserReservationColorsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserReservationColors>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너가 수업 등록할때 필요한 색상 리스트 API
  */
 
-export function useGetColorsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getColors>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>>, }
+export function useGetUserReservationColorsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserReservationColors>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetColorsInfiniteQueryOptions(options)
+  const queryOptions = getGetUserReservationColorsInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -183,62 +183,62 @@ export function useGetColorsInfinite<TData = InfiniteData<Awaited<ReturnType<typ
 
 
 
-export const getGetColorsQueryOptions = <TData = Awaited<ReturnType<typeof getColors>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>>, }
+export const getGetUserReservationColorsQueryOptions = <TData = Awaited<ReturnType<typeof getUserReservationColors>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetColorsQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserReservationColorsQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getColors>>> = ({ signal }) => getColors(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserReservationColors>>> = ({ signal }) => getUserReservationColors(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetColorsQueryResult = NonNullable<Awaited<ReturnType<typeof getColors>>>
-export type GetColorsQueryError = unknown
+export type GetUserReservationColorsQueryResult = NonNullable<Awaited<ReturnType<typeof getUserReservationColors>>>
+export type GetUserReservationColorsQueryError = unknown
 
 
-export function useGetColors<TData = Awaited<ReturnType<typeof getColors>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>> & Pick<
+export function useGetUserReservationColors<TData = Awaited<ReturnType<typeof getUserReservationColors>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getColors>>,
+          Awaited<ReturnType<typeof getUserReservationColors>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetColors<TData = Awaited<ReturnType<typeof getColors>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>> & Pick<
+export function useGetUserReservationColors<TData = Awaited<ReturnType<typeof getUserReservationColors>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getColors>>,
+          Awaited<ReturnType<typeof getUserReservationColors>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetColors<TData = Awaited<ReturnType<typeof getColors>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>>, }
+export function useGetUserReservationColors<TData = Awaited<ReturnType<typeof getUserReservationColors>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너가 수업 등록할때 필요한 색상 리스트 API
  */
 
-export function useGetColors<TData = Awaited<ReturnType<typeof getColors>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getColors>>, TError, TData>>, }
+export function useGetUserReservationColors<TData = Awaited<ReturnType<typeof getUserReservationColors>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserReservationColors>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetColorsQueryOptions(options)
+  const queryOptions = getGetUserReservationColorsQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

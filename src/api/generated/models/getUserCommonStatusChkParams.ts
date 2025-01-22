@@ -6,10 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
+export type GetUserCommonStatusChkParams = {
 /**
- * 응답 데이터
+ * 트레이너 이메일
  */
-export interface StatusChkResDto {
-  /** 트레이너 상태 */
-  trainerStatus?: string;
-}
+trainerEmail: string;
+};

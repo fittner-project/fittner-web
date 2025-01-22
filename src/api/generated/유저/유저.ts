@@ -36,12 +36,12 @@ import type {
   ApiResponseMessagePageResponseDtoUserCenterListResDto,
   ApiResponseMessageUserInfoResDto,
   CancelCenterApprovalReqDto,
-  CenterListParams,
   CenterRegisterReqDto,
+  GetUserCentersParams,
+  GetUserMainCentersParams,
+  GetUserMembers200,
   JoinReqDto,
-  MainCenterListParams,
-  MemberRegisterReqDto,
-  Members200
+  MemberRegisterReqDto
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
 
@@ -51,7 +51,7 @@ import { axiosInstance } from '../../mutator/instance-wrapper';
  * 트레이너가 회원을 등록하는 API 입니다.
  * @summary 트레이너가 회원을 등록하는 API
  */
-export const register = (
+export const postUserRegister = (
     memberRegisterReqDto: MemberRegisterReqDto,
  signal?: AbortSignal
 ) => {
@@ -67,18 +67,18 @@ export const register = (
   
 
 
-export const getRegisterMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof register>>, TError,{data: MemberRegisterReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof register>>, TError,{data: MemberRegisterReqDto}, TContext> => {
+export const getPostUserRegisterMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserRegister>>, TError,{data: MemberRegisterReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserRegister>>, TError,{data: MemberRegisterReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof register>>, {data: MemberRegisterReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserRegister>>, {data: MemberRegisterReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  register(data,)
+          return  postUserRegister(data,)
         }
 
         
@@ -86,23 +86,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type RegisterMutationResult = NonNullable<Awaited<ReturnType<typeof register>>>
-    export type RegisterMutationBody = MemberRegisterReqDto
-    export type RegisterMutationError = unknown
+    export type PostUserRegisterMutationResult = NonNullable<Awaited<ReturnType<typeof postUserRegister>>>
+    export type PostUserRegisterMutationBody = MemberRegisterReqDto
+    export type PostUserRegisterMutationError = unknown
 
     /**
  * @summary 트레이너가 회원을 등록하는 API
  */
-export const useRegister = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof register>>, TError,{data: MemberRegisterReqDto}, TContext>, }
+export const usePostUserRegister = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserRegister>>, TError,{data: MemberRegisterReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof register>>,
+        Awaited<ReturnType<typeof postUserRegister>>,
         TError,
         {data: MemberRegisterReqDto},
         TContext
       > => {
 
-      const mutationOptions = getRegisterMutationOptions(options);
+      const mutationOptions = getPostUserRegisterMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -110,7 +110,7 @@ export const useRegister = <TError = unknown,
  * 트레이너 회원가입 API 입니다.
  * @summary 트레이너 회원가입 API
  */
-export const join = (
+export const postUserJoin = (
     joinReqDto: JoinReqDto,
  signal?: AbortSignal
 ) => {
@@ -126,18 +126,18 @@ export const join = (
   
 
 
-export const getJoinMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof join>>, TError,{data: JoinReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof join>>, TError,{data: JoinReqDto}, TContext> => {
+export const getPostUserJoinMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserJoin>>, TError,{data: JoinReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserJoin>>, TError,{data: JoinReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof join>>, {data: JoinReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserJoin>>, {data: JoinReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  join(data,)
+          return  postUserJoin(data,)
         }
 
         
@@ -145,23 +145,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type JoinMutationResult = NonNullable<Awaited<ReturnType<typeof join>>>
-    export type JoinMutationBody = JoinReqDto
-    export type JoinMutationError = unknown
+    export type PostUserJoinMutationResult = NonNullable<Awaited<ReturnType<typeof postUserJoin>>>
+    export type PostUserJoinMutationBody = JoinReqDto
+    export type PostUserJoinMutationError = unknown
 
     /**
  * @summary 트레이너 회원가입 API
  */
-export const useJoin = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof join>>, TError,{data: JoinReqDto}, TContext>, }
+export const usePostUserJoin = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserJoin>>, TError,{data: JoinReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof join>>,
+        Awaited<ReturnType<typeof postUserJoin>>,
         TError,
         {data: JoinReqDto},
         TContext
       > => {
 
-      const mutationOptions = getJoinMutationOptions(options);
+      const mutationOptions = getPostUserJoinMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -169,7 +169,7 @@ export const useJoin = <TError = unknown,
  * 트레이너 계정 탈퇴 API 입니다.
  * @summary 트레이너 계정 탈퇴
  */
-export const dropTrainer = (
+export const postUserDrop = (
     
  signal?: AbortSignal
 ) => {
@@ -183,18 +183,18 @@ export const dropTrainer = (
   
 
 
-export const getDropTrainerMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dropTrainer>>, TError,void, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof dropTrainer>>, TError,void, TContext> => {
+export const getPostUserDropMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserDrop>>, TError,void, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserDrop>>, TError,void, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dropTrainer>>, void> = () => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserDrop>>, void> = () => {
           
 
-          return  dropTrainer()
+          return  postUserDrop()
         }
 
         
@@ -202,23 +202,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type DropTrainerMutationResult = NonNullable<Awaited<ReturnType<typeof dropTrainer>>>
+    export type PostUserDropMutationResult = NonNullable<Awaited<ReturnType<typeof postUserDrop>>>
     
-    export type DropTrainerMutationError = unknown
+    export type PostUserDropMutationError = unknown
 
     /**
  * @summary 트레이너 계정 탈퇴
  */
-export const useDropTrainer = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dropTrainer>>, TError,void, TContext>, }
+export const usePostUserDrop = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserDrop>>, TError,void, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof dropTrainer>>,
+        Awaited<ReturnType<typeof postUserDrop>>,
         TError,
         void,
         TContext
       > => {
 
-      const mutationOptions = getDropTrainerMutationOptions(options);
+      const mutationOptions = getPostUserDropMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -226,7 +226,7 @@ export const useDropTrainer = <TError = unknown,
  * 트레이너의 센터 등록 API 입니다.
  * @summary 트레이너의 센터 등록 API
  */
-export const registerCenter = (
+export const postUserCenter = (
     centerRegisterReqDto: CenterRegisterReqDto,
  signal?: AbortSignal
 ) => {
@@ -242,18 +242,18 @@ export const registerCenter = (
   
 
 
-export const getRegisterCenterMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof registerCenter>>, TError,{data: CenterRegisterReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof registerCenter>>, TError,{data: CenterRegisterReqDto}, TContext> => {
+export const getPostUserCenterMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserCenter>>, TError,{data: CenterRegisterReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserCenter>>, TError,{data: CenterRegisterReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof registerCenter>>, {data: CenterRegisterReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserCenter>>, {data: CenterRegisterReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  registerCenter(data,)
+          return  postUserCenter(data,)
         }
 
         
@@ -261,23 +261,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type RegisterCenterMutationResult = NonNullable<Awaited<ReturnType<typeof registerCenter>>>
-    export type RegisterCenterMutationBody = CenterRegisterReqDto
-    export type RegisterCenterMutationError = unknown
+    export type PostUserCenterMutationResult = NonNullable<Awaited<ReturnType<typeof postUserCenter>>>
+    export type PostUserCenterMutationBody = CenterRegisterReqDto
+    export type PostUserCenterMutationError = unknown
 
     /**
  * @summary 트레이너의 센터 등록 API
  */
-export const useRegisterCenter = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof registerCenter>>, TError,{data: CenterRegisterReqDto}, TContext>, }
+export const usePostUserCenter = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserCenter>>, TError,{data: CenterRegisterReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof registerCenter>>,
+        Awaited<ReturnType<typeof postUserCenter>>,
         TError,
         {data: CenterRegisterReqDto},
         TContext
       > => {
 
-      const mutationOptions = getRegisterCenterMutationOptions(options);
+      const mutationOptions = getPostUserCenterMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -285,7 +285,7 @@ export const useRegisterCenter = <TError = unknown,
  * 트레이너 본인이 승인요청한걸 승인취소하는 API 입니다.
  * @summary 트레이너 본인이 승인요청한걸 승인취소하는 API
  */
-export const cancelCenterApproval = (
+export const deleteUserCenter = (
     cancelCenterApprovalReqDto: CancelCenterApprovalReqDto,
  ) => {
       
@@ -300,18 +300,18 @@ export const cancelCenterApproval = (
   
 
 
-export const getCancelCenterApprovalMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cancelCenterApproval>>, TError,{data: CancelCenterApprovalReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof cancelCenterApproval>>, TError,{data: CancelCenterApprovalReqDto}, TContext> => {
+export const getDeleteUserCenterMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteUserCenter>>, TError,{data: CancelCenterApprovalReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof deleteUserCenter>>, TError,{data: CancelCenterApprovalReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof cancelCenterApproval>>, {data: CancelCenterApprovalReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteUserCenter>>, {data: CancelCenterApprovalReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  cancelCenterApproval(data,)
+          return  deleteUserCenter(data,)
         }
 
         
@@ -319,23 +319,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type CancelCenterApprovalMutationResult = NonNullable<Awaited<ReturnType<typeof cancelCenterApproval>>>
-    export type CancelCenterApprovalMutationBody = CancelCenterApprovalReqDto
-    export type CancelCenterApprovalMutationError = unknown
+    export type DeleteUserCenterMutationResult = NonNullable<Awaited<ReturnType<typeof deleteUserCenter>>>
+    export type DeleteUserCenterMutationBody = CancelCenterApprovalReqDto
+    export type DeleteUserCenterMutationError = unknown
 
     /**
  * @summary 트레이너 본인이 승인요청한걸 승인취소하는 API
  */
-export const useCancelCenterApproval = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cancelCenterApproval>>, TError,{data: CancelCenterApprovalReqDto}, TContext>, }
+export const useDeleteUserCenter = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteUserCenter>>, TError,{data: CancelCenterApprovalReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof cancelCenterApproval>>,
+        Awaited<ReturnType<typeof deleteUserCenter>>,
         TError,
         {data: CancelCenterApprovalReqDto},
         TContext
       > => {
 
-      const mutationOptions = getCancelCenterApprovalMutationOptions(options);
+      const mutationOptions = getDeleteUserCenterMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -343,7 +343,7 @@ export const useCancelCenterApproval = <TError = unknown,
  * 회원가입 약관 조회 API 입니다.
  * @summary 회원가입 약관 조회 API
  */
-export const getJoinTerms = (
+export const getUserTerms = (
     
  signal?: AbortSignal
 ) => {
@@ -356,67 +356,67 @@ export const getJoinTerms = (
     }
   
 
-export const getGetJoinTermsQueryKey = () => {
+export const getGetUserTermsQueryKey = () => {
     return [`/api/v1/user/terms`] as const;
     }
 
     
-export const getGetJoinTermsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getJoinTerms>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>>, }
+export const getGetUserTermsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserTerms>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetJoinTermsQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTermsQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getJoinTerms>>> = ({ signal }) => getJoinTerms(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTerms>>> = ({ signal }) => getUserTerms(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetJoinTermsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getJoinTerms>>>
-export type GetJoinTermsInfiniteQueryError = unknown
+export type GetUserTermsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTerms>>>
+export type GetUserTermsInfiniteQueryError = unknown
 
 
-export function useGetJoinTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getJoinTerms>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>> & Pick<
+export function useGetUserTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTerms>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getJoinTerms>>,
+          Awaited<ReturnType<typeof getUserTerms>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetJoinTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getJoinTerms>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>> & Pick<
+export function useGetUserTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTerms>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getJoinTerms>>,
+          Awaited<ReturnType<typeof getUserTerms>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetJoinTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getJoinTerms>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>>, }
+export function useGetUserTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTerms>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 회원가입 약관 조회 API
  */
 
-export function useGetJoinTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getJoinTerms>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>>, }
+export function useGetUserTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTerms>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetJoinTermsInfiniteQueryOptions(options)
+  const queryOptions = getGetUserTermsInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -427,62 +427,62 @@ export function useGetJoinTermsInfinite<TData = InfiniteData<Awaited<ReturnType<
 
 
 
-export const getGetJoinTermsQueryOptions = <TData = Awaited<ReturnType<typeof getJoinTerms>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>>, }
+export const getGetUserTermsQueryOptions = <TData = Awaited<ReturnType<typeof getUserTerms>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetJoinTermsQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTermsQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getJoinTerms>>> = ({ signal }) => getJoinTerms(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTerms>>> = ({ signal }) => getUserTerms(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetJoinTermsQueryResult = NonNullable<Awaited<ReturnType<typeof getJoinTerms>>>
-export type GetJoinTermsQueryError = unknown
+export type GetUserTermsQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTerms>>>
+export type GetUserTermsQueryError = unknown
 
 
-export function useGetJoinTerms<TData = Awaited<ReturnType<typeof getJoinTerms>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>> & Pick<
+export function useGetUserTerms<TData = Awaited<ReturnType<typeof getUserTerms>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getJoinTerms>>,
+          Awaited<ReturnType<typeof getUserTerms>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetJoinTerms<TData = Awaited<ReturnType<typeof getJoinTerms>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>> & Pick<
+export function useGetUserTerms<TData = Awaited<ReturnType<typeof getUserTerms>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getJoinTerms>>,
+          Awaited<ReturnType<typeof getUserTerms>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetJoinTerms<TData = Awaited<ReturnType<typeof getJoinTerms>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>>, }
+export function useGetUserTerms<TData = Awaited<ReturnType<typeof getUserTerms>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 회원가입 약관 조회 API
  */
 
-export function useGetJoinTerms<TData = Awaited<ReturnType<typeof getJoinTerms>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getJoinTerms>>, TError, TData>>, }
+export function useGetUserTerms<TData = Awaited<ReturnType<typeof getUserTerms>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTerms>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetJoinTermsQueryOptions(options)
+  const queryOptions = getGetUserTermsQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -497,80 +497,80 @@ export function useGetJoinTerms<TData = Awaited<ReturnType<typeof getJoinTerms>>
  * 트레이너의 회원 목록 조회 API 입니다.
  * @summary 트레이너의 회원 목록 조회 API
  */
-export const members = (
+export const getUserMembers = (
     
  signal?: AbortSignal
 ) => {
       
       
-      return axiosInstance<Members200>(
+      return axiosInstance<GetUserMembers200>(
       {url: `/api/v1/user/members`, method: 'GET', signal
     },
       );
     }
   
 
-export const getMembersQueryKey = () => {
+export const getGetUserMembersQueryKey = () => {
     return [`/api/v1/user/members`] as const;
     }
 
     
-export const getMembersInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
+export const getGetUserMembersInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMembers>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMembersQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMembersQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof members>>> = ({ signal }) => members(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMembers>>> = ({ signal }) => getUserMembers(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type MembersInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof members>>>
-export type MembersInfiniteQueryError = unknown
+export type GetUserMembersInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMembers>>>
+export type GetUserMembersInfiniteQueryError = unknown
 
 
-export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
+export function useGetUserMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMembers>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof members>>,
+          Awaited<ReturnType<typeof getUserMembers>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
+export function useGetUserMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMembers>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof members>>,
+          Awaited<ReturnType<typeof getUserMembers>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
+export function useGetUserMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMembers>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너의 회원 목록 조회 API
  */
 
-export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof members>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
+export function useGetUserMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMembers>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMembersInfiniteQueryOptions(options)
+  const queryOptions = getGetUserMembersInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -581,62 +581,62 @@ export function useMembersInfinite<TData = InfiniteData<Awaited<ReturnType<typeo
 
 
 
-export const getMembersQueryOptions = <TData = Awaited<ReturnType<typeof members>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
+export const getGetUserMembersQueryOptions = <TData = Awaited<ReturnType<typeof getUserMembers>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMembersQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMembersQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof members>>> = ({ signal }) => members(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMembers>>> = ({ signal }) => getUserMembers(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type MembersQueryResult = NonNullable<Awaited<ReturnType<typeof members>>>
-export type MembersQueryError = unknown
+export type GetUserMembersQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMembers>>>
+export type GetUserMembersQueryError = unknown
 
 
-export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
+export function useGetUserMembers<TData = Awaited<ReturnType<typeof getUserMembers>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof members>>,
+          Awaited<ReturnType<typeof getUserMembers>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>> & Pick<
+export function useGetUserMembers<TData = Awaited<ReturnType<typeof getUserMembers>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof members>>,
+          Awaited<ReturnType<typeof getUserMembers>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
+export function useGetUserMembers<TData = Awaited<ReturnType<typeof getUserMembers>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너의 회원 목록 조회 API
  */
 
-export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof members>>, TError, TData>>, }
+export function useGetUserMembers<TData = Awaited<ReturnType<typeof getUserMembers>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMembers>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMembersQueryOptions(options)
+  const queryOptions = getGetUserMembersQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -651,7 +651,7 @@ export function useMembers<TData = Awaited<ReturnType<typeof members>>, TError =
  * 트레이너의 회원 상세 조회 API 입니다.
  * @summary 트레이너의 회원 상세 조회 API
  */
-export const memberDetail = (
+export const getUserMemberMemberId = (
     memberId: string,
  signal?: AbortSignal
 ) => {
@@ -664,67 +664,67 @@ export const memberDetail = (
     }
   
 
-export const getMemberDetailQueryKey = (memberId: string,) => {
+export const getGetUserMemberMemberIdQueryKey = (memberId: string,) => {
     return [`/api/v1/user/member/${memberId}`] as const;
     }
 
     
-export const getMemberDetailInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+export const getGetUserMemberMemberIdInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMemberMemberId>>>, TError = unknown>(memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMemberDetailQueryKey(memberId);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMemberMemberIdQueryKey(memberId);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof memberDetail>>> = ({ signal }) => memberDetail(memberId, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMemberMemberId>>> = ({ signal }) => getUserMemberMemberId(memberId, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(memberId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, enabled: !!(memberId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type MemberDetailInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof memberDetail>>>
-export type MemberDetailInfiniteQueryError = unknown
+export type GetUserMemberMemberIdInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMemberMemberId>>>
+export type GetUserMemberMemberIdInfiniteQueryError = unknown
 
 
-export function useMemberDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(
- memberId: string, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>> & Pick<
+export function useGetUserMemberMemberIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMemberMemberId>>>, TError = unknown>(
+ memberId: string, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof memberDetail>>,
+          Awaited<ReturnType<typeof getUserMemberMemberId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMemberDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(
- memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>> & Pick<
+export function useGetUserMemberMemberIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMemberMemberId>>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof memberDetail>>,
+          Awaited<ReturnType<typeof getUserMemberMemberId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMemberDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(
- memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+export function useGetUserMemberMemberIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMemberMemberId>>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너의 회원 상세 조회 API
  */
 
-export function useMemberDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof memberDetail>>>, TError = unknown>(
- memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+export function useGetUserMemberMemberIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMemberMemberId>>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMemberDetailInfiniteQueryOptions(memberId,options)
+  const queryOptions = getGetUserMemberMemberIdInfiniteQueryOptions(memberId,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -735,62 +735,62 @@ export function useMemberDetailInfinite<TData = InfiniteData<Awaited<ReturnType<
 
 
 
-export const getMemberDetailQueryOptions = <TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+export const getGetUserMemberMemberIdQueryOptions = <TData = Awaited<ReturnType<typeof getUserMemberMemberId>>, TError = unknown>(memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMemberDetailQueryKey(memberId);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMemberMemberIdQueryKey(memberId);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof memberDetail>>> = ({ signal }) => memberDetail(memberId, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMemberMemberId>>> = ({ signal }) => getUserMemberMemberId(memberId, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(memberId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, enabled: !!(memberId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type MemberDetailQueryResult = NonNullable<Awaited<ReturnType<typeof memberDetail>>>
-export type MemberDetailQueryError = unknown
+export type GetUserMemberMemberIdQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMemberMemberId>>>
+export type GetUserMemberMemberIdQueryError = unknown
 
 
-export function useMemberDetail<TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(
- memberId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>> & Pick<
+export function useGetUserMemberMemberId<TData = Awaited<ReturnType<typeof getUserMemberMemberId>>, TError = unknown>(
+ memberId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof memberDetail>>,
+          Awaited<ReturnType<typeof getUserMemberMemberId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMemberDetail<TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(
- memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>> & Pick<
+export function useGetUserMemberMemberId<TData = Awaited<ReturnType<typeof getUserMemberMemberId>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof memberDetail>>,
+          Awaited<ReturnType<typeof getUserMemberMemberId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMemberDetail<TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(
- memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+export function useGetUserMemberMemberId<TData = Awaited<ReturnType<typeof getUserMemberMemberId>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너의 회원 상세 조회 API
  */
 
-export function useMemberDetail<TData = Awaited<ReturnType<typeof memberDetail>>, TError = unknown>(
- memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof memberDetail>>, TError, TData>>, }
+export function useGetUserMemberMemberId<TData = Awaited<ReturnType<typeof getUserMemberMemberId>>, TError = unknown>(
+ memberId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMemberMemberId>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMemberDetailQueryOptions(memberId,options)
+  const queryOptions = getGetUserMemberMemberIdQueryOptions(memberId,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -805,8 +805,8 @@ export function useMemberDetail<TData = Awaited<ReturnType<typeof memberDetail>>
  * 트레이너가 지정한 센터 목록 조회 API 입니다.
  * @summary 메인에서 트레이너가 지정한 센터 목록 조회 API
  */
-export const mainCenterList = (
-    params: MainCenterListParams,
+export const getUserMainCenters = (
+    params: GetUserMainCentersParams,
  signal?: AbortSignal
 ) => {
       
@@ -819,67 +819,67 @@ export const mainCenterList = (
     }
   
 
-export const getMainCenterListQueryKey = (params: MainCenterListParams,) => {
+export const getGetUserMainCentersQueryKey = (params: GetUserMainCentersParams,) => {
     return [`/api/v1/user/main/centers`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getMainCenterListInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof mainCenterList>>, MainCenterListParams['page']>, TError = unknown>(params: MainCenterListParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData, Awaited<ReturnType<typeof mainCenterList>>, QueryKey, MainCenterListParams['page']>>, }
+export const getGetUserMainCentersInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(params: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMainCenterListQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMainCentersQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof mainCenterList>>, QueryKey, MainCenterListParams['page']> = ({ signal, pageParam }) => mainCenterList({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']> = ({ signal, pageParam }) => getUserMainCenters({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData, Awaited<ReturnType<typeof mainCenterList>>, QueryKey, MainCenterListParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type MainCenterListInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof mainCenterList>>>
-export type MainCenterListInfiniteQueryError = unknown
+export type GetUserMainCentersInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMainCenters>>>
+export type GetUserMainCentersInfiniteQueryError = unknown
 
 
-export function useMainCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof mainCenterList>>, MainCenterListParams['page']>, TError = unknown>(
- params: MainCenterListParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData, Awaited<ReturnType<typeof mainCenterList>>, QueryKey, MainCenterListParams['page']>> & Pick<
+export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(
+ params: GetUserMainCentersParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof mainCenterList>>,
+          Awaited<ReturnType<typeof getUserMainCenters>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMainCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof mainCenterList>>, MainCenterListParams['page']>, TError = unknown>(
- params: MainCenterListParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData, Awaited<ReturnType<typeof mainCenterList>>, QueryKey, MainCenterListParams['page']>> & Pick<
+export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(
+ params: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof mainCenterList>>,
+          Awaited<ReturnType<typeof getUserMainCenters>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMainCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof mainCenterList>>, MainCenterListParams['page']>, TError = unknown>(
- params: MainCenterListParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData, Awaited<ReturnType<typeof mainCenterList>>, QueryKey, MainCenterListParams['page']>>, }
+export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(
+ params: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 메인에서 트레이너가 지정한 센터 목록 조회 API
  */
 
-export function useMainCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof mainCenterList>>, MainCenterListParams['page']>, TError = unknown>(
- params: MainCenterListParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData, Awaited<ReturnType<typeof mainCenterList>>, QueryKey, MainCenterListParams['page']>>, }
+export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(
+ params: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMainCenterListInfiniteQueryOptions(params,options)
+  const queryOptions = getGetUserMainCentersInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -890,62 +890,62 @@ export function useMainCenterListInfinite<TData = InfiniteData<Awaited<ReturnTyp
 
 
 
-export const getMainCenterListQueryOptions = <TData = Awaited<ReturnType<typeof mainCenterList>>, TError = unknown>(params: MainCenterListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData>>, }
+export const getGetUserMainCentersQueryOptions = <TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(params: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMainCenterListQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMainCentersQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof mainCenterList>>> = ({ signal }) => mainCenterList(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMainCenters>>> = ({ signal }) => getUserMainCenters(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type MainCenterListQueryResult = NonNullable<Awaited<ReturnType<typeof mainCenterList>>>
-export type MainCenterListQueryError = unknown
+export type GetUserMainCentersQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMainCenters>>>
+export type GetUserMainCentersQueryError = unknown
 
 
-export function useMainCenterList<TData = Awaited<ReturnType<typeof mainCenterList>>, TError = unknown>(
- params: MainCenterListParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData>> & Pick<
+export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(
+ params: GetUserMainCentersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof mainCenterList>>,
+          Awaited<ReturnType<typeof getUserMainCenters>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMainCenterList<TData = Awaited<ReturnType<typeof mainCenterList>>, TError = unknown>(
- params: MainCenterListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData>> & Pick<
+export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(
+ params: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof mainCenterList>>,
+          Awaited<ReturnType<typeof getUserMainCenters>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMainCenterList<TData = Awaited<ReturnType<typeof mainCenterList>>, TError = unknown>(
- params: MainCenterListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData>>, }
+export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(
+ params: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 메인에서 트레이너가 지정한 센터 목록 조회 API
  */
 
-export function useMainCenterList<TData = Awaited<ReturnType<typeof mainCenterList>>, TError = unknown>(
- params: MainCenterListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof mainCenterList>>, TError, TData>>, }
+export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(
+ params: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMainCenterListQueryOptions(params,options)
+  const queryOptions = getGetUserMainCentersQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -1114,8 +1114,8 @@ export function useGetUserInfo<TData = Awaited<ReturnType<typeof getUserInfo>>, 
  * 트레이너가 지정한 센터 목록 조회 API 입니다.
  * @summary 트레이너가 지정한 센터 목록 조회 API
  */
-export const centerList = (
-    params: CenterListParams,
+export const getUserCenters = (
+    params: GetUserCentersParams,
  signal?: AbortSignal
 ) => {
       
@@ -1128,67 +1128,67 @@ export const centerList = (
     }
   
 
-export const getCenterListQueryKey = (params: CenterListParams,) => {
+export const getGetUserCentersQueryKey = (params: GetUserCentersParams,) => {
     return [`/api/v1/user/centers`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getCenterListInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof centerList>>, CenterListParams['page']>, TError = unknown>(params: CenterListParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData, Awaited<ReturnType<typeof centerList>>, QueryKey, CenterListParams['page']>>, }
+export const getGetUserCentersInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserCenters>>, GetUserCentersParams['page']>, TError = unknown>(params: GetUserCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData, Awaited<ReturnType<typeof getUserCenters>>, QueryKey, GetUserCentersParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getCenterListQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCentersQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof centerList>>, QueryKey, CenterListParams['page']> = ({ signal, pageParam }) => centerList({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCenters>>, QueryKey, GetUserCentersParams['page']> = ({ signal, pageParam }) => getUserCenters({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData, Awaited<ReturnType<typeof centerList>>, QueryKey, CenterListParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData, Awaited<ReturnType<typeof getUserCenters>>, QueryKey, GetUserCentersParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type CenterListInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof centerList>>>
-export type CenterListInfiniteQueryError = unknown
+export type GetUserCentersInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCenters>>>
+export type GetUserCentersInfiniteQueryError = unknown
 
 
-export function useCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof centerList>>, CenterListParams['page']>, TError = unknown>(
- params: CenterListParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData, Awaited<ReturnType<typeof centerList>>, QueryKey, CenterListParams['page']>> & Pick<
+export function useGetUserCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCenters>>, GetUserCentersParams['page']>, TError = unknown>(
+ params: GetUserCentersParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData, Awaited<ReturnType<typeof getUserCenters>>, QueryKey, GetUserCentersParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof centerList>>,
+          Awaited<ReturnType<typeof getUserCenters>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof centerList>>, CenterListParams['page']>, TError = unknown>(
- params: CenterListParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData, Awaited<ReturnType<typeof centerList>>, QueryKey, CenterListParams['page']>> & Pick<
+export function useGetUserCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCenters>>, GetUserCentersParams['page']>, TError = unknown>(
+ params: GetUserCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData, Awaited<ReturnType<typeof getUserCenters>>, QueryKey, GetUserCentersParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof centerList>>,
+          Awaited<ReturnType<typeof getUserCenters>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof centerList>>, CenterListParams['page']>, TError = unknown>(
- params: CenterListParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData, Awaited<ReturnType<typeof centerList>>, QueryKey, CenterListParams['page']>>, }
+export function useGetUserCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCenters>>, GetUserCentersParams['page']>, TError = unknown>(
+ params: GetUserCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData, Awaited<ReturnType<typeof getUserCenters>>, QueryKey, GetUserCentersParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너가 지정한 센터 목록 조회 API
  */
 
-export function useCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof centerList>>, CenterListParams['page']>, TError = unknown>(
- params: CenterListParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData, Awaited<ReturnType<typeof centerList>>, QueryKey, CenterListParams['page']>>, }
+export function useGetUserCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCenters>>, GetUserCentersParams['page']>, TError = unknown>(
+ params: GetUserCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData, Awaited<ReturnType<typeof getUserCenters>>, QueryKey, GetUserCentersParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getCenterListInfiniteQueryOptions(params,options)
+  const queryOptions = getGetUserCentersInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -1199,62 +1199,62 @@ export function useCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<ty
 
 
 
-export const getCenterListQueryOptions = <TData = Awaited<ReturnType<typeof centerList>>, TError = unknown>(params: CenterListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData>>, }
+export const getGetUserCentersQueryOptions = <TData = Awaited<ReturnType<typeof getUserCenters>>, TError = unknown>(params: GetUserCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getCenterListQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCentersQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof centerList>>> = ({ signal }) => centerList(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCenters>>> = ({ signal }) => getUserCenters(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type CenterListQueryResult = NonNullable<Awaited<ReturnType<typeof centerList>>>
-export type CenterListQueryError = unknown
+export type GetUserCentersQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCenters>>>
+export type GetUserCentersQueryError = unknown
 
 
-export function useCenterList<TData = Awaited<ReturnType<typeof centerList>>, TError = unknown>(
- params: CenterListParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData>> & Pick<
+export function useGetUserCenters<TData = Awaited<ReturnType<typeof getUserCenters>>, TError = unknown>(
+ params: GetUserCentersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof centerList>>,
+          Awaited<ReturnType<typeof getUserCenters>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useCenterList<TData = Awaited<ReturnType<typeof centerList>>, TError = unknown>(
- params: CenterListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData>> & Pick<
+export function useGetUserCenters<TData = Awaited<ReturnType<typeof getUserCenters>>, TError = unknown>(
+ params: GetUserCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof centerList>>,
+          Awaited<ReturnType<typeof getUserCenters>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useCenterList<TData = Awaited<ReturnType<typeof centerList>>, TError = unknown>(
- params: CenterListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData>>, }
+export function useGetUserCenters<TData = Awaited<ReturnType<typeof getUserCenters>>, TError = unknown>(
+ params: GetUserCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너가 지정한 센터 목록 조회 API
  */
 
-export function useCenterList<TData = Awaited<ReturnType<typeof centerList>>, TError = unknown>(
- params: CenterListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList>>, TError, TData>>, }
+export function useGetUserCenters<TData = Awaited<ReturnType<typeof getUserCenters>>, TError = unknown>(
+ params: GetUserCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenters>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getCenterListQueryOptions(params,options)
+  const queryOptions = getGetUserCentersQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -1269,7 +1269,7 @@ export function useCenterList<TData = Awaited<ReturnType<typeof centerList>>, TE
  * 센터 목록 조회 API 입니다.
  * @summary 센터 목록 조회 API
  */
-export const centerList1 = (
+export const getUserCenterList = (
     
  signal?: AbortSignal
 ) => {
@@ -1282,67 +1282,67 @@ export const centerList1 = (
     }
   
 
-export const getCenterList1QueryKey = () => {
+export const getGetUserCenterListQueryKey = () => {
     return [`/api/v1/user/center/list`] as const;
     }
 
     
-export const getCenterList1InfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof centerList1>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>>, }
+export const getGetUserCenterListInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserCenterList>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getCenterList1QueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCenterListQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof centerList1>>> = ({ signal }) => centerList1(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCenterList>>> = ({ signal }) => getUserCenterList(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type CenterList1InfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof centerList1>>>
-export type CenterList1InfiniteQueryError = unknown
+export type GetUserCenterListInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCenterList>>>
+export type GetUserCenterListInfiniteQueryError = unknown
 
 
-export function useCenterList1Infinite<TData = InfiniteData<Awaited<ReturnType<typeof centerList1>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>> & Pick<
+export function useGetUserCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCenterList>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof centerList1>>,
+          Awaited<ReturnType<typeof getUserCenterList>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useCenterList1Infinite<TData = InfiniteData<Awaited<ReturnType<typeof centerList1>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>> & Pick<
+export function useGetUserCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCenterList>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof centerList1>>,
+          Awaited<ReturnType<typeof getUserCenterList>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useCenterList1Infinite<TData = InfiniteData<Awaited<ReturnType<typeof centerList1>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>>, }
+export function useGetUserCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCenterList>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 센터 목록 조회 API
  */
 
-export function useCenterList1Infinite<TData = InfiniteData<Awaited<ReturnType<typeof centerList1>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>>, }
+export function useGetUserCenterListInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCenterList>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getCenterList1InfiniteQueryOptions(options)
+  const queryOptions = getGetUserCenterListInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -1353,62 +1353,62 @@ export function useCenterList1Infinite<TData = InfiniteData<Awaited<ReturnType<t
 
 
 
-export const getCenterList1QueryOptions = <TData = Awaited<ReturnType<typeof centerList1>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>>, }
+export const getGetUserCenterListQueryOptions = <TData = Awaited<ReturnType<typeof getUserCenterList>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getCenterList1QueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCenterListQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof centerList1>>> = ({ signal }) => centerList1(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCenterList>>> = ({ signal }) => getUserCenterList(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type CenterList1QueryResult = NonNullable<Awaited<ReturnType<typeof centerList1>>>
-export type CenterList1QueryError = unknown
+export type GetUserCenterListQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCenterList>>>
+export type GetUserCenterListQueryError = unknown
 
 
-export function useCenterList1<TData = Awaited<ReturnType<typeof centerList1>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>> & Pick<
+export function useGetUserCenterList<TData = Awaited<ReturnType<typeof getUserCenterList>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof centerList1>>,
+          Awaited<ReturnType<typeof getUserCenterList>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useCenterList1<TData = Awaited<ReturnType<typeof centerList1>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>> & Pick<
+export function useGetUserCenterList<TData = Awaited<ReturnType<typeof getUserCenterList>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof centerList1>>,
+          Awaited<ReturnType<typeof getUserCenterList>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useCenterList1<TData = Awaited<ReturnType<typeof centerList1>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>>, }
+export function useGetUserCenterList<TData = Awaited<ReturnType<typeof getUserCenterList>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 센터 목록 조회 API
  */
 
-export function useCenterList1<TData = Awaited<ReturnType<typeof centerList1>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof centerList1>>, TError, TData>>, }
+export function useGetUserCenterList<TData = Awaited<ReturnType<typeof getUserCenterList>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCenterList>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getCenterList1QueryOptions(options)
+  const queryOptions = getGetUserCenterListQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

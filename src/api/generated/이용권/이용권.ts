@@ -35,10 +35,10 @@ import type {
   ApiResponseMessageTicketDetailResDto,
   AssignToNewMemberReqDto,
   AssignToOldMemberReqDto,
-  GetTicketsParams,
-  RelayReqDto,
-  TicketAssignToInfoParams,
-  TicketRefundInfoParams
+  GetUserTicketAssignInfoParams,
+  GetUserTicketRefundInfoParams,
+  GetUserTicketsParams,
+  RelayReqDto
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
 
@@ -48,7 +48,7 @@ import { axiosInstance } from '../../mutator/instance-wrapper';
  * 이용권 연장하기 API 입니다.
  * @summary 이용권 연장하기 API
  */
-export const ticketRelay = (
+export const postUserTicketRelay = (
     relayReqDto: RelayReqDto,
  signal?: AbortSignal
 ) => {
@@ -64,18 +64,18 @@ export const ticketRelay = (
   
 
 
-export const getTicketRelayMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof ticketRelay>>, TError,{data: RelayReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof ticketRelay>>, TError,{data: RelayReqDto}, TContext> => {
+export const getPostUserTicketRelayMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRelay>>, TError,{data: RelayReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRelay>>, TError,{data: RelayReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof ticketRelay>>, {data: RelayReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketRelay>>, {data: RelayReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  ticketRelay(data,)
+          return  postUserTicketRelay(data,)
         }
 
         
@@ -83,23 +83,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type TicketRelayMutationResult = NonNullable<Awaited<ReturnType<typeof ticketRelay>>>
-    export type TicketRelayMutationBody = RelayReqDto
-    export type TicketRelayMutationError = unknown
+    export type PostUserTicketRelayMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketRelay>>>
+    export type PostUserTicketRelayMutationBody = RelayReqDto
+    export type PostUserTicketRelayMutationError = unknown
 
     /**
  * @summary 이용권 연장하기 API
  */
-export const useTicketRelay = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof ticketRelay>>, TError,{data: RelayReqDto}, TContext>, }
+export const usePostUserTicketRelay = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRelay>>, TError,{data: RelayReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof ticketRelay>>,
+        Awaited<ReturnType<typeof postUserTicketRelay>>,
         TError,
         {data: RelayReqDto},
         TContext
       > => {
 
-      const mutationOptions = getTicketRelayMutationOptions(options);
+      const mutationOptions = getPostUserTicketRelayMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -107,7 +107,7 @@ export const useTicketRelay = <TError = unknown,
  * 이용권 기존 회원 양도 API 입니다.
  * @summary 이용권 기존 회원 양도 API
  */
-export const ticketAssignToOldMember = (
+export const postUserTicketAssignOldMember = (
     assignToOldMemberReqDto: AssignToOldMemberReqDto,
  signal?: AbortSignal
 ) => {
@@ -123,18 +123,18 @@ export const ticketAssignToOldMember = (
   
 
 
-export const getTicketAssignToOldMemberMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof ticketAssignToOldMember>>, TError,{data: AssignToOldMemberReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof ticketAssignToOldMember>>, TError,{data: AssignToOldMemberReqDto}, TContext> => {
+export const getPostUserTicketAssignOldMemberMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketAssignOldMember>>, TError,{data: AssignToOldMemberReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketAssignOldMember>>, TError,{data: AssignToOldMemberReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof ticketAssignToOldMember>>, {data: AssignToOldMemberReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketAssignOldMember>>, {data: AssignToOldMemberReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  ticketAssignToOldMember(data,)
+          return  postUserTicketAssignOldMember(data,)
         }
 
         
@@ -142,23 +142,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type TicketAssignToOldMemberMutationResult = NonNullable<Awaited<ReturnType<typeof ticketAssignToOldMember>>>
-    export type TicketAssignToOldMemberMutationBody = AssignToOldMemberReqDto
-    export type TicketAssignToOldMemberMutationError = unknown
+    export type PostUserTicketAssignOldMemberMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketAssignOldMember>>>
+    export type PostUserTicketAssignOldMemberMutationBody = AssignToOldMemberReqDto
+    export type PostUserTicketAssignOldMemberMutationError = unknown
 
     /**
  * @summary 이용권 기존 회원 양도 API
  */
-export const useTicketAssignToOldMember = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof ticketAssignToOldMember>>, TError,{data: AssignToOldMemberReqDto}, TContext>, }
+export const usePostUserTicketAssignOldMember = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketAssignOldMember>>, TError,{data: AssignToOldMemberReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof ticketAssignToOldMember>>,
+        Awaited<ReturnType<typeof postUserTicketAssignOldMember>>,
         TError,
         {data: AssignToOldMemberReqDto},
         TContext
       > => {
 
-      const mutationOptions = getTicketAssignToOldMemberMutationOptions(options);
+      const mutationOptions = getPostUserTicketAssignOldMemberMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -166,7 +166,7 @@ export const useTicketAssignToOldMember = <TError = unknown,
  * 이용권 신규 회원 양도 API 입니다.
  * @summary 이용권 신규 회원 양도 API
  */
-export const ticketAssignToNewMember = (
+export const postUserTicketAssignNewMember = (
     assignToNewMemberReqDto: AssignToNewMemberReqDto,
  signal?: AbortSignal
 ) => {
@@ -182,18 +182,18 @@ export const ticketAssignToNewMember = (
   
 
 
-export const getTicketAssignToNewMemberMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof ticketAssignToNewMember>>, TError,{data: AssignToNewMemberReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof ticketAssignToNewMember>>, TError,{data: AssignToNewMemberReqDto}, TContext> => {
+export const getPostUserTicketAssignNewMemberMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketAssignNewMember>>, TError,{data: AssignToNewMemberReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketAssignNewMember>>, TError,{data: AssignToNewMemberReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof ticketAssignToNewMember>>, {data: AssignToNewMemberReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketAssignNewMember>>, {data: AssignToNewMemberReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  ticketAssignToNewMember(data,)
+          return  postUserTicketAssignNewMember(data,)
         }
 
         
@@ -201,23 +201,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type TicketAssignToNewMemberMutationResult = NonNullable<Awaited<ReturnType<typeof ticketAssignToNewMember>>>
-    export type TicketAssignToNewMemberMutationBody = AssignToNewMemberReqDto
-    export type TicketAssignToNewMemberMutationError = unknown
+    export type PostUserTicketAssignNewMemberMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketAssignNewMember>>>
+    export type PostUserTicketAssignNewMemberMutationBody = AssignToNewMemberReqDto
+    export type PostUserTicketAssignNewMemberMutationError = unknown
 
     /**
  * @summary 이용권 신규 회원 양도 API
  */
-export const useTicketAssignToNewMember = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof ticketAssignToNewMember>>, TError,{data: AssignToNewMemberReqDto}, TContext>, }
+export const usePostUserTicketAssignNewMember = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketAssignNewMember>>, TError,{data: AssignToNewMemberReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof ticketAssignToNewMember>>,
+        Awaited<ReturnType<typeof postUserTicketAssignNewMember>>,
         TError,
         {data: AssignToNewMemberReqDto},
         TContext
       > => {
 
-      const mutationOptions = getTicketAssignToNewMemberMutationOptions(options);
+      const mutationOptions = getPostUserTicketAssignNewMemberMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -225,8 +225,8 @@ export const useTicketAssignToNewMember = <TError = unknown,
  * 전체 이용권 리스트 조회 API 입니다.
  * @summary 전체 이용권 리스트 조회 API
  */
-export const getTickets = (
-    params: GetTicketsParams,
+export const getUserTickets = (
+    params: GetUserTicketsParams,
  signal?: AbortSignal
 ) => {
       
@@ -239,67 +239,67 @@ export const getTickets = (
     }
   
 
-export const getGetTicketsQueryKey = (params: GetTicketsParams,) => {
+export const getGetUserTicketsQueryKey = (params: GetUserTicketsParams,) => {
     return [`/api/v1/user/tickets`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getGetTicketsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getTickets>>, GetTicketsParams['page']>, TError = unknown>(params: GetTicketsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData, Awaited<ReturnType<typeof getTickets>>, QueryKey, GetTicketsParams['page']>>, }
+export const getGetUserTicketsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserTickets>>, GetUserTicketsParams['page']>, TError = unknown>(params: GetUserTicketsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData, Awaited<ReturnType<typeof getUserTickets>>, QueryKey, GetUserTicketsParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetTicketsQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTicketsQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getTickets>>, QueryKey, GetTicketsParams['page']> = ({ signal, pageParam }) => getTickets({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTickets>>, QueryKey, GetUserTicketsParams['page']> = ({ signal, pageParam }) => getUserTickets({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData, Awaited<ReturnType<typeof getTickets>>, QueryKey, GetTicketsParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData, Awaited<ReturnType<typeof getUserTickets>>, QueryKey, GetUserTicketsParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetTicketsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getTickets>>>
-export type GetTicketsInfiniteQueryError = unknown
+export type GetUserTicketsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTickets>>>
+export type GetUserTicketsInfiniteQueryError = unknown
 
 
-export function useGetTicketsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTickets>>, GetTicketsParams['page']>, TError = unknown>(
- params: GetTicketsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData, Awaited<ReturnType<typeof getTickets>>, QueryKey, GetTicketsParams['page']>> & Pick<
+export function useGetUserTicketsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTickets>>, GetUserTicketsParams['page']>, TError = unknown>(
+ params: GetUserTicketsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData, Awaited<ReturnType<typeof getUserTickets>>, QueryKey, GetUserTicketsParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTickets>>,
+          Awaited<ReturnType<typeof getUserTickets>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTicketsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTickets>>, GetTicketsParams['page']>, TError = unknown>(
- params: GetTicketsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData, Awaited<ReturnType<typeof getTickets>>, QueryKey, GetTicketsParams['page']>> & Pick<
+export function useGetUserTicketsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTickets>>, GetUserTicketsParams['page']>, TError = unknown>(
+ params: GetUserTicketsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData, Awaited<ReturnType<typeof getUserTickets>>, QueryKey, GetUserTicketsParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTickets>>,
+          Awaited<ReturnType<typeof getUserTickets>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTicketsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTickets>>, GetTicketsParams['page']>, TError = unknown>(
- params: GetTicketsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData, Awaited<ReturnType<typeof getTickets>>, QueryKey, GetTicketsParams['page']>>, }
+export function useGetUserTicketsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTickets>>, GetUserTicketsParams['page']>, TError = unknown>(
+ params: GetUserTicketsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData, Awaited<ReturnType<typeof getUserTickets>>, QueryKey, GetUserTicketsParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 전체 이용권 리스트 조회 API
  */
 
-export function useGetTicketsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTickets>>, GetTicketsParams['page']>, TError = unknown>(
- params: GetTicketsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData, Awaited<ReturnType<typeof getTickets>>, QueryKey, GetTicketsParams['page']>>, }
+export function useGetUserTicketsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTickets>>, GetUserTicketsParams['page']>, TError = unknown>(
+ params: GetUserTicketsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData, Awaited<ReturnType<typeof getUserTickets>>, QueryKey, GetUserTicketsParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetTicketsInfiniteQueryOptions(params,options)
+  const queryOptions = getGetUserTicketsInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -310,62 +310,62 @@ export function useGetTicketsInfinite<TData = InfiniteData<Awaited<ReturnType<ty
 
 
 
-export const getGetTicketsQueryOptions = <TData = Awaited<ReturnType<typeof getTickets>>, TError = unknown>(params: GetTicketsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData>>, }
+export const getGetUserTicketsQueryOptions = <TData = Awaited<ReturnType<typeof getUserTickets>>, TError = unknown>(params: GetUserTicketsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetTicketsQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTicketsQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getTickets>>> = ({ signal }) => getTickets(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTickets>>> = ({ signal }) => getUserTickets(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetTicketsQueryResult = NonNullable<Awaited<ReturnType<typeof getTickets>>>
-export type GetTicketsQueryError = unknown
+export type GetUserTicketsQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTickets>>>
+export type GetUserTicketsQueryError = unknown
 
 
-export function useGetTickets<TData = Awaited<ReturnType<typeof getTickets>>, TError = unknown>(
- params: GetTicketsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData>> & Pick<
+export function useGetUserTickets<TData = Awaited<ReturnType<typeof getUserTickets>>, TError = unknown>(
+ params: GetUserTicketsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTickets>>,
+          Awaited<ReturnType<typeof getUserTickets>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTickets<TData = Awaited<ReturnType<typeof getTickets>>, TError = unknown>(
- params: GetTicketsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData>> & Pick<
+export function useGetUserTickets<TData = Awaited<ReturnType<typeof getUserTickets>>, TError = unknown>(
+ params: GetUserTicketsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTickets>>,
+          Awaited<ReturnType<typeof getUserTickets>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTickets<TData = Awaited<ReturnType<typeof getTickets>>, TError = unknown>(
- params: GetTicketsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData>>, }
+export function useGetUserTickets<TData = Awaited<ReturnType<typeof getUserTickets>>, TError = unknown>(
+ params: GetUserTicketsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 전체 이용권 리스트 조회 API
  */
 
-export function useGetTickets<TData = Awaited<ReturnType<typeof getTickets>>, TError = unknown>(
- params: GetTicketsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTickets>>, TError, TData>>, }
+export function useGetUserTickets<TData = Awaited<ReturnType<typeof getUserTickets>>, TError = unknown>(
+ params: GetUserTicketsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTickets>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetTicketsQueryOptions(params,options)
+  const queryOptions = getGetUserTicketsQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -380,7 +380,7 @@ export function useGetTickets<TData = Awaited<ReturnType<typeof getTickets>>, TE
  * 이용권 상세 조회 API 입니다.
  * @summary 이용권 상세 조회 API
  */
-export const getTicketDetail = (
+export const getUserTicketTicketId = (
     ticketId: string,
  signal?: AbortSignal
 ) => {
@@ -393,67 +393,67 @@ export const getTicketDetail = (
     }
   
 
-export const getGetTicketDetailQueryKey = (ticketId: string,) => {
+export const getGetUserTicketTicketIdQueryKey = (ticketId: string,) => {
     return [`/api/v1/user/ticket/${ticketId}`] as const;
     }
 
     
-export const getGetTicketDetailInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getTicketDetail>>>, TError = unknown>(ticketId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>>, }
+export const getGetUserTicketTicketIdInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketTicketId>>>, TError = unknown>(ticketId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetTicketDetailQueryKey(ticketId);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTicketTicketIdQueryKey(ticketId);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getTicketDetail>>> = ({ signal }) => getTicketDetail(ticketId, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTicketTicketId>>> = ({ signal }) => getUserTicketTicketId(ticketId, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(ticketId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, enabled: !!(ticketId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetTicketDetailInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getTicketDetail>>>
-export type GetTicketDetailInfiniteQueryError = unknown
+export type GetUserTicketTicketIdInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTicketTicketId>>>
+export type GetUserTicketTicketIdInfiniteQueryError = unknown
 
 
-export function useGetTicketDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTicketDetail>>>, TError = unknown>(
- ticketId: string, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>> & Pick<
+export function useGetUserTicketTicketIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketTicketId>>>, TError = unknown>(
+ ticketId: string, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTicketDetail>>,
+          Awaited<ReturnType<typeof getUserTicketTicketId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTicketDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTicketDetail>>>, TError = unknown>(
- ticketId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>> & Pick<
+export function useGetUserTicketTicketIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketTicketId>>>, TError = unknown>(
+ ticketId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTicketDetail>>,
+          Awaited<ReturnType<typeof getUserTicketTicketId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTicketDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTicketDetail>>>, TError = unknown>(
- ticketId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>>, }
+export function useGetUserTicketTicketIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketTicketId>>>, TError = unknown>(
+ ticketId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 이용권 상세 조회 API
  */
 
-export function useGetTicketDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTicketDetail>>>, TError = unknown>(
- ticketId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>>, }
+export function useGetUserTicketTicketIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketTicketId>>>, TError = unknown>(
+ ticketId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetTicketDetailInfiniteQueryOptions(ticketId,options)
+  const queryOptions = getGetUserTicketTicketIdInfiniteQueryOptions(ticketId,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -464,62 +464,62 @@ export function useGetTicketDetailInfinite<TData = InfiniteData<Awaited<ReturnTy
 
 
 
-export const getGetTicketDetailQueryOptions = <TData = Awaited<ReturnType<typeof getTicketDetail>>, TError = unknown>(ticketId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>>, }
+export const getGetUserTicketTicketIdQueryOptions = <TData = Awaited<ReturnType<typeof getUserTicketTicketId>>, TError = unknown>(ticketId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetTicketDetailQueryKey(ticketId);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTicketTicketIdQueryKey(ticketId);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getTicketDetail>>> = ({ signal }) => getTicketDetail(ticketId, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTicketTicketId>>> = ({ signal }) => getUserTicketTicketId(ticketId, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(ticketId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, enabled: !!(ticketId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetTicketDetailQueryResult = NonNullable<Awaited<ReturnType<typeof getTicketDetail>>>
-export type GetTicketDetailQueryError = unknown
+export type GetUserTicketTicketIdQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTicketTicketId>>>
+export type GetUserTicketTicketIdQueryError = unknown
 
 
-export function useGetTicketDetail<TData = Awaited<ReturnType<typeof getTicketDetail>>, TError = unknown>(
- ticketId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>> & Pick<
+export function useGetUserTicketTicketId<TData = Awaited<ReturnType<typeof getUserTicketTicketId>>, TError = unknown>(
+ ticketId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTicketDetail>>,
+          Awaited<ReturnType<typeof getUserTicketTicketId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTicketDetail<TData = Awaited<ReturnType<typeof getTicketDetail>>, TError = unknown>(
- ticketId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>> & Pick<
+export function useGetUserTicketTicketId<TData = Awaited<ReturnType<typeof getUserTicketTicketId>>, TError = unknown>(
+ ticketId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTicketDetail>>,
+          Awaited<ReturnType<typeof getUserTicketTicketId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTicketDetail<TData = Awaited<ReturnType<typeof getTicketDetail>>, TError = unknown>(
- ticketId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>>, }
+export function useGetUserTicketTicketId<TData = Awaited<ReturnType<typeof getUserTicketTicketId>>, TError = unknown>(
+ ticketId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 이용권 상세 조회 API
  */
 
-export function useGetTicketDetail<TData = Awaited<ReturnType<typeof getTicketDetail>>, TError = unknown>(
- ticketId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTicketDetail>>, TError, TData>>, }
+export function useGetUserTicketTicketId<TData = Awaited<ReturnType<typeof getUserTicketTicketId>>, TError = unknown>(
+ ticketId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketTicketId>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetTicketDetailQueryOptions(ticketId,options)
+  const queryOptions = getGetUserTicketTicketIdQueryOptions(ticketId,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -534,8 +534,8 @@ export function useGetTicketDetail<TData = Awaited<ReturnType<typeof getTicketDe
  * 이용권 환불 정보 조회 API 입니다.
  * @summary 이용권 환불 정보 조회 API
  */
-export const ticketRefundInfo = (
-    params: TicketRefundInfoParams,
+export const getUserTicketRefundInfo = (
+    params: GetUserTicketRefundInfoParams,
  signal?: AbortSignal
 ) => {
       
@@ -548,67 +548,67 @@ export const ticketRefundInfo = (
     }
   
 
-export const getTicketRefundInfoQueryKey = (params: TicketRefundInfoParams,) => {
+export const getGetUserTicketRefundInfoQueryKey = (params: GetUserTicketRefundInfoParams,) => {
     return [`/api/v1/user/ticket/refund-info`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getTicketRefundInfoInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof ticketRefundInfo>>, TicketRefundInfoParams['page']>, TError = unknown>(params: TicketRefundInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof ticketRefundInfo>>, QueryKey, TicketRefundInfoParams['page']>>, }
+export const getGetUserTicketRefundInfoInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, GetUserTicketRefundInfoParams['page']>, TError = unknown>(params: GetUserTicketRefundInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketRefundInfo>>, QueryKey, GetUserTicketRefundInfoParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getTicketRefundInfoQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTicketRefundInfoQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof ticketRefundInfo>>, QueryKey, TicketRefundInfoParams['page']> = ({ signal, pageParam }) => ticketRefundInfo({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, QueryKey, GetUserTicketRefundInfoParams['page']> = ({ signal, pageParam }) => getUserTicketRefundInfo({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof ticketRefundInfo>>, QueryKey, TicketRefundInfoParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketRefundInfo>>, QueryKey, GetUserTicketRefundInfoParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type TicketRefundInfoInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof ticketRefundInfo>>>
-export type TicketRefundInfoInfiniteQueryError = unknown
+export type GetUserTicketRefundInfoInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTicketRefundInfo>>>
+export type GetUserTicketRefundInfoInfiniteQueryError = unknown
 
 
-export function useTicketRefundInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof ticketRefundInfo>>, TicketRefundInfoParams['page']>, TError = unknown>(
- params: TicketRefundInfoParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof ticketRefundInfo>>, QueryKey, TicketRefundInfoParams['page']>> & Pick<
+export function useGetUserTicketRefundInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, GetUserTicketRefundInfoParams['page']>, TError = unknown>(
+ params: GetUserTicketRefundInfoParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketRefundInfo>>, QueryKey, GetUserTicketRefundInfoParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof ticketRefundInfo>>,
+          Awaited<ReturnType<typeof getUserTicketRefundInfo>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useTicketRefundInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof ticketRefundInfo>>, TicketRefundInfoParams['page']>, TError = unknown>(
- params: TicketRefundInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof ticketRefundInfo>>, QueryKey, TicketRefundInfoParams['page']>> & Pick<
+export function useGetUserTicketRefundInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, GetUserTicketRefundInfoParams['page']>, TError = unknown>(
+ params: GetUserTicketRefundInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketRefundInfo>>, QueryKey, GetUserTicketRefundInfoParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof ticketRefundInfo>>,
+          Awaited<ReturnType<typeof getUserTicketRefundInfo>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useTicketRefundInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof ticketRefundInfo>>, TicketRefundInfoParams['page']>, TError = unknown>(
- params: TicketRefundInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof ticketRefundInfo>>, QueryKey, TicketRefundInfoParams['page']>>, }
+export function useGetUserTicketRefundInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, GetUserTicketRefundInfoParams['page']>, TError = unknown>(
+ params: GetUserTicketRefundInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketRefundInfo>>, QueryKey, GetUserTicketRefundInfoParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 이용권 환불 정보 조회 API
  */
 
-export function useTicketRefundInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof ticketRefundInfo>>, TicketRefundInfoParams['page']>, TError = unknown>(
- params: TicketRefundInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof ticketRefundInfo>>, QueryKey, TicketRefundInfoParams['page']>>, }
+export function useGetUserTicketRefundInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, GetUserTicketRefundInfoParams['page']>, TError = unknown>(
+ params: GetUserTicketRefundInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketRefundInfo>>, QueryKey, GetUserTicketRefundInfoParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getTicketRefundInfoInfiniteQueryOptions(params,options)
+  const queryOptions = getGetUserTicketRefundInfoInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -619,62 +619,62 @@ export function useTicketRefundInfoInfinite<TData = InfiniteData<Awaited<ReturnT
 
 
 
-export const getTicketRefundInfoQueryOptions = <TData = Awaited<ReturnType<typeof ticketRefundInfo>>, TError = unknown>(params: TicketRefundInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData>>, }
+export const getGetUserTicketRefundInfoQueryOptions = <TData = Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError = unknown>(params: GetUserTicketRefundInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getTicketRefundInfoQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTicketRefundInfoQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof ticketRefundInfo>>> = ({ signal }) => ticketRefundInfo(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTicketRefundInfo>>> = ({ signal }) => getUserTicketRefundInfo(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type TicketRefundInfoQueryResult = NonNullable<Awaited<ReturnType<typeof ticketRefundInfo>>>
-export type TicketRefundInfoQueryError = unknown
+export type GetUserTicketRefundInfoQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTicketRefundInfo>>>
+export type GetUserTicketRefundInfoQueryError = unknown
 
 
-export function useTicketRefundInfo<TData = Awaited<ReturnType<typeof ticketRefundInfo>>, TError = unknown>(
- params: TicketRefundInfoParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData>> & Pick<
+export function useGetUserTicketRefundInfo<TData = Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError = unknown>(
+ params: GetUserTicketRefundInfoParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof ticketRefundInfo>>,
+          Awaited<ReturnType<typeof getUserTicketRefundInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useTicketRefundInfo<TData = Awaited<ReturnType<typeof ticketRefundInfo>>, TError = unknown>(
- params: TicketRefundInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData>> & Pick<
+export function useGetUserTicketRefundInfo<TData = Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError = unknown>(
+ params: GetUserTicketRefundInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof ticketRefundInfo>>,
+          Awaited<ReturnType<typeof getUserTicketRefundInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useTicketRefundInfo<TData = Awaited<ReturnType<typeof ticketRefundInfo>>, TError = unknown>(
- params: TicketRefundInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData>>, }
+export function useGetUserTicketRefundInfo<TData = Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError = unknown>(
+ params: GetUserTicketRefundInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 이용권 환불 정보 조회 API
  */
 
-export function useTicketRefundInfo<TData = Awaited<ReturnType<typeof ticketRefundInfo>>, TError = unknown>(
- params: TicketRefundInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketRefundInfo>>, TError, TData>>, }
+export function useGetUserTicketRefundInfo<TData = Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError = unknown>(
+ params: GetUserTicketRefundInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketRefundInfo>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getTicketRefundInfoQueryOptions(params,options)
+  const queryOptions = getGetUserTicketRefundInfoQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -689,8 +689,8 @@ export function useTicketRefundInfo<TData = Awaited<ReturnType<typeof ticketRefu
  * 이용권 양도 정보 조회 API 입니다.
  * @summary 이용권 양도 정보 조회 API
  */
-export const ticketAssignToInfo = (
-    params: TicketAssignToInfoParams,
+export const getUserTicketAssignInfo = (
+    params: GetUserTicketAssignInfoParams,
  signal?: AbortSignal
 ) => {
       
@@ -703,67 +703,67 @@ export const ticketAssignToInfo = (
     }
   
 
-export const getTicketAssignToInfoQueryKey = (params: TicketAssignToInfoParams,) => {
+export const getGetUserTicketAssignInfoQueryKey = (params: GetUserTicketAssignInfoParams,) => {
     return [`/api/v1/user/ticket/assign-info`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getTicketAssignToInfoInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof ticketAssignToInfo>>, TicketAssignToInfoParams['page']>, TError = unknown>(params: TicketAssignToInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData, Awaited<ReturnType<typeof ticketAssignToInfo>>, QueryKey, TicketAssignToInfoParams['page']>>, }
+export const getGetUserTicketAssignInfoInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, GetUserTicketAssignInfoParams['page']>, TError = unknown>(params: GetUserTicketAssignInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketAssignInfo>>, QueryKey, GetUserTicketAssignInfoParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getTicketAssignToInfoQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTicketAssignInfoQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof ticketAssignToInfo>>, QueryKey, TicketAssignToInfoParams['page']> = ({ signal, pageParam }) => ticketAssignToInfo({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, QueryKey, GetUserTicketAssignInfoParams['page']> = ({ signal, pageParam }) => getUserTicketAssignInfo({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData, Awaited<ReturnType<typeof ticketAssignToInfo>>, QueryKey, TicketAssignToInfoParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketAssignInfo>>, QueryKey, GetUserTicketAssignInfoParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type TicketAssignToInfoInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof ticketAssignToInfo>>>
-export type TicketAssignToInfoInfiniteQueryError = unknown
+export type GetUserTicketAssignInfoInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTicketAssignInfo>>>
+export type GetUserTicketAssignInfoInfiniteQueryError = unknown
 
 
-export function useTicketAssignToInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof ticketAssignToInfo>>, TicketAssignToInfoParams['page']>, TError = unknown>(
- params: TicketAssignToInfoParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData, Awaited<ReturnType<typeof ticketAssignToInfo>>, QueryKey, TicketAssignToInfoParams['page']>> & Pick<
+export function useGetUserTicketAssignInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, GetUserTicketAssignInfoParams['page']>, TError = unknown>(
+ params: GetUserTicketAssignInfoParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketAssignInfo>>, QueryKey, GetUserTicketAssignInfoParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof ticketAssignToInfo>>,
+          Awaited<ReturnType<typeof getUserTicketAssignInfo>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useTicketAssignToInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof ticketAssignToInfo>>, TicketAssignToInfoParams['page']>, TError = unknown>(
- params: TicketAssignToInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData, Awaited<ReturnType<typeof ticketAssignToInfo>>, QueryKey, TicketAssignToInfoParams['page']>> & Pick<
+export function useGetUserTicketAssignInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, GetUserTicketAssignInfoParams['page']>, TError = unknown>(
+ params: GetUserTicketAssignInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketAssignInfo>>, QueryKey, GetUserTicketAssignInfoParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof ticketAssignToInfo>>,
+          Awaited<ReturnType<typeof getUserTicketAssignInfo>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useTicketAssignToInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof ticketAssignToInfo>>, TicketAssignToInfoParams['page']>, TError = unknown>(
- params: TicketAssignToInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData, Awaited<ReturnType<typeof ticketAssignToInfo>>, QueryKey, TicketAssignToInfoParams['page']>>, }
+export function useGetUserTicketAssignInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, GetUserTicketAssignInfoParams['page']>, TError = unknown>(
+ params: GetUserTicketAssignInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketAssignInfo>>, QueryKey, GetUserTicketAssignInfoParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 이용권 양도 정보 조회 API
  */
 
-export function useTicketAssignToInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof ticketAssignToInfo>>, TicketAssignToInfoParams['page']>, TError = unknown>(
- params: TicketAssignToInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData, Awaited<ReturnType<typeof ticketAssignToInfo>>, QueryKey, TicketAssignToInfoParams['page']>>, }
+export function useGetUserTicketAssignInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, GetUserTicketAssignInfoParams['page']>, TError = unknown>(
+ params: GetUserTicketAssignInfoParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData, Awaited<ReturnType<typeof getUserTicketAssignInfo>>, QueryKey, GetUserTicketAssignInfoParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getTicketAssignToInfoInfiniteQueryOptions(params,options)
+  const queryOptions = getGetUserTicketAssignInfoInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -774,62 +774,62 @@ export function useTicketAssignToInfoInfinite<TData = InfiniteData<Awaited<Retur
 
 
 
-export const getTicketAssignToInfoQueryOptions = <TData = Awaited<ReturnType<typeof ticketAssignToInfo>>, TError = unknown>(params: TicketAssignToInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData>>, }
+export const getGetUserTicketAssignInfoQueryOptions = <TData = Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError = unknown>(params: GetUserTicketAssignInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getTicketAssignToInfoQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTicketAssignInfoQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof ticketAssignToInfo>>> = ({ signal }) => ticketAssignToInfo(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTicketAssignInfo>>> = ({ signal }) => getUserTicketAssignInfo(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type TicketAssignToInfoQueryResult = NonNullable<Awaited<ReturnType<typeof ticketAssignToInfo>>>
-export type TicketAssignToInfoQueryError = unknown
+export type GetUserTicketAssignInfoQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTicketAssignInfo>>>
+export type GetUserTicketAssignInfoQueryError = unknown
 
 
-export function useTicketAssignToInfo<TData = Awaited<ReturnType<typeof ticketAssignToInfo>>, TError = unknown>(
- params: TicketAssignToInfoParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData>> & Pick<
+export function useGetUserTicketAssignInfo<TData = Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError = unknown>(
+ params: GetUserTicketAssignInfoParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof ticketAssignToInfo>>,
+          Awaited<ReturnType<typeof getUserTicketAssignInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useTicketAssignToInfo<TData = Awaited<ReturnType<typeof ticketAssignToInfo>>, TError = unknown>(
- params: TicketAssignToInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData>> & Pick<
+export function useGetUserTicketAssignInfo<TData = Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError = unknown>(
+ params: GetUserTicketAssignInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof ticketAssignToInfo>>,
+          Awaited<ReturnType<typeof getUserTicketAssignInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useTicketAssignToInfo<TData = Awaited<ReturnType<typeof ticketAssignToInfo>>, TError = unknown>(
- params: TicketAssignToInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData>>, }
+export function useGetUserTicketAssignInfo<TData = Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError = unknown>(
+ params: GetUserTicketAssignInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 이용권 양도 정보 조회 API
  */
 
-export function useTicketAssignToInfo<TData = Awaited<ReturnType<typeof ticketAssignToInfo>>, TError = unknown>(
- params: TicketAssignToInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ticketAssignToInfo>>, TError, TData>>, }
+export function useGetUserTicketAssignInfo<TData = Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError = unknown>(
+ params: GetUserTicketAssignInfoParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTicketAssignInfo>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getTicketAssignToInfoQueryOptions(params,options)
+  const queryOptions = getGetUserTicketAssignInfoQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

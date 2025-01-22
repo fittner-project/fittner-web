@@ -5,11 +5,8 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
+import type { FittnerPageable } from './fittnerPageable';
 
-/**
- * 응답 데이터
- */
-export interface StatusChkResDto {
-  /** 트레이너 상태 */
-  trainerStatus?: string;
-}
+export type GetUserMainCentersParams = {
+pageable: FittnerPageable;
+};

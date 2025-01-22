@@ -36,9 +36,9 @@ import type {
   ApiResponseMessageMyPageInfoResDto,
   ApiResponseMessageObject,
   ApiResponseMessageSalesInfoResDto,
-  GetNoticesParams,
-  GetSalesDetailParams,
-  GetSalesParams,
+  GetUserMyPageNoticesParams,
+  GetUserMyPageSalesDetailParams,
+  GetUserMyPageSalesReservationStartMonthParams,
   NoticeReadReqDto,
   PushSetReqDto
 } from '.././models'
@@ -50,7 +50,7 @@ import { axiosInstance } from '../../mutator/instance-wrapper';
  * 푸시 설정 조회 API 입니다.
  * @summary 푸시 설정 조회 API
  */
-export const getPush = (
+export const postUserMyPagePush = (
     
  signal?: AbortSignal
 ) => {
@@ -64,18 +64,18 @@ export const getPush = (
   
 
 
-export const getGetPushMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof getPush>>, TError,void, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof getPush>>, TError,void, TContext> => {
+export const getPostUserMyPagePushMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError,void, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError,void, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof getPush>>, void> = () => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserMyPagePush>>, void> = () => {
           
 
-          return  getPush()
+          return  postUserMyPagePush()
         }
 
         
@@ -83,23 +83,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type GetPushMutationResult = NonNullable<Awaited<ReturnType<typeof getPush>>>
+    export type PostUserMyPagePushMutationResult = NonNullable<Awaited<ReturnType<typeof postUserMyPagePush>>>
     
-    export type GetPushMutationError = unknown
+    export type PostUserMyPagePushMutationError = unknown
 
     /**
  * @summary 푸시 설정 조회 API
  */
-export const useGetPush = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof getPush>>, TError,void, TContext>, }
+export const usePostUserMyPagePush = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError,void, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof getPush>>,
+        Awaited<ReturnType<typeof postUserMyPagePush>>,
         TError,
         void,
         TContext
       > => {
 
-      const mutationOptions = getGetPushMutationOptions(options);
+      const mutationOptions = getPostUserMyPagePushMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -107,7 +107,7 @@ export const useGetPush = <TError = unknown,
  * 푸시 설정 API 입니다.
  * @summary 푸시 설정 API
  */
-export const setPush = (
+export const postUserMyPagePushSet = (
     pushSetReqDto: PushSetReqDto,
  signal?: AbortSignal
 ) => {
@@ -123,18 +123,18 @@ export const setPush = (
   
 
 
-export const getSetPushMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof setPush>>, TError,{data: PushSetReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof setPush>>, TError,{data: PushSetReqDto}, TContext> => {
+export const getPostUserMyPagePushSetMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserMyPagePushSet>>, TError,{data: PushSetReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserMyPagePushSet>>, TError,{data: PushSetReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof setPush>>, {data: PushSetReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserMyPagePushSet>>, {data: PushSetReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  setPush(data,)
+          return  postUserMyPagePushSet(data,)
         }
 
         
@@ -142,23 +142,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type SetPushMutationResult = NonNullable<Awaited<ReturnType<typeof setPush>>>
-    export type SetPushMutationBody = PushSetReqDto
-    export type SetPushMutationError = unknown
+    export type PostUserMyPagePushSetMutationResult = NonNullable<Awaited<ReturnType<typeof postUserMyPagePushSet>>>
+    export type PostUserMyPagePushSetMutationBody = PushSetReqDto
+    export type PostUserMyPagePushSetMutationError = unknown
 
     /**
  * @summary 푸시 설정 API
  */
-export const useSetPush = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof setPush>>, TError,{data: PushSetReqDto}, TContext>, }
+export const usePostUserMyPagePushSet = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserMyPagePushSet>>, TError,{data: PushSetReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof setPush>>,
+        Awaited<ReturnType<typeof postUserMyPagePushSet>>,
         TError,
         {data: PushSetReqDto},
         TContext
       > => {
 
-      const mutationOptions = getSetPushMutationOptions(options);
+      const mutationOptions = getPostUserMyPagePushSetMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -166,7 +166,7 @@ export const useSetPush = <TError = unknown,
  * 공지사항 읽음 API 입니다.
  * @summary 공지사항 읽음 API
  */
-export const noticeRead = (
+export const postUserMyPageNoticeRead = (
     noticeReadReqDto: NoticeReadReqDto,
  signal?: AbortSignal
 ) => {
@@ -182,18 +182,18 @@ export const noticeRead = (
   
 
 
-export const getNoticeReadMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof noticeRead>>, TError,{data: NoticeReadReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof noticeRead>>, TError,{data: NoticeReadReqDto}, TContext> => {
+export const getPostUserMyPageNoticeReadMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserMyPageNoticeRead>>, TError,{data: NoticeReadReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserMyPageNoticeRead>>, TError,{data: NoticeReadReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof noticeRead>>, {data: NoticeReadReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserMyPageNoticeRead>>, {data: NoticeReadReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  noticeRead(data,)
+          return  postUserMyPageNoticeRead(data,)
         }
 
         
@@ -201,23 +201,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type NoticeReadMutationResult = NonNullable<Awaited<ReturnType<typeof noticeRead>>>
-    export type NoticeReadMutationBody = NoticeReadReqDto
-    export type NoticeReadMutationError = unknown
+    export type PostUserMyPageNoticeReadMutationResult = NonNullable<Awaited<ReturnType<typeof postUserMyPageNoticeRead>>>
+    export type PostUserMyPageNoticeReadMutationBody = NoticeReadReqDto
+    export type PostUserMyPageNoticeReadMutationError = unknown
 
     /**
  * @summary 공지사항 읽음 API
  */
-export const useNoticeRead = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof noticeRead>>, TError,{data: NoticeReadReqDto}, TContext>, }
+export const usePostUserMyPageNoticeRead = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserMyPageNoticeRead>>, TError,{data: NoticeReadReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof noticeRead>>,
+        Awaited<ReturnType<typeof postUserMyPageNoticeRead>>,
         TError,
         {data: NoticeReadReqDto},
         TContext
       > => {
 
-      const mutationOptions = getNoticeReadMutationOptions(options);
+      const mutationOptions = getPostUserMyPageNoticeReadMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -225,7 +225,7 @@ export const useNoticeRead = <TError = unknown,
  * 약관 조회 API 입니다.
  * @summary 약관 조회 API
  */
-export const getTerms = (
+export const getUserMyPageTerms = (
     
  signal?: AbortSignal
 ) => {
@@ -238,67 +238,67 @@ export const getTerms = (
     }
   
 
-export const getGetTermsQueryKey = () => {
+export const getGetUserMyPageTermsQueryKey = () => {
     return [`/api/v1/user/myPage/terms`] as const;
     }
 
     
-export const getGetTermsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+export const getGetUserMyPageTermsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageTerms>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetTermsQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageTermsQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getTerms>>> = ({ signal }) => getTerms(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageTerms>>> = ({ signal }) => getUserMyPageTerms(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetTermsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getTerms>>>
-export type GetTermsInfiniteQueryError = unknown
+export type GetUserMyPageTermsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageTerms>>>
+export type GetUserMyPageTermsInfiniteQueryError = unknown
 
 
-export function useGetTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>> & Pick<
+export function useGetUserMyPageTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageTerms>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTerms>>,
+          Awaited<ReturnType<typeof getUserMyPageTerms>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>> & Pick<
+export function useGetUserMyPageTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageTerms>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTerms>>,
+          Awaited<ReturnType<typeof getUserMyPageTerms>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+export function useGetUserMyPageTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageTerms>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 약관 조회 API
  */
 
-export function useGetTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getTerms>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+export function useGetUserMyPageTermsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageTerms>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetTermsInfiniteQueryOptions(options)
+  const queryOptions = getGetUserMyPageTermsInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -309,62 +309,62 @@ export function useGetTermsInfinite<TData = InfiniteData<Awaited<ReturnType<type
 
 
 
-export const getGetTermsQueryOptions = <TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+export const getGetUserMyPageTermsQueryOptions = <TData = Awaited<ReturnType<typeof getUserMyPageTerms>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetTermsQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageTermsQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getTerms>>> = ({ signal }) => getTerms(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageTerms>>> = ({ signal }) => getUserMyPageTerms(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetTermsQueryResult = NonNullable<Awaited<ReturnType<typeof getTerms>>>
-export type GetTermsQueryError = unknown
+export type GetUserMyPageTermsQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageTerms>>>
+export type GetUserMyPageTermsQueryError = unknown
 
 
-export function useGetTerms<TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>> & Pick<
+export function useGetUserMyPageTerms<TData = Awaited<ReturnType<typeof getUserMyPageTerms>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTerms>>,
+          Awaited<ReturnType<typeof getUserMyPageTerms>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTerms<TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>> & Pick<
+export function useGetUserMyPageTerms<TData = Awaited<ReturnType<typeof getUserMyPageTerms>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getTerms>>,
+          Awaited<ReturnType<typeof getUserMyPageTerms>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetTerms<TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+export function useGetUserMyPageTerms<TData = Awaited<ReturnType<typeof getUserMyPageTerms>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 약관 조회 API
  */
 
-export function useGetTerms<TData = Awaited<ReturnType<typeof getTerms>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getTerms>>, TError, TData>>, }
+export function useGetUserMyPageTerms<TData = Awaited<ReturnType<typeof getUserMyPageTerms>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageTerms>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetTermsQueryOptions(options)
+  const queryOptions = getGetUserMyPageTermsQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -379,9 +379,9 @@ export function useGetTerms<TData = Awaited<ReturnType<typeof getTerms>>, TError
  * 수익관리 조회 API 입니다.
  * @summary 수익관리 조회 API
  */
-export const getSales = (
+export const getUserMyPageSalesReservationStartMonth = (
     reservationStartMonth: string,
-    params: GetSalesParams,
+    params: GetUserMyPageSalesReservationStartMonthParams,
  signal?: AbortSignal
 ) => {
       
@@ -394,73 +394,73 @@ export const getSales = (
     }
   
 
-export const getGetSalesQueryKey = (reservationStartMonth: string,
-    params: GetSalesParams,) => {
+export const getGetUserMyPageSalesReservationStartMonthQueryKey = (reservationStartMonth: string,
+    params: GetUserMyPageSalesReservationStartMonthParams,) => {
     return [`/api/v1/user/myPage/sales/${reservationStartMonth}`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getGetSalesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getSales>>, GetSalesParams['page']>, TError = unknown>(reservationStartMonth: string,
-    params: GetSalesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData, Awaited<ReturnType<typeof getSales>>, QueryKey, GetSalesParams['page']>>, }
+export const getGetUserMyPageSalesReservationStartMonthInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, GetUserMyPageSalesReservationStartMonthParams['page']>, TError = unknown>(reservationStartMonth: string,
+    params: GetUserMyPageSalesReservationStartMonthParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, QueryKey, GetUserMyPageSalesReservationStartMonthParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetSalesQueryKey(reservationStartMonth,params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageSalesReservationStartMonthQueryKey(reservationStartMonth,params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSales>>, QueryKey, GetSalesParams['page']> = ({ signal, pageParam }) => getSales(reservationStartMonth,{...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, QueryKey, GetUserMyPageSalesReservationStartMonthParams['page']> = ({ signal, pageParam }) => getUserMyPageSalesReservationStartMonth(reservationStartMonth,{...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(reservationStartMonth), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData, Awaited<ReturnType<typeof getSales>>, QueryKey, GetSalesParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, enabled: !!(reservationStartMonth), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, QueryKey, GetUserMyPageSalesReservationStartMonthParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetSalesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getSales>>>
-export type GetSalesInfiniteQueryError = unknown
+export type GetUserMyPageSalesReservationStartMonthInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>>
+export type GetUserMyPageSalesReservationStartMonthInfiniteQueryError = unknown
 
 
-export function useGetSalesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSales>>, GetSalesParams['page']>, TError = unknown>(
+export function useGetUserMyPageSalesReservationStartMonthInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, GetUserMyPageSalesReservationStartMonthParams['page']>, TError = unknown>(
  reservationStartMonth: string,
-    params: GetSalesParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData, Awaited<ReturnType<typeof getSales>>, QueryKey, GetSalesParams['page']>> & Pick<
+    params: GetUserMyPageSalesReservationStartMonthParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, QueryKey, GetUserMyPageSalesReservationStartMonthParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSales>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSales>>, GetSalesParams['page']>, TError = unknown>(
+export function useGetUserMyPageSalesReservationStartMonthInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, GetUserMyPageSalesReservationStartMonthParams['page']>, TError = unknown>(
  reservationStartMonth: string,
-    params: GetSalesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData, Awaited<ReturnType<typeof getSales>>, QueryKey, GetSalesParams['page']>> & Pick<
+    params: GetUserMyPageSalesReservationStartMonthParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, QueryKey, GetUserMyPageSalesReservationStartMonthParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSales>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSales>>, GetSalesParams['page']>, TError = unknown>(
+export function useGetUserMyPageSalesReservationStartMonthInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, GetUserMyPageSalesReservationStartMonthParams['page']>, TError = unknown>(
  reservationStartMonth: string,
-    params: GetSalesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData, Awaited<ReturnType<typeof getSales>>, QueryKey, GetSalesParams['page']>>, }
+    params: GetUserMyPageSalesReservationStartMonthParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, QueryKey, GetUserMyPageSalesReservationStartMonthParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 수익관리 조회 API
  */
 
-export function useGetSalesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSales>>, GetSalesParams['page']>, TError = unknown>(
+export function useGetUserMyPageSalesReservationStartMonthInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, GetUserMyPageSalesReservationStartMonthParams['page']>, TError = unknown>(
  reservationStartMonth: string,
-    params: GetSalesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData, Awaited<ReturnType<typeof getSales>>, QueryKey, GetSalesParams['page']>>, }
+    params: GetUserMyPageSalesReservationStartMonthParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, QueryKey, GetUserMyPageSalesReservationStartMonthParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetSalesInfiniteQueryOptions(reservationStartMonth,params,options)
+  const queryOptions = getGetUserMyPageSalesReservationStartMonthInfiniteQueryOptions(reservationStartMonth,params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -471,67 +471,67 @@ export function useGetSalesInfinite<TData = InfiniteData<Awaited<ReturnType<type
 
 
 
-export const getGetSalesQueryOptions = <TData = Awaited<ReturnType<typeof getSales>>, TError = unknown>(reservationStartMonth: string,
-    params: GetSalesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData>>, }
+export const getGetUserMyPageSalesReservationStartMonthQueryOptions = <TData = Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError = unknown>(reservationStartMonth: string,
+    params: GetUserMyPageSalesReservationStartMonthParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetSalesQueryKey(reservationStartMonth,params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageSalesReservationStartMonthQueryKey(reservationStartMonth,params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSales>>> = ({ signal }) => getSales(reservationStartMonth,params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>> = ({ signal }) => getUserMyPageSalesReservationStartMonth(reservationStartMonth,params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(reservationStartMonth), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, enabled: !!(reservationStartMonth), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetSalesQueryResult = NonNullable<Awaited<ReturnType<typeof getSales>>>
-export type GetSalesQueryError = unknown
+export type GetUserMyPageSalesReservationStartMonthQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>>
+export type GetUserMyPageSalesReservationStartMonthQueryError = unknown
 
 
-export function useGetSales<TData = Awaited<ReturnType<typeof getSales>>, TError = unknown>(
+export function useGetUserMyPageSalesReservationStartMonth<TData = Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError = unknown>(
  reservationStartMonth: string,
-    params: GetSalesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData>> & Pick<
+    params: GetUserMyPageSalesReservationStartMonthParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSales>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSales<TData = Awaited<ReturnType<typeof getSales>>, TError = unknown>(
+export function useGetUserMyPageSalesReservationStartMonth<TData = Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError = unknown>(
  reservationStartMonth: string,
-    params: GetSalesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData>> & Pick<
+    params: GetUserMyPageSalesReservationStartMonthParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSales>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSales<TData = Awaited<ReturnType<typeof getSales>>, TError = unknown>(
+export function useGetUserMyPageSalesReservationStartMonth<TData = Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError = unknown>(
  reservationStartMonth: string,
-    params: GetSalesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData>>, }
+    params: GetUserMyPageSalesReservationStartMonthParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 수익관리 조회 API
  */
 
-export function useGetSales<TData = Awaited<ReturnType<typeof getSales>>, TError = unknown>(
+export function useGetUserMyPageSalesReservationStartMonth<TData = Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError = unknown>(
  reservationStartMonth: string,
-    params: GetSalesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSales>>, TError, TData>>, }
+    params: GetUserMyPageSalesReservationStartMonthParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesReservationStartMonth>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetSalesQueryOptions(reservationStartMonth,params,options)
+  const queryOptions = getGetUserMyPageSalesReservationStartMonthQueryOptions(reservationStartMonth,params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -546,8 +546,8 @@ export function useGetSales<TData = Awaited<ReturnType<typeof getSales>>, TError
  * 수익관리 상세 조회 API 입니다.
  * @summary 수익관리 상세 조회 API
  */
-export const getSalesDetail = (
-    params: GetSalesDetailParams,
+export const getUserMyPageSalesDetail = (
+    params: GetUserMyPageSalesDetailParams,
  signal?: AbortSignal
 ) => {
       
@@ -560,67 +560,67 @@ export const getSalesDetail = (
     }
   
 
-export const getGetSalesDetailQueryKey = (params: GetSalesDetailParams,) => {
+export const getGetUserMyPageSalesDetailQueryKey = (params: GetUserMyPageSalesDetailParams,) => {
     return [`/api/v1/user/myPage/sales/detail`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getGetSalesDetailInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getSalesDetail>>, GetSalesDetailParams['page']>, TError = unknown>(params: GetSalesDetailParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getSalesDetail>>, QueryKey, GetSalesDetailParams['page']>>, }
+export const getGetUserMyPageSalesDetailInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, GetUserMyPageSalesDetailParams['page']>, TError = unknown>(params: GetUserMyPageSalesDetailParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, QueryKey, GetUserMyPageSalesDetailParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetSalesDetailQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageSalesDetailQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSalesDetail>>, QueryKey, GetSalesDetailParams['page']> = ({ signal, pageParam }) => getSalesDetail({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, QueryKey, GetUserMyPageSalesDetailParams['page']> = ({ signal, pageParam }) => getUserMyPageSalesDetail({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getSalesDetail>>, QueryKey, GetSalesDetailParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, QueryKey, GetUserMyPageSalesDetailParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetSalesDetailInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getSalesDetail>>>
-export type GetSalesDetailInfiniteQueryError = unknown
+export type GetUserMyPageSalesDetailInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>>
+export type GetUserMyPageSalesDetailInfiniteQueryError = unknown
 
 
-export function useGetSalesDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSalesDetail>>, GetSalesDetailParams['page']>, TError = unknown>(
- params: GetSalesDetailParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getSalesDetail>>, QueryKey, GetSalesDetailParams['page']>> & Pick<
+export function useGetUserMyPageSalesDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, GetUserMyPageSalesDetailParams['page']>, TError = unknown>(
+ params: GetUserMyPageSalesDetailParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, QueryKey, GetUserMyPageSalesDetailParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSalesDetail>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesDetail>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSalesDetail>>, GetSalesDetailParams['page']>, TError = unknown>(
- params: GetSalesDetailParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getSalesDetail>>, QueryKey, GetSalesDetailParams['page']>> & Pick<
+export function useGetUserMyPageSalesDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, GetUserMyPageSalesDetailParams['page']>, TError = unknown>(
+ params: GetUserMyPageSalesDetailParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, QueryKey, GetUserMyPageSalesDetailParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSalesDetail>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesDetail>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSalesDetail>>, GetSalesDetailParams['page']>, TError = unknown>(
- params: GetSalesDetailParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getSalesDetail>>, QueryKey, GetSalesDetailParams['page']>>, }
+export function useGetUserMyPageSalesDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, GetUserMyPageSalesDetailParams['page']>, TError = unknown>(
+ params: GetUserMyPageSalesDetailParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, QueryKey, GetUserMyPageSalesDetailParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 수익관리 상세 조회 API
  */
 
-export function useGetSalesDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSalesDetail>>, GetSalesDetailParams['page']>, TError = unknown>(
- params: GetSalesDetailParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getSalesDetail>>, QueryKey, GetSalesDetailParams['page']>>, }
+export function useGetUserMyPageSalesDetailInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, GetUserMyPageSalesDetailParams['page']>, TError = unknown>(
+ params: GetUserMyPageSalesDetailParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, QueryKey, GetUserMyPageSalesDetailParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetSalesDetailInfiniteQueryOptions(params,options)
+  const queryOptions = getGetUserMyPageSalesDetailInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -631,62 +631,62 @@ export function useGetSalesDetailInfinite<TData = InfiniteData<Awaited<ReturnTyp
 
 
 
-export const getGetSalesDetailQueryOptions = <TData = Awaited<ReturnType<typeof getSalesDetail>>, TError = unknown>(params: GetSalesDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData>>, }
+export const getGetUserMyPageSalesDetailQueryOptions = <TData = Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError = unknown>(params: GetUserMyPageSalesDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetSalesDetailQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageSalesDetailQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSalesDetail>>> = ({ signal }) => getSalesDetail(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>> = ({ signal }) => getUserMyPageSalesDetail(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetSalesDetailQueryResult = NonNullable<Awaited<ReturnType<typeof getSalesDetail>>>
-export type GetSalesDetailQueryError = unknown
+export type GetUserMyPageSalesDetailQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>>
+export type GetUserMyPageSalesDetailQueryError = unknown
 
 
-export function useGetSalesDetail<TData = Awaited<ReturnType<typeof getSalesDetail>>, TError = unknown>(
- params: GetSalesDetailParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData>> & Pick<
+export function useGetUserMyPageSalesDetail<TData = Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError = unknown>(
+ params: GetUserMyPageSalesDetailParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSalesDetail>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesDetail>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesDetail<TData = Awaited<ReturnType<typeof getSalesDetail>>, TError = unknown>(
- params: GetSalesDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData>> & Pick<
+export function useGetUserMyPageSalesDetail<TData = Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError = unknown>(
+ params: GetUserMyPageSalesDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSalesDetail>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesDetail>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesDetail<TData = Awaited<ReturnType<typeof getSalesDetail>>, TError = unknown>(
- params: GetSalesDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData>>, }
+export function useGetUserMyPageSalesDetail<TData = Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError = unknown>(
+ params: GetUserMyPageSalesDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 수익관리 상세 조회 API
  */
 
-export function useGetSalesDetail<TData = Awaited<ReturnType<typeof getSalesDetail>>, TError = unknown>(
- params: GetSalesDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesDetail>>, TError, TData>>, }
+export function useGetUserMyPageSalesDetail<TData = Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError = unknown>(
+ params: GetUserMyPageSalesDetailParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesDetail>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetSalesDetailQueryOptions(params,options)
+  const queryOptions = getGetUserMyPageSalesDetailQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -701,7 +701,7 @@ export function useGetSalesDetail<TData = Awaited<ReturnType<typeof getSalesDeta
  * 수익관리 요약 API 입니다.
  * @summary 수익관리 요약 조회 API
  */
-export const getSalesInfo = (
+export const getUserMyPageSalesInfo = (
     
  signal?: AbortSignal
 ) => {
@@ -714,67 +714,67 @@ export const getSalesInfo = (
     }
   
 
-export const getGetSalesInfoQueryKey = () => {
+export const getGetUserMyPageSalesInfoQueryKey = () => {
     return [`/api/v1/user/myPage/sales-info`] as const;
     }
 
     
-export const getGetSalesInfoInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getSalesInfo>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>>, }
+export const getGetUserMyPageSalesInfoInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetSalesInfoQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageSalesInfoQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSalesInfo>>> = ({ signal }) => getSalesInfo(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>> = ({ signal }) => getUserMyPageSalesInfo(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetSalesInfoInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getSalesInfo>>>
-export type GetSalesInfoInfiniteQueryError = unknown
+export type GetUserMyPageSalesInfoInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>>
+export type GetUserMyPageSalesInfoInfiniteQueryError = unknown
 
 
-export function useGetSalesInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSalesInfo>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>> & Pick<
+export function useGetUserMyPageSalesInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSalesInfo>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSalesInfo>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>> & Pick<
+export function useGetUserMyPageSalesInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSalesInfo>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSalesInfo>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>>, }
+export function useGetUserMyPageSalesInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 수익관리 요약 조회 API
  */
 
-export function useGetSalesInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSalesInfo>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>>, }
+export function useGetUserMyPageSalesInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetSalesInfoInfiniteQueryOptions(options)
+  const queryOptions = getGetUserMyPageSalesInfoInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -785,62 +785,62 @@ export function useGetSalesInfoInfinite<TData = InfiniteData<Awaited<ReturnType<
 
 
 
-export const getGetSalesInfoQueryOptions = <TData = Awaited<ReturnType<typeof getSalesInfo>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>>, }
+export const getGetUserMyPageSalesInfoQueryOptions = <TData = Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetSalesInfoQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageSalesInfoQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSalesInfo>>> = ({ signal }) => getSalesInfo(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>> = ({ signal }) => getUserMyPageSalesInfo(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetSalesInfoQueryResult = NonNullable<Awaited<ReturnType<typeof getSalesInfo>>>
-export type GetSalesInfoQueryError = unknown
+export type GetUserMyPageSalesInfoQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>>
+export type GetUserMyPageSalesInfoQueryError = unknown
 
 
-export function useGetSalesInfo<TData = Awaited<ReturnType<typeof getSalesInfo>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>> & Pick<
+export function useGetUserMyPageSalesInfo<TData = Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSalesInfo>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesInfo<TData = Awaited<ReturnType<typeof getSalesInfo>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>> & Pick<
+export function useGetUserMyPageSalesInfo<TData = Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSalesInfo>>,
+          Awaited<ReturnType<typeof getUserMyPageSalesInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSalesInfo<TData = Awaited<ReturnType<typeof getSalesInfo>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>>, }
+export function useGetUserMyPageSalesInfo<TData = Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 수익관리 요약 조회 API
  */
 
-export function useGetSalesInfo<TData = Awaited<ReturnType<typeof getSalesInfo>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSalesInfo>>, TError, TData>>, }
+export function useGetUserMyPageSalesInfo<TData = Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageSalesInfo>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetSalesInfoQueryOptions(options)
+  const queryOptions = getGetUserMyPageSalesInfoQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -855,8 +855,8 @@ export function useGetSalesInfo<TData = Awaited<ReturnType<typeof getSalesInfo>>
  * 공지사항 조회 API 입니다.
  * @summary 공지사항 조회 API
  */
-export const getNotices = (
-    params: GetNoticesParams,
+export const getUserMyPageNotices = (
+    params: GetUserMyPageNoticesParams,
  signal?: AbortSignal
 ) => {
       
@@ -869,67 +869,67 @@ export const getNotices = (
     }
   
 
-export const getGetNoticesQueryKey = (params: GetNoticesParams,) => {
+export const getGetUserMyPageNoticesQueryKey = (params: GetUserMyPageNoticesParams,) => {
     return [`/api/v1/user/myPage/notices`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getGetNoticesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(params: GetNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>>, }
+export const getGetUserMyPageNoticesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageNotices>>, GetUserMyPageNoticesParams['page']>, TError = unknown>(params: GetUserMyPageNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageNotices>>, QueryKey, GetUserMyPageNoticesParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetNoticesQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageNoticesQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']> = ({ signal, pageParam }) => getNotices({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageNotices>>, QueryKey, GetUserMyPageNoticesParams['page']> = ({ signal, pageParam }) => getUserMyPageNotices({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageNotices>>, QueryKey, GetUserMyPageNoticesParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetNoticesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getNotices>>>
-export type GetNoticesInfiniteQueryError = unknown
+export type GetUserMyPageNoticesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageNotices>>>
+export type GetUserMyPageNoticesInfiniteQueryError = unknown
 
 
-export function useGetNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(
- params: GetNoticesParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>> & Pick<
+export function useGetUserMyPageNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageNotices>>, GetUserMyPageNoticesParams['page']>, TError = unknown>(
+ params: GetUserMyPageNoticesParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageNotices>>, QueryKey, GetUserMyPageNoticesParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getNotices>>,
+          Awaited<ReturnType<typeof getUserMyPageNotices>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(
- params: GetNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>> & Pick<
+export function useGetUserMyPageNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageNotices>>, GetUserMyPageNoticesParams['page']>, TError = unknown>(
+ params: GetUserMyPageNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageNotices>>, QueryKey, GetUserMyPageNoticesParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getNotices>>,
+          Awaited<ReturnType<typeof getUserMyPageNotices>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(
- params: GetNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>>, }
+export function useGetUserMyPageNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageNotices>>, GetUserMyPageNoticesParams['page']>, TError = unknown>(
+ params: GetUserMyPageNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageNotices>>, QueryKey, GetUserMyPageNoticesParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 공지사항 조회 API
  */
 
-export function useGetNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getNotices>>, GetNoticesParams['page']>, TError = unknown>(
- params: GetNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData, Awaited<ReturnType<typeof getNotices>>, QueryKey, GetNoticesParams['page']>>, }
+export function useGetUserMyPageNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageNotices>>, GetUserMyPageNoticesParams['page']>, TError = unknown>(
+ params: GetUserMyPageNoticesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData, Awaited<ReturnType<typeof getUserMyPageNotices>>, QueryKey, GetUserMyPageNoticesParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetNoticesInfiniteQueryOptions(params,options)
+  const queryOptions = getGetUserMyPageNoticesInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -940,62 +940,62 @@ export function useGetNoticesInfinite<TData = InfiniteData<Awaited<ReturnType<ty
 
 
 
-export const getGetNoticesQueryOptions = <TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(params: GetNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>>, }
+export const getGetUserMyPageNoticesQueryOptions = <TData = Awaited<ReturnType<typeof getUserMyPageNotices>>, TError = unknown>(params: GetUserMyPageNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetNoticesQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageNoticesQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNotices>>> = ({ signal }) => getNotices(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageNotices>>> = ({ signal }) => getUserMyPageNotices(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetNoticesQueryResult = NonNullable<Awaited<ReturnType<typeof getNotices>>>
-export type GetNoticesQueryError = unknown
+export type GetUserMyPageNoticesQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageNotices>>>
+export type GetUserMyPageNoticesQueryError = unknown
 
 
-export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(
- params: GetNoticesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>> & Pick<
+export function useGetUserMyPageNotices<TData = Awaited<ReturnType<typeof getUserMyPageNotices>>, TError = unknown>(
+ params: GetUserMyPageNoticesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getNotices>>,
+          Awaited<ReturnType<typeof getUserMyPageNotices>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(
- params: GetNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>> & Pick<
+export function useGetUserMyPageNotices<TData = Awaited<ReturnType<typeof getUserMyPageNotices>>, TError = unknown>(
+ params: GetUserMyPageNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getNotices>>,
+          Awaited<ReturnType<typeof getUserMyPageNotices>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(
- params: GetNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>>, }
+export function useGetUserMyPageNotices<TData = Awaited<ReturnType<typeof getUserMyPageNotices>>, TError = unknown>(
+ params: GetUserMyPageNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 공지사항 조회 API
  */
 
-export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TError = unknown>(
- params: GetNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNotices>>, TError, TData>>, }
+export function useGetUserMyPageNotices<TData = Awaited<ReturnType<typeof getUserMyPageNotices>>, TError = unknown>(
+ params: GetUserMyPageNoticesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageNotices>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetNoticesQueryOptions(params,options)
+  const queryOptions = getGetUserMyPageNoticesQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -1010,7 +1010,7 @@ export function useGetNotices<TData = Awaited<ReturnType<typeof getNotices>>, TE
  * 마이페이지 기본 정보 조회 API 입니다.
  * @summary 마이페이 기본 정보 조회 API
  */
-export const myPageInfo = (
+export const getUserMyPageDefaultInfo = (
     
  signal?: AbortSignal
 ) => {
@@ -1023,67 +1023,67 @@ export const myPageInfo = (
     }
   
 
-export const getMyPageInfoQueryKey = () => {
+export const getGetUserMyPageDefaultInfoQueryKey = () => {
     return [`/api/v1/user/myPage/default-info`] as const;
     }
 
     
-export const getMyPageInfoInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+export const getGetUserMyPageDefaultInfoInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMyPageInfoQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageDefaultInfoQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof myPageInfo>>> = ({ signal }) => myPageInfo(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>> = ({ signal }) => getUserMyPageDefaultInfo(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type MyPageInfoInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof myPageInfo>>>
-export type MyPageInfoInfiniteQueryError = unknown
+export type GetUserMyPageDefaultInfoInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>>
+export type GetUserMyPageDefaultInfoInfiniteQueryError = unknown
 
 
-export function useMyPageInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>> & Pick<
+export function useGetUserMyPageDefaultInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof myPageInfo>>,
+          Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMyPageInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>> & Pick<
+export function useGetUserMyPageDefaultInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof myPageInfo>>,
+          Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMyPageInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+export function useGetUserMyPageDefaultInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 마이페이 기본 정보 조회 API
  */
 
-export function useMyPageInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof myPageInfo>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+export function useGetUserMyPageDefaultInfoInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMyPageInfoInfiniteQueryOptions(options)
+  const queryOptions = getGetUserMyPageDefaultInfoInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -1094,62 +1094,62 @@ export function useMyPageInfoInfinite<TData = InfiniteData<Awaited<ReturnType<ty
 
 
 
-export const getMyPageInfoQueryOptions = <TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+export const getGetUserMyPageDefaultInfoQueryOptions = <TData = Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMyPageInfoQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPageDefaultInfoQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof myPageInfo>>> = ({ signal }) => myPageInfo(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>> = ({ signal }) => getUserMyPageDefaultInfo(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type MyPageInfoQueryResult = NonNullable<Awaited<ReturnType<typeof myPageInfo>>>
-export type MyPageInfoQueryError = unknown
+export type GetUserMyPageDefaultInfoQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>>
+export type GetUserMyPageDefaultInfoQueryError = unknown
 
 
-export function useMyPageInfo<TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>> & Pick<
+export function useGetUserMyPageDefaultInfo<TData = Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof myPageInfo>>,
+          Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMyPageInfo<TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>> & Pick<
+export function useGetUserMyPageDefaultInfo<TData = Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof myPageInfo>>,
+          Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useMyPageInfo<TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+export function useGetUserMyPageDefaultInfo<TData = Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 마이페이 기본 정보 조회 API
  */
 
-export function useMyPageInfo<TData = Awaited<ReturnType<typeof myPageInfo>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof myPageInfo>>, TError, TData>>, }
+export function useGetUserMyPageDefaultInfo<TData = Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPageDefaultInfo>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getMyPageInfoQueryOptions(options)
+  const queryOptions = getGetUserMyPageDefaultInfoQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

@@ -28,91 +28,93 @@ import type {
   ApiResponseMessageHardUpdateResDto,
   ApiResponseMessageSplashResDto,
   ApiResponseMessageStatusChkResDto,
-  GetSplashParams,
-  HardUpdateParams
+  GetUserCommonAppVersionChkParams,
+  GetUserCommonSplashParams,
+  GetUserCommonStatusChkParams
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
 /**
- * 트레이너 상태 체크 API 입니다.</br>(trainerStatus 응답 필드가 'STOP'일때만 잠금팝업)
+ * 트레이너 상태 체크 API 입니다.
  * @summary 트레이너 상태 체크 API
  */
-export const statusChk = (
-    
+export const getUserCommonStatusChk = (
+    params: GetUserCommonStatusChkParams,
  signal?: AbortSignal
 ) => {
       
       
       return axiosInstance<ApiResponseMessageStatusChkResDto>(
-      {url: `/api/v1/user/common/status-chk`, method: 'GET', signal
+      {url: `/api/v1/user/common/status-chk`, method: 'GET',
+        params, signal
     },
       );
     }
   
 
-export const getStatusChkQueryKey = () => {
-    return [`/api/v1/user/common/status-chk`] as const;
+export const getGetUserCommonStatusChkQueryKey = (params: GetUserCommonStatusChkParams,) => {
+    return [`/api/v1/user/common/status-chk`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getStatusChkInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof statusChk>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>>, }
+export const getGetUserCommonStatusChkInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonStatusChk>>, GetUserCommonStatusChkParams['page']>, TError = unknown>(params: GetUserCommonStatusChkParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonStatusChk>>, QueryKey, GetUserCommonStatusChkParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getStatusChkQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCommonStatusChkQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof statusChk>>> = ({ signal }) => statusChk(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCommonStatusChk>>, QueryKey, GetUserCommonStatusChkParams['page']> = ({ signal, pageParam }) => getUserCommonStatusChk({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonStatusChk>>, QueryKey, GetUserCommonStatusChkParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type StatusChkInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof statusChk>>>
-export type StatusChkInfiniteQueryError = unknown
+export type GetUserCommonStatusChkInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCommonStatusChk>>>
+export type GetUserCommonStatusChkInfiniteQueryError = unknown
 
 
-export function useStatusChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof statusChk>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>> & Pick<
+export function useGetUserCommonStatusChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonStatusChk>>, GetUserCommonStatusChkParams['page']>, TError = unknown>(
+ params: GetUserCommonStatusChkParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonStatusChk>>, QueryKey, GetUserCommonStatusChkParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof statusChk>>,
+          Awaited<ReturnType<typeof getUserCommonStatusChk>>,
           TError,
-          TData
+          TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useStatusChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof statusChk>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>> & Pick<
+export function useGetUserCommonStatusChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonStatusChk>>, GetUserCommonStatusChkParams['page']>, TError = unknown>(
+ params: GetUserCommonStatusChkParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonStatusChk>>, QueryKey, GetUserCommonStatusChkParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof statusChk>>,
+          Awaited<ReturnType<typeof getUserCommonStatusChk>>,
           TError,
-          TData
+          TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useStatusChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof statusChk>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>>, }
+export function useGetUserCommonStatusChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonStatusChk>>, GetUserCommonStatusChkParams['page']>, TError = unknown>(
+ params: GetUserCommonStatusChkParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonStatusChk>>, QueryKey, GetUserCommonStatusChkParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너 상태 체크 API
  */
 
-export function useStatusChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof statusChk>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>>, }
+export function useGetUserCommonStatusChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonStatusChk>>, GetUserCommonStatusChkParams['page']>, TError = unknown>(
+ params: GetUserCommonStatusChkParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonStatusChk>>, QueryKey, GetUserCommonStatusChkParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getStatusChkInfiniteQueryOptions(options)
+  const queryOptions = getGetUserCommonStatusChkInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -123,62 +125,62 @@ export function useStatusChkInfinite<TData = InfiniteData<Awaited<ReturnType<typ
 
 
 
-export const getStatusChkQueryOptions = <TData = Awaited<ReturnType<typeof statusChk>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>>, }
+export const getGetUserCommonStatusChkQueryOptions = <TData = Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError = unknown>(params: GetUserCommonStatusChkParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getStatusChkQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCommonStatusChkQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof statusChk>>> = ({ signal }) => statusChk(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCommonStatusChk>>> = ({ signal }) => getUserCommonStatusChk(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type StatusChkQueryResult = NonNullable<Awaited<ReturnType<typeof statusChk>>>
-export type StatusChkQueryError = unknown
+export type GetUserCommonStatusChkQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCommonStatusChk>>>
+export type GetUserCommonStatusChkQueryError = unknown
 
 
-export function useStatusChk<TData = Awaited<ReturnType<typeof statusChk>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>> & Pick<
+export function useGetUserCommonStatusChk<TData = Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError = unknown>(
+ params: GetUserCommonStatusChkParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof statusChk>>,
+          Awaited<ReturnType<typeof getUserCommonStatusChk>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useStatusChk<TData = Awaited<ReturnType<typeof statusChk>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>> & Pick<
+export function useGetUserCommonStatusChk<TData = Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError = unknown>(
+ params: GetUserCommonStatusChkParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof statusChk>>,
+          Awaited<ReturnType<typeof getUserCommonStatusChk>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useStatusChk<TData = Awaited<ReturnType<typeof statusChk>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>>, }
+export function useGetUserCommonStatusChk<TData = Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError = unknown>(
+ params: GetUserCommonStatusChkParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 트레이너 상태 체크 API
  */
 
-export function useStatusChk<TData = Awaited<ReturnType<typeof statusChk>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof statusChk>>, TError, TData>>, }
+export function useGetUserCommonStatusChk<TData = Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError = unknown>(
+ params: GetUserCommonStatusChkParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonStatusChk>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getStatusChkQueryOptions(options)
+  const queryOptions = getGetUserCommonStatusChkQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -193,8 +195,8 @@ export function useStatusChk<TData = Awaited<ReturnType<typeof statusChk>>, TErr
  * 스플래시 조회 API 입니다.
  * @summary 스플래시 API
  */
-export const getSplash = (
-    params?: GetSplashParams,
+export const getUserCommonSplash = (
+    params?: GetUserCommonSplashParams,
  signal?: AbortSignal
 ) => {
       
@@ -207,67 +209,67 @@ export const getSplash = (
     }
   
 
-export const getGetSplashQueryKey = (params?: GetSplashParams,) => {
+export const getGetUserCommonSplashQueryKey = (params?: GetUserCommonSplashParams,) => {
     return [`/api/v1/user/common/splash`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getGetSplashInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getSplash>>, GetSplashParams['page']>, TError = unknown>(params?: GetSplashParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData, Awaited<ReturnType<typeof getSplash>>, QueryKey, GetSplashParams['page']>>, }
+export const getGetUserCommonSplashInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonSplash>>, GetUserCommonSplashParams['page']>, TError = unknown>(params?: GetUserCommonSplashParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData, Awaited<ReturnType<typeof getUserCommonSplash>>, QueryKey, GetUserCommonSplashParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetSplashQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCommonSplashQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSplash>>, QueryKey, GetSplashParams['page']> = ({ signal, pageParam }) => getSplash({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCommonSplash>>, QueryKey, GetUserCommonSplashParams['page']> = ({ signal, pageParam }) => getUserCommonSplash({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData, Awaited<ReturnType<typeof getSplash>>, QueryKey, GetSplashParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData, Awaited<ReturnType<typeof getUserCommonSplash>>, QueryKey, GetUserCommonSplashParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetSplashInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getSplash>>>
-export type GetSplashInfiniteQueryError = unknown
+export type GetUserCommonSplashInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCommonSplash>>>
+export type GetUserCommonSplashInfiniteQueryError = unknown
 
 
-export function useGetSplashInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSplash>>, GetSplashParams['page']>, TError = unknown>(
- params: undefined |  GetSplashParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData, Awaited<ReturnType<typeof getSplash>>, QueryKey, GetSplashParams['page']>> & Pick<
+export function useGetUserCommonSplashInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonSplash>>, GetUserCommonSplashParams['page']>, TError = unknown>(
+ params: undefined |  GetUserCommonSplashParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData, Awaited<ReturnType<typeof getUserCommonSplash>>, QueryKey, GetUserCommonSplashParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSplash>>,
+          Awaited<ReturnType<typeof getUserCommonSplash>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSplashInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSplash>>, GetSplashParams['page']>, TError = unknown>(
- params?: GetSplashParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData, Awaited<ReturnType<typeof getSplash>>, QueryKey, GetSplashParams['page']>> & Pick<
+export function useGetUserCommonSplashInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonSplash>>, GetUserCommonSplashParams['page']>, TError = unknown>(
+ params?: GetUserCommonSplashParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData, Awaited<ReturnType<typeof getUserCommonSplash>>, QueryKey, GetUserCommonSplashParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSplash>>,
+          Awaited<ReturnType<typeof getUserCommonSplash>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSplashInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSplash>>, GetSplashParams['page']>, TError = unknown>(
- params?: GetSplashParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData, Awaited<ReturnType<typeof getSplash>>, QueryKey, GetSplashParams['page']>>, }
+export function useGetUserCommonSplashInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonSplash>>, GetUserCommonSplashParams['page']>, TError = unknown>(
+ params?: GetUserCommonSplashParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData, Awaited<ReturnType<typeof getUserCommonSplash>>, QueryKey, GetUserCommonSplashParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 스플래시 API
  */
 
-export function useGetSplashInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getSplash>>, GetSplashParams['page']>, TError = unknown>(
- params?: GetSplashParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData, Awaited<ReturnType<typeof getSplash>>, QueryKey, GetSplashParams['page']>>, }
+export function useGetUserCommonSplashInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonSplash>>, GetUserCommonSplashParams['page']>, TError = unknown>(
+ params?: GetUserCommonSplashParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData, Awaited<ReturnType<typeof getUserCommonSplash>>, QueryKey, GetUserCommonSplashParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetSplashInfiniteQueryOptions(params,options)
+  const queryOptions = getGetUserCommonSplashInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -278,62 +280,62 @@ export function useGetSplashInfinite<TData = InfiniteData<Awaited<ReturnType<typ
 
 
 
-export const getGetSplashQueryOptions = <TData = Awaited<ReturnType<typeof getSplash>>, TError = unknown>(params?: GetSplashParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData>>, }
+export const getGetUserCommonSplashQueryOptions = <TData = Awaited<ReturnType<typeof getUserCommonSplash>>, TError = unknown>(params?: GetUserCommonSplashParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetSplashQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCommonSplashQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSplash>>> = ({ signal }) => getSplash(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCommonSplash>>> = ({ signal }) => getUserCommonSplash(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetSplashQueryResult = NonNullable<Awaited<ReturnType<typeof getSplash>>>
-export type GetSplashQueryError = unknown
+export type GetUserCommonSplashQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCommonSplash>>>
+export type GetUserCommonSplashQueryError = unknown
 
 
-export function useGetSplash<TData = Awaited<ReturnType<typeof getSplash>>, TError = unknown>(
- params: undefined |  GetSplashParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData>> & Pick<
+export function useGetUserCommonSplash<TData = Awaited<ReturnType<typeof getUserCommonSplash>>, TError = unknown>(
+ params: undefined |  GetUserCommonSplashParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSplash>>,
+          Awaited<ReturnType<typeof getUserCommonSplash>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSplash<TData = Awaited<ReturnType<typeof getSplash>>, TError = unknown>(
- params?: GetSplashParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData>> & Pick<
+export function useGetUserCommonSplash<TData = Awaited<ReturnType<typeof getUserCommonSplash>>, TError = unknown>(
+ params?: GetUserCommonSplashParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSplash>>,
+          Awaited<ReturnType<typeof getUserCommonSplash>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetSplash<TData = Awaited<ReturnType<typeof getSplash>>, TError = unknown>(
- params?: GetSplashParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData>>, }
+export function useGetUserCommonSplash<TData = Awaited<ReturnType<typeof getUserCommonSplash>>, TError = unknown>(
+ params?: GetUserCommonSplashParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 스플래시 API
  */
 
-export function useGetSplash<TData = Awaited<ReturnType<typeof getSplash>>, TError = unknown>(
- params?: GetSplashParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSplash>>, TError, TData>>, }
+export function useGetUserCommonSplash<TData = Awaited<ReturnType<typeof getUserCommonSplash>>, TError = unknown>(
+ params?: GetUserCommonSplashParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonSplash>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetSplashQueryOptions(params,options)
+  const queryOptions = getGetUserCommonSplashQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -348,7 +350,7 @@ export function useGetSplash<TData = Awaited<ReturnType<typeof getSplash>>, TErr
  * 브랜드컬러 조회 API 입니다.
  * @summary 브랜드컬러 조회 API
  */
-export const getBrandColor = (
+export const getUserCommonBrandColor = (
     
  signal?: AbortSignal
 ) => {
@@ -361,67 +363,67 @@ export const getBrandColor = (
     }
   
 
-export const getGetBrandColorQueryKey = () => {
+export const getGetUserCommonBrandColorQueryKey = () => {
     return [`/api/v1/user/common/brand-color`] as const;
     }
 
     
-export const getGetBrandColorInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+export const getGetUserCommonBrandColorInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonBrandColor>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetBrandColorQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCommonBrandColorQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getBrandColor>>> = ({ signal }) => getBrandColor(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCommonBrandColor>>> = ({ signal }) => getUserCommonBrandColor(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetBrandColorInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getBrandColor>>>
-export type GetBrandColorInfiniteQueryError = unknown
+export type GetUserCommonBrandColorInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCommonBrandColor>>>
+export type GetUserCommonBrandColorInfiniteQueryError = unknown
 
 
-export function useGetBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>> & Pick<
+export function useGetUserCommonBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonBrandColor>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getBrandColor>>,
+          Awaited<ReturnType<typeof getUserCommonBrandColor>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>> & Pick<
+export function useGetUserCommonBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonBrandColor>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getBrandColor>>,
+          Awaited<ReturnType<typeof getUserCommonBrandColor>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+export function useGetUserCommonBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonBrandColor>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 브랜드컬러 조회 API
  */
 
-export function useGetBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getBrandColor>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+export function useGetUserCommonBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonBrandColor>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetBrandColorInfiniteQueryOptions(options)
+  const queryOptions = getGetUserCommonBrandColorInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -432,62 +434,62 @@ export function useGetBrandColorInfinite<TData = InfiniteData<Awaited<ReturnType
 
 
 
-export const getGetBrandColorQueryOptions = <TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+export const getGetUserCommonBrandColorQueryOptions = <TData = Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetBrandColorQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCommonBrandColorQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getBrandColor>>> = ({ signal }) => getBrandColor(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCommonBrandColor>>> = ({ signal }) => getUserCommonBrandColor(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetBrandColorQueryResult = NonNullable<Awaited<ReturnType<typeof getBrandColor>>>
-export type GetBrandColorQueryError = unknown
+export type GetUserCommonBrandColorQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCommonBrandColor>>>
+export type GetUserCommonBrandColorQueryError = unknown
 
 
-export function useGetBrandColor<TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>> & Pick<
+export function useGetUserCommonBrandColor<TData = Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getBrandColor>>,
+          Awaited<ReturnType<typeof getUserCommonBrandColor>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetBrandColor<TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>> & Pick<
+export function useGetUserCommonBrandColor<TData = Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getBrandColor>>,
+          Awaited<ReturnType<typeof getUserCommonBrandColor>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetBrandColor<TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+export function useGetUserCommonBrandColor<TData = Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 브랜드컬러 조회 API
  */
 
-export function useGetBrandColor<TData = Awaited<ReturnType<typeof getBrandColor>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getBrandColor>>, TError, TData>>, }
+export function useGetUserCommonBrandColor<TData = Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonBrandColor>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetBrandColorQueryOptions(options)
+  const queryOptions = getGetUserCommonBrandColorQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -502,8 +504,8 @@ export function useGetBrandColor<TData = Awaited<ReturnType<typeof getBrandColor
  * 앱 버전 확인 API 입니다.
  * @summary 앱 버전 확인 조회 API
  */
-export const hardUpdate = (
-    params: HardUpdateParams,
+export const getUserCommonAppVersionChk = (
+    params: GetUserCommonAppVersionChkParams,
  signal?: AbortSignal
 ) => {
       
@@ -516,67 +518,67 @@ export const hardUpdate = (
     }
   
 
-export const getHardUpdateQueryKey = (params: HardUpdateParams,) => {
+export const getGetUserCommonAppVersionChkQueryKey = (params: GetUserCommonAppVersionChkParams,) => {
     return [`/api/v1/user/common/app/version-chk`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getHardUpdateInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof hardUpdate>>, HardUpdateParams['page']>, TError = unknown>(params: HardUpdateParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData, Awaited<ReturnType<typeof hardUpdate>>, QueryKey, HardUpdateParams['page']>>, }
+export const getGetUserCommonAppVersionChkInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, GetUserCommonAppVersionChkParams['page']>, TError = unknown>(params: GetUserCommonAppVersionChkParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, QueryKey, GetUserCommonAppVersionChkParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getHardUpdateQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCommonAppVersionChkQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof hardUpdate>>, QueryKey, HardUpdateParams['page']> = ({ signal, pageParam }) => hardUpdate({...params, page: pageParam || params?.['page']}, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, QueryKey, GetUserCommonAppVersionChkParams['page']> = ({ signal, pageParam }) => getUserCommonAppVersionChk({...params, page: pageParam || params?.['page']}, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData, Awaited<ReturnType<typeof hardUpdate>>, QueryKey, HardUpdateParams['page']> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, QueryKey, GetUserCommonAppVersionChkParams['page']> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type HardUpdateInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof hardUpdate>>>
-export type HardUpdateInfiniteQueryError = unknown
+export type GetUserCommonAppVersionChkInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>>
+export type GetUserCommonAppVersionChkInfiniteQueryError = unknown
 
 
-export function useHardUpdateInfinite<TData = InfiniteData<Awaited<ReturnType<typeof hardUpdate>>, HardUpdateParams['page']>, TError = unknown>(
- params: HardUpdateParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData, Awaited<ReturnType<typeof hardUpdate>>, QueryKey, HardUpdateParams['page']>> & Pick<
+export function useGetUserCommonAppVersionChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, GetUserCommonAppVersionChkParams['page']>, TError = unknown>(
+ params: GetUserCommonAppVersionChkParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, QueryKey, GetUserCommonAppVersionChkParams['page']>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof hardUpdate>>,
+          Awaited<ReturnType<typeof getUserCommonAppVersionChk>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useHardUpdateInfinite<TData = InfiniteData<Awaited<ReturnType<typeof hardUpdate>>, HardUpdateParams['page']>, TError = unknown>(
- params: HardUpdateParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData, Awaited<ReturnType<typeof hardUpdate>>, QueryKey, HardUpdateParams['page']>> & Pick<
+export function useGetUserCommonAppVersionChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, GetUserCommonAppVersionChkParams['page']>, TError = unknown>(
+ params: GetUserCommonAppVersionChkParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, QueryKey, GetUserCommonAppVersionChkParams['page']>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof hardUpdate>>,
+          Awaited<ReturnType<typeof getUserCommonAppVersionChk>>,
           TError,
           TData, QueryKey
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useHardUpdateInfinite<TData = InfiniteData<Awaited<ReturnType<typeof hardUpdate>>, HardUpdateParams['page']>, TError = unknown>(
- params: HardUpdateParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData, Awaited<ReturnType<typeof hardUpdate>>, QueryKey, HardUpdateParams['page']>>, }
+export function useGetUserCommonAppVersionChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, GetUserCommonAppVersionChkParams['page']>, TError = unknown>(
+ params: GetUserCommonAppVersionChkParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, QueryKey, GetUserCommonAppVersionChkParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 앱 버전 확인 조회 API
  */
 
-export function useHardUpdateInfinite<TData = InfiniteData<Awaited<ReturnType<typeof hardUpdate>>, HardUpdateParams['page']>, TError = unknown>(
- params: HardUpdateParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData, Awaited<ReturnType<typeof hardUpdate>>, QueryKey, HardUpdateParams['page']>>, }
+export function useGetUserCommonAppVersionChkInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, GetUserCommonAppVersionChkParams['page']>, TError = unknown>(
+ params: GetUserCommonAppVersionChkParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData, Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, QueryKey, GetUserCommonAppVersionChkParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getHardUpdateInfiniteQueryOptions(params,options)
+  const queryOptions = getGetUserCommonAppVersionChkInfiniteQueryOptions(params,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -587,62 +589,62 @@ export function useHardUpdateInfinite<TData = InfiniteData<Awaited<ReturnType<ty
 
 
 
-export const getHardUpdateQueryOptions = <TData = Awaited<ReturnType<typeof hardUpdate>>, TError = unknown>(params: HardUpdateParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData>>, }
+export const getGetUserCommonAppVersionChkQueryOptions = <TData = Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError = unknown>(params: GetUserCommonAppVersionChkParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getHardUpdateQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUserCommonAppVersionChkQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof hardUpdate>>> = ({ signal }) => hardUpdate(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>> = ({ signal }) => getUserCommonAppVersionChk(params, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type HardUpdateQueryResult = NonNullable<Awaited<ReturnType<typeof hardUpdate>>>
-export type HardUpdateQueryError = unknown
+export type GetUserCommonAppVersionChkQueryResult = NonNullable<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>>
+export type GetUserCommonAppVersionChkQueryError = unknown
 
 
-export function useHardUpdate<TData = Awaited<ReturnType<typeof hardUpdate>>, TError = unknown>(
- params: HardUpdateParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData>> & Pick<
+export function useGetUserCommonAppVersionChk<TData = Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError = unknown>(
+ params: GetUserCommonAppVersionChkParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof hardUpdate>>,
+          Awaited<ReturnType<typeof getUserCommonAppVersionChk>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useHardUpdate<TData = Awaited<ReturnType<typeof hardUpdate>>, TError = unknown>(
- params: HardUpdateParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData>> & Pick<
+export function useGetUserCommonAppVersionChk<TData = Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError = unknown>(
+ params: GetUserCommonAppVersionChkParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof hardUpdate>>,
+          Awaited<ReturnType<typeof getUserCommonAppVersionChk>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useHardUpdate<TData = Awaited<ReturnType<typeof hardUpdate>>, TError = unknown>(
- params: HardUpdateParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData>>, }
+export function useGetUserCommonAppVersionChk<TData = Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError = unknown>(
+ params: GetUserCommonAppVersionChkParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 앱 버전 확인 조회 API
  */
 
-export function useHardUpdate<TData = Awaited<ReturnType<typeof hardUpdate>>, TError = unknown>(
- params: HardUpdateParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof hardUpdate>>, TError, TData>>, }
+export function useGetUserCommonAppVersionChk<TData = Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError = unknown>(
+ params: GetUserCommonAppVersionChkParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserCommonAppVersionChk>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getHardUpdateQueryOptions(params,options)
+  const queryOptions = getGetUserCommonAppVersionChkQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

@@ -28,8 +28,8 @@ import type {
   UseQueryResult
 } from '@tanstack/react-query'
 import type {
-  UploadImage200,
-  UploadImageParams
+  PostCommonFileUpload200,
+  PostCommonFileUploadParams
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
 
@@ -39,13 +39,13 @@ import { axiosInstance } from '../../mutator/instance-wrapper';
  * 이미지를 업로드 합니다.
  * @summary 이미지 업로드
  */
-export const uploadImage = (
-    params: UploadImageParams,
+export const postCommonFileUpload = (
+    params: PostCommonFileUploadParams,
  signal?: AbortSignal
 ) => {
       
       
-      return axiosInstance<UploadImage200>(
+      return axiosInstance<PostCommonFileUpload200>(
       {url: `/api/v1/common/file/upload`, method: 'POST',
         params, signal
     },
@@ -54,18 +54,18 @@ export const uploadImage = (
   
 
 
-export const getUploadImageMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof uploadImage>>, TError,{params: UploadImageParams}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof uploadImage>>, TError,{params: UploadImageParams}, TContext> => {
+export const getPostCommonFileUploadMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postCommonFileUpload>>, TError,{params: PostCommonFileUploadParams}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postCommonFileUpload>>, TError,{params: PostCommonFileUploadParams}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof uploadImage>>, {params: UploadImageParams}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postCommonFileUpload>>, {params: PostCommonFileUploadParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  uploadImage(params,)
+          return  postCommonFileUpload(params,)
         }
 
         
@@ -73,23 +73,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type UploadImageMutationResult = NonNullable<Awaited<ReturnType<typeof uploadImage>>>
+    export type PostCommonFileUploadMutationResult = NonNullable<Awaited<ReturnType<typeof postCommonFileUpload>>>
     
-    export type UploadImageMutationError = unknown
+    export type PostCommonFileUploadMutationError = unknown
 
     /**
  * @summary 이미지 업로드
  */
-export const useUploadImage = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof uploadImage>>, TError,{params: UploadImageParams}, TContext>, }
+export const usePostCommonFileUpload = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postCommonFileUpload>>, TError,{params: PostCommonFileUploadParams}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof uploadImage>>,
+        Awaited<ReturnType<typeof postCommonFileUpload>>,
         TError,
-        {params: UploadImageParams},
+        {params: PostCommonFileUploadParams},
         TContext
       > => {
 
-      const mutationOptions = getUploadImageMutationOptions(options);
+      const mutationOptions = getPostCommonFileUploadMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -97,7 +97,7 @@ export const useUploadImage = <TError = unknown,
  * url 입력시 해당 이미지를 노출합니다.
  * @summary 이미지 열기
  */
-export const showImage = (
+export const getCommonFileShowFileId = (
     fileId: string,
  signal?: AbortSignal
 ) => {
@@ -110,67 +110,67 @@ export const showImage = (
     }
   
 
-export const getShowImageQueryKey = (fileId: string,) => {
+export const getGetCommonFileShowFileIdQueryKey = (fileId: string,) => {
     return [`/api/v1/common/file/show/${fileId}`] as const;
     }
 
     
-export const getShowImageInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof showImage>>>, TError = unknown>(fileId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>>, }
+export const getGetCommonFileShowFileIdInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getCommonFileShowFileId>>>, TError = unknown>(fileId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getShowImageQueryKey(fileId);
+  const queryKey =  queryOptions?.queryKey ?? getGetCommonFileShowFileIdQueryKey(fileId);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof showImage>>> = ({ signal }) => showImage(fileId, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getCommonFileShowFileId>>> = ({ signal }) => getCommonFileShowFileId(fileId, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(fileId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, enabled: !!(fileId), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type ShowImageInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof showImage>>>
-export type ShowImageInfiniteQueryError = unknown
+export type GetCommonFileShowFileIdInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getCommonFileShowFileId>>>
+export type GetCommonFileShowFileIdInfiniteQueryError = unknown
 
 
-export function useShowImageInfinite<TData = InfiniteData<Awaited<ReturnType<typeof showImage>>>, TError = unknown>(
- fileId: string, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>> & Pick<
+export function useGetCommonFileShowFileIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getCommonFileShowFileId>>>, TError = unknown>(
+ fileId: string, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof showImage>>,
+          Awaited<ReturnType<typeof getCommonFileShowFileId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useShowImageInfinite<TData = InfiniteData<Awaited<ReturnType<typeof showImage>>>, TError = unknown>(
- fileId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>> & Pick<
+export function useGetCommonFileShowFileIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getCommonFileShowFileId>>>, TError = unknown>(
+ fileId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof showImage>>,
+          Awaited<ReturnType<typeof getCommonFileShowFileId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useShowImageInfinite<TData = InfiniteData<Awaited<ReturnType<typeof showImage>>>, TError = unknown>(
- fileId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>>, }
+export function useGetCommonFileShowFileIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getCommonFileShowFileId>>>, TError = unknown>(
+ fileId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 이미지 열기
  */
 
-export function useShowImageInfinite<TData = InfiniteData<Awaited<ReturnType<typeof showImage>>>, TError = unknown>(
- fileId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>>, }
+export function useGetCommonFileShowFileIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getCommonFileShowFileId>>>, TError = unknown>(
+ fileId: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getShowImageInfiniteQueryOptions(fileId,options)
+  const queryOptions = getGetCommonFileShowFileIdInfiniteQueryOptions(fileId,options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -181,62 +181,62 @@ export function useShowImageInfinite<TData = InfiniteData<Awaited<ReturnType<typ
 
 
 
-export const getShowImageQueryOptions = <TData = Awaited<ReturnType<typeof showImage>>, TError = unknown>(fileId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>>, }
+export const getGetCommonFileShowFileIdQueryOptions = <TData = Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError = unknown>(fileId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getShowImageQueryKey(fileId);
+  const queryKey =  queryOptions?.queryKey ?? getGetCommonFileShowFileIdQueryKey(fileId);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof showImage>>> = ({ signal }) => showImage(fileId, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getCommonFileShowFileId>>> = ({ signal }) => getCommonFileShowFileId(fileId, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(fileId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, enabled: !!(fileId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type ShowImageQueryResult = NonNullable<Awaited<ReturnType<typeof showImage>>>
-export type ShowImageQueryError = unknown
+export type GetCommonFileShowFileIdQueryResult = NonNullable<Awaited<ReturnType<typeof getCommonFileShowFileId>>>
+export type GetCommonFileShowFileIdQueryError = unknown
 
 
-export function useShowImage<TData = Awaited<ReturnType<typeof showImage>>, TError = unknown>(
- fileId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>> & Pick<
+export function useGetCommonFileShowFileId<TData = Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError = unknown>(
+ fileId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof showImage>>,
+          Awaited<ReturnType<typeof getCommonFileShowFileId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useShowImage<TData = Awaited<ReturnType<typeof showImage>>, TError = unknown>(
- fileId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>> & Pick<
+export function useGetCommonFileShowFileId<TData = Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError = unknown>(
+ fileId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof showImage>>,
+          Awaited<ReturnType<typeof getCommonFileShowFileId>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useShowImage<TData = Awaited<ReturnType<typeof showImage>>, TError = unknown>(
- fileId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>>, }
+export function useGetCommonFileShowFileId<TData = Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError = unknown>(
+ fileId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 이미지 열기
  */
 
-export function useShowImage<TData = Awaited<ReturnType<typeof showImage>>, TError = unknown>(
- fileId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof showImage>>, TError, TData>>, }
+export function useGetCommonFileShowFileId<TData = Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError = unknown>(
+ fileId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFileShowFileId>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getShowImageQueryOptions(fileId,options)
+  const queryOptions = getGetCommonFileShowFileIdQueryOptions(fileId,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -251,7 +251,7 @@ export function useShowImage<TData = Awaited<ReturnType<typeof showImage>>, TErr
  * 현재 적용중인 개인정보 이용약관을 조회 합니다.
  * @summary 개인정보 이용약관
  */
-export const getPrivacyClause = (
+export const getCommonFilePrivacyClause = (
     
  signal?: AbortSignal
 ) => {
@@ -264,67 +264,67 @@ export const getPrivacyClause = (
     }
   
 
-export const getGetPrivacyClauseQueryKey = () => {
+export const getGetCommonFilePrivacyClauseQueryKey = () => {
     return [`/api/v1/common/file/privacy-clause`] as const;
     }
 
     
-export const getGetPrivacyClauseInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getPrivacyClause>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>>, }
+export const getGetCommonFilePrivacyClauseInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetPrivacyClauseQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetCommonFilePrivacyClauseQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getPrivacyClause>>> = ({ signal }) => getPrivacyClause(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>> = ({ signal }) => getCommonFilePrivacyClause(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetPrivacyClauseInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getPrivacyClause>>>
-export type GetPrivacyClauseInfiniteQueryError = unknown
+export type GetCommonFilePrivacyClauseInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>>
+export type GetCommonFilePrivacyClauseInfiniteQueryError = unknown
 
 
-export function useGetPrivacyClauseInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getPrivacyClause>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>> & Pick<
+export function useGetCommonFilePrivacyClauseInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getPrivacyClause>>,
+          Awaited<ReturnType<typeof getCommonFilePrivacyClause>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetPrivacyClauseInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getPrivacyClause>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>> & Pick<
+export function useGetCommonFilePrivacyClauseInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getPrivacyClause>>,
+          Awaited<ReturnType<typeof getCommonFilePrivacyClause>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetPrivacyClauseInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getPrivacyClause>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>>, }
+export function useGetCommonFilePrivacyClauseInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 개인정보 이용약관
  */
 
-export function useGetPrivacyClauseInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getPrivacyClause>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>>, }
+export function useGetCommonFilePrivacyClauseInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetPrivacyClauseInfiniteQueryOptions(options)
+  const queryOptions = getGetCommonFilePrivacyClauseInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -335,62 +335,62 @@ export function useGetPrivacyClauseInfinite<TData = InfiniteData<Awaited<ReturnT
 
 
 
-export const getGetPrivacyClauseQueryOptions = <TData = Awaited<ReturnType<typeof getPrivacyClause>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>>, }
+export const getGetCommonFilePrivacyClauseQueryOptions = <TData = Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetPrivacyClauseQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetCommonFilePrivacyClauseQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getPrivacyClause>>> = ({ signal }) => getPrivacyClause(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>> = ({ signal }) => getCommonFilePrivacyClause(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type GetPrivacyClauseQueryResult = NonNullable<Awaited<ReturnType<typeof getPrivacyClause>>>
-export type GetPrivacyClauseQueryError = unknown
+export type GetCommonFilePrivacyClauseQueryResult = NonNullable<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>>
+export type GetCommonFilePrivacyClauseQueryError = unknown
 
 
-export function useGetPrivacyClause<TData = Awaited<ReturnType<typeof getPrivacyClause>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>> & Pick<
+export function useGetCommonFilePrivacyClause<TData = Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getPrivacyClause>>,
+          Awaited<ReturnType<typeof getCommonFilePrivacyClause>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetPrivacyClause<TData = Awaited<ReturnType<typeof getPrivacyClause>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>> & Pick<
+export function useGetCommonFilePrivacyClause<TData = Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getPrivacyClause>>,
+          Awaited<ReturnType<typeof getCommonFilePrivacyClause>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function useGetPrivacyClause<TData = Awaited<ReturnType<typeof getPrivacyClause>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>>, }
+export function useGetCommonFilePrivacyClause<TData = Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 개인정보 이용약관
  */
 
-export function useGetPrivacyClause<TData = Awaited<ReturnType<typeof getPrivacyClause>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getPrivacyClause>>, TError, TData>>, }
+export function useGetCommonFilePrivacyClause<TData = Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCommonFilePrivacyClause>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getGetPrivacyClauseQueryOptions(options)
+  const queryOptions = getGetCommonFilePrivacyClauseQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 

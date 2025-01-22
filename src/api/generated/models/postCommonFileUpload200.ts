@@ -6,10 +6,4 @@
  * OpenAPI spec version: 1.0.0
  */
 
-/**
- * 응답 데이터
- */
-export interface StatusChkResDto {
-  /** 트레이너 상태 */
-  trainerStatus?: string;
-}
+export type PostCommonFileUpload200 = { [key: string]: unknown };
