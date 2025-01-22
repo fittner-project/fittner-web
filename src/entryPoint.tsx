@@ -1,6 +1,5 @@
 import { FC, Fragment, ReactNode } from "react";
 
-import useRefreshToken from "./hooks/useRefreshToken";
 import useAuthRouting from "./hooks/useAuthRouting";
 
 interface IProps {
@@ -8,7 +7,6 @@ interface IProps {
 }
 
 const EntryPoint: FC<IProps> = ({ children }) => {
-  useRefreshToken();
   useAuthRouting();
 
   return <Authorized>{children}</Authorized>;

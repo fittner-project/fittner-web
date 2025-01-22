@@ -1,9 +1,8 @@
 import { storageKeys } from "@/constants/storageKeys";
-import { storage } from "@/utils/storage";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-type ApprovalStatus = "initial" | "pending" | "approved" | "rejected";
+type ApprovalStatus = "INITIAL" | "INACTIVE" | "ACTIVE" | "STOP" | "DROP";
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -17,13 +16,16 @@ interface AuthState {
   clearTokens: () => void;
 }
 
+// aceess token 24시간
+// refresh token 1주
+
 const useAuthStore = create<AuthState>()(
   persist(
     (set, _get) => ({
       isAuthenticated: false,
       setIsAuthenticated: (isAuthenticated: boolean) =>
         set({ isAuthenticated }),
-      signUpApprovalStatus: "initial",
+      signUpApprovalStatus: "INITIAL",
       setSignUpApprovalStatus: (signUpApprovalStatus: ApprovalStatus) =>
         set({ signUpApprovalStatus }),
       accessToken: "",

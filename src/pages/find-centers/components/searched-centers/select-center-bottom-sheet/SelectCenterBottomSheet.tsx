@@ -36,7 +36,7 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const { mutate: signUp } = useJoin({
     mutation: {
       onSuccess: () => {
-        setSignUpApprovalStatus("pending");
+        setSignUpApprovalStatus("INACTIVE");
 
         openModal({
           component: SuccessModal,

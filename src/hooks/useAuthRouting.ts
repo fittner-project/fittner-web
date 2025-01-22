@@ -8,7 +8,7 @@ export default function useAuthRouting() {
 
   useEffect(() => {
     if (location.pathname !== "/") return;
-    if (signUpApprovalStatus === "pending") {
+    if (signUpApprovalStatus === "INACTIVE") {
       navigate(PATH.CENTER_LIST);
       return;
     }
