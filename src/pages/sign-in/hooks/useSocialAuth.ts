@@ -31,16 +31,17 @@ export const useSocialAuth = () => {
         navigate(PATH.HOME);
       },
       onError: (error) => {
-        if (!error) return;
-        if (error.toString().includes("트레이너를 찾을 수 없습니다.")) {
+        if (error?.toString().includes("트레이너를 찾을 수 없습니다.")) {
           openModal({ component: SignUpModal });
         } else {
           openModal({
             component: AlertModal,
-            props: { errorMessage: error.toString() },
+            props: {
+              errorMessage: error?.toString(),
+              onCloseComplete: () => navigate(PATH.SIGN_IN),
+            },
           });
         }
-        navigate(PATH.SIGN_IN);
       },
     },
   });
