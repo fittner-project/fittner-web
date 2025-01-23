@@ -18,7 +18,11 @@ const instance = axios.create({
 // 기본 에러 모달을 스킵할 API 목록
 const skipErrorHandlingUrls = ["/api/v1/auth/login"];
 // 토큰을 전송하면 안되는 API 목록
-const skipTokenUrls = ["/api/v1/auth/login", "/api/v1/auth/refresh-token"];
+const skipTokenUrls = [
+  "/api/v1/auth/login",
+  "/api/v1/auth/refresh-token",
+  "/api/v1/user/common/splash",
+];
 
 // 토큰 갱신 중인지 확인하는 플래그
 let isRefreshing = false;
