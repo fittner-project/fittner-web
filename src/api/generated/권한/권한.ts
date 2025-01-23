@@ -20,6 +20,7 @@ import type {
   LoginRequestDto
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
+import useAuthStore from "@/store/auth.ts";
 
 
 
@@ -31,8 +32,8 @@ export const postAuthRefreshToken = (
     accessTokenReqDto: AccessTokenReqDto,
  signal?: AbortSignal
 ) => {
-      
-      
+
+
       return axiosInstance<ApiResponseMessageTokenResDto>(
       {url: `/api/v1/auth/refresh-token`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
@@ -40,7 +41,7 @@ export const postAuthRefreshToken = (
     },
       );
     }
-  
+
 
 
 export const getPostAuthRefreshTokenMutationOptions = <TError = unknown,
@@ -48,7 +49,7 @@ export const getPostAuthRefreshTokenMutationOptions = <TError = unknown,
 ): UseMutationOptions<Awaited<ReturnType<typeof postAuthRefreshToken>>, TError,{data: AccessTokenReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
-      
+
 
 
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof postAuthRefreshToken>>, {data: AccessTokenReqDto}> = (props) => {
@@ -57,7 +58,7 @@ const {mutation: mutationOptions} = options ?? {};
           return  postAuthRefreshToken(data,)
         }
 
-        
+
 
 
   return  { mutationFn, ...mutationOptions }}
@@ -87,17 +88,34 @@ export const usePostAuthRefreshToken = <TError = unknown,
  * @summary 트레이너 로그아웃 API
  */
 export const postAuthLogout = (
-    
+
  signal?: AbortSignal
 ) => {
-      
-      
+
+
       return axiosInstance<ApiResponseMessageObject>(
       {url: `/api/v1/auth/logout`, method: 'POST', signal
     },
       );
     }
-  
+
+export async function getPushList() {
+
+    console.log("::: [[[logout test]]] :::")
+
+    const response = await fetch(`https://api.fittner.co.kr/api/v1/auth/logout`, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + useAuthStore.getState(),
+        },
+    });
+
+    console.log(response.json())
+}
+
 
 
 export const getPostAuthLogoutMutationOptions = <TError = unknown,
@@ -105,22 +123,22 @@ export const getPostAuthLogoutMutationOptions = <TError = unknown,
 ): UseMutationOptions<Awaited<ReturnType<typeof postAuthLogout>>, TError,void, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
-      
+
 
 
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof postAuthLogout>>, void> = () => {
-          
+
 
           return  postAuthLogout()
         }
 
-        
+
 
 
   return  { mutationFn, ...mutationOptions }}
 
     export type PostAuthLogoutMutationResult = NonNullable<Awaited<ReturnType<typeof postAuthLogout>>>
-    
+
     export type PostAuthLogoutMutationError = unknown
 
     /**
@@ -147,8 +165,8 @@ export const postAuthLogin = (
     loginRequestDto: LoginRequestDto,
  signal?: AbortSignal
 ) => {
-      
-      
+
+
       return axiosInstance<ApiResponseMessageTokenResDto>(
       {url: `/api/v1/auth/login`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
@@ -156,7 +174,7 @@ export const postAuthLogin = (
     },
       );
     }
-  
+
 
 
 export const getPostAuthLoginMutationOptions = <TError = unknown,
@@ -164,7 +182,7 @@ export const getPostAuthLoginMutationOptions = <TError = unknown,
 ): UseMutationOptions<Awaited<ReturnType<typeof postAuthLogin>>, TError,{data: LoginRequestDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
-      
+
 
 
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof postAuthLogin>>, {data: LoginRequestDto}> = (props) => {
@@ -173,7 +191,7 @@ const {mutation: mutationOptions} = options ?? {};
           return  postAuthLogin(data,)
         }
 
-        
+
 
 
   return  { mutationFn, ...mutationOptions }}
@@ -198,4 +216,3 @@ export const usePostAuthLogin = <TError = unknown,
 
       return useMutation(mutationOptions);
     }
-    
