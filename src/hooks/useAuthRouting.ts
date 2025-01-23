@@ -5,7 +5,7 @@ import useAuthStore, { ApprovalStatus } from "@/store/auth";
 import { storage } from "@/utils/storage";
 
 export default function useAuthRouting() {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, approvalStatus, setApprovalStatus } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
   const trainerEmail = storage.get<string>({ key: storageKeys.trainerEmail });
@@ -16,7 +16,7 @@ export default function useAuthRouting() {
     },
     {
       query: {
-        enabled: isAuthenticated === false && !!trainerEmail,
+        enabled: location.pathname === PATH.ROOT && !!trainerEmail,
       },
     }
   );
@@ -26,12 +26,13 @@ export default function useAuthRouting() {
 
   useEffect(() => {
     if (location.pathname !== PATH.ROOT || !trainerStatus) return;
+    setApprovalStatus(trainerStatus);
     if (trainerStatus === "INACTIVE") {
       navigate(PATH.CENTER_LIST);
       return;
     }
 
-    if (trainerStatus === "ACTIVE") {
+    if (trainerStatus === "ACTIVE" && approvalStatus !== "ACTIVE") {
       navigate(PATH.SIGN_IN);
       return;
     }
@@ -45,5 +46,5 @@ export default function useAuthRouting() {
       navigate(PATH.SIGN_IN);
       return;
     }
-  }, [trainerStatus, isAuthenticated]);
+  }, [trainerStatus, isAuthenticated, approvalStatus]);
 }

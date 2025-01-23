@@ -17,6 +17,8 @@ interface AuthState {
   refreshToken: string;
   setRefreshToken: (refreshToken: string) => void;
   logout: () => void;
+  approvalStatus: ApprovalStatus;
+  setApprovalStatus: (approvalStatus: ApprovalStatus) => void;
 }
 
 // aceess token 24시간
@@ -42,6 +44,10 @@ const useAuthStore = create<AuthState>()(
           refreshToken: "",
         });
       },
+
+      approvalStatus: "INITIAL",
+      setApprovalStatus: (approvalStatus: ApprovalStatus) =>
+        set({ approvalStatus }),
     }),
     {
       name: storageKeys.auth,

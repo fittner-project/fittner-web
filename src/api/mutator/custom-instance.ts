@@ -22,6 +22,7 @@ const skipTokenUrls = [
   "/api/v1/auth/login",
   "/api/v1/auth/refresh-token",
   "/api/v1/user/common/splash",
+  "/api/v1/user/common/status-chk",
 ];
 
 // 토큰 갱신 중인지 확인하는 플래그
