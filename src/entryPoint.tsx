@@ -1,6 +1,9 @@
 import { FC, Fragment, ReactNode } from "react";
 
 import useAuthRouting from "./hooks/useAuthRouting";
+import PATH from "./router/path";
+import useSplash from "./hooks/useSplash";
+import Image from "./components/image/Image";
 
 interface IProps {
   children: ReactNode;
@@ -8,8 +11,27 @@ interface IProps {
 
 const EntryPoint: FC<IProps> = ({ children }) => {
   useAuthRouting();
+  const location = useLocation();
+  const { splashImgUrl } = useSplash();
 
-  return <Authorized>{children}</Authorized>;
+  return (
+    <Authorized>
+      {location.pathname === PATH.ROOT && splashImgUrl && (
+        <div style={{ width: "100dvw", height: "100dvh" }}>
+          <Image
+            src={splashImgUrl}
+            alt="splash"
+            width="100%"
+            height="100%"
+            style={{
+              objectFit: "cover",
+            }}
+          />
+        </div>
+      )}
+      {children}
+    </Authorized>
+  );
 };
 
 export default EntryPoint;
