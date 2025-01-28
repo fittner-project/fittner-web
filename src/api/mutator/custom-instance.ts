@@ -16,7 +16,10 @@ const instance = axios.create({
 });
 
 // 기본 에러 모달을 스킵할 API 목록
-const skipErrorHandlingUrls = ["/api/v1/auth/login"];
+const skipErrorHandlingUrls = [
+  "/api/v1/auth/login",
+  "/api/v1/auth/refresh-token",
+];
 // 토큰을 전송하면 안되는 API 목록
 const skipTokenUrls = [
   "/api/v1/auth/login",
@@ -78,12 +81,21 @@ instance.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config;
 
-    // 401 에러이고 토큰 갱신 요청이 아닐 경우
     if (
-      error.response?.status === 401 &&
       originalRequest &&
-      !originalRequest.url?.includes("/api/v1/auth/refresh-token")
+      !originalRequest.url?.includes("/api/v1/auth/refresh-token") &&
+      (error.response?.status === 401 ||
+        error.message === "Network Error" ||
+        !error.response)
     ) {
+      // isAuthenticated 상태 확인
+      const { isAuthenticated } = useAuthStore.getState();
+
+      // isAuthenticated가 false면 토큰 갱신을 시도하지 않고 바로 에러를 반환
+      if (!isAuthenticated) {
+        return Promise.reject(error);
+      }
+
       if (!isRefreshing) {
         isRefreshing = true;
         const { accessToken, refreshToken } = useAuthStore.getState();
@@ -117,8 +129,7 @@ instance.interceptors.response.use(
           // 원래 요청 재시도
           return instance(originalRequest);
         } catch (refreshError) {
-          // 토큰 갱신 실패시 로그아웃 처리 로직 필요
-
+          isRefreshing = false;
           return Promise.reject(refreshError);
         }
       }
