@@ -1,6 +1,10 @@
+import { storage } from "@/utils/storage";
 import styles from "./Training.module.scss";
+import { storageKeys } from "@/constants/storageKeys";
 
 const Training = () => {
+  const trainerName = storage.get<string>({ key: storageKeys.trainerName });
+
   return (
     <div className={styles.container}>
       <div
@@ -9,7 +13,7 @@ const Training = () => {
       />
       <div className={styles.member_info}>
         <div className={styles.member_name}>
-          <span>김영재</span> 회원님
+          <span>{trainerName}</span> 회원님
         </div>
 
         <div className={styles.time}>나의 수업에서 등록해주세요</div>
