@@ -10,6 +10,20 @@
  * 응답 데이터
  */
 export interface SalesInfoResDto {
-  nowSales?: string;
-  projectionSales?: string;
+  /** 회원ID */
+  memberId?: string;
+  /** 회원이름 */
+  memberName?: string;
+  /** 현재수익금 */
+  nowSalesPrice?: string;
+  /** 이용권종료일 */
+  ticketEndDate?: string;
+  /** 이용권ID */
+  ticketId?: string;
+  /** 이용권명 */
+  ticketName?: string;
+  /** 이용권시작일 */
+  ticketStartDate?: string;
+  /** 회차 */
+  ticketUseCnt?: string;
 }

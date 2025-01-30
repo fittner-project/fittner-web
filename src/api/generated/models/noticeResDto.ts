@@ -10,9 +10,14 @@
  * 응답 데이터
  */
 export interface NoticeResDto {
+  /** 공지사항내용 */
   noticeContent?: string;
+  /** 공지일자 */
   noticeDate?: string;
+  /** 공지사항ID */
   noticeId?: string;
+  /** 공지사항읽음여부 */
   noticeReadYn?: string;
+  /** 공지사항제목 */
   noticeTitle?: string;
 }

@@ -11,7 +11,10 @@ import type { TotalTerm } from './totalTerm';
  * 응답 데이터
  */
 export interface TermsListResDto {
+  /** 약관제목 */
   ingTermsTitle?: string;
+  /** 약관시작일 */
   intTermsStartDate?: string;
+  /** 약관리스트 */
   totalTermList?: TotalTerm[];
 }

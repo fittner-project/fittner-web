@@ -6,25 +6,13 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface AssignToNewMemberReqDto {
+export interface PlusReqDto {
   /** 센터ID */
-  centerId: string;
-  /** 회원 주소 */
-  memberAddress: string;
-  /** 회원 생년월일 */
-  memberBirth: string;
-  /** 회원 성별 */
-  memberGender: string;
-  /** 가입 경로 */
-  memberJoinPath?: string;
+  cneterId: string;
+  /** 회원ID */
+  memberId: string;
   /** 회원 메모 */
   memberMemo?: string;
-  /** 회원 이름 */
-  memberName: string;
-  /** 회원 전화번호 */
-  memberPhone: string;
-  /** 원이용권ID */
-  originalTicketId: string;
   /** 상품 횟수 */
   productCount: string;
   /** 상품 종료일 */
@@ -35,6 +23,4 @@ export interface AssignToNewMemberReqDto {
   productPrice: string;
   /** 상품 시작일 */
   productStartDate: string;
-  /** 트레이너ID */
-  trainerId: string;
 }

@@ -6,12 +6,7 @@
  * OpenAPI spec version: 1.0.0
  */
 
-/**
- * 응답 데이터
- */
-export interface PushSetResDto {
-  /** 푸시종류 */
-  pushKind?: string;
-  /** 푸시여부 */
-  pushSetYn?: string;
+export interface ReservationSearchDto {
+  reservationEndDate?: string;
+  reservationStartDate?: string;
 }

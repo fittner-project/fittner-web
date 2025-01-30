@@ -16,8 +16,17 @@ export default function Policy({ type }: PolicyProps) {
   });
   const terms = termsData?.result;
 
-  //   const { data: noticeData } = useGetUserMyPageNotices();
-  //   const notice = noticeData?.result;
+  const { data: noticeData } = useGetUserMyPageNotices(
+    {
+      centerId: "1",
+      pageable: {
+        currentPageNo: 1,
+      },
+    },
+    { query: { enabled: type === "notice" } }
+  );
+
+  const notice = noticeData?.result;
 
   return (
     <PaddingContainer>
@@ -32,7 +41,7 @@ export default function Policy({ type }: PolicyProps) {
             />
           ))}
 
-        {/* {type === "notice" &&
+        {type === "notice" &&
           notice?.map((notice) => (
             <PolicyLink
               key={notice.noticeTitle}
@@ -40,7 +49,7 @@ export default function Policy({ type }: PolicyProps) {
               title={notice.noticeTitle ?? ""}
               to={notice.noticeTitle ?? ""}
             />
-          ))} */}
+          ))}
       </div>
     </PaddingContainer>
   );

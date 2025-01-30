@@ -7,23 +7,23 @@
  */
 
 /**
- * 응답 데이터
+ * 이용권 정보
  */
-export interface AssignToInfoResDto {
-  /** 회원명 */
-  memberName?: string;
-  /** 회원휴대폰 끝네자리 */
-  memberPhoneEnd?: string;
-  /** 이용권잔여횟수 */
-  remainingCnt?: string;
+export interface TicketInfo {
+  /** 이용권코드 */
+  ticketCode?: string;
+  /** 이용권코드명 */
+  ticketCodeName?: string;
   /** 이용권종료일 */
   ticketEndDate?: string;
-  /** 이용권ID */
-  ticketId?: string;
   /** 이용권명 */
   ticketName?: string;
+  /** 이용권가격 */
+  ticketPrice?: string;
   /** 이용권시작일 */
   ticketStartDate?: string;
   /** 이용권전체횟수 */
-  totalCnt?: string;
+  ticketTotalCnt?: string;
+  /** 이용권이용횟수 */
+  ticketUseCnt?: string;
 }

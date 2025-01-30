@@ -9,9 +9,9 @@
 /**
  * 응답 데이터
  */
-export interface SalesResDto {
-  /** 현재수익금 */
-  nowSalesPrice?: string;
-  /** 예상수익금 */
-  projectionSalesPrice?: string;
+export interface GroupedReservationDto {
+  /** 날짜 끝두자리 값 */
+  lastTwoDigits?: string;
+  /** 예약색상 */
+  reservations?: string[];
 }

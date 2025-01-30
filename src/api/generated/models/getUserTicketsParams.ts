@@ -5,12 +5,10 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
-import type { FittnerPageable } from './fittnerPageable';
 
 export type GetUserTicketsParams = {
 /**
- * 티켓상태
+ * 이용권 코드(TOTAL | ING | STOP | ASSIGN_TO | ASSIGN_FROM | REFUND | AFTER)
  */
-ticketStatus: string;
-pageable: FittnerPageable;
+ticketCode: string;
 };

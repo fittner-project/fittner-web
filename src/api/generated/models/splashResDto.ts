@@ -10,5 +10,6 @@
  * 응답 데이터
  */
 export interface SplashResDto {
+  /** 스플래시 이미지 url */
   splashImgUrl?: string;
 }

@@ -10,9 +10,14 @@
  * 응답 데이터
  */
 export interface PushResDto {
+  /** 알림내용 */
   pushContent?: string;
+  /** 알림일자 */
   pushDate?: string;
+  /** 알림ID */
   pushId?: string;
+  /** 알림읽음여부 */
   pushReadYn?: string;
+  /** 알림제목 */
   pushTitle?: string;
 }

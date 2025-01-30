@@ -7,7 +7,11 @@
  */
 import type { FittnerPageable } from './fittnerPageable';
 
-export type GetUserPushsParams = {
+export type GetUserMyPageSalesInfoParams = {
+/**
+ * 예약시작월
+ */
+reservationStartMonth: string;
 /**
  * 센터ID
  */

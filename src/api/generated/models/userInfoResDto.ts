@@ -10,7 +10,10 @@
  * 응답 데이터
  */
 export interface UserInfoResDto {
+  /** 트레이너email */
   trainerEmail?: string;
+  /** 트레이너명 */
   trainerName?: string;
+  /** 트레이너 소셜구분 */
   trainerSnsKind?: string;
 }

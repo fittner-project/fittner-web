@@ -6,7 +6,12 @@
  * OpenAPI spec version: 1.0.0
  */
 
+/**
+ * 약관리스트
+ */
 export interface TotalTerm {
+  /** 약관시작일 */
   termsStartDate?: string;
+  /** 약관url */
   termsUrl?: string;
 }

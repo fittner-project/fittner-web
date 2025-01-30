@@ -38,44 +38,45 @@ import type {
   GetUserTicketAssignInfoParams,
   GetUserTicketRefundInfoParams,
   GetUserTicketsParams,
-  RelayReqDto
+  PlusReqDto,
+  RefundReqDto
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
 /**
- * 이용권 연장하기 API 입니다.
- * @summary 이용권 연장하기 API
+ * 이용권 환불 API 입니다.
+ * @summary 이용권 환불 API
  */
-export const postUserTicketRelay = (
-    relayReqDto: RelayReqDto,
+export const getUserTicketRefund = (
+    refundReqDto: RefundReqDto,
  signal?: AbortSignal
 ) => {
       
       
       return axiosInstance<ApiResponseMessageObject>(
-      {url: `/api/v1/user/ticket/relay`, method: 'POST',
+      {url: `/api/v1/user/ticket/refund`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: relayReqDto, signal
+      data: refundReqDto, signal
     },
       );
     }
   
 
 
-export const getPostUserTicketRelayMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRelay>>, TError,{data: RelayReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRelay>>, TError,{data: RelayReqDto}, TContext> => {
+export const getGetUserTicketRefundMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof getUserTicketRefund>>, TError,{data: RefundReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof getUserTicketRefund>>, TError,{data: RefundReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketRelay>>, {data: RelayReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof getUserTicketRefund>>, {data: RefundReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  postUserTicketRelay(data,)
+          return  getUserTicketRefund(data,)
         }
 
         
@@ -83,23 +84,82 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type PostUserTicketRelayMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketRelay>>>
-    export type PostUserTicketRelayMutationBody = RelayReqDto
-    export type PostUserTicketRelayMutationError = unknown
+    export type GetUserTicketRefundMutationResult = NonNullable<Awaited<ReturnType<typeof getUserTicketRefund>>>
+    export type GetUserTicketRefundMutationBody = RefundReqDto
+    export type GetUserTicketRefundMutationError = unknown
 
     /**
- * @summary 이용권 연장하기 API
+ * @summary 이용권 환불 API
  */
-export const usePostUserTicketRelay = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRelay>>, TError,{data: RelayReqDto}, TContext>, }
+export const useGetUserTicketRefund = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof getUserTicketRefund>>, TError,{data: RefundReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof postUserTicketRelay>>,
+        Awaited<ReturnType<typeof getUserTicketRefund>>,
         TError,
-        {data: RelayReqDto},
+        {data: RefundReqDto},
         TContext
       > => {
 
-      const mutationOptions = getPostUserTicketRelayMutationOptions(options);
+      const mutationOptions = getGetUserTicketRefundMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * 이용권 추가등록 API 입니다.
+ * @summary 이용권 추가등록 API
+ */
+export const postUserTicketPlus = (
+    plusReqDto: PlusReqDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageObject>(
+      {url: `/api/v1/user/ticket/plus`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: plusReqDto, signal
+    },
+      );
+    }
+  
+
+
+export const getPostUserTicketPlusMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketPlus>>, TError,{data: PlusReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketPlus>>, TError,{data: PlusReqDto}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketPlus>>, {data: PlusReqDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  postUserTicketPlus(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostUserTicketPlusMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketPlus>>>
+    export type PostUserTicketPlusMutationBody = PlusReqDto
+    export type PostUserTicketPlusMutationError = unknown
+
+    /**
+ * @summary 이용권 추가등록 API
+ */
+export const usePostUserTicketPlus = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketPlus>>, TError,{data: PlusReqDto}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof postUserTicketPlus>>,
+        TError,
+        {data: PlusReqDto},
+        TContext
+      > => {
+
+      const mutationOptions = getPostUserTicketPlusMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

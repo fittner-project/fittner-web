@@ -10,6 +10,8 @@
  * 응답 데이터
  */
 export interface HardUpdateResDto {
+  /** 업데이트url */
   appUpadateUrl?: string;
+  /** 강제업데이트여부 */
   hardUpdateYn?: string;
 }

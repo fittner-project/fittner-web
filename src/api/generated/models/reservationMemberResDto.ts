@@ -7,23 +7,25 @@
  */
 
 /**
- * 예약 데이터
+ * 예액 정보들
  */
-export interface SignResrvationDto {
-  /** 회원이름 */
+export interface ReservationMemberResDto {
+  /** 날짜 끝두자리 값 */
+  lastTwoDigits?: string;
+  /** 회원명 */
   memberName?: string;
+  /** PTN회차 */
+  ptnCnt?: number;
+  /** 예약색상 */
+  reservationColor?: string;
+  /** 예약종료일 */
+  reservationEndDate?: string;
   /** 예약종료시간 */
   reservationEndTime?: string;
-  /** 예약ID */
-  reservationId?: string;
   /** 예약메모 */
   reservationMemo?: string;
+  /** 예약시작일 */
+  reservationStartDate?: string;
   /** 예약시작시간 */
   reservationStartTime?: string;
-  /** 예약상태 */
-  reservationStatus?: string;
-  /** 예약회차 */
-  reservationUseCnt?: string;
-  /** 이용권ID */
-  ticketId?: string;
 }

@@ -10,9 +10,20 @@
  * 응답 데이터
  */
 export interface TicketListResDto {
+  /** 회원 휴대폰뒤 4자리 */
+  memberPohoneEnd?: string;
+  /** 회원이름 */
   memeberName?: string;
+  /** 이용권코드 */
+  ticketCode?: string;
+  /** 이용권종료일 */
+  ticketEndDate?: string;
+  /** 이용권ID */
   ticketId?: string;
+  /** 이용권명 */
   ticketName?: string;
-  ticketStartEndDate?: string;
-  ticketStatus?: string;
+  /** 이용권시작일 */
+  ticketStartDate?: string;
+  /** 이용권 전체 횟수 */
+  ticketTotalCnt?: string;
 }

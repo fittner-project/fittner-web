@@ -10,17 +10,30 @@
  * 응답 데이터
  */
 export interface BrandColorResDto {
+  /** 그레이컬러1 */
   greyTypeA?: string;
+  /** 그레이컬러2 */
   greyTypeB?: string;
+  /** 그레이컬러3 */
   greyTypeC?: string;
+  /** 그레이컬러4 */
   greyTypeD?: string;
+  /** 브랜드컬러 */
   primary?: string;
+  /** 브랜드 서브컬러 */
   sub?: string;
+  /** 텍스트컬러1 */
   textTypeA?: string;
+  /** 텍스트컬러2 */
   textTypeB?: string;
+  /** 텍스트컬러3 */
   textTypeC?: string;
+  /** 텍스트컬러4 */
   textTypeD?: string;
+  /** 텍스트컬러5 */
   textTypeE?: string;
+  /** 텍스트컬러6 */
   textTypeF?: string;
+  /** 텍스트컬러7 */
   textTypeG?: string;
 }

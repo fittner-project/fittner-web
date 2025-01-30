@@ -8,5 +8,9 @@
 import type { FittnerPageable } from './fittnerPageable';
 
 export type GetUserMyPageNoticesParams = {
+/**
+ * 센터ID
+ */
+centerId: string;
 pageable: FittnerPageable;
 };

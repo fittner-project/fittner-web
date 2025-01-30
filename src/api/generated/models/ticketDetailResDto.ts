@@ -5,31 +5,17 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
+import type { AssignInfo } from './assignInfo';
+import type { MemberInfo } from './memberInfo';
+import type { RefundInfo } from './refundInfo';
+import type { TicketInfo } from './ticketInfo';
 
 /**
  * 응답 데이터
  */
 export interface TicketDetailResDto {
-  assignCenterName?: string;
-  assignCnt?: string;
-  assignDate?: string;
-  assignMemberName?: string;
-  assignTrainerName?: string;
-  memberAddress?: string;
-  memberBirth?: string;
-  memberGender?: string;
-  memberJoinPath?: string;
-  memberMomo?: string;
-  memberPhone?: string;
-  memeberName?: string;
-  refundCnt?: string;
-  refundDateTime?: string;
-  refundPrice?: string;
-  ticketCodeName?: string;
-  ticketEndDate?: string;
-  ticketName?: string;
-  ticketPrice?: string;
-  ticketStartDate?: string;
-  ticketTotalCnt?: string;
-  ticketUseCnt?: string;
+  assignInfo?: AssignInfo;
+  memberInfo?: MemberInfo;
+  refundInfo?: RefundInfo;
+  ticketInfo?: TicketInfo;
 }

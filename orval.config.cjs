@@ -8,6 +8,7 @@ module.exports = {
       target: "./src/api/generated",
       schemas: "./src/api/generated/models",
       client: "react-query",
+      mock: false,
       override: {
         mutator: {
           path: "./src/api/mutator/instance-wrapper.ts",
@@ -19,6 +20,7 @@ module.exports = {
           useInfiniteQueryParam: "page",
         },
       },
+      format: "esm",
     },
   },
 };

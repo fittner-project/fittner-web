@@ -9,6 +9,7 @@
   "security": [{ "Authorization": [] }],
   "tags": [
     { "name": "유저", "description": "유저 관련 처리입니다." },
+    { "name": "메인페이지", "description": "메인페이지 내 기능들입니다." },
     { "name": "서명", "description": "서명 및 노쇼 처리입니다." },
     { "name": "이용권", "description": "이용권(티켓) 처리입니다." },
     { "name": "마이페이지", "description": "마이페이지 내 기능들입니다." },
@@ -19,16 +20,44 @@
     { "name": "권한", "description": "권한 처리입니다." }
   ],
   "paths": {
-    "/api/v1/user/ticket/relay": {
+    "/api/v1/user/ticket/refund": {
       "post": {
         "tags": ["이용권"],
-        "summary": "이용권 연장하기 API",
-        "description": "이용권 연장하기 API 입니다.",
-        "operationId": "postUserTicketRelay",
+        "summary": "이용권 환불 API",
+        "description": "이용권 환불 API 입니다.",
+        "operationId": "getUserTicketRefund",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/RelayReqDto" }
+              "schema": { "$ref": "#/components/schemas/RefundReqDto" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/ticket/plus": {
+      "post": {
+        "tags": ["이용권"],
+        "summary": "이용권 추가등록 API",
+        "description": "이용권 추가등록 API 입니다.",
+        "operationId": "postUserTicketPlus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/PlusReqDto" }
             }
           },
           "required": true
@@ -506,18 +535,12 @@
         "operationId": "getUserTickets",
         "parameters": [
           {
-            "name": "ticketStatus",
+            "name": "ticketCode",
             "in": "query",
-            "description": "티켓상태",
+            "description": "이용권 코드(TOTAL | ING | STOP | ASSIGN_TO | ASSIGN_FROM | REFUND | AFTER)",
             "required": true,
             "schema": { "type": "string" },
-            "example": "TOTAL|ING|STOP|ASSIGN_TO|ASSIGN_FROM|REFUND|BEFORE|AFTER"
-          },
-          {
-            "name": "pageable",
-            "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FittnerPageable" }
+            "example": "TOTAL"
           }
         ],
         "responses": {
@@ -544,10 +567,10 @@
           {
             "name": "ticketId",
             "in": "path",
-            "description": "티켓ID",
+            "description": "이용권ID",
             "required": true,
             "schema": { "type": "string" },
-            "example": "ec4b8eb6-d01e-11ef-b7c9-0242ac190002"
+            "example": "03fa7063-d6e2-11ef-b7c9-0242ac190002"
           }
         ],
         "responses": {
@@ -732,6 +755,34 @@
         }
       }
     },
+    "/api/v1/user/reservations": {
+      "get": {
+        "tags": ["수업"],
+        "summary": "트레이너의 회원 수업 목록 리스트 API",
+        "description": "트레이너의 회원 수업 목록 리스트 API 입니다.",
+        "operationId": "getUserReservations",
+        "parameters": [
+          {
+            "name": "reservationSearchDto",
+            "in": "query",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/ReservationSearchDto" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageListGroupedReservationMemberDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/user/reservation/colors": {
       "get": {
         "tags": ["수업"],
@@ -760,6 +811,14 @@
         "operationId": "getUserPushs",
         "parameters": [
           {
+            "name": "centerId",
+            "in": "query",
+            "description": "센터ID",
+            "required": true,
+            "schema": { "type": "string" },
+            "example": 1
+          },
+          {
             "name": "pageable",
             "in": "query",
             "required": true,
@@ -786,6 +845,16 @@
         "summary": "신규 알림 여부 조회 API",
         "description": "신규 알림이 있는지(안읽은 알림) 확인하는 API 입니다.",
         "operationId": "getUserPushChk",
+        "parameters": [
+          {
+            "name": "centerId",
+            "in": "query",
+            "description": "센터ID",
+            "required": true,
+            "schema": { "type": "string" },
+            "example": 1
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -820,20 +889,66 @@
         }
       }
     },
-    "/api/v1/user/myPage/sales/{reservationStartMonth}": {
+    "/api/v1/user/myPage/sales": {
       "get": {
         "tags": ["마이페이지"],
-        "summary": "수익관리 조회 API",
-        "description": "수익관리 조회 API 입니다.",
-        "operationId": "getUserMyPageSalesReservationStartMonth",
+        "summary": "수익관리 헤더 조회 API",
+        "description": "수익관리 헤더 조회 API 입니다.",
+        "operationId": "getUserMyPageSales",
+        "parameters": [
+          {
+            "name": "centerId",
+            "in": "query",
+            "description": "센터ID",
+            "required": true,
+            "schema": { "type": "string" },
+            "example": 1
+          },
+          {
+            "name": "reservationStartMonth",
+            "in": "query",
+            "description": "예약시작월",
+            "required": false,
+            "schema": { "type": "string" },
+            "example": 202501
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageSalesResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/myPage/sales/info": {
+      "get": {
+        "tags": ["마이페이지"],
+        "summary": "수익관리 바디 조회 API",
+        "description": "수익관리 바디 조회 API 입니다.",
+        "operationId": "getUserMyPageSalesInfo",
         "parameters": [
           {
             "name": "reservationStartMonth",
-            "in": "path",
+            "in": "query",
             "description": "예약시작월",
             "required": true,
             "schema": { "type": "string" },
             "example": 202501
+          },
+          {
+            "name": "centerId",
+            "in": "query",
+            "description": "센터ID",
+            "required": true,
+            "schema": { "type": "string" },
+            "example": 1
           },
           {
             "name": "pageable",
@@ -848,7 +963,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiResponseMessageListSalesResDto"
+                  "$ref": "#/components/schemas/ApiResponseMessageListSalesInfoResDto"
                 }
               }
             }
@@ -856,17 +971,17 @@
         }
       }
     },
-    "/api/v1/user/myPage/sales/detail": {
+    "/api/v1/user/myPage/sales/info/detail": {
       "get": {
         "tags": ["마이페이지"],
-        "summary": "수익관리 상세 조회 API",
-        "description": "수익관리 상세 조회 API 입니다.",
-        "operationId": "getUserMyPageSalesDetail",
+        "summary": "수익관리 바디 상세 조회 API",
+        "description": "수익관리 바디 상세 조회 API 입니다.",
+        "operationId": "getUserMyPageSalesInfoDetail",
         "parameters": [
           {
             "name": "reservationStartMonth",
             "in": "query",
-            "description": "예약시작월",
+            "description": "예약시작월(202501 or TOTAL)",
             "required": true,
             "schema": { "type": "string" },
             "example": 202501
@@ -892,27 +1007,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiResponseMessageListSalesDetailResDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/user/myPage/sales-info": {
-      "get": {
-        "tags": ["마이페이지"],
-        "summary": "수익관리 요약 조회 API",
-        "description": "수익관리 요약 API 입니다.",
-        "operationId": "getUserMyPageSalesInfo",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseMessageSalesInfoResDto"
+                  "$ref": "#/components/schemas/ApiResponseMessageListSalesInfoDetailResDto"
                 }
               }
             }
@@ -927,6 +1022,14 @@
         "description": "공지사항 조회 API 입니다.",
         "operationId": "getUserMyPageNotices",
         "parameters": [
+          {
+            "name": "centerId",
+            "in": "query",
+            "description": "센터ID",
+            "required": true,
+            "schema": { "type": "string" },
+            "example": 1
+          },
           {
             "name": "pageable",
             "in": "query",
@@ -1010,9 +1113,57 @@
         }
       }
     },
+    "/api/v1/user/main/short-schedules": {
+      "get": {
+        "tags": ["메인페이지"],
+        "summary": "메인페이지 일정 간략보기 데이터 조회 API",
+        "description": "메인페이지의 일정 간략보기 데이터 조회 API 입니다.",
+        "operationId": "getUserMainShortSchedules",
+        "parameters": [
+          {
+            "name": "reservationSearchDto",
+            "in": "query",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/ReservationSearchDto" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageListGroupedReservationDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/main/schedule": {
+      "get": {
+        "tags": ["메인페이지"],
+        "summary": "메인페이지 상단 수업 표출 단건조회 API",
+        "description": "메인페이지 상단 수업 표출 단건조회 API 입니다.",
+        "operationId": "getUserMainSchedule",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageMainReservationsResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/user/main/centers": {
       "get": {
-        "tags": ["유저"],
+        "tags": ["메인페이지"],
         "summary": "메인에서 트레이너가 지정한 센터 목록 조회 API",
         "description": "트레이너가 지정한 센터 목록 조회 API 입니다.",
         "operationId": "getUserMainCenters",
@@ -1278,56 +1429,14 @@
   },
   "components": {
     "schemas": {
-      "RelayReqDto": {
-        "required": [
-          "memberId",
-          "productCount",
-          "productEndDate",
-          "productName",
-          "productPrice",
-          "productStartDate"
-        ],
+      "RefundReqDto": {
+        "required": ["ticketId"],
         "type": "object",
         "properties": {
-          "memberId": {
+          "ticketId": {
             "type": "string",
-            "description": "회원ID",
-            "example": "3c7ba936-d4d3-11ef-b7c9-0242ac190002"
-          },
-          "productName": {
-            "type": "string",
-            "description": "상품명",
-            "example": "프리미엄PT20"
-          },
-          "productStartDate": {
-            "type": "string",
-            "description": "상품 시작일",
-            "example": "20210101"
-          },
-          "productEndDate": {
-            "type": "string",
-            "description": "상품 종료일",
-            "example": "20211231"
-          },
-          "productCount": {
-            "type": "string",
-            "description": "상품 횟수",
-            "example": "20"
-          },
-          "productPrice": {
-            "type": "string",
-            "description": "상품 가격",
-            "example": "100000"
-          },
-          "memberMemo": {
-            "type": "string",
-            "description": "회원 메모",
-            "example": "특이사항 없음"
-          },
-          "memberJoinPath": {
-            "type": "string",
-            "description": "가입 경로",
-            "example": "지인 소개"
+            "description": "이용권ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
           }
         }
       },
@@ -1362,6 +1471,60 @@
           }
         }
       },
+      "PlusReqDto": {
+        "required": [
+          "cneterId",
+          "memberId",
+          "productCount",
+          "productEndDate",
+          "productName",
+          "productPrice",
+          "productStartDate"
+        ],
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "description": "회원ID",
+            "example": "3c7ba936-d4d3-11ef-b7c9-0242ac190002"
+          },
+          "cneterId": {
+            "type": "string",
+            "description": "센터ID",
+            "example": "3c7ba936-d4d3-11ef-b7c9-0242ac190002"
+          },
+          "productName": {
+            "type": "string",
+            "description": "상품명",
+            "example": "프리미엄PT20"
+          },
+          "productStartDate": {
+            "type": "string",
+            "description": "상품 시작일",
+            "example": "20210101"
+          },
+          "productEndDate": {
+            "type": "string",
+            "description": "상품 종료일",
+            "example": "20211231"
+          },
+          "productCount": {
+            "type": "string",
+            "description": "상품 횟수",
+            "example": "20"
+          },
+          "productPrice": {
+            "type": "string",
+            "description": "상품 가격",
+            "example": "100000"
+          },
+          "memberMemo": {
+            "type": "string",
+            "description": "회원 메모",
+            "example": "특이사항 없음"
+          }
+        }
+      },
       "AssignToOldMemberReqDto": {
         "required": ["memberId", "originalTicketId"],
         "type": "object",
@@ -1392,8 +1555,7 @@
           "productName",
           "productPrice",
           "productStartDate",
-          "trainerId",
-          "trainerProductId"
+          "trainerId"
         ],
         "type": "object",
         "properties": {
@@ -1436,11 +1598,6 @@
             "type": "string",
             "description": "회원 주소",
             "example": "서울시 강남구"
-          },
-          "trainerProductId": {
-            "type": "string",
-            "description": "트레이너 상품 키값",
-            "example": "3803f0e5-d4d3-11ef-b7c9-0242ac190002"
           },
           "productName": {
             "type": "string",
@@ -1672,8 +1829,16 @@
       "PushSetResDto": {
         "type": "object",
         "properties": {
-          "pushKind": { "type": "string" },
-          "pushSetYn": { "type": "string" }
+          "pushKind": {
+            "type": "string",
+            "description": "푸시종류",
+            "example": "ADVERTISE | RESERVATION"
+          },
+          "pushSetYn": {
+            "type": "string",
+            "description": "푸시여부",
+            "example": "Y"
+          }
         },
         "description": "응답 데이터"
       },
@@ -1858,17 +2023,6 @@
           }
         }
       },
-      "FittnerPageable": {
-        "type": "object",
-        "properties": {
-          "currentPageNo": {
-            "type": "integer",
-            "description": "현재 페이지 번호",
-            "format": "int32",
-            "example": 1
-          }
-        }
-      },
       "ApiResponseMessageListTicketListResDto": {
         "type": "object",
         "properties": {
@@ -1907,11 +2061,46 @@
       "TicketListResDto": {
         "type": "object",
         "properties": {
-          "ticketId": { "type": "string" },
-          "ticketStatus": { "type": "string" },
-          "memeberName": { "type": "string" },
-          "ticketName": { "type": "string" },
-          "ticketStartEndDate": { "type": "string" }
+          "ticketId": {
+            "type": "string",
+            "description": "이용권ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
+          },
+          "ticketCode": {
+            "type": "string",
+            "description": "이용권코드",
+            "example": "ING | STOP | ASSIGN_TO | ASSIGN_FROM | REFUND | AFTER"
+          },
+          "memeberName": {
+            "type": "string",
+            "description": "회원이름",
+            "example": "아무기"
+          },
+          "ticketName": {
+            "type": "string",
+            "description": "이용권명",
+            "example": "프리미엄PT"
+          },
+          "ticketStartDate": {
+            "type": "string",
+            "description": "이용권시작일",
+            "example": "20250103"
+          },
+          "ticketEndDate": {
+            "type": "string",
+            "description": "이용권종료일",
+            "example": "20250401"
+          },
+          "memberPohoneEnd": {
+            "type": "string",
+            "description": "회원 휴대폰뒤 4자리",
+            "example": "1422"
+          },
+          "ticketTotalCnt": {
+            "type": "string",
+            "description": "이용권 전체 횟수",
+            "example": "20"
+          }
         },
         "description": "응답 데이터"
       },
@@ -1946,33 +2135,154 @@
           }
         }
       },
+      "AssignInfo": {
+        "type": "object",
+        "properties": {
+          "assignCenterName": {
+            "type": "string",
+            "description": "양도센터명",
+            "example": "아워피티니스 서초점"
+          },
+          "assignTrainerName": {
+            "type": "string",
+            "description": "양도트레이너명",
+            "example": "고길동"
+          },
+          "assignDate": {
+            "type": "string",
+            "description": "양도일",
+            "example": "20250103"
+          },
+          "assignCnt": {
+            "type": "string",
+            "description": "양도횟수",
+            "example": "6"
+          },
+          "assignMemberName": {
+            "type": "string",
+            "description": "양도회원명",
+            "example": "김철수"
+          }
+        },
+        "description": "양도 정보"
+      },
+      "MemberInfo": {
+        "type": "object",
+        "properties": {
+          "memeberName": {
+            "type": "string",
+            "description": "회원이름",
+            "example": "아무기"
+          },
+          "memberPhone": {
+            "type": "string",
+            "description": "회원핸드폰",
+            "example": "01011112222"
+          },
+          "memberGender": {
+            "type": "string",
+            "description": "횐원성별",
+            "example": "M"
+          },
+          "memberBirth": {
+            "type": "string",
+            "description": "회원생년월일",
+            "example": "890122"
+          },
+          "memberAddress": {
+            "type": "string",
+            "description": "회원주소",
+            "example": "서울시 관악구 아무동 22-1"
+          },
+          "memberMomo": {
+            "type": "string",
+            "description": "회원메모",
+            "example": "25년 8월 바디프로필 희망"
+          },
+          "memberJoinPath": {
+            "type": "string",
+            "description": "회원가입경로",
+            "example": "지인소개"
+          }
+        },
+        "description": "회원 정보"
+      },
+      "RefundInfo": {
+        "type": "object",
+        "properties": {
+          "refundCnt": {
+            "type": "string",
+            "description": "환불횟수",
+            "example": "3"
+          },
+          "refundPrice": {
+            "type": "string",
+            "description": "환불금액",
+            "example": "300000"
+          },
+          "refundDateTime": {
+            "type": "string",
+            "description": "환불일시",
+            "example": "20250203113022"
+          }
+        },
+        "description": "환불 정보"
+      },
       "TicketDetailResDto": {
         "type": "object",
         "properties": {
-          "memeberName": { "type": "string" },
-          "memberPhone": { "type": "string" },
-          "memberGender": { "type": "string" },
-          "memberBirth": { "type": "string" },
-          "memberAddress": { "type": "string" },
-          "memberMomo": { "type": "string" },
-          "memberJoinPath": { "type": "string" },
-          "ticketCodeName": { "type": "string" },
-          "ticketName": { "type": "string" },
-          "ticketStartDate": { "type": "string" },
-          "ticketEndDate": { "type": "string" },
-          "ticketUseCnt": { "type": "string" },
-          "ticketTotalCnt": { "type": "string" },
-          "ticketPrice": { "type": "string" },
-          "refundCnt": { "type": "string" },
-          "refundPrice": { "type": "string" },
-          "refundDateTime": { "type": "string" },
-          "assignCenterName": { "type": "string" },
-          "assignTrainerName": { "type": "string" },
-          "assignDate": { "type": "string" },
-          "assignCnt": { "type": "string" },
-          "assignMemberName": { "type": "string" }
+          "memberInfo": { "$ref": "#/components/schemas/MemberInfo" },
+          "ticketInfo": { "$ref": "#/components/schemas/TicketInfo" },
+          "refundInfo": { "$ref": "#/components/schemas/RefundInfo" },
+          "assignInfo": { "$ref": "#/components/schemas/AssignInfo" }
         },
         "description": "응답 데이터"
+      },
+      "TicketInfo": {
+        "type": "object",
+        "properties": {
+          "ticketCode": {
+            "type": "string",
+            "description": "이용권코드",
+            "example": "ING | STOP | ASSIGN_TO | ASSIGN_FROM | REFUND | AFTER"
+          },
+          "ticketCodeName": {
+            "type": "string",
+            "description": "이용권코드명",
+            "example": "이용중"
+          },
+          "ticketName": {
+            "type": "string",
+            "description": "이용권명",
+            "example": "프리미엄PT"
+          },
+          "ticketStartDate": {
+            "type": "string",
+            "description": "이용권시작일",
+            "example": "20250111"
+          },
+          "ticketEndDate": {
+            "type": "string",
+            "description": "이용권종료일",
+            "example": "20250411"
+          },
+          "ticketUseCnt": {
+            "type": "string",
+            "description": "이용권이용횟수",
+            "example": "17"
+          },
+          "ticketTotalCnt": {
+            "type": "string",
+            "description": "이용권전체횟수",
+            "example": "20"
+          },
+          "ticketPrice": {
+            "type": "string",
+            "description": "이용권가격",
+            "example": "2000000"
+          }
+        },
+        "description": "이용권 정보"
       },
       "ApiResponseMessageRefundInfoResDto": {
         "type": "object",
@@ -2095,14 +2405,46 @@
       "AssignToInfoResDto": {
         "type": "object",
         "properties": {
-          "ticketId": { "type": "string" },
-          "ticketName": { "type": "string" },
-          "ticketStartDate": { "type": "string" },
-          "ticketEndDate": { "type": "string" },
-          "remainingCnt": { "type": "string" },
-          "totalCnt": { "type": "string" },
-          "memberName": { "type": "string" },
-          "memberPhoneEnd": { "type": "string" }
+          "ticketId": {
+            "type": "string",
+            "description": "이용권ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
+          },
+          "ticketName": {
+            "type": "string",
+            "description": "이용권명",
+            "example": "프리미엄PT"
+          },
+          "ticketStartDate": {
+            "type": "string",
+            "description": "이용권시작일",
+            "example": "20250101"
+          },
+          "ticketEndDate": {
+            "type": "string",
+            "description": "이용권종료일",
+            "example": "20250401"
+          },
+          "remainingCnt": {
+            "type": "string",
+            "description": "이용권잔여횟수",
+            "example": "12"
+          },
+          "totalCnt": {
+            "type": "string",
+            "description": "이용권전체횟수",
+            "example": "20"
+          },
+          "memberName": {
+            "type": "string",
+            "description": "회원명",
+            "example": "아무기"
+          },
+          "memberPhoneEnd": {
+            "type": "string",
+            "description": "회원휴대폰 끝네자리",
+            "example": "1234"
+          }
         },
         "description": "응답 데이터"
       },
@@ -2144,13 +2486,44 @@
       "TermsResDto": {
         "type": "object",
         "properties": {
-          "termsId": { "type": "string" },
-          "termsKind": { "type": "string" },
-          "termsEssentialYn": { "type": "string" },
-          "termsTitle": { "type": "string" },
-          "termsUrl": { "type": "string" }
+          "termsId": {
+            "type": "string",
+            "description": "약관ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
+          },
+          "termsKind": {
+            "type": "string",
+            "description": "약관종류",
+            "example": "ADVERTISE | INFO | USE"
+          },
+          "termsEssentialYn": {
+            "type": "string",
+            "description": "약관필수여부",
+            "example": "Y"
+          },
+          "termsTitle": {
+            "type": "string",
+            "description": "약관제목",
+            "example": "개인정보처리방침"
+          },
+          "termsUrl": {
+            "type": "string",
+            "description": "약관url",
+            "example": "https://api.fittner.co.kr/api/v1/common/file/show/bE2c2E35d6a"
+          }
         },
         "description": "응답 데이터"
+      },
+      "FittnerPageable": {
+        "type": "object",
+        "properties": {
+          "currentPageNo": {
+            "type": "integer",
+            "description": "현재 페이지 번호",
+            "format": "int32",
+            "example": 1
+          }
+        }
       },
       "ApiResponseMessageSignResrvationResDto": {
         "type": "object",
@@ -2186,6 +2559,11 @@
       "SignResrvationDto": {
         "type": "object",
         "properties": {
+          "ticketId": {
+            "type": "string",
+            "description": "이용권ID",
+            "example": "3c7ba936-d4d3-11ef-b7c9-0242ac190002"
+          },
           "reservationId": {
             "type": "string",
             "description": "예약ID",
@@ -2323,6 +2701,120 @@
         },
         "description": "응답 데이터"
       },
+      "ReservationSearchDto": {
+        "type": "object",
+        "properties": {
+          "reservationStartDate": { "type": "string" },
+          "reservationEndDate": { "type": "string" }
+        }
+      },
+      "ApiResponseMessageListGroupedReservationMemberDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/GroupedReservationMemberDto"
+            }
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "GroupedReservationMemberDto": {
+        "type": "object",
+        "properties": {
+          "lastTwoDigits": {
+            "type": "string",
+            "description": "날짜 끝두자리 값",
+            "example": "02"
+          },
+          "reservations": {
+            "type": "array",
+            "description": "예액 정보들",
+            "items": { "$ref": "#/components/schemas/ReservationMemberResDto" },
+            "example": null
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ReservationMemberResDto": {
+        "type": "object",
+        "properties": {
+          "lastTwoDigits": {
+            "type": "string",
+            "description": "날짜 끝두자리 값",
+            "example": "02"
+          },
+          "memberName": {
+            "type": "string",
+            "description": "회원명",
+            "example": "김영재"
+          },
+          "reservationStartDate": {
+            "type": "string",
+            "description": "예약시작일",
+            "example": "20250101"
+          },
+          "reservationEndDate": {
+            "type": "string",
+            "description": "예약종료일",
+            "example": "20250110"
+          },
+          "reservationStartTime": {
+            "type": "string",
+            "description": "예약시작시간",
+            "example": "0900"
+          },
+          "reservationEndTime": {
+            "type": "string",
+            "description": "예약종료시간",
+            "example": "1000"
+          },
+          "reservationColor": {
+            "type": "string",
+            "description": "예약색상",
+            "example": "#FF0000"
+          },
+          "reservationMemo": {
+            "type": "string",
+            "description": "예약메모",
+            "example": "헬스PT"
+          },
+          "ptnCnt": {
+            "type": "integer",
+            "description": "PTN회차",
+            "format": "int32",
+            "example": 1
+          }
+        },
+        "description": "예액 정보들",
+        "example": null
+      },
       "ApiResponseMessageReservationColorResDto": {
         "type": "object",
         "properties": {
@@ -2399,11 +2891,31 @@
       "PushResDto": {
         "type": "object",
         "properties": {
-          "pushId": { "type": "string" },
-          "pushTitle": { "type": "string" },
-          "pushContent": { "type": "string" },
-          "pushDate": { "type": "string" },
-          "pushReadYn": { "type": "string" }
+          "pushId": {
+            "type": "string",
+            "description": "알림ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
+          },
+          "pushTitle": {
+            "type": "string",
+            "description": "알림제목",
+            "example": "수업 5분전 알림"
+          },
+          "pushContent": {
+            "type": "string",
+            "description": "알림내용",
+            "example": "아무개 수업이 5분전이에요!"
+          },
+          "pushDate": {
+            "type": "string",
+            "description": "알림일자",
+            "example": "20250122"
+          },
+          "pushReadYn": {
+            "type": "string",
+            "description": "알림읽음여부",
+            "example": "N"
+          }
         },
         "description": "응답 데이터"
       },
@@ -2440,7 +2952,13 @@
       },
       "PushChkResDto": {
         "type": "object",
-        "properties": { "pushChkYn": { "type": "string" } },
+        "properties": {
+          "newPushYn": {
+            "type": "string",
+            "description": "신규알림여부",
+            "example": "Y"
+          }
+        },
         "description": "응답 데이터"
       },
       "ApiResponseMessageListTermsListResDto": {
@@ -2481,10 +2999,19 @@
       "TermsListResDto": {
         "type": "object",
         "properties": {
-          "ingTermsTitle": { "type": "string" },
-          "intTermsStartDate": { "type": "string" },
+          "ingTermsTitle": {
+            "type": "string",
+            "description": "약관제목",
+            "example": "개인정보처리방침"
+          },
+          "intTermsStartDate": {
+            "type": "string",
+            "description": "약관시작일",
+            "example": "20250104"
+          },
           "totalTermList": {
             "type": "array",
+            "description": "약관리스트",
             "items": { "$ref": "#/components/schemas/TotalTerm" }
           }
         },
@@ -2493,11 +3020,20 @@
       "TotalTerm": {
         "type": "object",
         "properties": {
-          "termsStartDate": { "type": "string" },
-          "termsUrl": { "type": "string" }
-        }
+          "termsStartDate": {
+            "type": "string",
+            "description": "약관시작일",
+            "example": "20250104"
+          },
+          "termsUrl": {
+            "type": "string",
+            "description": "약관url",
+            "example": "https://api.fittner.co.kr/api/v1/common/file/show/b71iFb5ij6J"
+          }
+        },
+        "description": "약관리스트"
       },
-      "ApiResponseMessageListSalesResDto": {
+      "ApiResponseMessageSalesResDto": {
         "type": "object",
         "properties": {
           "status": {
@@ -2520,11 +3056,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "type": "array",
-            "description": "응답 데이터",
-            "items": { "$ref": "#/components/schemas/SalesResDto" }
-          },
+          "result": { "$ref": "#/components/schemas/SalesResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -2535,16 +3067,20 @@
       "SalesResDto": {
         "type": "object",
         "properties": {
-          "memeberName": { "type": "string" },
-          "ticetName": { "type": "string" },
-          "ticketStartEndDate": { "type": "string" },
-          "ticketStartEndTime": { "type": "string" },
-          "ticketUseCnt": { "type": "string" },
-          "totalSettlementAmount": { "type": "string" }
+          "projectionSalesPrice": {
+            "type": "string",
+            "description": "예상수익금",
+            "example": "1000000"
+          },
+          "nowSalesPrice": {
+            "type": "string",
+            "description": "현재수익금",
+            "example": "970000"
+          }
         },
         "description": "응답 데이터"
       },
-      "ApiResponseMessageListSalesDetailResDto": {
+      "ApiResponseMessageListSalesInfoResDto": {
         "type": "object",
         "properties": {
           "status": {
@@ -2570,7 +3106,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": { "$ref": "#/components/schemas/SalesDetailResDto" }
+            "items": { "$ref": "#/components/schemas/SalesInfoResDto" }
           },
           "error": {
             "type": "string",
@@ -2579,20 +3115,53 @@
           }
         }
       },
-      "SalesDetailResDto": {
+      "SalesInfoResDto": {
         "type": "object",
         "properties": {
-          "memeberName": { "type": "string" },
-          "ticetName": { "type": "string" },
-          "reservationStartDate": { "type": "string" },
-          "reservationStartEndTime": { "type": "string" },
-          "ticketUseCnt": { "type": "string" },
-          "reservationStatus": { "type": "string" },
-          "settlementAmount": { "type": "string" }
+          "ticketId": {
+            "type": "string",
+            "description": "이용권ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
+          },
+          "memberId": {
+            "type": "string",
+            "description": "회원ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
+          },
+          "memberName": {
+            "type": "string",
+            "description": "회원이름",
+            "example": "아무개"
+          },
+          "ticketName": {
+            "type": "string",
+            "description": "이용권명",
+            "example": "프리미엄PT"
+          },
+          "ticketStartDate": {
+            "type": "string",
+            "description": "이용권시작일",
+            "example": "20250101"
+          },
+          "ticketEndDate": {
+            "type": "string",
+            "description": "이용권종료일",
+            "example": "20250301"
+          },
+          "ticketUseCnt": {
+            "type": "string",
+            "description": "회차",
+            "example": "3"
+          },
+          "nowSalesPrice": {
+            "type": "string",
+            "description": "현재수익금",
+            "example": "150000"
+          }
         },
         "description": "응답 데이터"
       },
-      "ApiResponseMessageSalesInfoResDto": {
+      "ApiResponseMessageListSalesInfoDetailResDto": {
         "type": "object",
         "properties": {
           "status": {
@@ -2615,7 +3184,11 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": { "$ref": "#/components/schemas/SalesInfoResDto" },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": { "$ref": "#/components/schemas/SalesInfoDetailResDto" }
+          },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -2623,11 +3196,54 @@
           }
         }
       },
-      "SalesInfoResDto": {
+      "SalesInfoDetailResDto": {
         "type": "object",
         "properties": {
-          "projectionSales": { "type": "string" },
-          "nowSales": { "type": "string" }
+          "ticketId": {
+            "type": "string",
+            "description": "이용권ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
+          },
+          "memberName": {
+            "type": "string",
+            "description": "회원이름",
+            "example": "아무개"
+          },
+          "reservationStartDate": {
+            "type": "string",
+            "description": "예약시작일",
+            "example": "20250101"
+          },
+          "reservationEndDate": {
+            "type": "string",
+            "description": "예약종료일",
+            "example": "20250301"
+          },
+          "reservationStartTime": {
+            "type": "string",
+            "description": "예약시작시간",
+            "example": "1600"
+          },
+          "reservationEndTime": {
+            "type": "string",
+            "description": "예약종료시간",
+            "example": "1700"
+          },
+          "ticketUseCnt": {
+            "type": "string",
+            "description": "회차",
+            "example": "3"
+          },
+          "salesPrice": {
+            "type": "string",
+            "description": "수익금",
+            "example": "150000"
+          },
+          "reservationStatus": {
+            "type": "string",
+            "description": "예약상태",
+            "example": "NOSHOW | SIGN"
+          }
         },
         "description": "응답 데이터"
       },
@@ -2669,11 +3285,31 @@
       "NoticeResDto": {
         "type": "object",
         "properties": {
-          "noticeId": { "type": "string" },
-          "noticeTitle": { "type": "string" },
-          "noticeContent": { "type": "string" },
-          "noticeReadYn": { "type": "string" },
-          "noticeDate": { "type": "string" }
+          "noticeId": {
+            "type": "string",
+            "description": "공지사항ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
+          },
+          "noticeTitle": {
+            "type": "string",
+            "description": "공지사항제목",
+            "example": "앱 긴급점검 안내"
+          },
+          "noticeContent": {
+            "type": "string",
+            "description": "공지사항내용",
+            "example": "안녕하세요 피트너입니다. 내부 시스템 점검으로 인해 14:00~14:10(10분) 동안 환불 서비스 중지 예정입니다. 서비스 이용에 불편을 드려 죄송합니다."
+          },
+          "noticeReadYn": {
+            "type": "string",
+            "description": "공지사항읽음여부",
+            "example": "N"
+          },
+          "noticeDate": {
+            "type": "string",
+            "description": "공지일자",
+            "example": "20250101"
+          }
         },
         "description": "응답 데이터"
       },
@@ -2844,6 +3480,147 @@
         },
         "description": "응답 데이터"
       },
+      "ApiResponseMessageListGroupedReservationDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": { "$ref": "#/components/schemas/GroupedReservationDto" }
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "GroupedReservationDto": {
+        "type": "object",
+        "properties": {
+          "lastTwoDigits": {
+            "type": "string",
+            "description": "날짜 끝두자리 값",
+            "example": "02"
+          },
+          "reservations": {
+            "type": "array",
+            "description": "예약색상",
+            "example": "#FF0000",
+            "items": {
+              "type": "string",
+              "description": "예약색상",
+              "example": "#FF0000"
+            }
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageMainReservationsResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": { "$ref": "#/components/schemas/MainReservationsResDto" },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "MainReservationsResDto": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "description": "n번째날",
+            "format": "int32",
+            "example": 1
+          },
+          "lastTwoDigits": {
+            "type": "string",
+            "description": "날짜 끝4자리 값",
+            "example": "0102"
+          },
+          "reservationColor": {
+            "type": "string",
+            "description": "예약색상",
+            "example": "#FF0000"
+          },
+          "memberName": {
+            "type": "string",
+            "description": "회원명",
+            "example": "김영재"
+          },
+          "reservationStartDate": {
+            "type": "string",
+            "description": "예약시작일",
+            "example": "20250101"
+          },
+          "reservationEndDate": {
+            "type": "string",
+            "description": "예약종료일",
+            "example": "20250110"
+          },
+          "reservationStartTime": {
+            "type": "string",
+            "description": "예약시작시간",
+            "example": "0900"
+          },
+          "reservationEndTime": {
+            "type": "string",
+            "description": "예약종료시간",
+            "example": "1000"
+          },
+          "totalCnt": {
+            "type": "integer",
+            "description": "전체횟차",
+            "format": "int32",
+            "example": 10
+          },
+          "ncnt": { "type": "integer", "format": "int32" }
+        },
+        "description": "응답 데이터"
+      },
       "ApiResponseMessagePageResponseDtoMainUserCenterListResDto": {
         "type": "object",
         "properties": {
@@ -2999,9 +3776,21 @@
       "UserInfoResDto": {
         "type": "object",
         "properties": {
-          "trainerEmail": { "type": "string" },
-          "trainerSnsKind": { "type": "string" },
-          "trainerName": { "type": "string" }
+          "trainerEmail": {
+            "type": "string",
+            "description": "트레이너email",
+            "example": "test002@naver.com"
+          },
+          "trainerSnsKind": {
+            "type": "string",
+            "description": "트레이너 소셜구분",
+            "example": "APPLE | GOOGLE | KAKAO"
+          },
+          "trainerName": {
+            "type": "string",
+            "description": "트레이너명",
+            "example": "아무기"
+          }
         },
         "description": "응답 데이터"
       },
@@ -3080,7 +3869,13 @@
       },
       "SplashResDto": {
         "type": "object",
-        "properties": { "splashImgUrl": { "type": "string" } },
+        "properties": {
+          "splashImgUrl": {
+            "type": "string",
+            "description": "스플래시 이미지 url",
+            "example": "https://api.fittner.co.kr/api/v1/common/file/show/1Ec3Eb2h1B9"
+          }
+        },
         "description": "응답 데이터"
       },
       "ApiResponseMessageBrandColorResDto": {
@@ -3117,19 +3912,71 @@
       "BrandColorResDto": {
         "type": "object",
         "properties": {
-          "greyTypeA": { "type": "string" },
-          "greyTypeB": { "type": "string" },
-          "greyTypeC": { "type": "string" },
-          "greyTypeD": { "type": "string" },
-          "primary": { "type": "string" },
-          "sub": { "type": "string" },
-          "textTypeA": { "type": "string" },
-          "textTypeB": { "type": "string" },
-          "textTypeC": { "type": "string" },
-          "textTypeD": { "type": "string" },
-          "textTypeE": { "type": "string" },
-          "textTypeF": { "type": "string" },
-          "textTypeG": { "type": "string" }
+          "greyTypeA": {
+            "type": "string",
+            "description": "그레이컬러1",
+            "example": "헥사값"
+          },
+          "greyTypeB": {
+            "type": "string",
+            "description": "그레이컬러2",
+            "example": "헥사값"
+          },
+          "greyTypeC": {
+            "type": "string",
+            "description": "그레이컬러3",
+            "example": "헥사값"
+          },
+          "greyTypeD": {
+            "type": "string",
+            "description": "그레이컬러4",
+            "example": "헥사값"
+          },
+          "primary": {
+            "type": "string",
+            "description": "브랜드컬러",
+            "example": "헥사값"
+          },
+          "sub": {
+            "type": "string",
+            "description": "브랜드 서브컬러",
+            "example": "헥사값"
+          },
+          "textTypeA": {
+            "type": "string",
+            "description": "텍스트컬러1",
+            "example": "헥사값"
+          },
+          "textTypeB": {
+            "type": "string",
+            "description": "텍스트컬러2",
+            "example": "헥사값"
+          },
+          "textTypeC": {
+            "type": "string",
+            "description": "텍스트컬러3",
+            "example": "헥사값"
+          },
+          "textTypeD": {
+            "type": "string",
+            "description": "텍스트컬러4",
+            "example": "헥사값"
+          },
+          "textTypeE": {
+            "type": "string",
+            "description": "텍스트컬러5",
+            "example": "헥사값"
+          },
+          "textTypeF": {
+            "type": "string",
+            "description": "텍스트컬러6",
+            "example": "헥사값"
+          },
+          "textTypeG": {
+            "type": "string",
+            "description": "텍스트컬러7",
+            "example": "헥사값"
+          }
         },
         "description": "응답 데이터"
       },
@@ -3167,8 +4014,16 @@
       "HardUpdateResDto": {
         "type": "object",
         "properties": {
-          "hardUpdateYn": { "type": "string" },
-          "appUpadateUrl": { "type": "string" }
+          "hardUpdateYn": {
+            "type": "string",
+            "description": "강제업데이트여부",
+            "example": "Y"
+          },
+          "appUpadateUrl": {
+            "type": "string",
+            "description": "업데이트url",
+            "example": "스토어url"
+          }
         },
         "description": "응답 데이터"
       },

@@ -10,5 +10,6 @@
  * 응답 데이터
  */
 export interface PushChkResDto {
-  pushChkYn?: string;
+  /** 신규알림여부 */
+  newPushYn?: string;
 }

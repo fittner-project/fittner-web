@@ -6,12 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
+export type GetUserPushChkParams = {
 /**
- * 응답 데이터
+ * 센터ID
  */
-export interface PushSetResDto {
-  /** 푸시종류 */
-  pushKind?: string;
-  /** 푸시여부 */
-  pushSetYn?: string;
-}
+centerId: string;
+};
