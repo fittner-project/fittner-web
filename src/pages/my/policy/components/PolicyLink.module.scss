@@ -1,0 +1,20 @@
+.container {
+  @include flex_row(space-between, center);
+  padding: 2rem 0;
+  border-top: 0.2rem solid $grey_1;
+
+  &:last-child {
+    border-bottom: 0.2rem solid $grey_1;
+  }
+
+  .left_section {
+    .title {
+      @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+    }
+
+    .date {
+      margin-top: 0.6rem;
+      @include fm-ar(1.7rem, $grey_3, 2.2rem, 400);
+    }
+  }
+}

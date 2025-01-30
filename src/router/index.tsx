@@ -14,6 +14,7 @@ import SignUpComplete from "@/pages/sign-up/sign-up-complete/SignUpComplete";
 import My from "@/pages/my/default/My";
 import CenterList from "@/pages/center-list/CenterList";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Policy from "@/pages/my/policy/Policy";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +66,14 @@ const router = createBrowserRouter([
       {
         path: PATH.CENTER_LIST,
         element: <CenterList />,
+      },
+      {
+        path: PATH.MY.POLICY.TERMS,
+        element: <Policy type="terms" />,
+      },
+      {
+        path: PATH.MY.POLICY.NOTICE,
+        element: <Policy type="notice" />,
       },
     ],
   },

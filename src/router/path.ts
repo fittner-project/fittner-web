@@ -13,6 +13,10 @@ const PATH = {
   CENTER_LIST: "/center-list",
   MY: {
     DEFAULT: "/my",
+    POLICY: {
+      TERMS: "/my/terms",
+      NOTICE: "/my/notice",
+    },
   },
 };
 

@@ -41,6 +41,8 @@ type RouteKeys =
   | "sign-up-complete"
   | "my"
   | "center-list"
+  | "my-terms"
+  | "my-notice"
   | "redirect"
   | "root";
 
@@ -156,5 +158,21 @@ export const Routes: Routes = {
         actionType: "add-center",
       },
     },
+  },
+
+  "my-terms": {
+    name: "my-terms",
+    path: PATH.MY.POLICY.TERMS,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+
+  "my-notice": {
+    name: "my-notice",
+    path: PATH.MY.POLICY.NOTICE,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
   },
 };
