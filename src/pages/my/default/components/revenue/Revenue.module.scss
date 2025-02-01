@@ -16,7 +16,6 @@
     line-height: 2.2rem;
 
     .detail_section {
-      cursor: pointer;
       @include flex_row(flex-start, center);
       @include flex_row_gap(0.2rem);
     }
