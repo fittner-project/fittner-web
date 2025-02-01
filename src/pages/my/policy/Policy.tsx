@@ -9,12 +9,15 @@ import PaddingContainer from "@/layout/containers/padding-container/PaddingConta
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+import { storageKeys } from "@/constants/storageKeys";
+import { storage } from "@/utils/storage";
 
 interface PolicyProps {
   type: "terms" | "notice";
 }
 
 export default function Policy({ type }: PolicyProps) {
+  const centerId = storage.get<string>({ key: storageKeys.activeCenterId });
   const { data: termsData } = useGetUserMyPageTerms({
     query: { enabled: type === "terms" },
   });
@@ -30,7 +33,7 @@ export default function Policy({ type }: PolicyProps) {
     queryKey: infiniteQueryKeys.NOTICES(),
     queryFn: ({ pageParam = 1 }) =>
       getUserMyPageNotices({
-        centerId: "1",
+        centerId: centerId ?? "",
         currentPageNo: pageParam.toString(),
         recordsPerPage: "10",
       }),
@@ -39,7 +42,7 @@ export default function Policy({ type }: PolicyProps) {
       return totalCount === 10 ? allPages.length + 1 : undefined;
     },
     initialPageParam: 1,
-    enabled: type === "notice",
+    enabled: type === "notice" && !!centerId,
   });
 
   const { ref } = useInfiniteScroll({

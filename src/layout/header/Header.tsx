@@ -3,6 +3,8 @@ import styles from "./Header.module.scss";
 import { ReactNode } from "react";
 import { bell } from "@/assets/assets";
 import Image from "@/components/image/Image";
+import { storage } from "@/utils/storage";
+import { storageKeys } from "@/constants/storageKeys";
 
 interface HeaderProps {
   fallback: string | "none";
@@ -16,6 +18,17 @@ export default function Header({ fallback, title }: HeaderProps) {
     if (fallback === "none") navigate(-1);
     else navigate(fallback);
   };
+
+  useEffect(() => {
+    // 메인 헤더에서 선택된 centerId 여기서 스토리지에 넣어주세용.
+    // 이건 그냥 예시로 1로 넣었음.
+
+    storage.set({
+      key: storageKeys.activeCenterId,
+      value: "1",
+      type: "local",
+    });
+  }, []);
 
   return (
     <div className={styles.container}>

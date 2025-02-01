@@ -6,11 +6,11 @@ interface UseInfiniteScrollProps {
   fetchNextPage: () => void;
 }
 
-export const useInfiniteScroll = ({
+export function useInfiniteScroll({
   hasNextPage,
   isFetchingNextPage,
   fetchNextPage,
-}: UseInfiniteScrollProps) => {
+}: UseInfiniteScrollProps) {
   const { ref, inView } = useInView();
 
   useEffect(() => {
@@ -20,4 +20,4 @@ export const useInfiniteScroll = ({
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return { ref };
-};
+}

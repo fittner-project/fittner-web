@@ -5,6 +5,6 @@ export const storageKeys = {
   termsAgreement: "termsAgreement",
   trainerSnsKind: "trainerSnsKind",
   terms: "terms",
-  centerId: "centerId",
+  activeCenterId: "activeCenterId",
   auth: "auth",
 };
