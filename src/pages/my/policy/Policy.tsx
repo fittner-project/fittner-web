@@ -5,10 +5,10 @@ import {
 import styles from "./Policy.module.scss";
 import PolicyLink from "./components/PolicyLink";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
-import { useInView } from "react-intersection-observer";
+
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
+import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
 interface PolicyProps {
   type: "terms" | "notice";
@@ -19,7 +19,6 @@ export default function Policy({ type }: PolicyProps) {
     query: { enabled: type === "terms" },
   });
   const terms = termsData?.result;
-  const { ref, inView } = useInView();
 
   const {
     data: noticePages,
@@ -43,11 +42,11 @@ export default function Policy({ type }: PolicyProps) {
     enabled: type === "notice",
   });
 
-  useEffect(() => {
-    if (inView && hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-    }
-  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+  const { ref } = useInfiniteScroll({
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  });
 
   const allNotices =
     noticePages?.pages.flatMap((page) => page.result ?? []) ?? [];
