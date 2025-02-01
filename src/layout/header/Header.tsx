@@ -35,7 +35,7 @@ export default function Header({ fallback, title }: HeaderProps) {
       <div className={styles.title}>{title ?? "아워피트니스 1호점"}</div>
 
       <div className={styles.ico}>
-        <Image src={bell} width={2.3} height={2.3} />
+        <Image src={bell} width={2.4} height={2.4} />
       </div>
     </div>
   );
