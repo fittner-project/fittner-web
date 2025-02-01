@@ -259,7 +259,7 @@ export function useGetUserSignReservations<TData = Awaited<ReturnType<typeof get
  */
 export const getUserSignReservationsTicketId = (
     ticketId: string,
-    params: GetUserSignReservationsTicketIdParams,
+    params?: GetUserSignReservationsTicketIdParams,
  signal?: AbortSignal
 ) => {
       
@@ -273,13 +273,13 @@ export const getUserSignReservationsTicketId = (
   
 
 export const getGetUserSignReservationsTicketIdQueryKey = (ticketId: string,
-    params: GetUserSignReservationsTicketIdParams,) => {
+    params?: GetUserSignReservationsTicketIdParams,) => {
     return [`/api/v1/user/sign/reservations/${ticketId}`, ...(params ? [params]: [])] as const;
     }
 
     
 export const getGetUserSignReservationsTicketIdInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, GetUserSignReservationsTicketIdParams['page']>, TError = unknown>(ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>>, }
+    params?: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
@@ -303,7 +303,7 @@ export type GetUserSignReservationsTicketIdInfiniteQueryError = unknown
 
 export function useGetUserSignReservationsTicketIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, GetUserSignReservationsTicketIdParams['page']>, TError = unknown>(
  ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>> & Pick<
+    params: undefined |  GetUserSignReservationsTicketIdParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getUserSignReservationsTicketId>>,
           TError,
@@ -314,7 +314,7 @@ export function useGetUserSignReservationsTicketIdInfinite<TData = InfiniteData<
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useGetUserSignReservationsTicketIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, GetUserSignReservationsTicketIdParams['page']>, TError = unknown>(
  ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>> & Pick<
+    params?: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getUserSignReservationsTicketId>>,
           TError,
@@ -325,7 +325,7 @@ export function useGetUserSignReservationsTicketIdInfinite<TData = InfiniteData<
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useGetUserSignReservationsTicketIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, GetUserSignReservationsTicketIdParams['page']>, TError = unknown>(
  ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>>, }
+    params?: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
@@ -334,7 +334,7 @@ export function useGetUserSignReservationsTicketIdInfinite<TData = InfiniteData<
 
 export function useGetUserSignReservationsTicketIdInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, GetUserSignReservationsTicketIdParams['page']>, TError = unknown>(
  ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>>, }
+    params?: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData, Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, QueryKey, GetUserSignReservationsTicketIdParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
@@ -350,7 +350,7 @@ export function useGetUserSignReservationsTicketIdInfinite<TData = InfiniteData<
 
 
 export const getGetUserSignReservationsTicketIdQueryOptions = <TData = Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError = unknown>(ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>>, }
+    params?: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
@@ -374,7 +374,7 @@ export type GetUserSignReservationsTicketIdQueryError = unknown
 
 export function useGetUserSignReservationsTicketId<TData = Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError = unknown>(
  ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>> & Pick<
+    params: undefined |  GetUserSignReservationsTicketIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getUserSignReservationsTicketId>>,
           TError,
@@ -385,7 +385,7 @@ export function useGetUserSignReservationsTicketId<TData = Awaited<ReturnType<ty
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useGetUserSignReservationsTicketId<TData = Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError = unknown>(
  ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>> & Pick<
+    params?: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getUserSignReservationsTicketId>>,
           TError,
@@ -396,7 +396,7 @@ export function useGetUserSignReservationsTicketId<TData = Awaited<ReturnType<ty
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useGetUserSignReservationsTicketId<TData = Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError = unknown>(
  ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>>, }
+    params?: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
@@ -405,7 +405,7 @@ export function useGetUserSignReservationsTicketId<TData = Awaited<ReturnType<ty
 
 export function useGetUserSignReservationsTicketId<TData = Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError = unknown>(
  ticketId: string,
-    params: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>>, }
+    params?: GetUserSignReservationsTicketIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserSignReservationsTicketId>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 

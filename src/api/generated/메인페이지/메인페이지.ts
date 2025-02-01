@@ -348,7 +348,7 @@ export function useGetUserMainSchedule<TData = Awaited<ReturnType<typeof getUser
  * @summary 메인에서 트레이너가 지정한 센터 목록 조회 API
  */
 export const getUserMainCenters = (
-    params: GetUserMainCentersParams,
+    params?: GetUserMainCentersParams,
  signal?: AbortSignal
 ) => {
       
@@ -361,12 +361,12 @@ export const getUserMainCenters = (
     }
   
 
-export const getGetUserMainCentersQueryKey = (params: GetUserMainCentersParams,) => {
+export const getGetUserMainCentersQueryKey = (params?: GetUserMainCentersParams,) => {
     return [`/api/v1/user/main/centers`, ...(params ? [params]: [])] as const;
     }
 
     
-export const getGetUserMainCentersInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(params: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>>, }
+export const getGetUserMainCentersInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(params?: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
@@ -389,7 +389,7 @@ export type GetUserMainCentersInfiniteQueryError = unknown
 
 
 export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(
- params: GetUserMainCentersParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>> & Pick<
+ params: undefined |  GetUserMainCentersParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getUserMainCenters>>,
           TError,
@@ -399,7 +399,7 @@ export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<Retur
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(
- params: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>> & Pick<
+ params?: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getUserMainCenters>>,
           TError,
@@ -409,7 +409,7 @@ export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<Retur
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(
- params: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>>, }
+ params?: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
@@ -417,7 +417,7 @@ export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<Retur
  */
 
 export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMainCenters>>, GetUserMainCentersParams['page']>, TError = unknown>(
- params: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>>, }
+ params?: GetUserMainCentersParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData, Awaited<ReturnType<typeof getUserMainCenters>>, QueryKey, GetUserMainCentersParams['page']>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
@@ -432,7 +432,7 @@ export function useGetUserMainCentersInfinite<TData = InfiniteData<Awaited<Retur
 
 
 
-export const getGetUserMainCentersQueryOptions = <TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(params: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>>, }
+export const getGetUserMainCentersQueryOptions = <TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(params?: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
@@ -455,7 +455,7 @@ export type GetUserMainCentersQueryError = unknown
 
 
 export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(
- params: GetUserMainCentersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>> & Pick<
+ params: undefined |  GetUserMainCentersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getUserMainCenters>>,
           TError,
@@ -465,7 +465,7 @@ export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserM
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(
- params: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>> & Pick<
+ params?: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getUserMainCenters>>,
           TError,
@@ -475,7 +475,7 @@ export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserM
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(
- params: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>>, }
+ params?: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
@@ -483,7 +483,7 @@ export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserM
  */
 
 export function useGetUserMainCenters<TData = Awaited<ReturnType<typeof getUserMainCenters>>, TError = unknown>(
- params: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>>, }
+ params?: GetUserMainCentersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMainCenters>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 

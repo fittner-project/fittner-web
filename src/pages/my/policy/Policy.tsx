@@ -1,10 +1,14 @@
 import {
-  useGetUserMyPageNotices,
+  getUserMyPageNotices,
   useGetUserMyPageTerms,
 } from "@/api/generated/마이페이지/마이페이지";
 import styles from "./Policy.module.scss";
 import PolicyLink from "./components/PolicyLink";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
+import { useInView } from "react-intersection-observer";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 
 interface PolicyProps {
   type: "terms" | "notice";
@@ -15,18 +19,38 @@ export default function Policy({ type }: PolicyProps) {
     query: { enabled: type === "terms" },
   });
   const terms = termsData?.result;
+  const { ref, inView } = useInView();
 
-  const { data: noticeData } = useGetUserMyPageNotices(
-    {
-      centerId: "1",
-      pageable: {
-        currentPageNo: 1,
-      },
+  const {
+    data: noticePages,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching,
+  } = useInfiniteQuery({
+    queryKey: infiniteQueryKeys.NOTICES(),
+    queryFn: ({ pageParam = 1 }) =>
+      getUserMyPageNotices({
+        centerId: "1",
+        currentPageNo: pageParam.toString(),
+        recordsPerPage: "10",
+      }),
+    getNextPageParam: (lastPage, allPages) => {
+      const totalCount = lastPage?.result?.length ?? 0;
+      return totalCount === 10 ? allPages.length + 1 : undefined;
     },
-    { query: { enabled: type === "notice" } }
-  );
+    initialPageParam: 1,
+    enabled: type === "notice",
+  });
 
-  const notice = noticeData?.result;
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  const allNotices =
+    noticePages?.pages.flatMap((page) => page.result ?? []) ?? [];
 
   return (
     <PaddingContainer>
@@ -42,7 +66,7 @@ export default function Policy({ type }: PolicyProps) {
           ))}
 
         {type === "notice" &&
-          notice?.map((notice) => (
+          allNotices.map((notice) => (
             <PolicyLink
               key={notice.noticeTitle}
               date={notice.noticeDate ?? ""}
@@ -50,6 +74,8 @@ export default function Policy({ type }: PolicyProps) {
               to={notice.noticeTitle ?? ""}
             />
           ))}
+
+        {type === "notice" && !isFetching && <div ref={ref} />}
       </div>
     </PaddingContainer>
   );

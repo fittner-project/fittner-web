@@ -5,7 +5,6 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
-import type { FittnerPageable } from './fittnerPageable';
 
 export type GetUserMyPageSalesInfoDetailParams = {
 /**
@@ -16,5 +15,12 @@ reservationStartMonth: string;
  * 티켓ID
  */
 ticketId: string;
-pageable: FittnerPageable;
+/**
+ * 페이지당 레코드 수
+ */
+recordsPerPage?: string;
+/**
+ * 현재 페이지 번호
+ */
+currentPageNo?: string;
 };

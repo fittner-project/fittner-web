@@ -699,10 +699,28 @@
             "example": 1
           },
           {
-            "name": "pageable",
+            "name": "recordsPerPage",
             "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FittnerPageable" }
+            "description": "페이지당 레코드 수",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "페이지당 레코드 수",
+              "example": 15
+            },
+            "example": 15
+          },
+          {
+            "name": "currentPageNo",
+            "in": "query",
+            "description": "현재 페이지 번호",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "현재 페이지 번호",
+              "example": 1
+            },
+            "example": 1
           }
         ],
         "responses": {
@@ -735,10 +753,28 @@
             "example": "55531c95-cb79-11ef-b7c9-0242ac190002"
           },
           {
-            "name": "pageable",
+            "name": "recordsPerPage",
             "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FittnerPageable" }
+            "description": "페이지당 레코드 수",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "페이지당 레코드 수",
+              "example": 15
+            },
+            "example": 15
+          },
+          {
+            "name": "currentPageNo",
+            "in": "query",
+            "description": "현재 페이지 번호",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "현재 페이지 번호",
+              "example": 1
+            },
+            "example": 1
           }
         ],
         "responses": {
@@ -819,10 +855,28 @@
             "example": 1
           },
           {
-            "name": "pageable",
+            "name": "recordsPerPage",
             "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FittnerPageable" }
+            "description": "페이지당 레코드 수",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "페이지당 레코드 수",
+              "example": 15
+            },
+            "example": 15
+          },
+          {
+            "name": "currentPageNo",
+            "in": "query",
+            "description": "현재 페이지 번호",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "현재 페이지 번호",
+              "example": 1
+            },
+            "example": 1
           }
         ],
         "responses": {
@@ -951,10 +1005,28 @@
             "example": 1
           },
           {
-            "name": "pageable",
+            "name": "recordsPerPage",
             "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FittnerPageable" }
+            "description": "페이지당 레코드 수",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "페이지당 레코드 수",
+              "example": 15
+            },
+            "example": 15
+          },
+          {
+            "name": "currentPageNo",
+            "in": "query",
+            "description": "현재 페이지 번호",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "현재 페이지 번호",
+              "example": 1
+            },
+            "example": 1
           }
         ],
         "responses": {
@@ -995,10 +1067,28 @@
             "example": "dfb99734-ccd9-11ef-b7c9-0242ac190002"
           },
           {
-            "name": "pageable",
+            "name": "recordsPerPage",
             "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FittnerPageable" }
+            "description": "페이지당 레코드 수",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "페이지당 레코드 수",
+              "example": 15
+            },
+            "example": 15
+          },
+          {
+            "name": "currentPageNo",
+            "in": "query",
+            "description": "현재 페이지 번호",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "현재 페이지 번호",
+              "example": 1
+            },
+            "example": 1
           }
         ],
         "responses": {
@@ -1031,10 +1121,28 @@
             "example": 1
           },
           {
-            "name": "pageable",
+            "name": "recordsPerPage",
             "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FittnerPageable" }
+            "description": "페이지당 레코드 수",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "페이지당 레코드 수",
+              "example": 15
+            },
+            "example": 15
+          },
+          {
+            "name": "currentPageNo",
+            "in": "query",
+            "description": "현재 페이지 번호",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "현재 페이지 번호",
+              "example": 1
+            },
+            "example": 1
           }
         ],
         "responses": {
@@ -1169,10 +1277,28 @@
         "operationId": "getUserMainCenters",
         "parameters": [
           {
-            "name": "pageable",
+            "name": "recordsPerPage",
             "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FittnerPageable" }
+            "description": "페이지당 레코드 수",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "페이지당 레코드 수",
+              "example": 15
+            },
+            "example": 15
+          },
+          {
+            "name": "currentPageNo",
+            "in": "query",
+            "description": "현재 페이지 번호",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "현재 페이지 번호",
+              "example": 1
+            },
+            "example": 1
           }
         ],
         "responses": {
@@ -1334,10 +1460,28 @@
         "operationId": "getUserCenters",
         "parameters": [
           {
-            "name": "pageable",
+            "name": "recordsPerPage",
             "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FittnerPageable" }
+            "description": "페이지당 레코드 수",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "페이지당 레코드 수",
+              "example": 15
+            },
+            "example": 15
+          },
+          {
+            "name": "currentPageNo",
+            "in": "query",
+            "description": "현재 페이지 번호",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "현재 페이지 번호",
+              "example": 1
+            },
+            "example": 1
           }
         ],
         "responses": {
@@ -2513,17 +2657,6 @@
           }
         },
         "description": "응답 데이터"
-      },
-      "FittnerPageable": {
-        "type": "object",
-        "properties": {
-          "currentPageNo": {
-            "type": "integer",
-            "description": "현재 페이지 번호",
-            "format": "int32",
-            "example": 1
-          }
-        }
       },
       "ApiResponseMessageSignResrvationResDto": {
         "type": "object",
