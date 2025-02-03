@@ -26,3 +26,6 @@ export { default as nav_registration_selected } from "./icon/nav_registration_se
 export { default as nav_my_selected } from "./icon/nav_my_selected.png";
 export { default as nav_sign_selected } from "./icon/nav_sign_selected.png";
 export { default as registration } from "./icon/registration.png";
+export { default as cancel_grey } from "./icon/cancel_grey.svg";
+export { default as register_user } from "./icon/register_user.png";
+export { default as register_center } from "./icon/register_center.png";

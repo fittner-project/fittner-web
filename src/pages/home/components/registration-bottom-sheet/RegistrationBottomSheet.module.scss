@@ -1,0 +1,23 @@
+.container {
+  padding-bottom: 5.7rem;
+  .title {
+    @include fm-ar(2.2rem, $text_1, 3.2rem, 700, "Pretendard");
+    @include flex-row(space-between);
+  }
+
+  .content {
+    @include flex-col(space-between);
+    margin-top: 4.4rem;
+    gap: 4rem;
+
+    .content_item {
+      width: 100%;
+      @include flex-row(flex-start);
+      @include fm-ar(1.9rem, $text_4, 3.2rem, 600, "Pretendard");
+    }
+
+    .content_item_title {
+      margin-left: 1rem;
+    }
+  }
+}

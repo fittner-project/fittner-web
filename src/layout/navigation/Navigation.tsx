@@ -16,6 +16,8 @@ import {
   nav_my_selected,
 } from "@/assets/assets";
 import classNames from "classnames";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import RegistrationBottomSheet from "@/pages/home/components/registration-bottom-sheet/RegistrationBottomSheet";
 
 type NavigationItem = {
   id: number;
@@ -23,6 +25,7 @@ type NavigationItem = {
   icon: string;
   path: string;
   selectedIcon: string;
+  onClick?: () => void;
 };
 const navigationItems: NavigationItem[] = [
   {
@@ -45,6 +48,10 @@ const navigationItems: NavigationItem[] = [
     icon: nav_registration,
     selectedIcon: nav_registration_selected,
     path: "",
+    onClick: () =>
+      openBottomSheet({
+        component: RegistrationBottomSheet,
+      }),
   },
   {
     id: 4,
@@ -76,8 +83,16 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
   const { pathname } = useLocation();
   const isSelected = pathname === item.path;
 
+  const handleClickItem = () => {
+    if (item.onClick) {
+      item.onClick();
+    } else {
+      navigate(item.path);
+    }
+  };
+
   return (
-    <div className={styles.item} onClick={() => navigate(item.path)}>
+    <div className={styles.item} onClick={handleClickItem}>
       <div className={styles.ico}>
         <Image
           src={isSelected ? item.selectedIcon : item.icon}
