@@ -9,43 +9,55 @@ import {
   nav_registration,
   nav_sign,
   nav_my,
+  nav_home_selected,
+  nav_calendar_selected,
+  nav_registration_selected,
+  nav_sign_selected,
+  nav_my_selected,
 } from "@/assets/assets";
+import classNames from "classnames";
 
 type NavigationItem = {
   id: number;
   name: string;
   icon: string;
   path: string;
+  selectedIcon: string;
 };
 const navigationItems: NavigationItem[] = [
   {
     id: 1,
     name: "홈",
     icon: nav_home,
+    selectedIcon: nav_home_selected,
     path: PATH.HOME,
   },
   {
     id: 2,
     name: "나의수업",
     icon: nav_calendar,
+    selectedIcon: nav_calendar_selected,
     path: "",
   },
   {
     id: 3,
     name: "등록",
     icon: nav_registration,
+    selectedIcon: nav_registration_selected,
     path: "",
   },
   {
     id: 4,
     name: "서명요청",
     icon: nav_sign,
+    selectedIcon: nav_sign_selected,
     path: "",
   },
   {
     id: 5,
     name: "My",
     icon: nav_my,
+    selectedIcon: nav_my_selected,
     path: PATH.MY.DEFAULT,
   },
 ];
@@ -61,12 +73,21 @@ export default function Navigation() {
 
 const NavigationItem = ({ item }: { item: NavigationItem }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isSelected = pathname === item.path;
+
   return (
     <div className={styles.item} onClick={() => navigate(item.path)}>
       <div className={styles.ico}>
-        <Image src={item.icon} width={2.3} height={2.3} />
+        <Image
+          src={isSelected ? item.selectedIcon : item.icon}
+          width={2.3}
+          height={2.3}
+        />
       </div>
-      <div className={styles.name}>{item.name}</div>
+      <div className={classNames(styles.name, isSelected && styles.selected)}>
+        {item.name}
+      </div>
     </div>
   );
 };
