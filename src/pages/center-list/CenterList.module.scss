@@ -1,6 +1,7 @@
 .container {
   @include flex_col(flex-start, flex-start);
   @include flex_col_gap(2.8rem);
+  min-height: calc(100vh - $sub_header_height);
 
   .title {
     @include fm-ar(1.4rem, $grey_3, 2.2rem, 600, "Pretendard");
@@ -8,5 +9,15 @@
 
   .center_list {
     margin-top: 0.6rem;
+  }
+
+  .no_center_container {
+    @include flex_col(center, center);
+    height: 100%;
+    flex: 1;
+
+    .no_center_text {
+      @include fm-ar(1.6rem, $grey_2, 2.2rem, 600, "Pretendard");
+    }
   }
 }

@@ -25,14 +25,28 @@ export default function CenterList() {
             <Center isConnected={false} />
           </div>
         </div>
-        {isAuthenticated && (
-          <div style={{ width: "100%" }}>
-            <p className={styles.title}>연동 완료</p>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            flex: 1,
+          }}
+        >
+          <p className={styles.title}>연동 완료</p>
+          {isAuthenticated && (
             <div className={styles.center_list}>
               <Center isConnected={true} />
             </div>
-          </div>
-        )}
+          )}
+
+          {!isAuthenticated && (
+            <div className={styles.no_center_container}>
+              <p className={styles.no_center_text}>연동된 센터가 없습니다.</p>
+            </div>
+          )}
+        </div>
       </div>
     </PaddingContainer>
   );
