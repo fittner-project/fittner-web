@@ -17,6 +17,7 @@ const PATH = {
       TERMS: "/my/terms",
       NOTICE: "/my/notice",
     },
+    NOTIFICATION_SETTING: "/my/notification-setting",
   },
 };
 

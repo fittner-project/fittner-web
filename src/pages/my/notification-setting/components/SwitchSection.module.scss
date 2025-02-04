@@ -1,0 +1,8 @@
+.container {
+  height: 6.8rem;
+  @include flex_row(space-between, center);
+
+  .title {
+    @include fm-ar(1.9rem, $text_1, 2, 2rem, 600);
+  }
+}

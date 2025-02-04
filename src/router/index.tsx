@@ -15,6 +15,7 @@ import My from "@/pages/my/default/My";
 import CenterList from "@/pages/center-list/CenterList";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Policy from "@/pages/my/policy/Policy";
+import NotificationSetting from "@/pages/my/notification-setting/NotificationSetting";
 
 const queryClient = new QueryClient();
 
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: PATH.MY.POLICY.NOTICE,
         element: <Policy type="notice" />,
+      },
+      {
+        path: PATH.MY.NOTIFICATION_SETTING,
+        element: <NotificationSetting />,
       },
     ],
   },

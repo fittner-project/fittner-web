@@ -43,6 +43,7 @@ type RouteKeys =
   | "center-list"
   | "my-terms"
   | "my-notice"
+  | "my-notification-setting"
   | "redirect"
   | "root";
 
@@ -171,6 +172,14 @@ export const Routes: Routes = {
   "my-notice": {
     name: "my-notice",
     path: PATH.MY.POLICY.NOTICE,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+
+  "my-notification-setting": {
+    name: "my-notification-setting",
+    path: PATH.MY.NOTIFICATION_SETTING,
     fallback: "none",
     headerType: "sub",
     navType: "none",
