@@ -76,18 +76,18 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   });
 
   const handleRegisterCenter = () => {
-    storage.set({
-      key: storageKeys.activeCenterId,
-      value: center.centerId,
-      type: "local",
-    });
-
     if (isAuthenticated) {
       registerCenter({ data: { centerId: center.centerId } });
       return;
     }
 
     if (!isAuthenticated) {
+      storage.set({
+        key: storageKeys.initialCenter,
+        value: center,
+        type: "local",
+      });
+
       const agreements = terms?.map((term) => ({
         termsId: term.termsId,
         agreed: userAgreedTerms?.some(

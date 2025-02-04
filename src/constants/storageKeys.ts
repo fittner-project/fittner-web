@@ -7,4 +7,5 @@ export const storageKeys = {
   terms: "terms",
   activeCenterId: "activeCenterId",
   auth: "auth",
+  initialCenter: "initialCenter",
 };

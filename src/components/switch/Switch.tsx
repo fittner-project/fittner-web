@@ -13,9 +13,6 @@ export default function Switch({ isSwitchOn = false, onChange }: SwitchProps) {
         backgroundColor: isSwitchOn ? "#4C6AFF" : "#78788029",
         borderRadius: "10rem",
         padding: "0.2rem",
-        display: "flex",
-        alignItems: "center",
-        cursor: "pointer",
         transition: "background-color 0.2s ease",
         position: "relative",
       }}
