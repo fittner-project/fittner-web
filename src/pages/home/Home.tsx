@@ -89,7 +89,7 @@ function Home() {
               <Image src={main_calendar} width={3.5} height={4} />
             </div>
 
-            <div>
+            <div className={styles.registration_sign_container}>
               <div className={styles.registration}>
                 <Image src={main_registration} width={3.5} height={3.2} />
                 <div className={styles.menu_title}>

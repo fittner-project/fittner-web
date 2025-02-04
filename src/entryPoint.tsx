@@ -4,6 +4,7 @@ import useAuthRouting from "./hooks/useAuthRouting";
 import PATH from "./router/path";
 import useSplash from "./hooks/useSplash";
 import Image from "./components/image/Image";
+import { useGetUserInfo } from "./api/generated/유저/유저";
 
 interface IProps {
   children: ReactNode;
@@ -37,6 +38,12 @@ const EntryPoint: FC<IProps> = ({ children }) => {
 export default EntryPoint;
 
 const Authorized = ({ children }: IProps) => {
+  const { data } = useGetUserInfo({});
+  useEffect(() => {
+    if (data) {
+      useUserStore.setState({ userInfo: data.result });
+    }
+  }, [data]);
   //인증이 된 이후 앱 전체 적용 로직들
 
   //브랜드별 컬러 API 작업이 끝나면 인증 후 여기서 받은 뒤 zustand에 저장하고 사용

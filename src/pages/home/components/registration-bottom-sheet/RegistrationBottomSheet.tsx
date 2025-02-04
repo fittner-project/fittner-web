@@ -3,7 +3,6 @@ import styles from "./RegistrationBottomSheet.module.scss";
 import { closeBottomSheet } from "@/utils/bottomSheet";
 import Image from "@/components/image/Image";
 import { cancel_grey, register_center, register_user } from "@/assets/assets";
-import Button from "@/components/button/Button";
 
 export default function RegistrationBottomSheet() {
   return (

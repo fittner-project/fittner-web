@@ -1,14 +1,10 @@
-import { create } from 'zustand'
+import { UserInfoResDto } from "@/api/generated/models";
+import { create } from "zustand";
 
 interface UserStore {
-  userName: string
-  num: number
-  changeName: () => void
-  changeNum: () => void
+  userInfo: UserInfoResDto;
 }
 export const useUserStore = create<UserStore>((set) => ({
-  userName: 'LiuJie1998',
-  num: 0,
-  changeName: () => set({ userName: 'laoer536' }),
-  changeNum: () => set((state) => ({ num: state.num + 1 })),
-}))
+  userInfo: {},
+  setUserInfo: (userInfo: UserInfoResDto) => set({ userInfo }),
+}));
