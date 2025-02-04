@@ -25,7 +25,7 @@ export default function CenterList() {
             <Center isConnected={false} />
           </div>
         </div>
-        {!isAuthenticated && (
+        {isAuthenticated && (
           <div style={{ width: "100%" }}>
             <p className={styles.title}>연동 완료</p>
             <div className={styles.center_list}>
