@@ -25,7 +25,14 @@ export default function useAuthRouting() {
     ?.trainerStatus as ApprovalStatus;
 
   useEffect(() => {
-    if (location.pathname !== PATH.ROOT || !trainerStatus) return;
+    if (location.pathname !== PATH.ROOT) return;
+
+    if (!trainerEmail) {
+      navigate(PATH.SIGN_IN);
+      return;
+    }
+
+    if (!trainerStatus) return;
 
     setApprovalStatus(trainerStatus);
 
@@ -44,9 +51,6 @@ export default function useAuthRouting() {
       return;
     }
 
-    if (!isAuthenticated) {
-      navigate(PATH.SIGN_IN);
-      return;
-    }
-  }, [trainerStatus, isAuthenticated, approvalStatus]);
+    navigate(PATH.SIGN_IN);
+  }, [trainerStatus, isAuthenticated, approvalStatus, trainerEmail]);
 }
