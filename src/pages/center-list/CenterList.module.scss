@@ -9,6 +9,18 @@
 
   .center_list {
     margin-top: 0.6rem;
+
+    .center_skeleton {
+      @include flex_row(space-between, center);
+      height: 9.4rem;
+      border-radius: 0.6rem;
+      padding: 2rem;
+
+      .center_skeleton_left {
+        @include flex_col(flex-start, flex-start);
+        @include flex_col_gap(0.6rem);
+      }
+    }
   }
 
   .no_center_container {
