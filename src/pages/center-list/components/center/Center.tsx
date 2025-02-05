@@ -1,26 +1,21 @@
-import useAuthStore from "@/store/auth";
 import styles from "./Center.module.scss";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ApprovalNoticeBottomSheet from "../approval-notice-bottom-sheet/ApprovalNoticeBottomSheet";
-import { storageKeys } from "@/constants/storageKeys";
-import { storage } from "@/utils/storage";
 import { CenterListResDto } from "@/api/generated/models";
 
 interface CenterProps {
   isConnected: boolean;
+  center: CenterListResDto;
 }
 
-export default function Center({ isConnected }: CenterProps) {
+export default function Center({ isConnected, center }: CenterProps) {
   const { isAuthenticated } = useAuthStore();
-  const initialCenter = storage.get<CenterListResDto>({
-    key: storageKeys.initialCenter,
-  });
 
   return (
     <div className={styles.container}>
       <section className={styles.center_info}>
-        <p className={styles.center_name}>{initialCenter?.centerName}</p>
-        <p className={styles.center_address}>{initialCenter?.centerAddress}</p>
+        <p className={styles.center_name}>{center?.centerName}</p>
+        <p className={styles.center_address}>{center?.centerAddress}</p>
       </section>
       <button
         onClick={() => {

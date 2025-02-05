@@ -2,7 +2,6 @@ import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import styles from "./SecessionBottomSheet.module.scss";
 import Button from "@/components/button/Button";
 import { closeBottomSheet } from "@/utils/bottomSheet";
-import useAuthStore from "@/store/auth";
 import { usePostUserDrop } from "@/api/generated/유저/유저";
 import PATH from "@/router/path";
 import { openModal } from "@/utils/modal";

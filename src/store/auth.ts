@@ -24,7 +24,7 @@ interface AuthState {
 // aceess token 24시간
 // refresh token 1주
 
-const useAuthStore = create<AuthState>()(
+export const useAuthStore = create<AuthState>()(
   persist(
     (set, _get) => ({
       isAuthenticated: false,
@@ -55,5 +55,3 @@ const useAuthStore = create<AuthState>()(
     }
   )
 );
-
-export default useAuthStore;

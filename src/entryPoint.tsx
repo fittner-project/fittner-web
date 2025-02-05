@@ -38,10 +38,13 @@ const EntryPoint: FC<IProps> = ({ children }) => {
 export default EntryPoint;
 
 const Authorized = ({ children }: IProps) => {
-  const { data } = useGetUserInfo({});
+  const { isAuthenticated } = useAuthStore();
+  const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
+  const { setUserInfo } = useUserStore();
+
   useEffect(() => {
     if (data) {
-      useUserStore.setState({ userInfo: data.result });
+      setUserInfo(data.result || {});
     }
   }, [data]);
   //인증이 된 이후 앱 전체 적용 로직들

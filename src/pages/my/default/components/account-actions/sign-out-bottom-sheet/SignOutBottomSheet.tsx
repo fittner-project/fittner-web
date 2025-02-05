@@ -4,7 +4,7 @@ import Button from "@/components/button/Button";
 import { closeBottomSheet } from "@/utils/bottomSheet";
 
 import { usePostAuthLogout } from "@/api/generated/권한/권한";
-import useAuthStore from "@/store/auth";
+
 import PATH from "@/router/path";
 
 export default function SignOutBottomSheet() {

@@ -1,7 +1,7 @@
 .container {
+  min-height: calc(100vh - $sub_header_height);
   @include flex_col(flex-start, flex-start);
   @include flex_col_gap(2.8rem);
-  min-height: calc(100vh - $sub_header_height);
 
   .title {
     @include fm-ar(1.4rem, $grey_3, 2.2rem, 600, "Pretendard");

@@ -10,7 +10,6 @@ import { storage } from "@/utils/storage";
 import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
 import { storageKeys } from "@/constants/storageKeys";
 
-import useAuthStore from "@/store/auth";
 import { usePostAuthLogin } from "@/api/generated/권한/권한";
 //import { useAppleInfo } from "@/api/generated/권한/권한";
 

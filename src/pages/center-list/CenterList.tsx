@@ -1,12 +1,28 @@
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import styles from "./CenterList.module.scss";
-import useAuthStore from "@/store/auth";
 import Center from "./components/center/Center";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ApprovalNoticeBottomSheet from "./components/approval-notice-bottom-sheet/ApprovalNoticeBottomSheet";
+import { storageKeys } from "@/constants/storageKeys";
+import { storage } from "@/utils/storage";
+import { useGetUserCenters } from "@/api/generated/유저/유저";
 
 export default function CenterList() {
   const { isAuthenticated } = useAuthStore();
+  const trainerEmail = storage.get<string>({
+    key: storageKeys.trainerEmail,
+  });
+  const {
+    data: initialUserCentersData,
+    isLoading: isInitialUserCentersLoading,
+  } = useGetUserCenters(
+    trainerEmail as string,
+    {
+      currentPageNo: "1",
+      recordsPerPage: "1",
+    },
+    { query: { enabled: !!trainerEmail && !isAuthenticated } }
+  );
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -22,7 +38,10 @@ export default function CenterList() {
         <div style={{ width: "100%" }}>
           <p className={styles.title}>연동 승인중</p>
           <div className={styles.center_list}>
-            <Center isConnected={false} />
+            {!isAuthenticated &&
+              initialUserCentersData?.result?.items?.map((center) => (
+                <Center isConnected={false} center={center} />
+              ))}
           </div>
         </div>
 
@@ -35,11 +54,11 @@ export default function CenterList() {
           }}
         >
           <p className={styles.title}>연동 완료</p>
-          {isAuthenticated && (
+          {/* {isAuthenticated && (
             <div className={styles.center_list}>
               <Center isConnected={true} />
             </div>
-          )}
+          )} */}
 
           {!isAuthenticated && (
             <div className={styles.no_center_container}>

@@ -46,6 +46,8 @@
     "useTransition": true,
     "useUserStore": true,
     "signIn": true,
-    "auth": true
+    "auth": true,
+    "user": true,
+    "useAuthStore": true
   }
 }

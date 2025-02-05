@@ -11,7 +11,7 @@ import PATH from "@/router/path";
 import { storageKeys } from "@/constants/storageKeys";
 import { storage } from "@/utils/storage";
 import { SocialType } from "@/auth/socialType";
-import useAuthStore from "@/store/auth";
+
 import { usePostUserCenter, usePostUserJoin } from "@/api/generated/유저/유저";
 
 interface SelectCenterBottomSheetProps {
@@ -21,6 +21,7 @@ interface SelectCenterBottomSheetProps {
 function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const navigate = useNavigate();
   const { isAuthenticated, setApprovalStatus } = useAuthStore();
+  const { setSelectedCenter } = useUserStore();
   const { mutate: registerCenter } = usePostUserCenter({
     mutation: {
       onSuccess: () => {
@@ -82,11 +83,7 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
     }
 
     if (!isAuthenticated) {
-      storage.set({
-        key: storageKeys.initialCenter,
-        value: center,
-        type: "local",
-      });
+      setSelectedCenter(center);
 
       const agreements = terms?.map((term) => ({
         termsId: term.termsId,

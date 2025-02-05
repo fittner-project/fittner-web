@@ -1,4 +1,5 @@
 export const storageKeys = {
+  user: "user",
   trainerPhone: "trainerPhone",
   trainerName: "trainerName",
   trainerEmail: "trainerEmail",
@@ -7,5 +8,4 @@ export const storageKeys = {
   terms: "terms",
   activeCenterId: "activeCenterId",
   auth: "auth",
-  initialCenter: "initialCenter",
 };

@@ -1,6 +1,5 @@
 import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
 
-import useAuthStore from "@/store/auth";
 import { openModal } from "@/utils/modal";
 import axios, { AxiosError } from "axios";
 

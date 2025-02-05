@@ -20,6 +20,7 @@ declare global {
   const signIn: typeof import('./store/signIn')['default']
   const startTransition: typeof import('react')['startTransition']
   const useAppStore: typeof import('./store/app')['useAppStore']
+  const useAuthStore: typeof import('./store/auth')['useAuthStore']
   const useBottomSheetStore: typeof import('./store/bottomSheet')['useBottomSheetStore']
   const useCallback: typeof import('react')['useCallback']
   const useColorStore: typeof import('./store/color')['useColorStore']
@@ -53,4 +54,5 @@ declare global {
   const useSyncExternalStore: typeof import('react')['useSyncExternalStore']
   const useTransition: typeof import('react')['useTransition']
   const useUserStore: typeof import('./store/user')['useUserStore']
+  const user: typeof import('./store/user')['default']
 }

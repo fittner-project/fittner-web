@@ -5,58 +5,19 @@
     "description": "Fittner API with Spring Boot",
     "version": "1.0.0"
   },
-  "servers": [
-    {
-      "url": "https://api.fittner.co.kr",
-      "description": "server"
-    }
-  ],
-  "security": [
-    {
-      "Authorization": []
-    }
-  ],
+  "servers": [{ "url": "https://api.fittner.co.kr", "description": "server" }],
+  "security": [{ "Authorization": [] }],
   "tags": [
-    {
-      "name": "유저",
-      "description": "유저 관련 처리입니다."
-    },
-    {
-      "name": "메인페이지",
-      "description": "메인페이지 내 기능들입니다."
-    },
-    {
-      "name": "서명",
-      "description": "서명 및 노쇼 처리입니다."
-    },
-    {
-      "name": "이용권",
-      "description": "이용권(티켓) 처리입니다."
-    },
-    {
-      "name": "마이페이지",
-      "description": "마이페이지 내 기능들입니다."
-    },
-    {
-      "name": "수업",
-      "description": "수업 관련 처리입니다."
-    },
-    {
-      "name": "파일",
-      "description": "파일 처리"
-    },
-    {
-      "name": "공통",
-      "description": "공통"
-    },
-    {
-      "name": "푸시",
-      "description": "푸시 알람입니다."
-    },
-    {
-      "name": "권한",
-      "description": "권한 처리입니다."
-    }
+    { "name": "유저", "description": "유저 관련 처리입니다." },
+    { "name": "메인페이지", "description": "메인페이지 내 기능들입니다." },
+    { "name": "서명", "description": "서명 및 노쇼 처리입니다." },
+    { "name": "이용권", "description": "이용권(티켓) 처리입니다." },
+    { "name": "마이페이지", "description": "마이페이지 내 기능들입니다." },
+    { "name": "수업", "description": "수업 관련 처리입니다." },
+    { "name": "파일", "description": "파일 처리" },
+    { "name": "공통", "description": "공통" },
+    { "name": "푸시", "description": "푸시 알람입니다." },
+    { "name": "권한", "description": "권한 처리입니다." }
   ],
   "paths": {
     "/api/v1/user/ticket/refund": {
@@ -68,9 +29,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefundReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/RefundReqDto" }
             }
           },
           "required": true
@@ -98,9 +57,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PlusReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/PlusReqDto" }
             }
           },
           "required": true
@@ -188,9 +145,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SignReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/SignReqDto" }
             }
           },
           "required": true
@@ -218,9 +173,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ReservationReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/ReservationReqDto" }
             }
           },
           "required": true
@@ -248,9 +201,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MemberRegisterReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/MemberRegisterReqDto" }
             }
           },
           "required": true
@@ -278,9 +229,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PushReadReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/PushReadReqDto" }
             }
           },
           "required": true
@@ -328,9 +277,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PushSetReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/PushSetReqDto" }
             }
           },
           "required": true
@@ -358,9 +305,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NoticeReadReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/NoticeReadReqDto" }
             }
           },
           "required": true
@@ -388,9 +333,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JoinReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/JoinReqDto" }
             }
           },
           "required": true
@@ -438,9 +381,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CenterRegisterReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/CenterRegisterReqDto" }
             }
           },
           "required": true
@@ -498,21 +439,13 @@
             "name": "fileReqDto",
             "in": "query",
             "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/FileReqDto"
-            }
+            "schema": { "$ref": "#/components/schemas/FileReqDto" }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "content": { "*/*": { "schema": { "type": "object" } } }
           }
         }
       }
@@ -526,9 +459,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AccessTokenReqDto"
-              }
+              "schema": { "$ref": "#/components/schemas/AccessTokenReqDto" }
             }
           },
           "required": true
@@ -565,11 +496,7 @@
             }
           }
         },
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/v1/auth/login": {
@@ -581,9 +508,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequestDto"
-              }
+              "schema": { "$ref": "#/components/schemas/LoginRequestDto" }
             }
           },
           "required": true
@@ -614,9 +539,7 @@
             "in": "query",
             "description": "이용권 코드(TOTAL | ING | STOP | ASSIGN_TO | ASSIGN_FROM | REFUND | AFTER)",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "TOTAL"
           }
         ],
@@ -646,9 +569,7 @@
             "in": "path",
             "description": "이용권ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "03fa7063-d6e2-11ef-b7c9-0242ac190002"
           }
         ],
@@ -678,9 +599,7 @@
             "in": "query",
             "description": "티켓ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "ec4b8eb6-d01e-11ef-b7c9-0242ac190002"
           }
         ],
@@ -710,9 +629,7 @@
             "in": "query",
             "description": "티켓ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "ec4b8eb6-d01e-11ef-b7c9-0242ac190002"
           },
           {
@@ -720,9 +637,7 @@
             "in": "query",
             "description": "회원ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "ec4b8eb6-d01e-11ef-b7c9-0242ac190002"
           }
         ],
@@ -772,9 +687,7 @@
             "in": "query",
             "description": "예약 시작 일자",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 20250101
           },
           {
@@ -782,9 +695,7 @@
             "in": "query",
             "description": "센터ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 1
           },
           {
@@ -838,9 +749,7 @@
             "in": "path",
             "description": "이용권ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "55531c95-cb79-11ef-b7c9-0242ac190002"
           },
           {
@@ -893,9 +802,7 @@
             "name": "reservationSearchDto",
             "in": "query",
             "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ReservationSearchDto"
-            }
+            "schema": { "$ref": "#/components/schemas/ReservationSearchDto" }
           }
         ],
         "responses": {
@@ -944,9 +851,7 @@
             "in": "query",
             "description": "센터ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 1
           },
           {
@@ -1000,9 +905,7 @@
             "in": "query",
             "description": "센터ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 1
           }
         ],
@@ -1052,9 +955,7 @@
             "in": "query",
             "description": "센터ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 1
           },
           {
@@ -1062,9 +963,7 @@
             "in": "query",
             "description": "예약시작월",
             "required": false,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 202501
           }
         ],
@@ -1094,9 +993,7 @@
             "in": "query",
             "description": "예약시작월",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 202501
           },
           {
@@ -1104,9 +1001,7 @@
             "in": "query",
             "description": "센터ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 1
           },
           {
@@ -1160,9 +1055,7 @@
             "in": "query",
             "description": "예약시작월(202501 or TOTAL)",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 202501
           },
           {
@@ -1170,9 +1063,7 @@
             "in": "query",
             "description": "티켓ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "dfb99734-ccd9-11ef-b7c9-0242ac190002"
           },
           {
@@ -1226,9 +1117,7 @@
             "in": "query",
             "description": "센터ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": 1
           },
           {
@@ -1299,13 +1188,7 @@
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "content": { "*/*": { "schema": { "type": "object" } } }
           }
         }
       }
@@ -1321,9 +1204,7 @@
             "name": "memberId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -1351,9 +1232,7 @@
             "name": "reservationSearchDto",
             "in": "query",
             "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ReservationSearchDto"
-            }
+            "schema": { "$ref": "#/components/schemas/ReservationSearchDto" }
           }
         ],
         "responses": {
@@ -1468,9 +1347,7 @@
             "in": "query",
             "description": "트레이너 이메일",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "test001@naver.com"
           }
         ],
@@ -1500,9 +1377,7 @@
             "in": "query",
             "description": "승인토큰",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -1551,9 +1426,7 @@
             "in": "query",
             "description": "앱os종류 (AOS | IOS)",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "AOS"
           },
           {
@@ -1561,9 +1434,7 @@
             "in": "query",
             "description": "앱버전",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "1.0.1"
           }
         ],
@@ -1616,9 +1487,7 @@
             "name": "userEmail",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -1667,9 +1536,7 @@
             "in": "path",
             "description": "파일ID",
             "required": true,
-            "schema": {
-              "type": "string"
-            },
+            "schema": { "type": "string" },
             "example": "6j4trvC7ac"
           }
         ],
@@ -1680,10 +1547,7 @@
               "*/*": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "byte"
-                  }
+                  "items": { "type": "string", "format": "byte" }
                 }
               }
             }
@@ -1704,10 +1568,7 @@
               "*/*": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "byte"
-                  }
+                  "items": { "type": "string", "format": "byte" }
                 }
               }
             }
@@ -1752,10 +1613,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "type": "object",
-            "description": "응답 데이터"
-          },
+          "result": { "type": "object", "description": "응답 데이터" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -2109,9 +1967,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/PushSetResDto"
-            }
+            "items": { "$ref": "#/components/schemas/PushSetResDto" }
           },
           "error": {
             "type": "string",
@@ -2185,9 +2041,7 @@
           "agreements": {
             "type": "array",
             "description": "약관 동의 정보 리스트",
-            "items": {
-              "$ref": "#/components/schemas/AgreementDto"
-            }
+            "items": { "$ref": "#/components/schemas/AgreementDto" }
           },
           "trainerPhone": {
             "type": "string",
@@ -2285,9 +2139,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/TokenResDto"
-          },
+          "result": { "$ref": "#/components/schemas/TokenResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -2347,9 +2199,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/TicketListResDto"
-            }
+            "items": { "$ref": "#/components/schemas/TicketListResDto" }
           },
           "error": {
             "type": "string",
@@ -2427,9 +2277,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/TicketDetailResDto"
-          },
+          "result": { "$ref": "#/components/schemas/TicketDetailResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -2533,18 +2381,10 @@
       "TicketDetailResDto": {
         "type": "object",
         "properties": {
-          "memberInfo": {
-            "$ref": "#/components/schemas/MemberInfo"
-          },
-          "ticketInfo": {
-            "$ref": "#/components/schemas/TicketInfo"
-          },
-          "refundInfo": {
-            "$ref": "#/components/schemas/RefundInfo"
-          },
-          "assignInfo": {
-            "$ref": "#/components/schemas/AssignInfo"
-          }
+          "memberInfo": { "$ref": "#/components/schemas/MemberInfo" },
+          "ticketInfo": { "$ref": "#/components/schemas/TicketInfo" },
+          "refundInfo": { "$ref": "#/components/schemas/RefundInfo" },
+          "assignInfo": { "$ref": "#/components/schemas/AssignInfo" }
         },
         "description": "응답 데이터"
       },
@@ -2617,9 +2457,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/RefundInfoResDto"
-          },
+          "result": { "$ref": "#/components/schemas/RefundInfoResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -2706,9 +2544,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/AssignToInfoResDto"
-          },
+          "result": { "$ref": "#/components/schemas/AssignToInfoResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -2788,9 +2624,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/TermsResDto"
-            }
+            "items": { "$ref": "#/components/schemas/TermsResDto" }
           },
           "error": {
             "type": "string",
@@ -2853,9 +2687,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/SignResrvationResDto"
-          },
+          "result": { "$ref": "#/components/schemas/SignResrvationResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -2920,9 +2752,7 @@
           "reservationList": {
             "type": "array",
             "description": "예약 데이터",
-            "items": {
-              "$ref": "#/components/schemas/SignResrvationDto"
-            }
+            "items": { "$ref": "#/components/schemas/SignResrvationDto" }
           }
         },
         "description": "응답 데이터"
@@ -3013,12 +2843,8 @@
       "ReservationSearchDto": {
         "type": "object",
         "properties": {
-          "reservationStartDate": {
-            "type": "string"
-          },
-          "reservationEndDate": {
-            "type": "string"
-          }
+          "reservationStartDate": { "type": "string" },
+          "reservationEndDate": { "type": "string" }
         }
       },
       "ApiResponseMessageListGroupedReservationMemberDto": {
@@ -3069,9 +2895,7 @@
           "reservations": {
             "type": "array",
             "description": "예액 정보들",
-            "items": {
-              "$ref": "#/components/schemas/ReservationMemberResDto"
-            },
+            "items": { "$ref": "#/components/schemas/ReservationMemberResDto" },
             "example": null
           }
         },
@@ -3153,9 +2977,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/ReservationColorResDto"
-          },
+          "result": { "$ref": "#/components/schemas/ReservationColorResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -3166,12 +2988,7 @@
       "ReservationColorResDto": {
         "type": "object",
         "properties": {
-          "colors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
+          "colors": { "type": "array", "items": { "type": "string" } }
         },
         "description": "응답 데이터"
       },
@@ -3201,9 +3018,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/PushResDto"
-            }
+            "items": { "$ref": "#/components/schemas/PushResDto" }
           },
           "error": {
             "type": "string",
@@ -3266,9 +3081,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/PushChkResDto"
-          },
+          "result": { "$ref": "#/components/schemas/PushChkResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -3313,9 +3126,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/TermsListResDto"
-            }
+            "items": { "$ref": "#/components/schemas/TermsListResDto" }
           },
           "error": {
             "type": "string",
@@ -3340,9 +3151,7 @@
           "totalTermList": {
             "type": "array",
             "description": "약관리스트",
-            "items": {
-              "$ref": "#/components/schemas/TotalTerm"
-            }
+            "items": { "$ref": "#/components/schemas/TotalTerm" }
           }
         },
         "description": "응답 데이터"
@@ -3386,9 +3195,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/SalesResDto"
-          },
+          "result": { "$ref": "#/components/schemas/SalesResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -3438,9 +3245,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/SalesInfoResDto"
-            }
+            "items": { "$ref": "#/components/schemas/SalesInfoResDto" }
           },
           "error": {
             "type": "string",
@@ -3521,9 +3326,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/SalesInfoDetailResDto"
-            }
+            "items": { "$ref": "#/components/schemas/SalesInfoDetailResDto" }
           },
           "error": {
             "type": "string",
@@ -3609,9 +3412,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/NoticeResDto"
-            }
+            "items": { "$ref": "#/components/schemas/NoticeResDto" }
           },
           "error": {
             "type": "string",
@@ -3674,9 +3475,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/MyPageInfoResDto"
-          },
+          "result": { "$ref": "#/components/schemas/MyPageInfoResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -3731,9 +3530,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/MemberDetailResDto"
-            }
+            "items": { "$ref": "#/components/schemas/MemberDetailResDto" }
           },
           "error": {
             "type": "string",
@@ -3848,9 +3645,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/GroupedReservationDto"
-            }
+            "items": { "$ref": "#/components/schemas/GroupedReservationDto" }
           },
           "error": {
             "type": "string",
@@ -3903,9 +3698,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/MainReservationsResDto"
-          },
+          "result": { "$ref": "#/components/schemas/MainReservationsResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -3963,10 +3756,7 @@
             "format": "int32",
             "example": 10
           },
-          "ncnt": {
-            "type": "integer",
-            "format": "int32"
-          }
+          "ncnt": { "type": "integer", "format": "int32" }
         },
         "description": "응답 데이터"
       },
@@ -4023,13 +3813,9 @@
         "properties": {
           "items": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MainUserCenterListResDto"
-            }
+            "items": { "$ref": "#/components/schemas/MainUserCenterListResDto" }
           },
-          "paginationInfo": {
-            "$ref": "#/components/schemas/PaginationInfo"
-          }
+          "paginationInfo": { "$ref": "#/components/schemas/PaginationInfo" }
         },
         "description": "응답 데이터"
       },
@@ -4118,9 +3904,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/UserInfoResDto"
-          },
+          "result": { "$ref": "#/components/schemas/UserInfoResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -4183,15 +3967,11 @@
       "UserInfoResDto": {
         "type": "object",
         "properties": {
-          "defaultInfo": {
-            "$ref": "#/components/schemas/DefaultInfo"
-          },
+          "defaultInfo": { "$ref": "#/components/schemas/DefaultInfo" },
           "centerInfo": {
             "type": "array",
             "description": "트레이너 센터정보",
-            "items": {
-              "$ref": "#/components/schemas/CenterInfo"
-            }
+            "items": { "$ref": "#/components/schemas/CenterInfo" }
           }
         },
         "description": "응답 데이터"
@@ -4219,9 +3999,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/StatusChkResDto"
-          },
+          "result": { "$ref": "#/components/schemas/StatusChkResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -4263,9 +4041,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/SplashResDto"
-          },
+          "result": { "$ref": "#/components/schemas/SplashResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -4307,9 +4083,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/BrandColorResDto"
-          },
+          "result": { "$ref": "#/components/schemas/BrandColorResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -4411,9 +4185,7 @@
             "description": "오류 코드",
             "example": ""
           },
-          "result": {
-            "$ref": "#/components/schemas/HardUpdateResDto"
-          },
+          "result": { "$ref": "#/components/schemas/HardUpdateResDto" },
           "error": {
             "type": "string",
             "writeOnly": true,
@@ -4475,13 +4247,9 @@
         "properties": {
           "items": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserCenterListResDto"
-            }
+            "items": { "$ref": "#/components/schemas/UserCenterListResDto" }
           },
-          "paginationInfo": {
-            "$ref": "#/components/schemas/PaginationInfo"
-          }
+          "paginationInfo": { "$ref": "#/components/schemas/PaginationInfo" }
         },
         "description": "응답 데이터"
       },
@@ -4541,9 +4309,7 @@
           "result": {
             "type": "array",
             "description": "응답 데이터",
-            "items": {
-              "$ref": "#/components/schemas/CenterListResDto"
-            }
+            "items": { "$ref": "#/components/schemas/CenterListResDto" }
           },
           "error": {
             "type": "string",
@@ -4554,11 +4320,7 @@
       },
       "CenterFileResDto": {
         "type": "object",
-        "properties": {
-          "fileUrl": {
-            "type": "string"
-          }
-        },
+        "properties": { "fileUrl": { "type": "string" } },
         "description": "센터 이미지",
         "example": "http://www.fittner.co.kr/images/center/1.jpg"
       },
@@ -4589,20 +4351,14 @@
             "type": "array",
             "description": "센터 이미지",
             "example": "http://www.fittner.co.kr/images/center/1.jpg",
-            "items": {
-              "$ref": "#/components/schemas/CenterFileResDto"
-            }
+            "items": { "$ref": "#/components/schemas/CenterFileResDto" }
           }
         },
         "description": "응답 데이터"
       },
       "CancelCenterApprovalReqDto": {
         "type": "object",
-        "properties": {
-          "centerJoinId": {
-            "type": "string"
-          }
-        }
+        "properties": { "centerJoinId": { "type": "string" } }
       }
     },
     "securitySchemes": {

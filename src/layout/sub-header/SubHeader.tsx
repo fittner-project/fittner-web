@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./SubHeader.module.scss";
 import useGetCurrentRoute from "@/hooks/useGetCurrentRoute";
 
-import useAuthStore from "@/store/auth";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ApprovalNoticeBottomSheet from "@/pages/center-list/components/approval-notice-bottom-sheet/ApprovalNoticeBottomSheet";
 import PATH from "@/router/path";
