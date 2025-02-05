@@ -1,7 +1,7 @@
 import { useGetUserCommonStatusChk } from "@/api/generated/공통/공통";
 import { storageKeys } from "@/constants/storageKeys";
 import PATH from "@/router/path";
-import useAuthStore, { ApprovalStatus } from "@/store/auth";
+import { ApprovalStatus } from "@/store/auth";
 import { storage } from "@/utils/storage";
 
 export default function useAuthRouting() {
@@ -26,7 +26,9 @@ export default function useAuthRouting() {
 
   useEffect(() => {
     if (location.pathname !== PATH.ROOT || !trainerStatus) return;
+
     setApprovalStatus(trainerStatus);
+
     if (trainerStatus === "INACTIVE") {
       navigate(PATH.CENTER_LIST);
       return;
