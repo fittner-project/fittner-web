@@ -5,15 +5,14 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
+import type { CenterInfo } from './centerInfo';
+import type { DefaultInfo } from './defaultInfo';
 
 /**
  * 응답 데이터
  */
 export interface UserInfoResDto {
-  /** 트레이너email */
-  trainerEmail?: string;
-  /** 트레이너명 */
-  trainerName?: string;
-  /** 트레이너 소셜구분 */
-  trainerSnsKind?: string;
+  /** 트레이너 센터정보 */
+  centerInfo?: CenterInfo[];
+  defaultInfo?: DefaultInfo;
 }

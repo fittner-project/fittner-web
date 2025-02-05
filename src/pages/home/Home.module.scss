@@ -3,6 +3,8 @@
   position: relative;
   overflow-y: scroll;
   padding-top: 3rem;
+  padding-bottom: 3rem;
+  height: calc(100vh - $main_header_height - $navigation_height);
 
   & > .dumbbell_container {
     position: absolute;
