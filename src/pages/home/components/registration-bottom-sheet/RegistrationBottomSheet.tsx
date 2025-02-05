@@ -3,8 +3,10 @@ import styles from "./RegistrationBottomSheet.module.scss";
 import { closeBottomSheet } from "@/utils/bottomSheet";
 import Image from "@/components/image/Image";
 import { cancel_grey, register_center, register_user } from "@/assets/assets";
+import PATH from "@/router/path";
 
 export default function RegistrationBottomSheet() {
+  const navigate = useNavigate();
   return (
     <BottomSheet>
       <div className={styles.container}>
@@ -21,7 +23,10 @@ export default function RegistrationBottomSheet() {
         </div>
 
         <div className={styles.content}>
-          <div className={styles.content_item}>
+          <div
+            className={styles.content_item}
+            onClick={() => navigate(PATH.REGISTER_TRAINEE)}
+          >
             <Image width={2.3} height={2.3} src={register_user} alt="user" />
             <div className={styles.content_item_title}>회원 등록</div>
           </div>

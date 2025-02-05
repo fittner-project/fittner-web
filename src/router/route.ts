@@ -45,7 +45,8 @@ type RouteKeys =
   | "my-notice"
   | "my-notification-setting"
   | "redirect"
-  | "root";
+  | "root"
+  | "register-trainee";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -68,6 +69,14 @@ export const Routes: Routes = {
     headerName: "",
     headerType: "default",
     navType: "default",
+  },
+
+  "register-trainee": {
+    name: "register-trainee",
+    path: PATH.REGISTER_TRAINEE,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
   },
 
   "sign-in": {

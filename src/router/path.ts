@@ -19,6 +19,7 @@ const PATH = {
     },
     NOTIFICATION_SETTING: "/my/notification-setting",
   },
+  REGISTER_TRAINEE: "/register-trainee",
 };
 
 export default PATH;
