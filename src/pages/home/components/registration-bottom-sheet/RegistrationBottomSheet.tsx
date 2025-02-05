@@ -1,8 +1,7 @@
 import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import styles from "./RegistrationBottomSheet.module.scss";
-import { closeBottomSheet } from "@/utils/bottomSheet";
 import Image from "@/components/image/Image";
-import { cancel_grey, register_center, register_user } from "@/assets/assets";
+import { register_center, register_user } from "@/assets/assets";
 import PATH from "@/router/path";
 
 export default function RegistrationBottomSheet() {
@@ -12,14 +11,6 @@ export default function RegistrationBottomSheet() {
       <div className={styles.container}>
         <div className={styles.title}>
           <div>무엇을 등록하시나요?</div>
-          <div onClick={() => closeBottomSheet()}>
-            <Image
-              width={2.4}
-              height={2.4}
-              src={cancel_grey}
-              alt="alert-triangle"
-            />
-          </div>
         </div>
 
         <div className={styles.content}>

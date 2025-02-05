@@ -2,7 +2,6 @@
   padding-bottom: 5.7rem;
   .title {
     @include fm-ar(2.2rem, $text_1, 3.2rem, 700, "Pretendard");
-    @include flex-row(space-between);
   }
 
   .content {
