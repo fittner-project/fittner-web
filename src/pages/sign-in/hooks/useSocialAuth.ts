@@ -38,7 +38,15 @@ export const useSocialAuth = () => {
             component: AlertModal,
             props: {
               errorMessage: error?.toString(),
-              onCloseComplete: () => navigate(PATH.SIGN_IN),
+              onCloseComplete: () => {
+                if (
+                  error?.toString().includes("승인 대기중인 트레이너입니다.")
+                ) {
+                  navigate(PATH.CENTER_LIST);
+                } else {
+                  navigate(PATH.SIGN_IN);
+                }
+              },
             },
           });
         }
