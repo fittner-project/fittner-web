@@ -105,7 +105,6 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
           centerId: center.centerId,
         },
       });
-      return;
     }
   };
 
