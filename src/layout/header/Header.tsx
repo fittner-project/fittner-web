@@ -19,7 +19,7 @@ export default function Header({
 }: HeaderProps) {
   const navigate = useNavigate();
   const userInfo = useUserStore((state) => state.userInfo);
-
+  const selectedCenter = useUserStore((state) => state.selectedCenter);
   const handleBack = () => {
     if (fallback === "none") navigate(-1);
     else navigate(fallback);
@@ -42,7 +42,9 @@ export default function Header({
         {/* Todo:회원가입 시 선택한 디폴트 센터로 초기값, 전역 관리 + 선택한 센터 바꿀때마다 해당 센터로 변경, 전역 관리 */}
         <p>
           {type === "center"
-            ? (userInfo?.centerInfo?.[0]?.centerName ?? "센터 정보 없음")
+            ? (selectedCenter.centerName ??
+              userInfo.centerInfo?.[0]?.centerName ??
+              "센터 정보 없음")
             : (userInfo?.defaultInfo?.trainerName ?? "트레이너 정보 없음")}
         </p>
 
