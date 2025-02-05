@@ -5,7 +5,9 @@ import { ApprovalStatus } from "@/store/auth";
 import { storage } from "@/utils/storage";
 
 export default function useAuthRouting() {
-  const { isAuthenticated, approvalStatus, setApprovalStatus } = useAuthStore();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const approvalStatus = useAuthStore((state) => state.approvalStatus);
+  const setApprovalStatus = useAuthStore((state) => state.setApprovalStatus);
   const navigate = useNavigate();
   const location = useLocation();
   const trainerEmail = storage.get<string>({ key: storageKeys.trainerEmail });

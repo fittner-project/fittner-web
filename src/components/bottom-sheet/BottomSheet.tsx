@@ -10,7 +10,7 @@ interface BottomSheetProps {
 }
 
 export default function BottomSheet({ children }: BottomSheetProps) {
-  const { isOpen } = useBottomSheetStore();
+  const isOpen = useBottomSheetStore((state) => state.isOpen);
   const isFirstRender = useRef(true);
   const location = useLocation();
   const prevPathRef = useRef(location.pathname);

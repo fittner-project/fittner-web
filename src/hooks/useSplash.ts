@@ -1,7 +1,7 @@
 import { useGetUserCommonSplash } from "@/api/generated/공통/공통";
 
 export default function useSplash() {
-  const { accessToken } = useAuthStore();
+  const accessToken = useAuthStore((state) => state.accessToken);
   const { data: splashData } = useGetUserCommonSplash({
     ...(accessToken && { accessToken }),
   });

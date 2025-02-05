@@ -2,7 +2,9 @@ import { ComponentType } from "react";
 import styles from "./ModalManager.module.scss";
 
 export default function ModalManager() {
-  const { modals, isLoading } = useModalStore();
+  const modals = useModalStore((state) => state.modals);
+  const isLoading = useModalStore((state) => state.isLoading);
+
   if (modals.length === 0 && !isLoading) return;
 
   return (

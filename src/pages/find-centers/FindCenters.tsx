@@ -14,7 +14,8 @@ import { useSearchValueStore } from "@/store/searchValue";
 import { useGetUserCenterList } from "@/api/generated/유저/유저";
 
 function FindCenters() {
-  const { searchValue, reset } = useSearchValueStore();
+  const searchValue = useSearchValueStore((state) => state.searchValue);
+  const reset = useSearchValueStore((state) => state.reset);
   const showCenterList = useRef(false);
   const { data: centerListData, isLoading: isCenterListLoading } =
     useGetUserCenterList();

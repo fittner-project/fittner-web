@@ -15,7 +15,7 @@ interface PolicyProps {
 }
 
 export default function Policy({ type }: PolicyProps) {
-  const { selectedCenter } = useUserStore();
+  const selectedCenter = useUserStore((state) => state.selectedCenter);
   const { data: termsData } = useGetUserMyPageTerms({
     query: { enabled: type === "terms" },
   });

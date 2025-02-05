@@ -8,7 +8,8 @@ export interface ModalProps {
 }
 
 export default function Modal({ children, width = 32 }: ModalProps) {
-  const { modals, closeModal } = useModalStore();
+  const modals = useModalStore((state) => state.modals);
+  const closeModal = useModalStore((state) => state.closeModal);
   const isFirstRender = useRef(true);
   const location = useLocation();
   const prevUrlRef = useRef(location.pathname + location.search);

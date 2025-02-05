@@ -38,9 +38,9 @@ const EntryPoint: FC<IProps> = ({ children }) => {
 export default EntryPoint;
 
 const Authorized = ({ children }: IProps) => {
-  const { isAuthenticated } = useAuthStore();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const setUserInfo = useUserStore((state) => state.setUserInfo);
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
-  const { setUserInfo } = useUserStore();
 
   useEffect(() => {
     if (data) {

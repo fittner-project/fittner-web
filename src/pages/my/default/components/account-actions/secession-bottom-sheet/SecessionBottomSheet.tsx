@@ -8,7 +8,7 @@ import { openModal } from "@/utils/modal";
 import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
 
 export default function SecessionBottomSheet() {
-  const { logout } = useAuthStore();
+  const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
 
   const { mutate: postUserDrop } = usePostUserDrop({

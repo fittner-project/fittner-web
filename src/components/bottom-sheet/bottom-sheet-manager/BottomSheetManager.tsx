@@ -6,7 +6,8 @@ import classNames from "classnames";
 import useSafeTimeout from "@/hooks/useSafeTimeout";
 
 export default function BottomSheetManager() {
-  const { currentSheet, isLoading } = useBottomSheetStore();
+  const currentSheet = useBottomSheetStore((state) => state.currentSheet);
+  const isLoading = useBottomSheetStore((state) => state.isLoading);
   const [displaySheet, setDisplaySheet] = useState(currentSheet);
   const [isClosing, setIsClosing] = useState(false);
 

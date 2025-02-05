@@ -16,7 +16,7 @@ export const SubHeader = ({ fallback }: SubHeaderProps) => {
   const { currentRoute } = useGetCurrentRoute();
   const rightSection = currentRoute?.subHeaderConfig?.rightSection;
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuthStore();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   const handleBack = () => {
     if (fallback === "none") navigate(-1);

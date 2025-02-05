@@ -8,7 +8,7 @@ import { usePostAuthLogout } from "@/api/generated/권한/권한";
 import PATH from "@/router/path";
 
 export default function SignOutBottomSheet() {
-  const { logout: logoutWithStore } = useAuthStore();
+  const logoutWithStore = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
   const { mutate: logout } = usePostAuthLogout({
     mutation: {

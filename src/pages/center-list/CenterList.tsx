@@ -8,7 +8,7 @@ import { storage } from "@/utils/storage";
 import { useGetUserCenters } from "@/api/generated/유저/유저";
 
 export default function CenterList() {
-  const { isAuthenticated } = useAuthStore();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const trainerEmail = storage.get<string>({
     key: storageKeys.trainerEmail,
   });

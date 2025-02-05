@@ -15,8 +15,9 @@ import { usePostAuthLogin } from "@/api/generated/권한/권한";
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
-  const { setIsAuthenticated, setAccessToken, setRefreshToken } =
-    useAuthStore();
+  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
+  const setAccessToken = useAuthStore((state) => state.setAccessToken);
+  const setRefreshToken = useAuthStore((state) => state.setRefreshToken);
   //const { mutateAsync: appleInfo } = useAppleInfo();
   const { mutate: login } = usePostAuthLogin({
     mutation: {

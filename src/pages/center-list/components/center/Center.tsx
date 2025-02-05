@@ -9,7 +9,7 @@ interface CenterProps {
 }
 
 export default function Center({ isConnected, center }: CenterProps) {
-  const { isAuthenticated } = useAuthStore();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   return (
     <div className={styles.container}>

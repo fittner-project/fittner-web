@@ -11,7 +11,8 @@ interface SubSearchHeaderProps {
 }
 
 export default function SubSearchHeader({ fallback }: SubSearchHeaderProps) {
-  const { searchValue, setSearchValue } = useSearchValueStore();
+  const searchValue = useSearchValueStore((state) => state.searchValue);
+  const setSearchValue = useSearchValueStore((state) => state.setSearchValue);
   const { currentRoute } = useGetCurrentRoute();
   const navigate = useNavigate();
 

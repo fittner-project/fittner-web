@@ -20,8 +20,9 @@ interface SelectCenterBottomSheetProps {
 
 function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const navigate = useNavigate();
-  const { isAuthenticated, setApprovalStatus } = useAuthStore();
-  const { setSelectedCenter } = useUserStore();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const setApprovalStatus = useAuthStore((state) => state.setApprovalStatus);
+  const setSelectedCenter = useUserStore((state) => state.setSelectedCenter);
   const { mutate: registerCenter } = usePostUserCenter({
     mutation: {
       onSuccess: () => {
