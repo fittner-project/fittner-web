@@ -30,3 +30,4 @@ export { default as cancel_grey } from "./icon/cancel_grey.svg";
 export { default as register_user } from "./icon/register_user.png";
 export { default as register_center } from "./icon/register_center.png";
 export { default as celebration } from "./images/celebration.png";
+export { default as chevron_down } from "./icon/chevron-down.svg";

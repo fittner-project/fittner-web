@@ -11,5 +11,9 @@
 
   & > .title {
     @include fm-ar(2.2rem, $text_1, 2.2rem, 600);
+    @include flex-row();
+    p {
+      margin-right: 0.3rem;
+    }
   }
 }
