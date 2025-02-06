@@ -13,6 +13,7 @@ export default function CenterList() {
   const trainerEmail = storage.get<string>({
     key: storageKeys.trainerEmail,
   });
+
   const {
     data: initialUserCentersData,
     isLoading: isInitialUserCentersLoading,
@@ -20,9 +21,17 @@ export default function CenterList() {
     trainerEmail as string,
     {
       currentPageNo: "1",
-      recordsPerPage: "1",
+      recordsPerPage: "10",
     },
-    { query: { enabled: !!trainerEmail && !isAuthenticated } }
+    { query: { enabled: !!trainerEmail } }
+  );
+
+  const connectedCenters = initialUserCentersData?.result?.items?.filter(
+    (center) => center.centerJoinMainYn === "Y"
+  );
+
+  const notConnectedCenters = initialUserCentersData?.result?.items?.filter(
+    (center) => center.centerJoinMainYn === "N"
   );
 
   useEffect(() => {
@@ -39,10 +48,9 @@ export default function CenterList() {
         <div style={{ width: "100%" }}>
           <p className={styles.title}>연동 승인중</p>
           <div className={styles.center_list}>
-            {!isAuthenticated &&
-              initialUserCentersData?.result?.items?.map((center) => (
-                <Center isConnected={false} center={center} />
-              ))}
+            {notConnectedCenters?.map((center) => (
+              <Center isConnected={false} center={center} />
+            ))}
 
             {isInitialUserCentersLoading && (
               <Skeleton className={styles.center_skeleton}>
@@ -80,13 +88,14 @@ export default function CenterList() {
           }}
         >
           <p className={styles.title}>연동 완료</p>
-          {/* {isAuthenticated && (
-            <div className={styles.center_list}>
-              <Center isConnected={true} />
-            </div>
-          )} */}
 
-          {!isAuthenticated && (
+          <div className={styles.center_list}>
+            {connectedCenters?.map((center) => (
+              <Center isConnected={true} center={center} />
+            ))}
+          </div>
+
+          {connectedCenters?.length === 0 && (
             <div className={styles.no_center_container}>
               <p className={styles.no_center_text}>연동된 센터가 없습니다.</p>
             </div>
