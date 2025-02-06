@@ -22,7 +22,10 @@ export default function RegistrationBottomSheet() {
             <div className={styles.content_item_title}>회원 등록</div>
           </div>
 
-          <div className={styles.content_item}>
+          <div
+            className={styles.content_item}
+            onClick={() => navigate(PATH.FIND_CENTERS)}
+          >
             <Image
               width={2.3}
               height={2.3}
