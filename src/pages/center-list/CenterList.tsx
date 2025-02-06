@@ -81,6 +81,7 @@ export default function CenterList() {
 
         <div
           style={{
+            minHeight: "25rem",
             display: "flex",
             flexDirection: "column",
             width: "100%",
