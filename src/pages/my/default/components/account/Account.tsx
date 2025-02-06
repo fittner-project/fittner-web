@@ -1,18 +1,11 @@
 import Image from "@/components/image/Image";
 import styles from "./Account.module.scss";
-import { storage } from "@/utils/storage";
-import { storageKeys } from "@/constants/storageKeys";
 import { apple, google, kakao } from "@/assets/assets";
 import MyTitle from "../../../components/my-title/MyTitle";
 
 export default function Account() {
-  const social = storage.get({
-    key: storageKeys.trainerSnsKind,
-  }) as string;
-
-  const email = storage.get({
-    key: storageKeys.trainerEmail,
-  }) as string;
+  const email = useUserStore((state) => state.userInfo.trainerEmail);
+  const social = useUserStore((state) => state.userInfo.trainerSnsKind);
 
   const getSocialIcon = (social: string) => {
     switch (social) {

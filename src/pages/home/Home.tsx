@@ -15,6 +15,7 @@ import {
 } from "@/assets/assets";
 import Training from "@/components/training/Training";
 import { MotionDiv } from "@/components/animation/Motion";
+import PATH from "@/router/path";
 
 function Home() {
   const navigate = useNavigate();
@@ -90,7 +91,10 @@ function Home() {
             </div>
 
             <div className={styles.registration_sign_container}>
-              <div className={styles.registration}>
+              <div
+                onClick={() => navigate(PATH.REGISTER_TRAINEE)}
+                className={styles.registration}
+              >
                 <Image src={main_registration} width={3.5} height={3.2} />
                 <div className={styles.menu_title}>
                   회원 등록

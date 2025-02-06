@@ -37,8 +37,6 @@ export default function CancelApprovalBottomSheet({
     },
   });
 
-  console.log(center);
-
   return (
     <BottomSheet>
       <div className={styles.container}>
