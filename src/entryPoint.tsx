@@ -40,11 +40,13 @@ export default EntryPoint;
 const Authorized = ({ children }: IProps) => {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const setUserInfo = useUserStore((state) => state.setUserInfo);
+  const setSelectedCenter = useUserStore((state) => state.setSelectedCenter);
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
 
   useEffect(() => {
     if (data) {
-      setUserInfo(data.result || {});
+      setUserInfo(data.result?.defaultInfo || {});
+      setSelectedCenter(data.result?.centerInfo?.[0] || {});
     }
   }, [data]);
   //인증이 된 이후 앱 전체 적용 로직들

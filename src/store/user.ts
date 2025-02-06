@@ -1,16 +1,16 @@
-import { CenterListResDto, UserInfoResDto } from "@/api/generated/models";
+import { CenterInfo, DefaultInfo } from "@/api/generated/models";
 import { storageKeys } from "@/constants/storageKeys";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 interface IUserDispatcher {
-  setUserInfo: (userInfo: UserInfoResDto) => void;
-  setSelectedCenter: (center: CenterListResDto) => void;
+  setUserInfo: (userInfo: DefaultInfo) => void;
+  setSelectedCenter: (center: CenterInfo) => void;
 }
 
 interface UserStore extends IUserDispatcher {
-  userInfo: UserInfoResDto;
-  selectedCenter: CenterListResDto;
+  userInfo: DefaultInfo;
+  selectedCenter: CenterInfo;
 }
 
 export const useUserStore = create(
@@ -18,8 +18,8 @@ export const useUserStore = create(
     (set, _get) => ({
       userInfo: {},
       selectedCenter: {},
-      setUserInfo: (userInfo: UserInfoResDto) => set({ userInfo }),
-      setSelectedCenter: (center: CenterListResDto) =>
+      setUserInfo: (userInfo: DefaultInfo) => set({ userInfo }),
+      setSelectedCenter: (center: CenterInfo) =>
         set({ selectedCenter: center }),
     }),
     {
