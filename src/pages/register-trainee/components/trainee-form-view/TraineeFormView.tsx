@@ -7,8 +7,12 @@ import Button from "@/components/button/Button";
 
 interface ITraineeFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
+  setStep: React.Dispatch<React.SetStateAction<1 | 2>>;
 }
-export default function TraineeFormView({ form }: ITraineeFormViewProps) {
+export default function TraineeFormView({
+  form,
+  setStep,
+}: ITraineeFormViewProps) {
   return (
     <div className={styles.container}>
       <div className={styles.field}>
@@ -88,6 +92,7 @@ export default function TraineeFormView({ form }: ITraineeFormViewProps) {
           fullWidth
           className={styles.next_button}
           disabled={false}
+          onClick={() => setStep(2)}
         >
           다음
         </Button>

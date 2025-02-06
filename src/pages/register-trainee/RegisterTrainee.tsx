@@ -55,7 +55,11 @@ export default function RegisterTrainee() {
           onSubmit={form.handleSubmit(onSubmit)}
           className={styles.container}
         >
-          {step === 1 ? <TraineeFormView form={form} /> : <ProductFormView />}
+          {step === 1 ? (
+            <TraineeFormView form={form} setStep={setStep} />
+          ) : (
+            <ProductFormView form={form} />
+          )}
         </form>
       </div>
     </PaddingContainer>
