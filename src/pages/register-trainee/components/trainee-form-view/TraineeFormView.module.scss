@@ -11,4 +11,11 @@
       margin-top: 1.8rem;
     }
   }
+
+  .button_container {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+    @include footer();
+    bottom: 3rem;
+  }
 }
