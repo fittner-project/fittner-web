@@ -1,11 +1,12 @@
 import styles from "./Center.module.scss";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ApprovalNoticeBottomSheet from "../approval-notice-bottom-sheet/ApprovalNoticeBottomSheet";
-import { CenterListResDto } from "@/api/generated/models";
+import { UserCenterListResDto } from "@/api/generated/models";
+import CancelApprovalBottomSheet from "../cancel-approval-bottom-sheet/CancelApprovalBottomSheet";
 
 interface CenterProps {
   isConnected: boolean;
-  center: CenterListResDto;
+  center: UserCenterListResDto;
 }
 
 export default function Center({ isConnected, center }: CenterProps) {
@@ -21,6 +22,22 @@ export default function Center({ isConnected, center }: CenterProps) {
         onClick={() => {
           if (!isAuthenticated) {
             openBottomSheet({ component: ApprovalNoticeBottomSheet });
+            return;
+          }
+
+          // 연동 해제 부분
+          if (isConnected) {
+            return;
+          }
+
+          // 승인 취소 부분
+          if (!isConnected) {
+            openBottomSheet({
+              component: CancelApprovalBottomSheet,
+              props: {
+                center: center,
+              },
+            });
           }
         }}
         className={styles.action_button}

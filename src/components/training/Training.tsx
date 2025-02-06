@@ -1,9 +1,7 @@
-import { storage } from "@/utils/storage";
 import styles from "./Training.module.scss";
-import { storageKeys } from "@/constants/storageKeys";
 
 const Training = () => {
-  const trainerName = storage.get<string>({ key: storageKeys.trainerName });
+  const trainerName = useUserStore((state) => state.userInfo.trainerName);
 
   return (
     <div className={styles.container}>
