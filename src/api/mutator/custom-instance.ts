@@ -23,8 +23,15 @@ const skipErrorHandlingUrls = [
 const skipTokenUrls = [
   "/api/v1/auth/login",
   "/api/v1/auth/refresh-token",
+  "/api/v1/auth/apple-redirect-url",
+  "/api/v1/common/file/show",
+  "/api/v1/user/common/app/version-chk",
   "/api/v1/user/common/splash",
+  "/api/v1/user/join",
+  "/api/v1/user/center/list",
+  "/api/v1/user/terms",
   "/api/v1/user/common/status-chk",
+  "/api/v1/user/centers",
 ];
 
 // 토큰 갱신 중인지 확인하는 플래그
@@ -51,7 +58,11 @@ interface ErrorResponse {
 instance.interceptors.request.use((config) => {
   const { accessToken } = useAuthStore.getState();
 
-  if (accessToken && config.url && !skipTokenUrls.includes(config.url)) {
+  if (
+    accessToken &&
+    config.url &&
+    !skipTokenUrls.some((skipUrl) => config.url?.startsWith(skipUrl))
+  ) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
   return config;
