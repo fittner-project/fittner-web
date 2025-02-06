@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  gap: 3.6rem;
+  margin-right: 3.6rem;
 }
 
 .radio_input {
@@ -15,36 +15,30 @@
     border-color: $primary_1;
     background-color: $primary_1;
   }
-
-  &:checked + .radio_custom::after {
-    transform: scale(1);
-  }
 }
 
 .radio_custom {
-  width: 2rem;
-  height: 2rem;
+  width: 2.3rem;
+  height: 2.3rem;
   border: 0.2rem solid var(--gray-3);
   border-radius: 50%;
-  display: inline-block;
+  @include flex-row;
   position: relative;
   transition: all 0.2s ease;
+  background: #dadada;
 
   &::after {
     content: "";
-    width: 1rem;
-    height: 1rem;
+    width: 1.1rem;
+    height: 1.1rem;
     background: white;
-    border-radius: 50%;
+    border-radius: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.2s ease;
   }
 }
 
 .label_text {
   font-size: 1.4rem;
   color: var(--gray-1);
+  margin-left: 0.8rem;
 }
