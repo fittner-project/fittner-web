@@ -32,7 +32,9 @@ export default function RegisterTrainee() {
     <PaddingContainer>
       <div className={styles.container}>
         <Row justifyContent="space-between">
-          <div className={styles.title}>회원 등록</div>
+          <div className={styles.title}>
+            {step === 1 ? "회원 등록" : "상품 등록"}
+          </div>
           <Row gap="0.8rem">
             <div
               className={classNames(styles.step, step === 1 && styles.active)}

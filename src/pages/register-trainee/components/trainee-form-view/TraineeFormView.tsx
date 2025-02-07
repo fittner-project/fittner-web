@@ -13,13 +13,26 @@ export default function TraineeFormView({
   form,
   setStep,
 }: ITraineeFormViewProps) {
+  const { watch } = form;
+
+  // 모든 필드의 값을 감시
+  const values = watch();
+
+  // 모든 필수 필드가 채워졌는지 확인
+  const isFormComplete =
+    values.memberName?.trim() &&
+    values.memberPhone?.trim() &&
+    values.memberGender &&
+    values.memberBirth?.trim() &&
+    values.memberAddress?.trim();
+
   return (
     <div className={styles.container}>
       <div className={styles.field}>
         <p className={styles.title}>이름</p>
         <Input
           inputType="line"
-          maxLength={5}
+          maxLength={10}
           className={styles.name_input}
           {...form.register("memberName", {
             required: true,
@@ -91,7 +104,7 @@ export default function TraineeFormView({
           backgroundColor="primary_1"
           fullWidth
           className={styles.next_button}
-          disabled={false}
+          disabled={!isFormComplete}
           onClick={() => setStep(2)}
         >
           다음
