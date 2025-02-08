@@ -8,9 +8,9 @@
   }
 
   .center_list {
+    margin-top: 0.6rem;
     @include flex_col(flex-start, flex-start);
     @include flex_col_gap(1.6rem);
-    margin-top: 0.6rem;
   }
 
   .no_center_container {

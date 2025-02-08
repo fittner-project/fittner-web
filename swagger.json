@@ -1460,30 +1460,6 @@
         "operationId": "getUserCenters",
         "parameters": [
           {
-            "name": "recordsPerPage",
-            "in": "query",
-            "description": "페이지당 레코드 수",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "페이지당 레코드 수",
-              "example": 15
-            },
-            "example": 15
-          },
-          {
-            "name": "currentPageNo",
-            "in": "query",
-            "description": "현재 페이지 번호",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "현재 페이지 번호",
-              "example": 1
-            },
-            "example": 1
-          },
-          {
             "name": "userEmail",
             "in": "path",
             "required": true,
@@ -1496,7 +1472,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiResponseMessagePageResponseDtoUserCenterListResDto"
+                  "$ref": "#/components/schemas/ApiResponseMessageListUserCenterListResDto"
                 }
               }
             }
@@ -4209,7 +4185,7 @@
         },
         "description": "응답 데이터"
       },
-      "ApiResponseMessagePageResponseDtoUserCenterListResDto": {
+      "ApiResponseMessageListUserCenterListResDto": {
         "type": "object",
         "properties": {
           "status": {
@@ -4233,7 +4209,9 @@
             "example": ""
           },
           "result": {
-            "$ref": "#/components/schemas/PageResponseDtoUserCenterListResDto"
+            "type": "array",
+            "description": "응답 데이터",
+            "items": { "$ref": "#/components/schemas/UserCenterListResDto" }
           },
           "error": {
             "type": "string",
@@ -4241,17 +4219,6 @@
             "enum": ["COMMON_FAIL"]
           }
         }
-      },
-      "PageResponseDtoUserCenterListResDto": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/UserCenterListResDto" }
-          },
-          "paginationInfo": { "$ref": "#/components/schemas/PaginationInfo" }
-        },
-        "description": "응답 데이터"
       },
       "UserCenterListResDto": {
         "type": "object",
@@ -4281,7 +4248,8 @@
             "description": "주 센터 여부",
             "example": "Y"
           }
-        }
+        },
+        "description": "응답 데이터"
       },
       "ApiResponseMessageListCenterListResDto": {
         "type": "object",

@@ -46,6 +46,8 @@ export * from './apiResponseMessageListTermsResDto';
 export * from './apiResponseMessageListTermsResDtoError';
 export * from './apiResponseMessageListTicketListResDto';
 export * from './apiResponseMessageListTicketListResDtoError';
+export * from './apiResponseMessageListUserCenterListResDto';
+export * from './apiResponseMessageListUserCenterListResDtoError';
 export * from './apiResponseMessageMainReservationsResDto';
 export * from './apiResponseMessageMainReservationsResDtoError';
 export * from './apiResponseMessageMyPageInfoResDto';

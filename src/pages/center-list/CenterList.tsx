@@ -15,20 +15,15 @@ export default function CenterList() {
   });
 
   const { data: userCenterData, isLoading: isUserCenterLoading } =
-    useGetUserCenters(
-      trainerEmail as string,
-      {
-        currentPageNo: "1",
-        recordsPerPage: "10",
-      },
-      { query: { enabled: !!trainerEmail } }
-    );
+    useGetUserCenters(trainerEmail as string, {
+      query: { enabled: !!trainerEmail },
+    });
 
-  const connectedCenters = userCenterData?.result?.items?.filter(
+  const connectedCenters = userCenterData?.result?.filter(
     (center) => center.centerJoinMainYn === "Y"
   );
 
-  const notConnectedCenters = userCenterData?.result?.items?.filter(
+  const notConnectedCenters = userCenterData?.result?.filter(
     (center) => center.centerJoinMainYn === "N"
   );
 

@@ -6,6 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
+/**
+ * 응답 데이터
+ */
 export interface UserCenterListResDto {
   /** 센터 주소 */
   centerAddress?: string;
