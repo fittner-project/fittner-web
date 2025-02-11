@@ -6,7 +6,7 @@ import styles from "./Home.module.scss";
 import BackgroundContainer from "@/layout/containers/background-container/BackgroundContainer";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import {
-  chevronRight,
+  chevronRightGrey,
   dumbbell,
   main_calendar,
   main_registration,
@@ -67,7 +67,7 @@ function Home() {
             animate={{ y: 0, opacity: 1 }}
           >
             <div className={styles.calendar_title}>
-              12월 4주차 <Image src={chevronRight} width={2} height={2} />
+              12월 4주차 <Image src={chevronRightGrey} width={2} height={2} />
             </div>
             <div className={styles.calendar}></div>
           </MotionDiv>
@@ -81,7 +81,7 @@ function Home() {
             <div className={styles.my_class}>
               <div className={styles.menu_title}>
                 나의 수업
-                <Image src={chevronRight} width={2} height={2} />
+                <Image src={chevronRightGrey} width={2} height={2} />
               </div>
               <div className={styles.menu_desc}>
                 나의 수업을 등록해 <br />
@@ -98,7 +98,7 @@ function Home() {
                 <Image src={main_registration} width={3.5} height={3.2} />
                 <div className={styles.menu_title}>
                   회원 등록
-                  <Image src={chevronRight} width={2} height={2} />
+                  <Image src={chevronRightGrey} width={2} height={2} />
                 </div>
               </div>
 
@@ -106,7 +106,7 @@ function Home() {
                 <Image src={main_sign} width={4} height={4} />
                 <div className={styles.menu_title}>
                   서명 요청
-                  <Image src={chevronRight} width={2} height={2} />
+                  <Image src={chevronRightGrey} width={2} height={2} />
                 </div>
               </div>
             </div>
@@ -128,7 +128,7 @@ function Home() {
             </div>
 
             <Image
-              src={chevronRight}
+              src={chevronRightGrey}
               width={2}
               height={2}
               className={styles.search_icon}

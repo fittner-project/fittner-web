@@ -44,6 +44,7 @@ type RouteKeys =
   | "my-terms"
   | "my-notice"
   | "my-notification-setting"
+  | "my-revenue-detail"
   | "redirect"
   | "root"
   | "register-trainee";
@@ -189,6 +190,14 @@ export const Routes: Routes = {
   "my-notification-setting": {
     name: "my-notification-setting",
     path: PATH.MY.NOTIFICATION_SETTING,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+
+  "my-revenue-detail": {
+    name: "my-revenue-detail",
+    path: PATH.MY.REVENUE_DETAIL,
     fallback: "none",
     headerType: "sub",
     navType: "none",

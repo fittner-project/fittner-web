@@ -17,6 +17,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Policy from "@/pages/my/policy/Policy";
 import NotificationSetting from "@/pages/my/notification-setting/NotificationSetting";
 import RegisterTrainee from "@/pages/register-trainee/RegisterTrainee";
+import RevenueDetail from "@/pages/my/revenue-detail/RevenueDetail";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: PATH.REGISTER_TRAINEE,
         element: <RegisterTrainee />,
+      },
+      {
+        path: PATH.MY.REVENUE_DETAIL,
+        element: <RevenueDetail />,
       },
     ],
   },

@@ -1,0 +1,99 @@
+import Image from "@/components/image/Image";
+import styles from "./Revenue.module.scss";
+import { chevronLeftGrey, chevronRightGrey } from "@/assets/assets";
+import RevenueCard from "@/pages/my/components/revenue/revenue-card/RevenueCard";
+import { Link } from "react-router-dom";
+import PATH from "@/router/path";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
+import dayjs from "dayjs";
+import { useState } from "react";
+
+interface RevenueProps {
+  type: "main" | "detail";
+}
+
+export default function Revenue({ type }: RevenueProps) {
+  const generateDateArray = () => {
+    const dates = [];
+    const currentDate = dayjs();
+
+    for (let i = 0; i < 30; i++) {
+      dates.push(currentDate.subtract(i, "month").format("YYYY년 MM월"));
+    }
+
+    return dates.reverse();
+  };
+
+  const [dateArray] = useState<string[]>(generateDateArray());
+  const [activeDate, setActiveDate] = useState<string>(
+    dateArray[dateArray.length - 1]
+  );
+  const swiperRef = useRef<SwiperRef>(null);
+
+  return (
+    <div className={styles.container}>
+      {type === "main" && (
+        <section className={styles.top_section_main}>
+          <p className={styles.title}>수익관리</p>
+          <Link to={PATH.MY.REVENUE_DETAIL} className={styles.detail_section}>
+            <p>상세내역</p>{" "}
+            <Image
+              src={chevronRightGrey}
+              alt="상세내역"
+              width={1.6}
+              height={1.6}
+            />
+          </Link>
+        </section>
+      )}
+
+      {type === "detail" && (
+        <section className={styles.top_section_detail}>
+          <div className={styles.date_section}>
+            <Image
+              onClick={() => swiperRef.current?.swiper.slidePrev()}
+              src={chevronLeftGrey}
+              alt="이전"
+              width={2.8}
+              height={2.8}
+            />
+
+            <div className={styles.swiper_container}>
+              <Swiper
+                ref={swiperRef}
+                slidesPerView={1}
+                spaceBetween={20}
+                onSlideChange={(swiper) =>
+                  setActiveDate(dateArray[swiper.activeIndex])
+                }
+                initialSlide={dateArray.length - 1}
+              >
+                {dateArray.map((date, index) => (
+                  <SwiperSlide key={index}>
+                    <span className={styles.active_date}>{date}</span>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+            <Image
+              onClick={() => swiperRef.current?.swiper.slideNext()}
+              src={chevronRightGrey}
+              alt="다음"
+              width={2.8}
+              height={2.8}
+            />
+          </div>
+        </section>
+      )}
+
+      <RevenueCard
+        progressCurrent={1720000}
+        progressTotal={3220000}
+        leftText="예상 수익금"
+        rightText="현재 수익금"
+      />
+    </div>
+  );
+}

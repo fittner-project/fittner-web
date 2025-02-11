@@ -3,7 +3,7 @@ interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   height?: number | string;
 }
 
-function Image({ width, height, onClick, style, ...props }: ImageProps) {
+function Image({ width, height, style, ...props }: ImageProps) {
   return (
     <img
       {...props}
