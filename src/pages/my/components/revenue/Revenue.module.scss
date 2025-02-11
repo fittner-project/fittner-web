@@ -30,8 +30,6 @@
     .date_section {
       @include flex_row(center, center);
       @include flex_row_gap(1.2rem);
-      width: fit-content;
-      margin: 0 auto;
 
       .swiper_container {
         max-width: 12.5rem;

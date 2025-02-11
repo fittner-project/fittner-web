@@ -7,29 +7,17 @@ import PATH from "@/router/path";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import dayjs from "dayjs";
-import { useState } from "react";
-
 interface RevenueProps {
   type: "main" | "detail";
+  dateArray?: string[];
+  setActiveDate?: (date: string) => void;
 }
 
-export default function Revenue({ type }: RevenueProps) {
-  const generateDateArray = () => {
-    const dates = [];
-    const currentDate = dayjs();
-
-    for (let i = 0; i < 30; i++) {
-      dates.push(currentDate.subtract(i, "month").format("YYYY년 MM월"));
-    }
-
-    return dates.reverse();
-  };
-
-  const [dateArray] = useState<string[]>(generateDateArray());
-  const [activeDate, setActiveDate] = useState<string>(
-    dateArray[dateArray.length - 1]
-  );
+export default function Revenue({
+  type,
+  dateArray,
+  setActiveDate,
+}: RevenueProps) {
   const swiperRef = useRef<SwiperRef>(null);
 
   return (
@@ -49,7 +37,7 @@ export default function Revenue({ type }: RevenueProps) {
         </section>
       )}
 
-      {type === "detail" && (
+      {type === "detail" && dateArray && setActiveDate && (
         <section className={styles.top_section_detail}>
           <div className={styles.date_section}>
             <Image
