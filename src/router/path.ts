@@ -16,12 +16,11 @@ const PATH = {
     POLICY: {
       TERMS: "/my/terms",
       NOTICE: "/my/notice",
+      NOTICE_DETAIL: "/my/notice/:title",
+      TERMS_DETAIL: "/my/terms/:title",
     },
     NOTIFICATION_SETTING: "/my/notification-setting",
     REVENUE_DETAIL: "/my/revenue-detail",
-    NOTICE: {
-      DETAIL: "/my/notice/:title",
-    },
   },
   REGISTER_TRAINEE: "/register-trainee",
 };

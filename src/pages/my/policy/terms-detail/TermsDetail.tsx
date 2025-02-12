@@ -1,17 +1,19 @@
 import PolicyLink from "../components/PolicyLink";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
-import styles from "./NoticeDetail.module.scss";
+import styles from "./TermsDetail.module.scss";
 
-export default function NoticeDetail() {
+export default function TermsDetail() {
   const { title } = useParams() as { title: string };
   const [searchParams] = useSearchParams();
-  const content = searchParams.get("content") as string;
   const date = searchParams.get("date") as string;
+  const url = searchParams.get("url") as string;
 
   return (
     <PaddingContainer>
-      <PolicyLink title={title} date={date} to={content} type="detail" />
-      <p className={styles.content}>{content}</p>
+      <PolicyLink title={title} date={date} type="detail" />
+      <p className={styles.content}>
+        <iframe src={url} frameBorder="0" width="100%" />
+      </p>
     </PaddingContainer>
   );
 }

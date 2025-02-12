@@ -48,7 +48,8 @@ type RouteKeys =
   | "redirect"
   | "root"
   | "register-trainee"
-  | "my-notice-detail";
+  | "my-notice-detail"
+  | "my-terms-detail";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -206,7 +207,15 @@ export const Routes: Routes = {
 
   "my-notice-detail": {
     name: "my-notice-detail",
-    path: PATH.MY.NOTICE.DETAIL,
+    path: PATH.MY.POLICY.NOTICE_DETAIL,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+
+  "my-terms-detail": {
+    name: "my-terms-detail",
+    path: PATH.MY.POLICY.TERMS_DETAIL,
     fallback: "none",
     headerType: "sub",
     navType: "none",
