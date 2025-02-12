@@ -19,6 +19,9 @@ const PATH = {
     },
     NOTIFICATION_SETTING: "/my/notification-setting",
     REVENUE_DETAIL: "/my/revenue-detail",
+    NOTICE: {
+      DETAIL: "/my/notice/:title",
+    },
   },
   REGISTER_TRAINEE: "/register-trainee",
 };

@@ -18,6 +18,7 @@ import Policy from "@/pages/my/policy/Policy";
 import NotificationSetting from "@/pages/my/notification-setting/NotificationSetting";
 import RegisterTrainee from "@/pages/register-trainee/RegisterTrainee";
 import RevenueDetail from "@/pages/my/revenue-detail/RevenueDetail";
+import NoticeDetail from "@/pages/my/policy/notice-detail/NoticeDetail";
 
 const queryClient = new QueryClient();
 
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: PATH.MY.REVENUE_DETAIL,
         element: <RevenueDetail />,
+      },
+      {
+        path: PATH.MY.NOTICE.DETAIL,
+        element: <NoticeDetail />,
       },
     ],
   },

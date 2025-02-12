@@ -71,7 +71,7 @@ export default function Policy({ type }: PolicyProps) {
               key={notice.noticeTitle}
               date={notice.noticeDate ?? ""}
               title={notice.noticeTitle ?? ""}
-              to={notice.noticeTitle ?? ""}
+              to={`${notice.noticeTitle}?content=${notice.noticeContent}` || ""}
             />
           ))}
 

@@ -1,11 +1,18 @@
 import { Routes } from "@/router/route";
-import { useLocation } from "react-router-dom";
+import { useLocation, matchPath } from "react-router-dom";
 
 function useGetCurrentRoute() {
   const location = useLocation();
-  const currentRoute = Object.values(Routes).find(
-    (route) => route.path === location.pathname
-  );
+
+  const currentRoute = Object.values(Routes).find((route) => {
+    return matchPath(
+      {
+        path: route.path,
+        end: true,
+      },
+      location.pathname
+    );
+  });
 
   return { currentRoute };
 }
