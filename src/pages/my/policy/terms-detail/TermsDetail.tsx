@@ -6,14 +6,22 @@ export default function TermsDetail() {
   const { title } = useParams() as { title: string };
   const [searchParams] = useSearchParams();
   const date = searchParams.get("date") as string;
-  const url = searchParams.get("url") as string;
+  const urls = searchParams.get("urls")?.split(",") ?? [];
 
   return (
     <PaddingContainer>
       <PolicyLink title={title} date={date} type="detail" />
-      <p className={styles.content}>
-        <iframe src={url} frameBorder="0" width="100%" />
-      </p>
+      <div className={styles.content}>
+        {urls.map((url, index) => (
+          <iframe
+            key={`${url}-${index}`}
+            src={url}
+            frameBorder="0"
+            width="100%"
+            style={{ marginBottom: index < urls.length - 1 ? "20px" : "0" }}
+          />
+        ))}
+      </div>
     </PaddingContainer>
   );
 }

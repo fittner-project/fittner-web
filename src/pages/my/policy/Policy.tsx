@@ -61,7 +61,7 @@ export default function Policy({ type }: PolicyProps) {
               key={term.ingTermsTitle}
               date={term.intTermsStartDate ?? ""}
               title={term.ingTermsTitle ?? ""}
-              to={`${term.ingTermsTitle}?date=${term.intTermsStartDate}&url=${term.totalTermList?.[0].termsUrl}`}
+              to={`${term.ingTermsTitle}?date=${term.intTermsStartDate}&urls=${term.totalTermList?.map((t) => t.termsUrl).join(",")}`}
               type="main"
             />
           ))}
