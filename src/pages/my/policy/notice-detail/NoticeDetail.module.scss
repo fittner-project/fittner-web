@@ -1,0 +1,4 @@
+.content {
+  padding-top: 2.5rem;
+  @include fm-ar(1.7rem, $text_1, 2.2rem, 500);
+}

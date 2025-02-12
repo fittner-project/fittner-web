@@ -62,6 +62,7 @@ export default function Policy({ type }: PolicyProps) {
               date={term.intTermsStartDate ?? ""}
               title={term.ingTermsTitle ?? ""}
               to={term.totalTermList?.[0]?.termsUrl ?? ""}
+              type="main"
             />
           ))}
 
@@ -71,7 +72,11 @@ export default function Policy({ type }: PolicyProps) {
               key={notice.noticeTitle}
               date={notice.noticeDate ?? ""}
               title={notice.noticeTitle ?? ""}
-              to={`${notice.noticeTitle}?content=${notice.noticeContent}` || ""}
+              to={
+                `${notice.noticeTitle}?content=${notice.noticeContent}&date=${notice.noticeDate}` ||
+                ""
+              }
+              type="main"
             />
           ))}
 

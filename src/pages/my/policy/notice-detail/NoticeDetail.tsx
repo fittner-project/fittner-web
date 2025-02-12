@@ -1,5 +1,16 @@
-import React from "react";
-
+import PolicyLink from "../components/PolicyLink";
+import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
+import styles from "./NoticeDetail.module.scss";
 export default function NoticeDetail() {
-  return <div></div>;
+  const { title } = useParams() as { title: string };
+  const [searchParams] = useSearchParams();
+  const content = searchParams.get("content") as string;
+  const date = searchParams.get("date") as string;
+
+  return (
+    <PaddingContainer>
+      <PolicyLink title={title} date={date} to={content} type="detail" />
+      <p className={styles.content}>{content}</p>
+    </PaddingContainer>
+  );
 }
