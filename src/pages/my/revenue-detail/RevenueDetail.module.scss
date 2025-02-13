@@ -1,0 +1,60 @@
+.container {
+  .trainee_list {
+    .trainee {
+      padding: 2rem 0;
+      margin: 0 2rem;
+      border-bottom: 0.2rem solid $grey_1;
+      &:last-child {
+        border-bottom: none;
+      }
+      @include flex_row(space-between, flex-start);
+
+      .trainee_left {
+        height: 8.4rem;
+        .trainee_name {
+          @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+        }
+
+        .item_type {
+          @include fm-ar(1.4rem, $grey_3, 2.2rem, 700);
+          background-color: rgba($grey_2, 0.2);
+          border-radius: 0.6rem;
+          padding: 0.2rem 0.8rem;
+          margin-top: 1rem;
+          display: inline-block;
+        }
+
+        .trainee_date {
+          @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
+          margin-top: 0.4rem;
+        }
+      }
+
+      .trainee_right {
+        height: 8.4rem;
+        @include flex_col(space-between, center);
+
+        .round {
+          @include flex_row(flex-start, center);
+
+          .round_date {
+            @include fm-ar(1.4rem, $grey_3, 2.2rem, 400);
+          }
+
+          .round_count {
+            @include fm-ar(1.2rem, $grey_3, 2.2rem, 700);
+            background-color: rgba($grey_2, 0.2);
+            border-radius: 0.6rem;
+            padding: 0 0.6rem;
+            margin-left: 0.6rem;
+          }
+        }
+
+        .price {
+          margin-top: auto;
+          @include fm-ar(1.9rem, $primary_1, 2.2rem, 600);
+        }
+      }
+    }
+  }
+}
