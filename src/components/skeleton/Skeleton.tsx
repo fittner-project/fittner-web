@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import styles from "./Skeleton.module.scss";
 
-interface SkeletonProps {
+interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   width?: string | number;
   height?: string | number;
   borderRadius?: string | number;
@@ -18,6 +18,8 @@ function Skeleton({
   className,
   children,
   backgroundColor = "skeleton_1",
+  style,
+  ...props
 }: PropsWithChildren<SkeletonProps>) {
   const colorStyle = {
     skeleton_1: "#f2f2f2",
@@ -29,6 +31,7 @@ function Skeleton({
 
   return (
     <div
+      {...props}
       className={`${styles.container} ${className}`}
       style={{
         width: typeof width === "number" ? `${width}rem` : width,
@@ -39,6 +42,7 @@ function Skeleton({
             : borderRadius,
         ...(fullWidth && { width: "100%" }),
         backgroundColor: skeletonColor,
+        ...style,
       }}
     >
       {children}

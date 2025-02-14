@@ -45,7 +45,13 @@ export default function CenterList() {
               <Center isConnected={false} center={center} />
             ))}
 
-            {isUserCenterLoading && <CenterSkeleton />}
+            {isUserCenterLoading && (
+              <>
+                {Array.from({ length: 3 }).map((_, index) => (
+                  <CenterSkeleton key={index} />
+                ))}
+              </>
+            )}
           </div>
         </div>
 

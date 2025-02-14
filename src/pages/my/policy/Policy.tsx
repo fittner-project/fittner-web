@@ -3,12 +3,13 @@ import {
   useGetUserMyPageTerms,
 } from "@/api/generated/마이페이지/마이페이지";
 import styles from "./Policy.module.scss";
-import PolicyLink from "./components/PolicyLink";
+import PolicyLink from "./components/policy-link/PolicyLink";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+import PolicyLinkSkeleton from "./components/policy-link-skeleton/PolicyLinkSkeleton";
 
 interface PolicyProps {
   type: "terms" | "notice";
@@ -16,7 +17,7 @@ interface PolicyProps {
 
 export default function Policy({ type }: PolicyProps) {
   const selectedCenter = useUserStore((state) => state.selectedCenter);
-  const { data: termsData } = useGetUserMyPageTerms({
+  const { data: termsData, isLoading: isTermsLoading } = useGetUserMyPageTerms({
     query: { enabled: type === "terms" },
   });
   const terms = termsData?.result;
@@ -27,6 +28,7 @@ export default function Policy({ type }: PolicyProps) {
     hasNextPage,
     isFetchingNextPage,
     isFetching,
+    isLoading: isNoticeLoading,
   } = useInfiniteQuery({
     queryKey: infiniteQueryKeys.NOTICES(),
     queryFn: ({ pageParam = 1 }) =>
@@ -51,6 +53,8 @@ export default function Policy({ type }: PolicyProps) {
 
   const allNotices =
     noticePages?.pages.flatMap((page) => page.result ?? []) ?? [];
+
+  const isLoading = isTermsLoading || isNoticeLoading;
 
   return (
     <PaddingContainer>
@@ -78,6 +82,11 @@ export default function Policy({ type }: PolicyProps) {
               }
               type="main"
             />
+          ))}
+
+        {isLoading &&
+          Array.from({ length: 3 }).map((_, index) => (
+            <PolicyLinkSkeleton key={index} />
           ))}
 
         {type === "notice" && !isFetching && <div ref={ref} />}

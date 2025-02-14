@@ -1,4 +1,4 @@
-import PolicyLink from "../components/PolicyLink";
+import PolicyLink from "../components/policy-link/PolicyLink";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import styles from "./NoticeDetail.module.scss";
 
