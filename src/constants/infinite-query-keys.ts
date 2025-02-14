@@ -4,4 +4,8 @@ export const infiniteQueryKeys = {
     "revenue_trainee_all",
     activeDate,
   ],
+  REVENUE_TRAINEE_DETAIL: (activeFilter: string) => [
+    "revenue_trainee_detail",
+    activeFilter,
+  ],
 };

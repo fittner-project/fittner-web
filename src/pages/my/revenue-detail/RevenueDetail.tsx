@@ -30,7 +30,7 @@ export default function RevenueDetail() {
   const center = useUserStore((state) => state.selectedCenter);
 
   const {
-    data: revenueTraineesPage,
+    data: revenueTraineesPages,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
@@ -58,7 +58,7 @@ export default function RevenueDetail() {
     fetchNextPage,
   });
 
-  const revenueTrainees = revenueTraineesPage?.pages.flatMap(
+  const revenueTrainees = revenueTraineesPages?.pages.flatMap(
     (page) => page.result ?? []
   );
 
