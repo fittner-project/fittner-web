@@ -11,7 +11,9 @@ export function useInfiniteScroll({
   isFetchingNextPage,
   fetchNextPage,
 }: UseInfiniteScrollProps) {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({
+    rootMargin: "0px 0px 100px 0px",
+  });
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {

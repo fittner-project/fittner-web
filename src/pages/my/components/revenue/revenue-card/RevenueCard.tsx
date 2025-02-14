@@ -26,7 +26,7 @@ export default function RevenueCard({
 
           {isLoading ? (
             <div className={styles.revenue_item_value}>
-              <Skeleton width={10} height={2.2} borderRadius={0.5} />
+              <Skeleton width={12} height={2.2} borderRadius={0.5} />
             </div>
           ) : (
             <div
@@ -41,7 +41,7 @@ export default function RevenueCard({
           <p className={styles.revenue_item_title}>{rightText}</p>
           {isLoading ? (
             <div className={styles.revenue_item_value}>
-              <Skeleton width={10} height={2.2} borderRadius={0.5} />
+              <Skeleton width={12} height={2.2} borderRadius={0.5} />
             </div>
           ) : (
             <div

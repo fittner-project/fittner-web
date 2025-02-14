@@ -27,9 +27,9 @@
       }
 
       .left_bottom {
+        margin-top: 0.6rem;
         @include flex_row();
         @include flex_row_gap(0.8rem);
-        margin-top: 0.6rem;
 
         p {
           @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);

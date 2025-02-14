@@ -32,7 +32,7 @@
 
       .trainee_right {
         height: 8.4rem;
-        @include flex_col(space-between, center);
+        @include flex_col(space-between, flex-end);
 
         .round {
           @include flex_row(flex-start, center);
