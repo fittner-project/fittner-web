@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 import PATH from "@/router/path";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useGetUserMyPageSales } from "@/api/generated/마이페이지/마이페이지";
+import dayjs from "dayjs";
 
 interface RevenueProps {
   type: "main" | "detail";
   dateArray?: string[];
+  activeDate?: string;
   setActiveDate?: (date: string) => void;
 }
 
@@ -17,8 +20,21 @@ export default function Revenue({
   type,
   dateArray,
   setActiveDate,
+  activeDate,
 }: RevenueProps) {
   const swiperRef = useRef<SwiperRef>(null);
+  const center = useUserStore((state) => state.selectedCenter);
+  const date =
+    type === "main"
+      ? dayjs().format("YYYYMM")
+      : dayjs(activeDate).format("YYYYMM");
+
+  const { data: revenueData, isLoading } = useGetUserMyPageSales({
+    centerId: center.centerId ?? "",
+    reservationStartMonth: date,
+  });
+
+  const revenue = revenueData?.result;
 
   return (
     <div className={styles.container}>
@@ -60,7 +76,9 @@ export default function Revenue({
               >
                 {dateArray.map((date, index) => (
                   <SwiperSlide key={index}>
-                    <span className={styles.active_date}>{date}</span>
+                    <span className={styles.active_date}>
+                      {dayjs(date).format("YYYY년 MM월")}
+                    </span>
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -77,8 +95,9 @@ export default function Revenue({
       )}
 
       <RevenueCard
-        progressCurrent={1720000}
-        progressTotal={3220000}
+        isLoading={isLoading}
+        nowSalesPrice={Number(revenue?.nowSalesPrice) || 0}
+        projectionSalesPrice={Number(revenue?.projectionSalesPrice) || 0}
         leftText="예상 수익금"
         rightText="현재 수익금"
       />

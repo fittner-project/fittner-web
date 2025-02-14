@@ -18,7 +18,10 @@ export default function TermsDetail() {
             src={url}
             frameBorder="0"
             width="100%"
-            style={{ marginBottom: index < urls.length - 1 ? "20px" : "0" }}
+            height="100%"
+            style={{
+              marginBottom: index < urls.length - 1 ? "20px" : "0",
+            }}
           />
         ))}
       </div>

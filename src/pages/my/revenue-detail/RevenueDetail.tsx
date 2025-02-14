@@ -6,12 +6,11 @@ import Image from "@/components/image/Image";
 
 export default function RevenueDetail() {
   const generateDateArray = () => {
-    console.log("함수 호출!");
     const dates = [];
     const currentDate = dayjs();
 
     for (let i = 0; i < 60; i++) {
-      dates.push(currentDate.subtract(i, "month").format("YYYY년 MM월"));
+      dates.push(currentDate.subtract(i, "month").format("YYYYMM"));
     }
 
     return dates.reverse();
@@ -27,6 +26,7 @@ export default function RevenueDetail() {
       <Revenue
         type="detail"
         dateArray={dateArray}
+        activeDate={activeDate}
         setActiveDate={setActiveDate}
       />
 
@@ -35,7 +35,7 @@ export default function RevenueDetail() {
           <div key={index} className={styles.trainee}>
             <div className={styles.trainee_left}>
               <p className={styles.trainee_name}>김영재 회원님</p>
-              <p className={styles.item_type}>프리미엄PT20</p>
+              <p className={styles.product_name}>프리미엄PT20</p>
               <p className={styles.trainee_date}>2024.10.01-2025.01.01</p>
             </div>
             <div className={styles.trainee_right}>
