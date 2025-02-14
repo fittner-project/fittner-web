@@ -1,0 +1,26 @@
+.container {
+  .filter {
+    @include flex_row(space-between, center);
+
+    .title {
+      @include fm-ar(2.2rem, $text_1, 2.2rem, 600);
+    }
+
+    .filter_buttons {
+      @include flex_row();
+      @include flex_row_gap(1rem);
+
+      .filter_button {
+        border-radius: 10rem;
+        border: 1px solid $grey_2;
+        @include fm-ar(1.6rem, $grey_2, 2.2rem, 600);
+        padding: 0.6rem 1.8rem;
+
+        &.active {
+          border: 1px solid $primary_1;
+          color: $text_6;
+        }
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@
           @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
         }
 
-        .product_name {
+        .ticket_name {
           @include fm-ar(1.4rem, $grey_3, 2.2rem, 700);
           background-color: rgba($grey_2, 0.2);
           border-radius: 0.6rem;

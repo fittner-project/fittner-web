@@ -20,6 +20,7 @@ import RegisterTrainee from "@/pages/register-trainee/RegisterTrainee";
 import RevenueDetail from "@/pages/my/revenue-detail/RevenueDetail";
 import NoticeDetail from "@/pages/my/policy/notice-detail/NoticeDetail";
 import TermsDetail from "@/pages/my/policy/terms-detail/TermsDetail";
+import RevenueTraineeDetail from "@/pages/my/revenue-detail/revenue-trainee-detail/RevenueTraineeDetail";
 
 const queryClient = new QueryClient();
 
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: PATH.MY.POLICY.TERMS_DETAIL,
         element: <TermsDetail />,
+      },
+      {
+        path: PATH.MY.REVENUE_TRAINEE_DETAIL,
+        element: <RevenueTraineeDetail />,
       },
     ],
   },

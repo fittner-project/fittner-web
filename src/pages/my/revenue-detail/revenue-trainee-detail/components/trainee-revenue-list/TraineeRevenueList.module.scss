@@ -1,0 +1,44 @@
+.container {
+  margin-top: 3.5rem;
+
+  .date {
+    @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
+    border-bottom: 1px solid $grey_1;
+    padding-bottom: 0.8rem;
+  }
+
+  .trainee_revenue_item {
+    border-bottom: 1px solid $grey_1;
+    padding: 2rem 0;
+    @include flex_row(space-between, center);
+
+    .left {
+      .left_top {
+        @include flex_row(flex-start, center);
+        @include flex_row_gap(0.8rem);
+
+        .trainee_name {
+          @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+        }
+
+        .round {
+          @include fm-ar(1.9rem, $grey_3, 2.2rem, 600);
+        }
+      }
+
+      .left_bottom {
+        @include flex_row();
+        @include flex_row_gap(0.8rem);
+        margin-top: 0.6rem;
+
+        p {
+          @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
+        }
+      }
+    }
+
+    .revenue {
+      @include fm-ar(1.9rem, $primary_1, 2.2rem, 600);
+    }
+  }
+}
