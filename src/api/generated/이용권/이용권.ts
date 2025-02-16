@@ -39,17 +39,133 @@ import type {
   GetUserTicketRefundInfoParams,
   GetUserTicketsParams,
   PlusReqDto,
-  RefundReqDto
+  RefundReqDto,
+  SuspendTicketReqDto
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
 
 
 
 /**
+ * 티켓 일시정지 해제 API 입니다.
+ * @summary 티켓 일시정지 해제 API
+ */
+export const putUserTicketAgainstSuspend = (
+    ticketId: string,
+ ) => {
+      
+      
+      return axiosInstance<ApiResponseMessageObject>(
+      {url: `/api/v1/user/ticket/against/suspend/${ticketId}`, method: 'PUT'
+    },
+      );
+    }
+  
+
+
+export const getPutUserTicketAgainstSuspendMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putUserTicketAgainstSuspend>>, TError,{ticketId: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof putUserTicketAgainstSuspend>>, TError,{ticketId: string}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof putUserTicketAgainstSuspend>>, {ticketId: string}> = (props) => {
+          const {ticketId} = props ?? {};
+
+          return  putUserTicketAgainstSuspend(ticketId,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PutUserTicketAgainstSuspendMutationResult = NonNullable<Awaited<ReturnType<typeof putUserTicketAgainstSuspend>>>
+    
+    export type PutUserTicketAgainstSuspendMutationError = unknown
+
+    /**
+ * @summary 티켓 일시정지 해제 API
+ */
+export const usePutUserTicketAgainstSuspend = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putUserTicketAgainstSuspend>>, TError,{ticketId: string}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof putUserTicketAgainstSuspend>>,
+        TError,
+        {ticketId: string},
+        TContext
+      > => {
+
+      const mutationOptions = getPutUserTicketAgainstSuspendMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * 티켓 일시정지 API 입니다.
+ * @summary 티켓 일시정지 API
+ */
+export const postUserTicketSuspend = (
+    suspendTicketReqDto: SuspendTicketReqDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageObject>(
+      {url: `/api/v1/user/ticket/suspend`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: suspendTicketReqDto, signal
+    },
+      );
+    }
+  
+
+
+export const getPostUserTicketSuspendMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketSuspend>>, TError,{data: SuspendTicketReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketSuspend>>, TError,{data: SuspendTicketReqDto}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketSuspend>>, {data: SuspendTicketReqDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  postUserTicketSuspend(data,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostUserTicketSuspendMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketSuspend>>>
+    export type PostUserTicketSuspendMutationBody = SuspendTicketReqDto
+    export type PostUserTicketSuspendMutationError = unknown
+
+    /**
+ * @summary 티켓 일시정지 API
+ */
+export const usePostUserTicketSuspend = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketSuspend>>, TError,{data: SuspendTicketReqDto}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof postUserTicketSuspend>>,
+        TError,
+        {data: SuspendTicketReqDto},
+        TContext
+      > => {
+
+      const mutationOptions = getPostUserTicketSuspendMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * 이용권 환불 API 입니다.
  * @summary 이용권 환불 API
  */
-export const getUserTicketRefund = (
+export const postUserTicketRefund = (
     refundReqDto: RefundReqDto,
  signal?: AbortSignal
 ) => {
@@ -65,18 +181,18 @@ export const getUserTicketRefund = (
   
 
 
-export const getGetUserTicketRefundMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof getUserTicketRefund>>, TError,{data: RefundReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof getUserTicketRefund>>, TError,{data: RefundReqDto}, TContext> => {
+export const getPostUserTicketRefundMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRefund>>, TError,{data: RefundReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRefund>>, TError,{data: RefundReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof getUserTicketRefund>>, {data: RefundReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketRefund>>, {data: RefundReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  getUserTicketRefund(data,)
+          return  postUserTicketRefund(data,)
         }
 
         
@@ -84,23 +200,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type GetUserTicketRefundMutationResult = NonNullable<Awaited<ReturnType<typeof getUserTicketRefund>>>
-    export type GetUserTicketRefundMutationBody = RefundReqDto
-    export type GetUserTicketRefundMutationError = unknown
+    export type PostUserTicketRefundMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketRefund>>>
+    export type PostUserTicketRefundMutationBody = RefundReqDto
+    export type PostUserTicketRefundMutationError = unknown
 
     /**
  * @summary 이용권 환불 API
  */
-export const useGetUserTicketRefund = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof getUserTicketRefund>>, TError,{data: RefundReqDto}, TContext>, }
+export const usePostUserTicketRefund = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRefund>>, TError,{data: RefundReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof getUserTicketRefund>>,
+        Awaited<ReturnType<typeof postUserTicketRefund>>,
         TError,
         {data: RefundReqDto},
         TContext
       > => {
 
-      const mutationOptions = getGetUserTicketRefundMutationOptions(options);
+      const mutationOptions = getPostUserTicketRefundMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

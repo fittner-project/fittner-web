@@ -5,27 +5,14 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
+import type { SalesInfoDetailDto } from './salesInfoDetailDto';
 
 /**
  * 응답 데이터
  */
 export interface SalesInfoDetailResDto {
-  /** 회원이름 */
-  memberName?: string;
-  /** 예약종료일 */
-  reservationEndDate?: string;
-  /** 예약종료시간 */
-  reservationEndTime?: string;
-  /** 예약시작일 */
-  reservationStartDate?: string;
-  /** 예약시작시간 */
-  reservationStartTime?: string;
-  /** 예약상태 */
-  reservationStatus?: string;
-  /** 수익금 */
-  salesPrice?: string;
-  /** 이용권ID */
-  ticketId?: string;
-  /** 회차 */
-  ticketUseCnt?: string;
+  /** 수업리스트 */
+  reservationListList?: SalesInfoDetailDto[];
+  /** 예약월 */
+  reservationMonth?: string;
 }

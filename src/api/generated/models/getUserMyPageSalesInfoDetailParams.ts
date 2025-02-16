@@ -8,9 +8,9 @@
 
 export type GetUserMyPageSalesInfoDetailParams = {
 /**
- * 예약시작월(202501 or TOTAL)
+ * 예약월(202501 or TOTAL)
  */
-reservationStartMonth: string;
+reservationMonth: string;
 /**
  * 티켓ID
  */

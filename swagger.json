@@ -20,12 +20,68 @@
     { "name": "권한", "description": "권한 처리입니다." }
   ],
   "paths": {
+    "/api/v1/user/ticket/against/suspend/{ticketId}": {
+      "put": {
+        "tags": ["이용권"],
+        "summary": "티켓 일시정지 해제 API",
+        "description": "티켓 일시정지 해제 API 입니다.",
+        "operationId": "putUserTicketAgainstSuspend",
+        "parameters": [
+          {
+            "name": "ticketId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/ticket/suspend": {
+      "post": {
+        "tags": ["이용권"],
+        "summary": "티켓 일시정지 API",
+        "description": "티켓 일시정지 API 입니다.",
+        "operationId": "postUserTicketSuspend",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SuspendTicketReqDto" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/user/ticket/refund": {
       "post": {
         "tags": ["이용권"],
         "summary": "이용권 환불 API",
         "description": "이용권 환불 API 입니다.",
-        "operationId": "getUserTicketRefund",
+        "operationId": "postUserTicketRefund",
         "requestBody": {
           "content": {
             "application/json": {
@@ -706,9 +762,9 @@
             "schema": {
               "type": "string",
               "description": "페이지당 레코드 수",
-              "example": 15
+              "example": 10
             },
-            "example": 15
+            "example": 10
           },
           {
             "name": "currentPageNo",
@@ -760,9 +816,9 @@
             "schema": {
               "type": "string",
               "description": "페이지당 레코드 수",
-              "example": 15
+              "example": 10
             },
-            "example": 15
+            "example": 10
           },
           {
             "name": "currentPageNo",
@@ -862,9 +918,9 @@
             "schema": {
               "type": "string",
               "description": "페이지당 레코드 수",
-              "example": 15
+              "example": 10
             },
-            "example": 15
+            "example": 10
           },
           {
             "name": "currentPageNo",
@@ -1012,9 +1068,9 @@
             "schema": {
               "type": "string",
               "description": "페이지당 레코드 수",
-              "example": 15
+              "example": 10
             },
-            "example": 15
+            "example": 10
           },
           {
             "name": "currentPageNo",
@@ -1051,9 +1107,9 @@
         "operationId": "getUserMyPageSalesInfoDetail",
         "parameters": [
           {
-            "name": "reservationStartMonth",
+            "name": "reservationMonth",
             "in": "query",
-            "description": "예약시작월(202501 or TOTAL)",
+            "description": "예약월(202501 or TOTAL)",
             "required": true,
             "schema": { "type": "string" },
             "example": 202501
@@ -1074,9 +1130,9 @@
             "schema": {
               "type": "string",
               "description": "페이지당 레코드 수",
-              "example": 15
+              "example": 10
             },
-            "example": 15
+            "example": 10
           },
           {
             "name": "currentPageNo",
@@ -1128,9 +1184,9 @@
             "schema": {
               "type": "string",
               "description": "페이지당 레코드 수",
-              "example": 15
+              "example": 10
             },
-            "example": 15
+            "example": 10
           },
           {
             "name": "currentPageNo",
@@ -1284,9 +1340,9 @@
             "schema": {
               "type": "string",
               "description": "페이지당 레코드 수",
-              "example": 15
+              "example": 10
             },
-            "example": 15
+            "example": 10
           },
           {
             "name": "currentPageNo",
@@ -1555,17 +1611,6 @@
   },
   "components": {
     "schemas": {
-      "RefundReqDto": {
-        "required": ["ticketId"],
-        "type": "object",
-        "properties": {
-          "ticketId": {
-            "type": "string",
-            "description": "이용권ID",
-            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
-          }
-        }
-      },
       "ApiResponseMessageObject": {
         "type": "object",
         "properties": {
@@ -1594,6 +1639,24 @@
             "type": "string",
             "writeOnly": true,
             "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "SuspendTicketReqDto": {
+        "type": "object",
+        "properties": {
+          "ticketId": { "type": "string" },
+          "suspendReason": { "type": "string" }
+        }
+      },
+      "RefundReqDto": {
+        "required": ["ticketId"],
+        "type": "object",
+        "properties": {
+          "ticketId": {
+            "type": "string",
+            "description": "이용권ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
           }
         }
       },
@@ -2390,6 +2453,16 @@
           "ticketEndDate": {
             "type": "string",
             "description": "이용권종료일",
+            "example": "20250411"
+          },
+          "ticketSuspendStartDate": {
+            "type": "string",
+            "description": "이용권정지시작일",
+            "example": "20250111"
+          },
+          "ticketSuspendEndDate": {
+            "type": "string",
+            "description": "이용권정지종료일",
             "example": "20250411"
           },
           "ticketUseCnt": {
@@ -3311,7 +3384,7 @@
           }
         }
       },
-      "SalesInfoDetailResDto": {
+      "SalesInfoDetailDto": {
         "type": "object",
         "properties": {
           "ticketId": {
@@ -3323,6 +3396,11 @@
             "type": "string",
             "description": "회원이름",
             "example": "아무개"
+          },
+          "reservationMonth": {
+            "type": "string",
+            "description": "예약월",
+            "example": "202501"
           },
           "reservationStartDate": {
             "type": "string",
@@ -3358,6 +3436,22 @@
             "type": "string",
             "description": "예약상태",
             "example": "NOSHOW | SIGN"
+          }
+        },
+        "description": "수업리스트"
+      },
+      "SalesInfoDetailResDto": {
+        "type": "object",
+        "properties": {
+          "reservationMonth": {
+            "type": "string",
+            "description": "예약월",
+            "example": "202501"
+          },
+          "reservationListList": {
+            "type": "array",
+            "description": "수업리스트",
+            "items": { "$ref": "#/components/schemas/SalesInfoDetailDto" }
           }
         },
         "description": "응답 데이터"

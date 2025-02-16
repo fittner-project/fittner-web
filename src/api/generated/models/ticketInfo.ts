@@ -22,6 +22,10 @@ export interface TicketInfo {
   ticketPrice?: string;
   /** 이용권시작일 */
   ticketStartDate?: string;
+  /** 이용권정지종료일 */
+  ticketSuspendEndDate?: string;
+  /** 이용권정지시작일 */
+  ticketSuspendStartDate?: string;
   /** 이용권전체횟수 */
   ticketTotalCnt?: string;
   /** 이용권이용횟수 */

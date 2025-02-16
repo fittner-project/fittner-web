@@ -5,8 +5,11 @@ import TraineeRevenueList from "./components/trainee-revenue-list/TraineeRevenue
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 import { getUserMyPageSalesInfoDetail } from "@/api/generated/마이페이지/마이페이지";
-import dayjs from "dayjs";
+
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+import { uniqueId } from "lodash";
+import dayjs from "dayjs";
+import TraineeRevenueListSkeleton from "./components/trainee-revenue-list-skeleton/TraineeRevenueListSkeleton";
 
 export default function RevenueTraineeDetail() {
   const filterButtonsArr = ["이번 달", "전체"];
@@ -25,8 +28,8 @@ export default function RevenueTraineeDetail() {
     queryFn: ({ pageParam = 1 }) =>
       getUserMyPageSalesInfoDetail({
         ticketId: ticketId ?? "",
-        reservationStartMonth:
-          activeFilter === "이번 달" ? dayjs().format("YYYYMM") : "TOTAL",
+        reservationMonth:
+          activeFilter === "이번 달" ? dayjs().format("YYYY-MM") : "TOTAL",
         currentPageNo: pageParam.toString(),
         recordsPerPage: "10",
       }),
@@ -41,8 +44,6 @@ export default function RevenueTraineeDetail() {
   const revenueTrainees = revenueTraineesPage?.pages.flatMap(
     (page) => page.result ?? []
   );
-
-  console.log(revenueTrainees);
 
   const { ref } = useInfiniteScroll({
     hasNextPage,
@@ -70,8 +71,14 @@ export default function RevenueTraineeDetail() {
           </div>
         </div>
 
-        <TraineeRevenueList />
-        <TraineeRevenueList />
+        {revenueTrainees?.map((revenueTrainee) => (
+          <TraineeRevenueList
+            key={uniqueId()}
+            revenueTrainee={revenueTrainee}
+          />
+        ))}
+        {isNoticeLoading && <TraineeRevenueListSkeleton />}
+
         {!isFetching && <div ref={ref} />}
       </div>
     </PaddingContainer>
