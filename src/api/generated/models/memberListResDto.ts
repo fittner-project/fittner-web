@@ -5,10 +5,16 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
+import type { MemberListResDtoMemberGender } from './memberListResDtoMemberGender';
 
+/**
+ * 응답 데이터
+ */
 export interface MemberListResDto {
   /** 회원 나이 */
   memberAge?: string;
+  /** 회원 성별 */
+  memberGender?: MemberListResDtoMemberGender;
   /** 회원 ID */
   memberId?: string;
   /** 회원 이름 */

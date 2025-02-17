@@ -30,13 +30,13 @@ import type {
 import type {
   ApiResponseMessageListCenterListResDto,
   ApiResponseMessageListMemberDetailResDto,
+  ApiResponseMessageListMemberListResDto,
   ApiResponseMessageListTermsResDto,
   ApiResponseMessageListUserCenterListResDto,
   ApiResponseMessageObject,
   ApiResponseMessageUserInfoResDto,
   CancelCenterApprovalReqDto,
   CenterRegisterReqDto,
-  GetUserMembers200,
   JoinReqDto,
   MemberRegisterReqDto
 } from '.././models'
@@ -500,7 +500,7 @@ export const getUserMembers = (
 ) => {
       
       
-      return axiosInstance<GetUserMembers200>(
+      return axiosInstance<ApiResponseMessageListMemberListResDto>(
       {url: `/api/v1/user/members`, method: 'GET', signal
     },
       );

@@ -24,8 +24,16 @@
           width: 5.3rem;
           height: 5.3rem;
           border-radius: 50%;
-          background-color: $primary_1;
+
           @include flex_row(center, center);
+
+          &.male {
+            background-color: $primary_1;
+          }
+
+          &.female {
+            background-color: $sub_1;
+          }
         }
 
         .trainee_info {

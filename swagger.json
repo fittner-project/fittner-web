@@ -1244,7 +1244,13 @@
         "responses": {
           "200": {
             "description": "OK",
-            "content": { "*/*": { "schema": { "type": "object" } } }
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageListMemberListResDto"
+                }
+              }
+            }
           }
         }
       }
@@ -3570,6 +3576,79 @@
             "type": "string",
             "description": "트레이너 sns종류",
             "example": "APPLE | GOOGLE | KAKAO"
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageListMemberListResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": { "$ref": "#/components/schemas/MemberListResDto" }
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "MemberListResDto": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "description": "회원 ID",
+            "example": "1"
+          },
+          "memberName": {
+            "type": "string",
+            "description": "회원 이름",
+            "example": "홍길동"
+          },
+          "memberPhone": {
+            "type": "string",
+            "description": "회원 전화번호",
+            "example": "010-1234-5678"
+          },
+          "memberAge": {
+            "type": "string",
+            "description": "회원 나이",
+            "example": "30"
+          },
+          "memberGender": {
+            "type": "string",
+            "description": "회원 성별",
+            "example": "M",
+            "enum": ["M", "F"]
+          },
+          "memberTotalCount": {
+            "type": "integer",
+            "description": "회원 총 수",
+            "format": "int64",
+            "example": 10
           }
         },
         "description": "응답 데이터"
