@@ -4,10 +4,19 @@ import Input from "@/components/input/Input";
 import { useGetUserMembers } from "@/api/generated/유저/유저";
 import Image from "@/components/image/Image";
 import { chevronRightGrey, userProfile } from "@/assets/assets";
+import { useSearch } from "@/hooks/useSearch";
+import { useForm } from "react-hook-form";
 
 export default function Trainee() {
   const { data: traineeData } = useGetUserMembers();
   const trainees = traineeData?.result;
+  const { register, watch } = useForm();
+  const { filteredData } = useSearch({
+    searchValue: watch("searchValue"),
+    data: trainees,
+    searchFields: ["memberName", "memberPhone"],
+  });
+  const searchValue = watch("searchValue");
 
   return (
     <PaddingContainer>
@@ -16,15 +25,16 @@ export default function Trainee() {
           inputType="default-search"
           placeholder="이름 또는 번호를 검색해주세요"
           style={{ height: "4.8rem" }}
+          {...register("searchValue")}
         />
 
         <div className={styles.trainee_count}>
-          <p>전체</p>
-          <p>{trainees?.length}명</p>
+          {!searchValue && <p>전체</p>}
+          <p>{filteredData?.length}명</p>
         </div>
 
         <div className={styles.scroll_container}>
-          {trainees?.map((trainee) => (
+          {filteredData?.map((trainee) => (
             <div key={trainee.memberId} className={styles.trainee_item}>
               <section className={styles.left_section}>
                 <div className={styles.trainee_profile}>
