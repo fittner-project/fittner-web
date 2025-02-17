@@ -4,23 +4,63 @@ import { RegisterTraineeForm } from "../../RegisterTrainee";
 import Input from "@/components/input/Input";
 import Button from "@/components/button/Button";
 import Picker from "react-mobile-picker";
+import { useState, useMemo, useEffect } from "react";
+import dayjs from "dayjs";
+import classNames from "classnames";
 
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
 }
 
-const selections = {
-  title: ["Mr.", "Mrs.", "Ms.", "Dr."],
-  firstName: ["John", "Micheal", "Elizabeth"],
-  lastName: ["Lennon", "Jackson", "Jordan", "Legend", "Taylor"],
+const createDateOptions = () => {
+  const currentYear = dayjs().year();
+  const years = Array.from(
+    { length: currentYear - 2020 + 10 },
+    (_, i) => `${2020 + i}`
+  );
+  const months = Array.from(
+    { length: 12 },
+    (_, i) => `${(i + 1).toString().padStart(2, "0")}`
+  );
+  const days = Array.from(
+    { length: 31 },
+    (_, i) => `${(i + 1).toString().padStart(2, "0")}`
+  );
+
+  return { years, months, days };
 };
 
 export default function ProductFormView({ form }: IProductFormViewProps) {
-  const [pickerValue, setPickerValue] = useState({
-    title: "Mr.",
-    firstName: "Micheal",
-    lastName: "Jordan",
+  const dateOptions = useMemo(() => createDateOptions(), []);
+
+  const today = dayjs();
+  const [startPickerValue, setStartPickerValue] = useState({
+    year: today.format("YYYY"),
+    month: today.format("MM"),
+    day: today.format("DD"),
   });
+
+  const [endPickerValue, setEndPickerValue] = useState({
+    year: today.format("YYYY"),
+    month: today.format("MM"),
+    day: today.format("DD"),
+  });
+
+  const [showStartPicker, setShowStartPicker] = useState(false);
+  const [showEndPicker, setShowEndPicker] = useState(false);
+
+  const updateFormDates = () => {
+    const startDate = `${startPickerValue.year}-${startPickerValue.month}-${startPickerValue.day}`;
+    const endDate = `${endPickerValue.year}-${endPickerValue.month}-${endPickerValue.day}`;
+
+    form.setValue("productStartDate", startDate);
+    form.setValue("productEndDate", endDate);
+  };
+
+  useEffect(() => {
+    updateFormDates();
+  }, [startPickerValue, endPickerValue]);
+
   return (
     <div className={styles.container}>
       <div className={styles.field}>
@@ -38,18 +78,163 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
 
       <div className={styles.field}>
         <p className={styles.title}>기간</p>
-        <div className={styles.period}>ㅁㄴㅇㅁㄴㅇㅁㄴ</div>
-        <Picker value={pickerValue} onChange={setPickerValue}>
-          {Object.keys(selections).map((name) => (
-            <Picker.Column key={name} name={name}>
-              {selections[name as keyof typeof selections].map((option) => (
-                <Picker.Item key={option} value={option}>
-                  {option}
-                </Picker.Item>
-              ))}
-            </Picker.Column>
-          ))}
-        </Picker>
+        <div className={styles.period}>
+          <div
+            className={classNames(styles.date_selector, {
+              [styles.active]: showStartPicker,
+            })}
+            onClick={() => {
+              setShowStartPicker(true);
+              setShowEndPicker(false);
+            }}
+          >
+            {`${startPickerValue.year}.${startPickerValue.month}.${startPickerValue.day}`}
+          </div>
+          <div className={styles.date_separator}>-</div>
+          <div
+            className={classNames(styles.date_selector, {
+              [styles.active]: showEndPicker,
+            })}
+            onClick={() => {
+              setShowStartPicker(false);
+              setShowEndPicker(true);
+            }}
+          >
+            {`${endPickerValue.year}.${endPickerValue.month}.${endPickerValue.day}`}
+          </div>
+        </div>
+
+        {showStartPicker && (
+          <div className={styles.picker_container}>
+            <Picker
+              value={startPickerValue}
+              onChange={setStartPickerValue}
+              height={120}
+              itemHeight={40}
+              className={styles.picker}
+            >
+              <Picker.Column name="year" className={styles.picker_column}>
+                {dateOptions.years.map((year) => (
+                  <Picker.Item
+                    key={year}
+                    value={year}
+                    className={styles.picker_item}
+                  >
+                    {({ selected }) => (
+                      <div
+                        className={classNames(styles.year, {
+                          [styles.selected]: selected,
+                        })}
+                      >
+                        {year}년
+                      </div>
+                    )}
+                  </Picker.Item>
+                ))}
+              </Picker.Column>
+              <Picker.Column name="month" className={styles.picker_column}>
+                {dateOptions.months.map((month) => (
+                  <Picker.Item
+                    key={month}
+                    value={month}
+                    className={styles.picker_item}
+                  >
+                    {({ selected }) => (
+                      <div className={selected ? styles.selected : ""}>
+                        {month}월
+                      </div>
+                    )}
+                  </Picker.Item>
+                ))}
+              </Picker.Column>
+              <Picker.Column name="day" className={styles.picker_column}>
+                {dateOptions.days.map((day) => (
+                  <Picker.Item
+                    key={day}
+                    value={day}
+                    className={styles.picker_item}
+                  >
+                    {({ selected }) => (
+                      <div
+                        className={classNames(styles.day, {
+                          [styles.selected]: selected,
+                        })}
+                      >
+                        {day}일
+                      </div>
+                    )}
+                  </Picker.Item>
+                ))}
+              </Picker.Column>
+            </Picker>
+          </div>
+        )}
+
+        {showEndPicker && (
+          <div className={styles.picker_container}>
+            <Picker
+              value={endPickerValue}
+              onChange={setEndPickerValue}
+              height={120}
+              itemHeight={40}
+              className={styles.picker}
+            >
+              <Picker.Column name="year" className={styles.picker_column}>
+                {dateOptions.years.map((year) => (
+                  <Picker.Item
+                    key={year}
+                    value={year}
+                    className={styles.picker_item}
+                  >
+                    {({ selected }) => (
+                      <div
+                        className={classNames(styles.year, {
+                          [styles.selected]: selected,
+                        })}
+                      >
+                        {year}년
+                      </div>
+                    )}
+                  </Picker.Item>
+                ))}
+              </Picker.Column>
+              <Picker.Column name="month" className={styles.picker_column}>
+                {dateOptions.months.map((month) => (
+                  <Picker.Item
+                    key={month}
+                    value={month}
+                    className={styles.picker_item}
+                  >
+                    {({ selected }) => (
+                      <div className={selected ? styles.selected : ""}>
+                        {month}월
+                      </div>
+                    )}
+                  </Picker.Item>
+                ))}
+              </Picker.Column>
+              <Picker.Column name="day" className={styles.picker_column}>
+                {dateOptions.days.map((day) => (
+                  <Picker.Item
+                    key={day}
+                    value={day}
+                    className={styles.picker_item}
+                  >
+                    {({ selected }) => (
+                      <div
+                        className={classNames(styles.day, {
+                          [styles.selected]: selected,
+                        })}
+                      >
+                        {day}일
+                      </div>
+                    )}
+                  </Picker.Item>
+                ))}
+              </Picker.Column>
+            </Picker>
+          </div>
+        )}
       </div>
 
       <div className={styles.field}>
