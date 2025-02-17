@@ -21,6 +21,7 @@ import RevenueDetail from "@/pages/my/revenue-detail/RevenueDetail";
 import NoticeDetail from "@/pages/my/policy/notice-detail/NoticeDetail";
 import TermsDetail from "@/pages/my/policy/terms-detail/TermsDetail";
 import RevenueTraineeDetail from "@/pages/my/revenue-detail/revenue-trainee-detail/RevenueTraineeDetail";
+import Trainee from "@/pages/my/trainee/Trainee";
 
 const queryClient = new QueryClient();
 
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
       {
         path: PATH.MY.REVENUE_TRAINEE_DETAIL,
         element: <RevenueTraineeDetail />,
+      },
+      {
+        path: PATH.MY.TRAINEE,
+        element: <Trainee />,
       },
     ],
   },

@@ -19,6 +19,7 @@ const PATH = {
       NOTICE_DETAIL: "/my/notice/:title",
       TERMS_DETAIL: "/my/terms/:title",
     },
+    TRAINEE: "/my/trainee",
     NOTIFICATION_SETTING: "/my/notification-setting",
     REVENUE_DETAIL: "/my/revenue-detail",
     REVENUE_TRAINEE_DETAIL: "/my/revenue-detail/:ticketId",

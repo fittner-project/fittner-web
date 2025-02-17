@@ -28,7 +28,7 @@ export type SubHeaderRightSection = {
   src?: string;
   imageWidth?: number;
   imageHeight?: number;
-  actionType?: "add-center" | "none";
+  actionType?: "add-center" | "my-trainee" | "none";
 };
 
 type RouteKeys =
@@ -50,7 +50,8 @@ type RouteKeys =
   | "register-trainee"
   | "my-notice-detail"
   | "my-terms-detail"
-  | "my-revenue-trainee-detail";
+  | "my-revenue-trainee-detail"
+  | "my-trainee";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -228,5 +229,22 @@ export const Routes: Routes = {
     fallback: "none",
     headerType: "sub",
     navType: "none",
+  },
+
+  "my-trainee": {
+    name: "my-trainee",
+    path: PATH.MY.TRAINEE,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+    subHeaderConfig: {
+      rightSection: {
+        type: "image",
+        src: registration,
+        imageWidth: 2.4,
+        imageHeight: 2.4,
+        actionType: "my-trainee",
+      },
+    },
   },
 };

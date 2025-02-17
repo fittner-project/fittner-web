@@ -34,6 +34,9 @@ export const SubHeader = ({ fallback }: SubHeaderProps) => {
             component: ApprovalNoticeBottomSheet,
           });
         }
+
+      case "my-trainee":
+        navigate(PATH.REGISTER_TRAINEE);
         break;
 
       default:
