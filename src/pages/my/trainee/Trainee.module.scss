@@ -9,7 +9,10 @@
 
   .scroll_container {
     max-height: calc(100dvh - $sub_header_height - 9.6rem - 0.9rem);
-    overflow-y: auto;
+
+    &.loading_finish {
+      overflow-y: auto;
+    }
 
     .trainee_item {
       padding: 2rem 0;
