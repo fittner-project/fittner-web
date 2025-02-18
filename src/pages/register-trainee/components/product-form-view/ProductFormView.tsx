@@ -94,6 +94,17 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
     registerTrainee({ data: formattedData });
   });
 
+  const { watch } = form;
+
+  const values = watch();
+
+  const isFormComplete =
+    values.productName?.trim() &&
+    values.productStartDate?.trim() &&
+    values.productEndDate?.trim() &&
+    values.productCount &&
+    values.productPrice;
+
   return (
     <div className={styles.container}>
       <div className={styles.field}>
@@ -351,7 +362,7 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           backgroundColor="primary_1"
           fullWidth
           className={styles.next_button}
-          disabled={false}
+          disabled={!isFormComplete}
           onClick={handleSubmit}
         >
           등록
