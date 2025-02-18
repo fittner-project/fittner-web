@@ -64,6 +64,10 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
     updateFormDates();
   }, [startPickerValue, endPickerValue]);
 
+  const handleRegistrationPathSelect = (path: string) => {
+    form.setValue("memberJoinPath", path);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.field}>
@@ -286,6 +290,9 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
         onClick={() => {
           openBottomSheet({
             component: RegistrationPathBottomSheet,
+            props: {
+              onSelect: handleRegistrationPathSelect,
+            },
           });
         }}
       >
