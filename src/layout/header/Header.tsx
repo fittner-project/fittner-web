@@ -36,16 +36,16 @@ export default function Header({
     });
   }, []);
 
+  console.log(selectedCenter);
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>
         {/* Todo:회원가입 시 선택한 디폴트 센터로 초기값, 전역 관리 + 선택한 센터 바꿀때마다 해당 센터로 변경, 전역 관리 */}
         <p>
           {type === "center"
-            ? (selectedCenter.centerName ??
-              userInfo.centerInfo?.[0]?.centerName ??
-              "센터 정보 없음")
-            : (userInfo?.defaultInfo?.trainerName ?? "트레이너 정보 없음")}
+            ? (selectedCenter.centerName ?? "센터 정보 없음")
+            : (userInfo?.trainerName ?? "트레이너 정보 없음")}
         </p>
 
         <Image src={chevron_down} width={2.7} height={2.7} />
