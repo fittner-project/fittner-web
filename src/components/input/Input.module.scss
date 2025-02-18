@@ -65,7 +65,15 @@
   }
 
   &_input_container {
+    position: relative;
     width: 100%;
+
+    .end_adornment {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
   &_search_input {

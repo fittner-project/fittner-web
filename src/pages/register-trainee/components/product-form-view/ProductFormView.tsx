@@ -7,7 +7,8 @@ import Picker from "react-mobile-picker";
 import { useState, useMemo, useEffect } from "react";
 import dayjs from "dayjs";
 import classNames from "classnames";
-
+import { chevron_down, chevronDownGrey } from "@/assets/assets";
+import Image from "@/components/image/Image";
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
 }
@@ -246,7 +247,7 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           {...form.register("productCount", {
             required: true,
           })}
-          placeholder="수업횟수를 입력해주세요"
+          placeholder="수업횟수를 입력해주세요 (회)"
           type="number"
         />
       </div>
@@ -260,7 +261,7 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           {...form.register("productPrice", {
             required: true,
           })}
-          placeholder="금액을 입력해주세요"
+          placeholder="금액을 입력해주세요 (원)"
           type="number"
         />
       </div>
@@ -288,8 +289,18 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
             required: true,
           })}
           placeholder="가입 경로를 선택해주세요"
+          endAdornment={
+            <div>
+              <Image
+                src={chevronDownGrey}
+                alt="arrow"
+                width={2.8}
+                height={2.8}
+                className={styles.arrow}
+              />
+            </div>
+          }
         />
-        {/* Input에 endAdorment 추가 */}
       </div>
 
       <div className={styles.button_container}>

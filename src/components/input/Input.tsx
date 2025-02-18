@@ -8,10 +8,17 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   inputType?: "line" | "default" | "line-search" | "default-search";
   maxLength?: number;
+  endAdornment?: React.ReactNode;
 }
 
 function Input(
-  { className, inputType = "default", maxLength, ...props }: InputProps,
+  {
+    className,
+    inputType = "default",
+    maxLength,
+    endAdornment,
+    ...props
+  }: InputProps,
   ref: React.ForwardedRef<HTMLInputElement>
 ) {
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -30,14 +37,18 @@ function Input(
 
   return {
     default: (
-      <input
-        {...inputProps}
-        className={`${styles.default_input} ${className}`}
-      />
+      <div className={styles.input_container}>
+        <input
+          {...inputProps}
+          className={`${styles.default_input} ${className}`}
+        />
+        {endAdornment}
+      </div>
     ),
     line: (
       <div className={`${styles.line_input_container} ${className}`}>
         <input {...inputProps} className={styles.line_input} />
+        <div className={styles.end_adornment}>{endAdornment}</div>
       </div>
     ),
     "line-search": (
