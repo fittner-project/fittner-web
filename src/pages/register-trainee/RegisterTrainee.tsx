@@ -27,7 +27,6 @@ export default function RegisterTrainee() {
     mode: "onChange",
   });
 
-  const onSubmit = () => {};
   return (
     <PaddingContainer>
       <div className={styles.container}>
@@ -38,6 +37,7 @@ export default function RegisterTrainee() {
           <Row gap="0.8rem">
             <div
               className={classNames(styles.step, step === 1 && styles.active)}
+              onClick={() => setStep(1)}
             >
               1
             </div>
@@ -53,10 +53,7 @@ export default function RegisterTrainee() {
             </div>
           </Row>
         </Row>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className={styles.container}
-        >
+        <form className={styles.container}>
           {step === 1 ? (
             <TraineeFormView form={form} setStep={setStep} />
           ) : (

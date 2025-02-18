@@ -11,6 +11,11 @@ import { chevronDownGrey } from "@/assets/assets";
 import Image from "@/components/image/Image";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import RegistrationPathBottomSheet from "../registration-path-bottom-sheet/RegistrationPathBottomSheet";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import PATH from "@/router/path";
+import { usePostUserRegister } from "@/api/generated/유저/유저";
+
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
 }
@@ -35,6 +40,7 @@ const createDateOptions = () => {
 
 export default function ProductFormView({ form }: IProductFormViewProps) {
   const dateOptions = useMemo(() => createDateOptions(), []);
+  const navigate = useNavigate();
 
   const today = dayjs();
   const [startPickerValue, setStartPickerValue] = useState({
@@ -64,9 +70,29 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
     updateFormDates();
   }, [startPickerValue, endPickerValue]);
 
+  const { mutate: registerTrainee } = usePostUserRegister({
+    mutation: {
+      onSuccess: (data) => {
+        console.log(data);
+        // navigate(PATH.TRAINEE.LIST);
+      },
+      onError: () => {},
+    },
+  });
+
   const handleRegistrationPathSelect = (path: string) => {
     form.setValue("memberJoinPath", path);
   };
+
+  const handleSubmit = form.handleSubmit((data) => {
+    const formattedData = {
+      ...data,
+      productCount: Number(data.productCount),
+      productPrice: Number(data.productPrice),
+    };
+
+    registerTrainee({ data: formattedData });
+  });
 
   return (
     <div className={styles.container}>
@@ -321,11 +347,12 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
 
       <div className={styles.button_container}>
         <Button
-          type="submit"
+          type="button"
           backgroundColor="primary_1"
           fullWidth
           className={styles.next_button}
           disabled={false}
+          onClick={handleSubmit}
         >
           등록
         </Button>
