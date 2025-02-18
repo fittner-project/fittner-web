@@ -22,6 +22,7 @@ import NoticeDetail from "@/pages/my/policy/notice-detail/NoticeDetail";
 import TermsDetail from "@/pages/my/policy/terms-detail/TermsDetail";
 import RevenueTraineeDetail from "@/pages/my/revenue-detail/revenue-trainee-detail/RevenueTraineeDetail";
 import Trainee from "@/pages/my/trainee/Trainee";
+import Ticket from "@/pages/my/ticket/Ticket";
 
 const queryClient = new QueryClient();
 
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
       {
         path: PATH.MY.TRAINEE,
         element: <Trainee />,
+      },
+      {
+        path: PATH.MY.TICKET,
+        element: <Ticket />,
       },
     ],
   },

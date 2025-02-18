@@ -1,0 +1,15 @@
+.container {
+  .ticket_count {
+    @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
+    @include flex_row(flex-start, center);
+    @include flex_row_gap(1.4rem);
+    padding-bottom: 0.9rem;
+  }
+  .scroll_container {
+    max-height: calc(100dvh - 19.1rem);
+
+    &.loading_finished {
+      overflow-y: auto;
+    }
+  }
+}

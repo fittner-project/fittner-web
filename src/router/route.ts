@@ -51,7 +51,8 @@ type RouteKeys =
   | "my-notice-detail"
   | "my-terms-detail"
   | "my-revenue-trainee-detail"
-  | "my-trainee";
+  | "my-trainee"
+  | "my-ticket";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -246,5 +247,13 @@ export const Routes: Routes = {
         actionType: "my-trainee",
       },
     },
+  },
+
+  "my-ticket": {
+    name: "my-ticket",
+    path: PATH.MY.TICKET,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
   },
 };
