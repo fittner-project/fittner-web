@@ -15,6 +15,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import PATH from "@/router/path";
 import { usePostUserRegister } from "@/api/generated/유저/유저";
+import TraineeConfirmBottomSheet from "../trainee-confirm-bottom-sheet/TraineeConfirmBottomSheet";
+import ProductConfirmBottomSheet from "../product-confirm-bottom-sheet/ProductConfirmBottomSheet";
 
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
@@ -74,7 +76,6 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
     mutation: {
       onSuccess: (data) => {
         console.log(data);
-        // navigate(PATH.TRAINEE.LIST);
       },
       onError: () => {},
     },
@@ -104,6 +105,20 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
     values.productEndDate?.trim() &&
     values.productCount &&
     values.productPrice;
+
+  const handleProductConfirm = () => {
+    openBottomSheet({
+      component: TraineeConfirmBottomSheet,
+      props: {
+        form,
+        onClickBtnTwo: () =>
+          openBottomSheet({
+            component: ProductConfirmBottomSheet,
+            props: { form, handleSubmit },
+          }),
+      },
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -363,7 +378,7 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           fullWidth
           className={styles.next_button}
           disabled={!isFormComplete}
-          onClick={handleSubmit}
+          onClick={handleProductConfirm}
         >
           등록
         </Button>
