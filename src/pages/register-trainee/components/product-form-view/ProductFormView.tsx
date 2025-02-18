@@ -7,8 +7,10 @@ import Picker from "react-mobile-picker";
 import { useState, useMemo, useEffect } from "react";
 import dayjs from "dayjs";
 import classNames from "classnames";
-import { chevron_down, chevronDownGrey } from "@/assets/assets";
+import { chevronDownGrey } from "@/assets/assets";
 import Image from "@/components/image/Image";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import RegistrationPathBottomSheet from "../registration-path-bottom-sheet/RegistrationPathBottomSheet";
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
 }
@@ -279,7 +281,14 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
         />
       </div>
 
-      <div className={styles.field}>
+      <div
+        className={styles.field}
+        onClick={() => {
+          openBottomSheet({
+            component: RegistrationPathBottomSheet,
+          });
+        }}
+      >
         <p className={styles.title}>가입 경로</p>
         <Input
           inputType="line"
