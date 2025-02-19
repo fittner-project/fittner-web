@@ -24,6 +24,8 @@ import RevenueTraineeDetail from "@/pages/my/revenue-detail/revenue-trainee-deta
 import Trainee from "@/pages/my/trainee/Trainee";
 import Ticket from "@/pages/my/ticket/Ticket";
 import TicketDetail from "@/pages/my/ticket/ticket-detail/TicketDetail";
+import SignatureList from "@/pages/signature/signature-list/SignatureList";
+import SignatureDetail from "@/pages/signature/signature-detail/SignatureDetail";
 
 const queryClient = new QueryClient();
 
@@ -119,6 +121,14 @@ const router = createBrowserRouter([
       {
         path: PATH.MY.TICKET.DETAIL,
         element: <TicketDetail />,
+      },
+      {
+        path: PATH.SIGNATURE.LIST,
+        element: <SignatureList />,
+      },
+      {
+        path: PATH.SIGNATURE.DETAIL,
+        element: <SignatureDetail />,
       },
     ],
   },

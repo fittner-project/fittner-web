@@ -102,7 +102,10 @@ function Home() {
                 </div>
               </div>
 
-              <div className={styles.sign}>
+              <div
+                onClick={() => navigate(PATH.SIGNATURE.LIST)}
+                className={styles.sign}
+              >
                 <Image src={main_sign} width={4} height={4} />
                 <div className={styles.menu_title}>
                   서명 요청
@@ -117,6 +120,7 @@ function Home() {
             transition={{ duration: 0.4, delay: 0.6 }}
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
+            onClick={() => navigate(PATH.MY.TRAINEE)}
           >
             <Image src={main_search} width={4.3} height={4.3} />
             <div className={styles.search_content}>

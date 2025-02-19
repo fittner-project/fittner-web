@@ -1,0 +1,11 @@
+.container {
+  .date {
+    @include fm-ar(1.6rem, $grey_2, 2.2rem, 500);
+    text-align: center;
+    text-wrap: nowrap;
+
+    &.active {
+      @include fm-ar(2.2rem, $text_1, 2.2rem, 700);
+    }
+  }
+}

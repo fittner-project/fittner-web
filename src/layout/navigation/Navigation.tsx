@@ -58,7 +58,7 @@ const navigationItems: NavigationItem[] = [
     name: "서명요청",
     icon: nav_sign,
     selectedIcon: nav_sign_selected,
-    path: "",
+    path: PATH.SIGNATURE.LIST,
   },
   {
     id: 5,
