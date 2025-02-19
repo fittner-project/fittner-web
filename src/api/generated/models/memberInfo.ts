@@ -19,9 +19,9 @@ export interface MemberInfo {
   /** 회원가입경로 */
   memberJoinPath?: string;
   /** 회원메모 */
-  memberMomo?: string;
+  memberMemo?: string;
+  /** 회원이름 */
+  memberName?: string;
   /** 회원핸드폰 */
   memberPhone?: string;
-  /** 회원이름 */
-  memeberName?: string;
 }

@@ -36,7 +36,7 @@ export default function Ticket() {
   const searchValue = watch("searchValue");
   const { filteredData } = useSearch({
     data: ticketsData?.result,
-    searchFields: ["memeberName", "ticketId"],
+    searchFields: ["memberName", "ticketId"],
     searchValue,
   });
 

@@ -1,0 +1,8 @@
+.container {
+  width: 100%;
+  .content {
+    margin-top: 2.4rem;
+    @include flex_col(flex-start, flex-start);
+    @include flex_col_gap(1rem);
+  }
+}

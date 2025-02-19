@@ -1,0 +1,6 @@
+.container {
+  width: 100%;
+  padding-bottom: 4.5rem;
+  @include flex_col(flex-start, flex-start);
+  @include flex_col_gap(4.6rem);
+}

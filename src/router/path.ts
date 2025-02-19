@@ -23,7 +23,10 @@ const PATH = {
     NOTIFICATION_SETTING: "/my/notification-setting",
     REVENUE_DETAIL: "/my/revenue-detail",
     REVENUE_TRAINEE_DETAIL: "/my/revenue-detail/:ticketId",
-    TICKET: "/my/ticket",
+    TICKET: {
+      DEFAULT: "/my/ticket",
+      DETAIL: "/my/ticket/:ticketId",
+    },
   },
   REGISTER_TRAINEE: "/register-trainee",
 };

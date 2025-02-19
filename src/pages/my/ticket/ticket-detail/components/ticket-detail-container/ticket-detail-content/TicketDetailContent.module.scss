@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  @include flex_row(flex-start, flex-start);
+  @include flex_row_gap(2rem);
+
+  .title {
+    flex-shrink: 0;
+    width: 5.6rem;
+    @include fm-ar(1.6rem, $text_4, 2.2rem, 400);
+  }
+
+  .content {
+    min-width: 0;
+    @include fm-ar(1.6rem, $text_1, 2.2rem, 600);
+    white-space: pre-wrap;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+}

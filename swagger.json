@@ -2266,7 +2266,7 @@
             "description": "이용권코드",
             "example": "ING | STOP | ASSIGN_TO | ASSIGN_FROM | REFUND | AFTER"
           },
-          "memeberName": {
+          "memberName": {
             "type": "string",
             "description": "회원이름",
             "example": "아무기"
@@ -2286,7 +2286,7 @@
             "description": "이용권종료일",
             "example": "20250401"
           },
-          "memberPohoneEnd": {
+          "memberPhoneEnd": {
             "type": "string",
             "description": "회원 휴대폰뒤 4자리",
             "example": "1422"
@@ -2364,7 +2364,7 @@
       "MemberInfo": {
         "type": "object",
         "properties": {
-          "memeberName": {
+          "memberName": {
             "type": "string",
             "description": "회원이름",
             "example": "아무기"
@@ -2389,7 +2389,7 @@
             "description": "회원주소",
             "example": "서울시 관악구 아무동 22-1"
           },
-          "memberMomo": {
+          "memberMemo": {
             "type": "string",
             "description": "회원메모",
             "example": "25년 8월 바디프로필 희망"

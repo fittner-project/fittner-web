@@ -12,41 +12,6 @@
         .trainee_name {
           @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
         }
-
-        .ticket_status {
-          padding: 0 0.8rem;
-          border-radius: 0.6rem;
-
-          &.stop {
-            @include fm-ar(1.4rem, $grey_3, 2.2rem, 700);
-            background-color: rgba($grey_2, 0.2);
-          }
-
-          &.ing {
-            @include fm-ar(1.4rem, white, 2.2rem, 700);
-            background-color: $primary_1;
-          }
-
-          &.refund {
-            @include fm-ar(1.4rem, white, 2.2rem, 700);
-            background-color: $sub_1;
-          }
-
-          &.assign_to {
-            @include fm-ar(1.4rem, white, 2.2rem, 700);
-            background-color: $grey_3;
-          }
-
-          &.assign_from {
-            @include fm-ar(1.4rem, white, 2.2rem, 700);
-            background-color: $primary_1;
-          }
-
-          &.after {
-            @include fm-ar(1.4rem, white, 2.2rem, 700);
-            background-color: $grey_4;
-          }
-        }
       }
 
       .ticket_name {

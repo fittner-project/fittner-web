@@ -5,6 +5,7 @@ import { TicketListResDto } from "@/api/generated/models";
 import dayjs from "dayjs";
 import classNames from "classnames";
 import Skeleton from "@/components/skeleton/Skeleton";
+import TicketStatus from "../ticket-status/TicketStatus";
 
 interface TicketListProps {
   tickets: TicketListResDto[] | undefined;
@@ -12,20 +13,6 @@ interface TicketListProps {
 }
 
 export default function TicketList({ tickets, isLoading }: TicketListProps) {
-  const getTicketStatus = (ticketCode: string | undefined) => {
-    const codeToFilterMap: { [key: string]: string } = {
-      TOTAL: "전체",
-      STOP: "이용전",
-      ING: "이용중",
-      REFUND: "환불",
-      ASSIGN_TO: "양도하기",
-      ASSIGN_FROM: "양도받기",
-      AFTER: "기간만료",
-    };
-
-    return codeToFilterMap[ticketCode ?? ""];
-  };
-
   return (
     <div className={styles.container}>
       {isLoading
@@ -71,25 +58,18 @@ export default function TicketList({ tickets, isLoading }: TicketListProps) {
             </Skeleton>
           ))
         : tickets?.map((ticket) => (
-            <div key={ticket.ticketId} className={styles.ticket_item}>
+            <Link
+              to={ticket.ticketId ?? ""}
+              key={ticket.ticketId}
+              className={styles.ticket_item}
+            >
               <section className={styles.left_section}>
                 <div className={styles.trainee_info}>
                   <p className={styles.trainee_name}>
-                    {ticket.memeberName}{" "}
+                    {ticket.memberName}{" "}
                     {`${ticket.ticketTotalCnt !== null ? `(${ticket.ticketTotalCnt})` : ""}`}
                   </p>
-                  <div
-                    className={classNames(styles.ticket_status, {
-                      [styles.stop]: ticket.ticketCode === "STOP",
-                      [styles.ing]: ticket.ticketCode === "ING",
-                      [styles.refund]: ticket.ticketCode === "REFUND",
-                      [styles.assign_to]: ticket.ticketCode === "ASSIGN_TO",
-                      [styles.assign_from]: ticket.ticketCode === "ASSIGN_FROM",
-                      [styles.after]: ticket.ticketCode === "AFTER",
-                    })}
-                  >
-                    {getTicketStatus(ticket.ticketCode)}
-                  </div>
+                  <TicketStatus ticketCode={ticket.ticketCode} />
                 </div>
                 <p className={styles.ticket_name}>{ticket.ticketName}</p>
                 <p className={styles.ticket_period}>
@@ -103,7 +83,7 @@ export default function TicketList({ tickets, isLoading }: TicketListProps) {
                 width={2.8}
                 height={2.8}
               />
-            </div>
+            </Link>
           ))}
     </div>
   );

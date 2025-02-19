@@ -10,10 +10,10 @@
  * 응답 데이터
  */
 export interface TicketListResDto {
-  /** 회원 휴대폰뒤 4자리 */
-  memberPohoneEnd?: string;
   /** 회원이름 */
-  memeberName?: string;
+  memberName?: string;
+  /** 회원 휴대폰뒤 4자리 */
+  memberPhoneEnd?: string;
   /** 이용권코드 */
   ticketCode?: string;
   /** 이용권종료일 */

@@ -1,0 +1,6 @@
+.container {
+  @include fm-ar(2rem, $text_1, 2.2rem, 700);
+  padding-bottom: 1.4rem;
+  border-bottom: 0.2rem solid $grey_1;
+  width: 100%;
+}
