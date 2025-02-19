@@ -7,7 +7,9 @@ type TicketDetailContainerTitleType =
   | "trainee-info"
   | "ticket-info"
   | "refund-info"
-  | "assignment-info";
+  | "assignment-to"
+  | "assignment-from"
+  | string;
 
 interface TicketDetailContainerProps {
   type: TicketDetailContainerTitleType;
@@ -27,8 +29,10 @@ export default function TicketDetailContainer({
         return "이용권 정보";
       case "refund-info":
         return "환불 내역";
-      case "assignment-info":
-        return "양도 내역";
+      case "assignment-to":
+        return "양도한 내역";
+      case "assignment-from":
+        return "양도받은 내역";
     }
   };
 

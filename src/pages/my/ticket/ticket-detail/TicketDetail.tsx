@@ -28,6 +28,7 @@ export default function TicketDetail() {
         <TicketDetailInfo ticketInfo={ticketInfo} isLoading={isLoading} />
         <RefundDetailInfo refundInfo={refundInfo} isLoading={isLoading} />
         <AssignmentDetailInfo
+          ticketCode={ticketInfo?.ticketCode}
           assignmentInfo={assignmentInfo}
           isLoading={isLoading}
         />

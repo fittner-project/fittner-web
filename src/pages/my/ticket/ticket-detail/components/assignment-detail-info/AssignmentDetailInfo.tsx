@@ -5,19 +5,35 @@ import { AssignInfo } from "@/api/generated/models";
 import dayjs from "dayjs";
 
 interface AssignmentDetailInfoProps {
+  ticketCode: string | undefined;
   assignmentInfo: AssignInfo | undefined;
   isLoading: boolean;
 }
 
 export default function AssignmentDetailInfo({
+  ticketCode,
   assignmentInfo,
   isLoading,
 }: AssignmentDetailInfoProps) {
   if (assignmentInfo === null) return;
 
+  const getAssignmentType = () => {
+    if (ticketCode === "ASSIGN_TO") {
+      return "assignment-to";
+    }
+
+    if (ticketCode === "ASSIGN_FROM") {
+      return "assignment-from";
+    }
+
+    return "";
+  };
+
+  const assignmentType = getAssignmentType();
+
   return (
     <div className={styles.container}>
-      <TicketDetailContainer isLoading={isLoading} type="assignment-info">
+      <TicketDetailContainer isLoading={isLoading} type={assignmentType}>
         <TicketDetailContent
           title="센터명"
           contentType="text"
