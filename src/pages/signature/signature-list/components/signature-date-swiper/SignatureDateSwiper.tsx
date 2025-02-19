@@ -22,6 +22,7 @@ export default function SignatureDateSwiper({
   return (
     <div className={styles.container}>
       <Swiper
+        slideToClickedSlide
         slidesPerView={3}
         centeredSlides={true}
         onSlideChange={(swiper) => setActiveDate(dateArray[swiper.activeIndex])}

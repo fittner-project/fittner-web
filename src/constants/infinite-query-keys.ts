@@ -8,4 +8,8 @@ export const infiniteQueryKeys = {
     "revenue_trainee_detail",
     activeFilter,
   ],
+  SIGNATURE_RESERVATION: (activeDate: string) => [
+    "signature_reservation",
+    activeDate,
+  ],
 };

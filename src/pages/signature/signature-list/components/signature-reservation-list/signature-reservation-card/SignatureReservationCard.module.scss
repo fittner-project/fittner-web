@@ -1,0 +1,75 @@
+.container {
+  padding: 1.2rem 1.5rem;
+  height: 100%;
+  width: 100%;
+  @include flex_row(flex-start, stretch);
+  @include flex_row_gap(1.2rem);
+  background: var(
+    --BG-Grey_1,
+    linear-gradient(0deg, #f2f4f6 0%, #f2f4f6 100%),
+    url(<path-to-image>) lightgray 50% / cover no-repeat
+  );
+  border-radius: 1rem;
+
+  .color_bar {
+    width: 0.6rem;
+    background-color: $primary_1;
+    border-radius: 1rem;
+  }
+
+  .content {
+    flex: 1;
+
+    .top_section {
+      @include flex_row(space-between, center);
+      padding-bottom: 0.9rem;
+
+      .left_section {
+        @include flex_row(space-between, flex-start);
+        @include flex_row_gap(1.2rem);
+
+        .trainee_info {
+          width: 100%;
+
+          .trainee_info_top {
+            @include flex_row(flex-start, center);
+            @include flex_row_gap(0.8rem);
+
+            .trainee {
+              @include fm-ar(1.8rem, $text_1, 2.2rem, 500);
+
+              .trainee_name {
+                @include fm-ar(1.8rem, $text_1, 2.2rem, 700);
+              }
+            }
+
+            .trainee_count {
+              padding: 0.2rem 0.9rem;
+              background-color: rgba($grey_2, 0.2);
+              border-radius: 1rem;
+              @include fm-ar(1.6rem, $grey_3, 2.2rem, 700);
+            }
+          }
+
+          .time {
+            width: 100%;
+            margin-top: 0.5rem;
+            @include fm-ar(1.6rem, $grey_4, 2.2rem, 500);
+          }
+        }
+      }
+
+      .right_section {
+        .noshow {
+          @include fm-ar(1.6rem, $grey_3, 2.2rem, 700);
+        }
+      }
+    }
+
+    .bottom_section {
+      padding-top: 0.7rem;
+      border-top: 0.1rem solid rgba($grey_2, 0.3);
+      @include fm-ar(1.4rem, $grey_4, 2.2rem, 500);
+    }
+  }
+}
