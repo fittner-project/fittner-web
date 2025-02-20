@@ -1146,7 +1146,7 @@
         "tags": ["마이페이지"],
         "summary": "푸시 설정 조회 API",
         "description": "푸시 설정 조회 API 입니다.",
-        "operationId": "postUserMyPagePush",
+        "operationId": "getUserMyPagePush",
         "responses": {
           "200": {
             "description": "OK",
