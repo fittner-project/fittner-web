@@ -9,8 +9,9 @@ function TraineeRevenueListSkeleton() {
         borderRadius={1}
         style={{ marginBottom: "0.8rem" }}
       />
-      {Array.from({ length: 10 }).map(() => (
+      {Array.from({ length: 10 }).map((_, index) => (
         <Skeleton
+          key={index}
           height={9}
           style={{
             margin: "0 -1.8rem",

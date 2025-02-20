@@ -10,6 +10,7 @@ import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import { uniqueId } from "lodash";
 import PATH from "@/router/path";
 import Skeleton from "@/components/skeleton/Skeleton";
+import { useRevenueActiveDateStore } from "./stores/revenueActiveDateStore";
 
 export default function RevenueDetail() {
   const generateDateArray = () => {
@@ -22,11 +23,11 @@ export default function RevenueDetail() {
 
     return dates.reverse();
   };
-
-  const dateArray = useMemo(() => generateDateArray(), []);
-  const [activeDate, setActiveDate] = useState<string>(
-    dateArray[dateArray.length - 1]
+  const activeDate = useRevenueActiveDateStore((state) => state.activeDate);
+  const setActiveDate = useRevenueActiveDateStore(
+    (state) => state.setActiveDate
   );
+  const dateArray = useMemo(() => generateDateArray(), []);
   const center = useUserStore((state) => state.selectedCenter);
 
   const {

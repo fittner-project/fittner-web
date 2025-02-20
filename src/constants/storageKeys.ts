@@ -8,4 +8,5 @@ export const storageKeys = {
   terms: "terms",
   activeCenterId: "activeCenterId",
   auth: "auth",
+  revenueActiveDate: "revenueActiveDate",
 };

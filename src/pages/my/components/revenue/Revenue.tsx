@@ -72,7 +72,10 @@ export default function Revenue({
                 onSlideChange={(swiper) =>
                   setActiveDate(dateArray[swiper.activeIndex])
                 }
-                initialSlide={dateArray.length - 1}
+                initialSlide={
+                  dateArray.findIndex((date) => date === activeDate) ||
+                  dateArray.length - 1
+                }
               >
                 {dateArray.map((date, index) => (
                   <SwiperSlide key={index}>
