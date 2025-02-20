@@ -67,7 +67,7 @@ export default function RegisterTrainee() {
           ) : (
             <MotionDiv
               className={styles.menu_container}
-              transition={{ duration: 0.4, delay: 0.6 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
