@@ -1,5 +1,8 @@
 .container {
-  .trainee_list {
+  .scroll_container {
+    max-height: calc(100dvh - 22.8rem);
+    overflow-y: auto;
+
     .trainee {
       padding: 2rem 0;
       margin: 0 2rem;

@@ -72,7 +72,7 @@ export default function RevenueDetail() {
         setActiveDate={setActiveDate}
       />
 
-      <div className={styles.trainee_list}>
+      <div className={styles.scroll_container}>
         {isLoading
           ? Array.from({ length: 10 }).map((_, index) => (
               <TraineeSkeleton key={index} />
