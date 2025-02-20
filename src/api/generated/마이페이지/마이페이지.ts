@@ -788,7 +788,7 @@ export function useGetUserMyPageSalesInfoDetail<TData = Awaited<ReturnType<typeo
  * 푸시 설정 조회 API 입니다.
  * @summary 푸시 설정 조회 API
  */
-export const postUserMyPagePush = (
+export const getUserMyPagePush = (
     
  signal?: AbortSignal
 ) => {
@@ -801,67 +801,67 @@ export const postUserMyPagePush = (
     }
   
 
-export const getPostUserMyPagePushQueryKey = () => {
+export const getGetUserMyPagePushQueryKey = () => {
     return [`/api/v1/user/myPage/push`] as const;
     }
 
     
-export const getPostUserMyPagePushInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof postUserMyPagePush>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>>, }
+export const getGetUserMyPagePushInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPagePush>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPostUserMyPagePushQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPagePushQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof postUserMyPagePush>>> = ({ signal }) => postUserMyPagePush(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPagePush>>> = ({ signal }) => getUserMyPagePush(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type PostUserMyPagePushInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof postUserMyPagePush>>>
-export type PostUserMyPagePushInfiniteQueryError = unknown
+export type GetUserMyPagePushInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPagePush>>>
+export type GetUserMyPagePushInfiniteQueryError = unknown
 
 
-export function usePostUserMyPagePushInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postUserMyPagePush>>>, TError = unknown>(
-  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>> & Pick<
+export function useGetUserMyPagePushInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPagePush>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof postUserMyPagePush>>,
+          Awaited<ReturnType<typeof getUserMyPagePush>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function usePostUserMyPagePushInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postUserMyPagePush>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>> & Pick<
+export function useGetUserMyPagePushInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPagePush>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof postUserMyPagePush>>,
+          Awaited<ReturnType<typeof getUserMyPagePush>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function usePostUserMyPagePushInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postUserMyPagePush>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>>, }
+export function useGetUserMyPagePushInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPagePush>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 푸시 설정 조회 API
  */
 
-export function usePostUserMyPagePushInfinite<TData = InfiniteData<Awaited<ReturnType<typeof postUserMyPagePush>>>, TError = unknown>(
-  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>>, }
+export function useGetUserMyPagePushInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserMyPagePush>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getPostUserMyPagePushInfiniteQueryOptions(options)
+  const queryOptions = getGetUserMyPagePushInfiniteQueryOptions(options)
 
   const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -872,62 +872,62 @@ export function usePostUserMyPagePushInfinite<TData = InfiniteData<Awaited<Retur
 
 
 
-export const getPostUserMyPagePushQueryOptions = <TData = Awaited<ReturnType<typeof postUserMyPagePush>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>>, }
+export const getGetUserMyPagePushQueryOptions = <TData = Awaited<ReturnType<typeof getUserMyPagePush>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPostUserMyPagePushQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getGetUserMyPagePushQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof postUserMyPagePush>>> = ({ signal }) => postUserMyPagePush(signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserMyPagePush>>> = ({ signal }) => getUserMyPagePush(signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
 }
 
-export type PostUserMyPagePushQueryResult = NonNullable<Awaited<ReturnType<typeof postUserMyPagePush>>>
-export type PostUserMyPagePushQueryError = unknown
+export type GetUserMyPagePushQueryResult = NonNullable<Awaited<ReturnType<typeof getUserMyPagePush>>>
+export type GetUserMyPagePushQueryError = unknown
 
 
-export function usePostUserMyPagePush<TData = Awaited<ReturnType<typeof postUserMyPagePush>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>> & Pick<
+export function useGetUserMyPagePush<TData = Awaited<ReturnType<typeof getUserMyPagePush>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof postUserMyPagePush>>,
+          Awaited<ReturnType<typeof getUserMyPagePush>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function usePostUserMyPagePush<TData = Awaited<ReturnType<typeof postUserMyPagePush>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>> & Pick<
+export function useGetUserMyPagePush<TData = Awaited<ReturnType<typeof getUserMyPagePush>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof postUserMyPagePush>>,
+          Awaited<ReturnType<typeof getUserMyPagePush>>,
           TError,
           TData
         > , 'initialData'
       >, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
-export function usePostUserMyPagePush<TData = Awaited<ReturnType<typeof postUserMyPagePush>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>>, }
+export function useGetUserMyPagePush<TData = Awaited<ReturnType<typeof getUserMyPagePush>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
 /**
  * @summary 푸시 설정 조회 API
  */
 
-export function usePostUserMyPagePush<TData = Awaited<ReturnType<typeof postUserMyPagePush>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof postUserMyPagePush>>, TError, TData>>, }
+export function useGetUserMyPagePush<TData = Awaited<ReturnType<typeof getUserMyPagePush>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserMyPagePush>>, TError, TData>>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
 
-  const queryOptions = getPostUserMyPagePushQueryOptions(options)
+  const queryOptions = getGetUserMyPagePushQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
