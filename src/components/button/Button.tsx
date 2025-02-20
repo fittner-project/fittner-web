@@ -50,6 +50,7 @@ function Button({
     <button
       {...props}
       onClick={handleClick}
+      disabled={disabled}
       style={{
         background: currentStyle.backgroundColor,
         color: currentStyle.color,
