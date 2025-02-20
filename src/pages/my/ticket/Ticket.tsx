@@ -8,6 +8,7 @@ import { useGetUserTickets } from "@/api/generated/이용권/이용권";
 import { useSearch } from "@/hooks/useSearch";
 import Skeleton from "@/components/skeleton/Skeleton";
 import classNames from "classnames";
+import { useTicketActiveFilterStore } from "./stores/ticketActiveFilter";
 
 export default function Ticket() {
   const { register, watch } = useForm();
@@ -20,7 +21,12 @@ export default function Ticket() {
     "양도받기",
     "기간만료",
   ];
-  const [activeFilter, setActiveFilter] = useState<string>(filters[0]);
+  const activeFilter = useTicketActiveFilterStore(
+    (state) => state.activeFilter
+  );
+  const setActiveFilter = useTicketActiveFilterStore(
+    (state) => state.setActiveFilter
+  );
   const filterToCodeMap: { [key: string]: string } = {
     전체: "TOTAL",
     이용전: "STOP",

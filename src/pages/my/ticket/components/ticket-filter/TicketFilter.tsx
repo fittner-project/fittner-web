@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import styles from "./TicketFilter.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -9,7 +8,7 @@ import classNames from "classnames";
 interface TicketFilterProps {
   filters: string[];
   activeFilter: string;
-  setActiveFilter: Dispatch<SetStateAction<string>>;
+  setActiveFilter: (activeFilter: string) => void;
 }
 
 function TicketFilter({
@@ -25,6 +24,7 @@ function TicketFilter({
         freeMode
         modules={[FreeMode]}
         style={{ padding: "0 1.8rem" }}
+        initialSlide={filters.findIndex((filter) => filter === activeFilter)}
       >
         {filters.map((filter) => (
           <SwiperSlide

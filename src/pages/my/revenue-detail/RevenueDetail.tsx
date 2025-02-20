@@ -10,7 +10,7 @@ import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import { uniqueId } from "lodash";
 import PATH from "@/router/path";
 import Skeleton from "@/components/skeleton/Skeleton";
-import { useRevenueActiveDateStore } from "./stores/revenueActiveDateStore";
+import { useRevenueActiveDateStore } from "./stores/revenueActiveDate";
 
 export default function RevenueDetail() {
   const generateDateArray = () => {

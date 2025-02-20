@@ -9,4 +9,6 @@ export const storageKeys = {
   activeCenterId: "activeCenterId",
   auth: "auth",
   revenueActiveDate: "revenueActiveDate",
+  ticketActiveFilter: "ticketActiveFilter",
+  ticketFilterScrollPosition: "ticketFilterScrollPosition",
 };
