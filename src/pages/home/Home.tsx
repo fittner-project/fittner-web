@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Image from "@/components/image/Image";
 
@@ -103,7 +102,7 @@ function Home() {
               </div>
 
               <div
-                onClick={() => navigate(PATH.SIGNATURE.LIST)}
+                // onClick={() => navigate(PATH.SIGNATURE.LIST)}
                 className={styles.sign}
               >
                 <Image src={main_sign} width={4} height={4} />
