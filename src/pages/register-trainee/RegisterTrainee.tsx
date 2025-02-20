@@ -5,6 +5,7 @@ import TraineeFormView from "./components/trainee-form-view/TraineeFormView";
 import ProductFormView from "./components/product-form-view/ProductFormView";
 import Row from "@/components/flex/Row";
 import classNames from "classnames";
+import { MotionDiv } from "@/components/animation/Motion";
 
 export type RegisterTraineeForm = {
   memberName: string;
@@ -55,9 +56,23 @@ export default function RegisterTrainee() {
         </Row>
         <form className={styles.container}>
           {step === 1 ? (
-            <TraineeFormView form={form} setStep={setStep} />
+            <MotionDiv
+              className={styles.menu_container}
+              transition={{ duration: 0.4, delay: 0.6 }}
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+            >
+              <TraineeFormView form={form} setStep={setStep} />
+            </MotionDiv>
           ) : (
-            <ProductFormView form={form} />
+            <MotionDiv
+              className={styles.menu_container}
+              transition={{ duration: 0.4, delay: 0.6 }}
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+            >
+              <ProductFormView form={form} />
+            </MotionDiv>
           )}
         </form>
       </div>
