@@ -304,26 +304,6 @@
         }
       }
     },
-    "/api/v1/user/myPage/push": {
-      "post": {
-        "tags": ["마이페이지"],
-        "summary": "푸시 설정 조회 API",
-        "description": "푸시 설정 조회 API 입니다.",
-        "operationId": "postUserMyPagePush",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseMessageListPushSetResDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/user/myPage/push-set": {
       "post": {
         "tags": ["마이페이지"],
@@ -1161,6 +1141,26 @@
         }
       }
     },
+    "/api/v1/user/myPage/push": {
+      "get": {
+        "tags": ["마이페이지"],
+        "summary": "푸시 설정 조회 API",
+        "description": "푸시 설정 조회 API 입니다.",
+        "operationId": "postUserMyPagePush",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageListPushSetResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/user/myPage/notices": {
       "get": {
         "tags": ["마이페이지"],
@@ -1985,57 +1985,6 @@
             "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
           }
         }
-      },
-      "ApiResponseMessageListPushSetResDto": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "description": "응답 코드",
-            "example": "SUCCESS"
-          },
-          "message": {
-            "type": "string",
-            "description": "응답 메시지",
-            "example": "정상처리"
-          },
-          "errorMessage": {
-            "type": "string",
-            "description": "오류 메시지",
-            "example": ""
-          },
-          "errorCode": {
-            "type": "string",
-            "description": "오류 코드",
-            "example": ""
-          },
-          "result": {
-            "type": "array",
-            "description": "응답 데이터",
-            "items": { "$ref": "#/components/schemas/PushSetResDto" }
-          },
-          "error": {
-            "type": "string",
-            "writeOnly": true,
-            "enum": ["COMMON_FAIL"]
-          }
-        }
-      },
-      "PushSetResDto": {
-        "type": "object",
-        "properties": {
-          "pushKind": {
-            "type": "string",
-            "description": "푸시종류",
-            "example": "ADVERTISE | RESERVATION"
-          },
-          "pushSetYn": {
-            "type": "string",
-            "description": "푸시여부",
-            "example": "Y"
-          }
-        },
-        "description": "응답 데이터"
       },
       "PushSetReqDto": {
         "required": ["pushKind", "pushSetYn"],
@@ -3458,6 +3407,57 @@
             "type": "array",
             "description": "수업리스트",
             "items": { "$ref": "#/components/schemas/SalesInfoDetailDto" }
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "ApiResponseMessageListPushSetResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": { "$ref": "#/components/schemas/PushSetResDto" }
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "PushSetResDto": {
+        "type": "object",
+        "properties": {
+          "pushKind": {
+            "type": "string",
+            "description": "푸시종류",
+            "example": "ADVERTISE | RESERVATION"
+          },
+          "pushSetYn": {
+            "type": "string",
+            "description": "푸시여부",
+            "example": "Y"
           }
         },
         "description": "응답 데이터"
