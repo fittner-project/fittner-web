@@ -11,12 +11,8 @@ import { chevronDownGrey } from "@/assets/assets";
 import Image from "@/components/image/Image";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import RegistrationPathBottomSheet from "../registration-path-bottom-sheet/RegistrationPathBottomSheet";
-import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import PATH from "@/router/path";
-import { usePostUserRegister } from "@/api/generated/유저/유저";
 import TraineeConfirmBottomSheet from "../trainee-confirm-bottom-sheet/TraineeConfirmBottomSheet";
-import ProductConfirmBottomSheet from "../product-confirm-bottom-sheet/ProductConfirmBottomSheet";
 
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
@@ -72,28 +68,9 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
     updateFormDates();
   }, [startPickerValue, endPickerValue]);
 
-  const { mutate: registerTrainee } = usePostUserRegister({
-    mutation: {
-      onSuccess: (data) => {
-        console.log(data);
-      },
-      onError: () => {},
-    },
-  });
-
   const handleRegistrationPathSelect = (path: string) => {
     form.setValue("memberJoinPath", path);
   };
-
-  const handleSubmit = form.handleSubmit((data) => {
-    const formattedData = {
-      ...data,
-      productCount: Number(data.productCount),
-      productPrice: Number(data.productPrice),
-    };
-
-    registerTrainee({ data: formattedData });
-  });
 
   const { watch } = form;
 
@@ -111,11 +88,6 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
       component: TraineeConfirmBottomSheet,
       props: {
         form,
-        onClickBtnTwo: () =>
-          openBottomSheet({
-            component: ProductConfirmBottomSheet,
-            props: { form, handleSubmit },
-          }),
       },
     });
   };
