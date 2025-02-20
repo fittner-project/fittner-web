@@ -71,4 +71,11 @@
       border-bottom-right-radius: 1rem;
     }
   }
+
+  .button_container {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+    @include footer();
+    bottom: 3rem;
+  }
 }
