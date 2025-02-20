@@ -102,7 +102,7 @@ function Home() {
               </div>
 
               <div
-                // onClick={() => navigate(PATH.SIGNATURE.LIST)}
+                onClick={() => navigate(PATH.SIGNATURE.LIST)}
                 className={styles.sign}
               >
                 <Image src={main_sign} width={4} height={4} />
