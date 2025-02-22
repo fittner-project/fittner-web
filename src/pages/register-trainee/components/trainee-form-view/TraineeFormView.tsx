@@ -4,6 +4,7 @@ import { RegisterTraineeForm } from "../../RegisterTrainee";
 import Input from "@/components/input/Input";
 import Radio from "@/components/radio/Radio";
 import Button from "@/components/button/Button";
+import formatPhoneNumber from "@/utils/formatPhoneNumber";
 
 interface ITraineeFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
@@ -45,10 +46,19 @@ export default function TraineeFormView({
         <p className={styles.title}>연락처</p>
         <Input
           inputType="line"
-          maxLength={11}
+          type="tel"
+          maxLength={13}
           className={styles.name_input}
           {...form.register("memberPhone", {
             required: true,
+            pattern: {
+              value: /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/,
+              message: "올바른 휴대폰 번호를 입력해주세요",
+            },
+            onChange: (e) => {
+              const formatted = formatPhoneNumber({ value: e.target.value });
+              form.setValue("memberPhone", formatted);
+            },
           })}
           placeholder="회원의 연락처를 입력해주세요"
         />

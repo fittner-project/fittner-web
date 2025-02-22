@@ -32,6 +32,7 @@ export default function ProductConfirmBottomSheet({
   const handleSubmit = form.handleSubmit((data) => {
     const formattedData = {
       ...data,
+      memberPhone: data.memberPhone.replace(/-/g, ""),
       productCount: Number(data.productCount),
       productPrice: Number(data.productPrice),
     };
