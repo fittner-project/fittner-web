@@ -1,15 +1,15 @@
 .container {
+  border-radius: 1rem;
   padding: 1.2rem 1.5rem;
   height: 100%;
   width: 100%;
-  @include flex_row(flex-start, stretch);
-  @include flex_row_gap(1.2rem);
   background: var(
     --BG-Grey_1,
     linear-gradient(0deg, #f2f4f6 0%, #f2f4f6 100%),
     url(<path-to-image>) lightgray 50% / cover no-repeat
   );
-  border-radius: 1rem;
+  @include flex_row(flex-start, stretch);
+  @include flex_row_gap(1.2rem);
 
   .color_bar {
     width: 0.6rem;
@@ -22,7 +22,6 @@
 
     .top_section {
       @include flex_row(space-between, center);
-      padding-bottom: 0.9rem;
 
       .left_section {
         @include flex_row(space-between, flex-start);
@@ -67,6 +66,7 @@
     }
 
     .bottom_section {
+      margin-top: 0.9rem;
       padding-top: 0.7rem;
       border-top: 0.1rem solid rgba($grey_2, 0.3);
       @include fm-ar(1.4rem, $grey_4, 2.2rem, 500);

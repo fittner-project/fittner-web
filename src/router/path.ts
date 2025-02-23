@@ -31,7 +31,7 @@ const PATH = {
   REGISTER_TRAINEE: "/register-trainee",
   SIGNATURE: {
     LIST: "/signature/list",
-    DETAIL: "/signature/:ticketId",
+    DETAIL: "/signature/list/:ticketId",
   },
 };
 

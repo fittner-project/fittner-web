@@ -37,9 +37,6 @@ export default function SignatureReservationList({
                   signatureReservation={signatureReservation}
                 />
               ))}
-          {Array.from({ length: 10 }).map((_, index) => (
-            <SignatureReservationCard key={index} signatureReservation={{}} />
-          ))}
         </div>
       </div>
     </PaddingContainer>
