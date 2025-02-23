@@ -7,6 +7,7 @@ import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import SignatureReservationList from "./components/signature-reservation-list/SignatureReservationList";
 import { MotionDiv } from "@/components/animation/Motion";
+import { useSignatureActiveDateStore } from "./stores/signatureActiveDate";
 
 export default function SignatureList() {
   const selectedCenter = useUserStore((state) => state.selectedCenter);
@@ -21,8 +22,9 @@ export default function SignatureList() {
     return dates.reverse();
   };
   const dateArray = useMemo(() => generateDateArray(), []);
-  const [activeDate, setActiveDate] = useState<string>(
-    dateArray[dateArray.length - 1]
+  const activeDate = useSignatureActiveDateStore((state) => state.activeDate);
+  const setActiveDate = useSignatureActiveDateStore(
+    (state) => state.setActiveDate
   );
 
   const {

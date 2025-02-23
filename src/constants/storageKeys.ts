@@ -10,5 +10,5 @@ export const storageKeys = {
   auth: "auth",
   revenueActiveDate: "revenueActiveDate",
   ticketActiveFilter: "ticketActiveFilter",
-  ticketFilterScrollPosition: "ticketFilterScrollPosition",
+  signatureActiveDate: "signatureActiveDate",
 };

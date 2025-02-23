@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./SignatureDateSwiper.module.scss";
 import "swiper/css";
-import { Dispatch, SetStateAction } from "react";
+
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import classNames from "classnames";
@@ -11,7 +11,7 @@ dayjs.locale("ko");
 interface SignatureDateSwiperProps {
   dateArray: string[];
   activeDate: string;
-  setActiveDate: Dispatch<SetStateAction<string>>;
+  setActiveDate: (activeDate: string) => void;
 }
 
 export default function SignatureDateSwiper({
@@ -26,7 +26,7 @@ export default function SignatureDateSwiper({
         slidesPerView={3}
         centeredSlides={true}
         onSlideChange={(swiper) => setActiveDate(dateArray[swiper.activeIndex])}
-        initialSlide={dateArray.length - 1}
+        initialSlide={dateArray.findIndex((date) => date === activeDate)}
       >
         {dateArray.map((date) => (
           <SwiperSlide key={date}>
