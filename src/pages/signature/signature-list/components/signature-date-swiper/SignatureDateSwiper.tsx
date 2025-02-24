@@ -26,7 +26,10 @@ export default function SignatureDateSwiper({
         slidesPerView={3}
         centeredSlides={true}
         onSlideChange={(swiper) => setActiveDate(dateArray[swiper.activeIndex])}
-        initialSlide={dateArray.findIndex((date) => date === activeDate)}
+        initialSlide={
+          dateArray.findIndex((date) => date === activeDate) ||
+          dateArray.length - 1
+        }
       >
         {dateArray.map((date) => (
           <SwiperSlide key={date}>

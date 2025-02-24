@@ -11,7 +11,7 @@ interface SignatureActiveDateStore {
 export const useSignatureActiveDateStore = create<SignatureActiveDateStore>()(
   persist(
     (set, _get) => ({
-      activeDate: dayjs().format("YYYYMM"),
+      activeDate: dayjs().format("YYYYMMDD"),
       setActiveDate: (activeDate: string) => set({ activeDate: activeDate }),
     }),
     {
