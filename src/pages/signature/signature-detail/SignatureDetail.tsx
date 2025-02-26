@@ -5,10 +5,9 @@ import { getUserSignReservationsTicketId } from "@/api/generated/서명/서명";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
-import dayjs from "dayjs";
-import Image from "@/components/image/Image";
-import { checkNor, checkSel } from "@/assets/assets";
-import classNames from "classnames";
+import SignatureDetailItem from "./components/signature-detail-item/SignatureDetailItem";
+import Skeleton from "@/components/skeleton/Skeleton";
+import SignatureDetailSkeleton from "./components/signature-detail-skeleton/SignatureDetailSkeleton";
 
 export default function SignatureDetail() {
   const { ticketId } = useParams();
@@ -45,50 +44,21 @@ export default function SignatureDetail() {
   const signatureReservationDetail =
     signatureReservationDetailPages?.pages.flatMap((page) => page.result ?? []);
 
-  console.log(signatureReservationDetail);
-
   return (
     <PaddingContainer>
       <div className={styles.container}>
         <div className={styles.signature_reservation_detail_list}>
-          {signatureReservationDetail?.map((item) => (
-            <div
-              className={classNames(styles.signature_reservation_detail_item, {
-                [styles.waiting]: item.reservationStatus === "WAITING",
-              })}
-            >
-              <div className={styles.left_section}>
-                <div>
-                  {item.reservationStatus === "NOSHOW" && (
-                    <p className={styles.noshow}>노쇼</p>
-                  )}
-                  {item.reservationStatus === "SIGN" && (
-                    <Image
-                      src={checkSel}
-                      alt="checkSel"
-                      width={2.5}
-                      height={2.5}
-                    />
-                  )}
-                  {item.reservationStatus === "WAITING" && (
-                    <Image
-                      src={checkNor}
-                      alt="checkNor"
-                      width={2.5}
-                      height={2.5}
-                    />
-                  )}
-                </div>
-                <p className={styles.time}>
-                  {dayjs(item.reservationStartDate).format("MM월 DD일")}{" "}
-                  {`${item.reservationStartTime?.slice(0, 2)}:${item.reservationStartTime?.slice(2)}`}
-                  -
-                  {`${item.reservationEndTime?.slice(0, 2)}:${item.reservationEndTime?.slice(2)}`}
-                </p>
-              </div>
-              <p className={styles.count}>{item.reservationUseCnt}회차</p>
-            </div>
-          ))}
+          {isLoading
+            ? Array.from({ length: 10 }).map((_, index) => (
+                <SignatureDetailSkeleton key={index} />
+              ))
+            : signatureReservationDetail?.map((signatureReservation) => (
+                <SignatureDetailItem
+                  key={signatureReservation.reservationId}
+                  signatureReservation={signatureReservation}
+                />
+              ))}
+          {!isFetching && <div ref={ref} />}
         </div>
         <div className={styles.button_container}>
           <Button fullWidth backgroundColor="grey_1">

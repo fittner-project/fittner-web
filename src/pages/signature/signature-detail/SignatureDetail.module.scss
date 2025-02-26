@@ -1,33 +1,6 @@
 .container {
   .signature_reservation_detail_list {
     @include flex_col_gap(1rem);
-
-    .signature_reservation_detail_item {
-      padding: 0.8rem 1.4rem;
-      border-radius: 1rem;
-      @include flex_row(space-between, center);
-
-      &.waiting {
-        background-color: $grey_1;
-      }
-
-      .left_section {
-        @include flex_row(flex-start, center);
-        @include flex_row_gap(2.2rem);
-
-        .noshow {
-          @include fm-ar(1.6rem, $grey_3, 2.2rem, 700);
-        }
-
-        .time {
-          @include fm-ar(1.6rem, $text_1, 2.2rem, 500);
-        }
-      }
-
-      .count {
-        @include fm-ar(1.6rem, $text_1, 2.2rem, 700);
-      }
-    }
   }
 
   .button_container {

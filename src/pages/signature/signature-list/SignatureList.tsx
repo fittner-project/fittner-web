@@ -84,7 +84,6 @@ export default function SignatureList() {
           isLoading={isLoading}
         />
       </MotionDiv>
-
       {!isFetching && <div ref={ref} />}
     </div>
   );
