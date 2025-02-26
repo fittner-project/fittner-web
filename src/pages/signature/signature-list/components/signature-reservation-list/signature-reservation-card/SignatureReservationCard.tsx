@@ -13,7 +13,7 @@ export default function SignatureReservationCard({
 }: SignatureReservationCardProps) {
   return (
     <Link
-      to={`${PATH.SIGNATURE.LIST}/${signatureReservation.reservationId}`}
+      to={`${PATH.SIGNATURE.LIST}/${signatureReservation.ticketId}`}
       className={styles.container}
     >
       <div className={styles.color_bar} />
@@ -33,8 +33,9 @@ export default function SignatureReservationCard({
                 </div>
               </div>
               <p className={styles.time}>
-                {signatureReservation.reservationStartTime} -{" "}
-                {signatureReservation.reservationEndTime}
+                {`${signatureReservation.reservationStartTime?.slice(0, 2)}:${signatureReservation.reservationStartTime?.slice(2)}`}{" "}
+                -{" "}
+                {`${signatureReservation.reservationEndTime?.slice(0, 2)}:${signatureReservation.reservationEndTime?.slice(2)}`}
               </p>
             </section>
           </div>

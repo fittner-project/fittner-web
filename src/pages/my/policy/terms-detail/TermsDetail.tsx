@@ -17,9 +17,10 @@ export default function TermsDetail() {
             key={`${url}-${index}`}
             src={url}
             frameBorder="0"
-            width="100%"
-            height="100%"
+            allowFullScreen
             style={{
+              width: "100%",
+              height: "100%",
               marginBottom: index < urls.length - 1 ? "20px" : "0",
             }}
           />

@@ -12,4 +12,8 @@ export const infiniteQueryKeys = {
     "signature_reservation",
     activeDate,
   ],
+  SIGNATURE_RESERVATION_DETAIL: (ticketId: string) => [
+    "signature_reservation_detail",
+    ticketId,
+  ],
 };

@@ -2,16 +2,16 @@
   .count {
     margin-top: 1.6rem;
     margin-bottom: 1.2rem;
+    @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
     @include flex_row(flex-start, flex-start);
     @include flex_row_gap(0.8rem);
-    @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
   }
 
   .scroll_container {
-    padding-bottom: 1.8rem;
     @include flex_col(flex-start, flex-start);
-    @include flex_col_gap(1rem);
+    padding-bottom: 1.8rem;
     max-height: calc(100dvh - 13rem);
     overflow-y: auto;
+    @include flex_col_gap(1rem);
   }
 }
