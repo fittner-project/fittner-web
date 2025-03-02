@@ -53,7 +53,7 @@ export default function NoshowBottomSheet({
           </div>
         </div>
 
-        <Button fullWidth backgroundColor="primary_1">
+        <Button disabled={!noshowReason} fullWidth backgroundColor="primary_1">
           확인
         </Button>
       </div>
