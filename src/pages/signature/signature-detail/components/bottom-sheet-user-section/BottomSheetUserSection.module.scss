@@ -1,0 +1,40 @@
+.container {
+  @include flex_row(flex-start, center);
+  @include flex_row_gap(1.2rem);
+  height: 5.4rem;
+
+  .color_bar {
+    width: 0.6rem;
+    height: 100%;
+    background-color: $primary_1;
+    border-radius: 1rem;
+  }
+
+  .user_info {
+    @include flex_col(space-between, flex-start);
+    height: 100%;
+
+    .user_info_top {
+      @include flex_row(flex-start, center);
+      @include flex_row_gap(0.7rem);
+
+      .user_name {
+        @include fm-ar(2.4rem, $text_1, 2.2rem, 500);
+        span {
+          font-weight: 700;
+        }
+      }
+
+      .count {
+        @include fm-ar(1.4rem, $grey_3, 2.2rem, 700);
+        background-color: rgba($grey_2, 0.2);
+        padding: 0.2rem 0.9rem;
+        border-radius: 0.6rem;
+      }
+    }
+
+    .date {
+      @include fm-ar(1.6rem, $grey_4, 2.2rem, 500);
+    }
+  }
+}

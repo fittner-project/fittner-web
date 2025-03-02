@@ -5,11 +5,14 @@ import dayjs from "dayjs";
 import Image from "@/components/image/Image";
 import { SignResrvationForMemberResDto } from "@/api/generated/models";
 import { checkNor, checkSel } from "@/assets/assets";
+import { Dispatch, SetStateAction } from "react";
 
 interface SignatureDetailItemProps {
   signatureReservation: SignResrvationForMemberResDto;
   activeSignature: SignResrvationForMemberResDto | null;
-  setActiveSignature: (signature: SignResrvationForMemberResDto) => void;
+  setActiveSignature: Dispatch<
+    SetStateAction<SignResrvationForMemberResDto | null>
+  >;
 }
 
 function SignatureDetailItem({
@@ -17,9 +20,14 @@ function SignatureDetailItem({
   activeSignature,
   setActiveSignature,
 }: SignatureDetailItemProps) {
+  const formatTime = (time: string) => `${time.slice(0, 2)}:${time.slice(2)}`;
   const clickSignature = (signature: SignResrvationForMemberResDto) => {
     if (signature.reservationStatus === "WAITING") {
-      setActiveSignature(signature);
+      if (activeSignature?.reservationId === signature.reservationId) {
+        setActiveSignature(null);
+      } else {
+        setActiveSignature(signature);
+      }
     }
   };
 
@@ -46,9 +54,8 @@ function SignatureDetailItem({
         </div>
         <p className={styles.time}>
           {dayjs(signatureReservation.reservationStartDate).format("M월 D일")}{" "}
-          {`${signatureReservation.reservationStartTime?.slice(0, 2)}:${signatureReservation.reservationStartTime?.slice(2)}`}
-          -
-          {`${signatureReservation.reservationEndTime?.slice(0, 2)}:${signatureReservation.reservationEndTime?.slice(2)}`}
+          {formatTime(signatureReservation.reservationStartTime ?? "")} -
+          {formatTime(signatureReservation.reservationEndTime ?? "")}
         </p>
       </div>
       <p className={styles.count}>

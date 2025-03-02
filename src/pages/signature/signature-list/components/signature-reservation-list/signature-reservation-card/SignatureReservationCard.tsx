@@ -11,6 +11,8 @@ interface SignatureReservationCardProps {
 export default function SignatureReservationCard({
   signatureReservation,
 }: SignatureReservationCardProps) {
+  const formatTime = (time: string) => `${time.slice(0, 2)}:${time.slice(2)}`;
+
   return (
     <Link
       to={`${PATH.SIGNATURE.LIST}/${signatureReservation.ticketId}`}
@@ -33,9 +35,8 @@ export default function SignatureReservationCard({
                 </div>
               </div>
               <p className={styles.time}>
-                {`${signatureReservation.reservationStartTime?.slice(0, 2)}:${signatureReservation.reservationStartTime?.slice(2)}`}{" "}
-                -{" "}
-                {`${signatureReservation.reservationEndTime?.slice(0, 2)}:${signatureReservation.reservationEndTime?.slice(2)}`}
+                {formatTime(signatureReservation.reservationStartTime ?? "")} -{" "}
+                {formatTime(signatureReservation.reservationEndTime ?? "")}
               </p>
             </section>
           </div>

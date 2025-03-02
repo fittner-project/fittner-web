@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.15",
+    "@types/react-signature-canvas": "^1.0.7",
     "@types/swiper": "^6.0.0",
     "axios": "^1.7.9",
     "classnames": "^2.5.1",

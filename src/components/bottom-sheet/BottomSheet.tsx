@@ -7,9 +7,13 @@ import { useEffect, useRef } from "react";
 
 interface BottomSheetProps {
   children: React.ReactNode;
+  disableDrag?: boolean;
 }
 
-export default function BottomSheet({ children }: BottomSheetProps) {
+export default function BottomSheet({
+  children,
+  disableDrag = false,
+}: BottomSheetProps) {
   const isOpen = useBottomSheetStore((state) => state.isOpen);
   const isFirstRender = useRef(true);
   const location = useLocation();
@@ -32,6 +36,7 @@ export default function BottomSheet({ children }: BottomSheetProps) {
     <Sheet
       detent="content-height"
       dragVelocityThreshold={300}
+      disableDrag={disableDrag}
       isOpen={isOpen}
       onClose={closeBottomSheet}
       tweenConfig={{

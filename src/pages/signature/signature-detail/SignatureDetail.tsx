@@ -8,10 +8,14 @@ import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import SignatureDetailItem from "./components/signature-detail-item/SignatureDetailItem";
 
 import SignatureDetailSkeleton from "./components/signature-detail-skeleton/SignatureDetailSkeleton";
+import { SignResrvationForMemberResDto } from "@/api/generated/models";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import SignatureBottomSheet from "./components/signature-bottom-sheet/SignatureBottomSheet";
 
 export default function SignatureDetail() {
   const { ticketId } = useParams();
-  const [activeSignature, setActiveSignature] = useState(null);
+  const [activeSignature, setActiveSignature] =
+    useState<SignResrvationForMemberResDto | null>(null);
 
   const {
     data: signatureReservationDetailPages,
@@ -67,7 +71,20 @@ export default function SignatureDetail() {
           <Button fullWidth backgroundColor="grey_1">
             노쇼
           </Button>
-          <Button fullWidth backgroundColor="primary_1">
+          <Button
+            onClick={() => {
+              if (!activeSignature) return;
+
+              openBottomSheet({
+                component: SignatureBottomSheet,
+                props: {
+                  activeSignature,
+                },
+              });
+            }}
+            fullWidth
+            backgroundColor="primary_1"
+          >
             서명
           </Button>
         </div>
