@@ -35,3 +35,4 @@ export { default as chevron_down } from "./icon/chevron-down.svg";
 export { default as defaultCenter } from "./images/default_center.jpeg";
 export { default as userProfile } from "./icon/user-profile.svg";
 export { default as chevronDownGrey } from "./icon/chevron-down-grey.svg";
+export { default as gallery } from "./icon/gallery.svg";

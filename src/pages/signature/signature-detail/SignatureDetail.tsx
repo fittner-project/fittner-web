@@ -11,6 +11,7 @@ import SignatureDetailSkeleton from "./components/signature-detail-skeleton/Sign
 import { SignResrvationForMemberResDto } from "@/api/generated/models";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import SignatureBottomSheet from "./components/signature-bottom-sheet/SignatureBottomSheet";
+import NoshowBottomSheet from "./components/noshow-bottom-sheet/NoshowBottomSheet";
 
 export default function SignatureDetail() {
   const { ticketId } = useParams();
@@ -68,7 +69,20 @@ export default function SignatureDetail() {
           {!isFetching && <div ref={ref} />}
         </div>
         <div className={styles.button_container}>
-          <Button fullWidth backgroundColor="grey_1">
+          <Button
+            onClick={() => {
+              if (!activeSignature) return;
+
+              openBottomSheet({
+                component: NoshowBottomSheet,
+                props: {
+                  activeSignature,
+                },
+              });
+            }}
+            fullWidth
+            backgroundColor="grey_1"
+          >
             노쇼
           </Button>
           <Button

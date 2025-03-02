@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+
+  .noshow_reason_container {
+    position: relative;
+    margin-top: 3.2rem;
+    width: 100%;
+    height: 26rem;
+    border-radius: 1rem;
+    border-radius: 1rem;
+    border: 1px solid $grey_2;
+
+    .noshow_reason_textarea {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      width: calc(100% - 4rem);
+      height: calc(100% - 6.2rem);
+      outline: none;
+      border: none;
+      @include fm-ar(1.6rem, $text_5, 2.2rem, 600);
+
+      &::placeholder {
+        width: 100%;
+        @include fm-ar(1.6rem, $grey_2, 2.2rem, 600);
+      }
+    }
+
+    .noshow_reason_length {
+      position: absolute;
+      bottom: 1.6rem;
+      right: 1.6rem;
+      @include fm-ar(1.6rem, $grey_2, 2.2rem, 400);
+    }
+  }
+
+  .image_container {
+    margin-top: 2.2rem;
+    margin-bottom: 2.2rem;
+
+    .add_image {
+      width: 6.4rem;
+      height: 6.4rem;
+      padding-top: 0.9rem;
+      border-radius: 1rem;
+      border: 1px solid $grey_2;
+      @include flex_col(flex-start, center);
+      @include fm-ar(1.4rem, $grey_2, 2.2rem, 400);
+    }
+  }
+}
