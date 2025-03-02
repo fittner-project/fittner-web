@@ -10,21 +10,23 @@ export default function TermsDetail() {
 
   return (
     <PaddingContainer>
-      <PolicyLink title={title} date={date} type="detail" />
-      <div className={styles.content}>
-        {urls.map((url, index) => (
-          <iframe
-            key={`${url}-${index}`}
-            src={url}
-            frameBorder="0"
-            allowFullScreen
-            style={{
-              width: "100%",
-              height: "100%",
-              marginBottom: index < urls.length - 1 ? "20px" : "0",
-            }}
-          />
-        ))}
+      <div className={styles.container}>
+        <PolicyLink title={title} date={date} type="detail" />
+        <div className={styles.content}>
+          {urls.map((url, index) => (
+            <iframe
+              key={`${url}-${index}`}
+              src={url}
+              allowFullScreen
+              frameBorder="0"
+              style={{
+                width: "100%",
+                height: "50rem",
+                marginBottom: index === urls.length - 1 ? "0" : "20px",
+              }}
+            />
+          ))}
+        </div>
       </div>
     </PaddingContainer>
   );

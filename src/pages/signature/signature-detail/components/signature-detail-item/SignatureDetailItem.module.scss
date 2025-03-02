@@ -3,7 +3,7 @@
   border-radius: 1rem;
   @include flex_row(space-between, center);
 
-  &.waiting {
+  &.active {
     background-color: $grey_1;
   }
 

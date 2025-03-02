@@ -8,15 +8,28 @@ import { checkNor, checkSel } from "@/assets/assets";
 
 interface SignatureDetailItemProps {
   signatureReservation: SignResrvationForMemberResDto;
+  activeSignature: SignResrvationForMemberResDto | null;
+  setActiveSignature: (signature: SignResrvationForMemberResDto) => void;
 }
 
 function SignatureDetailItem({
   signatureReservation,
+  activeSignature,
+  setActiveSignature,
 }: SignatureDetailItemProps) {
+  const clickSignature = (signature: SignResrvationForMemberResDto) => {
+    if (signature.reservationStatus === "WAITING") {
+      setActiveSignature(signature);
+    }
+  };
+
   return (
     <div
+      onClick={() => clickSignature(signatureReservation)}
       className={classNames(styles.container, {
-        [styles.waiting]: signatureReservation.reservationStatus === "WAITING",
+        [styles.active]:
+          signatureReservation.reservationStatus === "WAITING" &&
+          activeSignature?.reservationId === signatureReservation.reservationId,
       })}
     >
       <div className={styles.left_section}>
@@ -32,7 +45,7 @@ function SignatureDetailItem({
           )}
         </div>
         <p className={styles.time}>
-          {dayjs(signatureReservation.reservationStartDate).format("MM월 DD일")}{" "}
+          {dayjs(signatureReservation.reservationStartDate).format("M월 D일")}{" "}
           {`${signatureReservation.reservationStartTime?.slice(0, 2)}:${signatureReservation.reservationStartTime?.slice(2)}`}
           -
           {`${signatureReservation.reservationEndTime?.slice(0, 2)}:${signatureReservation.reservationEndTime?.slice(2)}`}

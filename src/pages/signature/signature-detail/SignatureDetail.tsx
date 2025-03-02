@@ -6,11 +6,12 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import SignatureDetailItem from "./components/signature-detail-item/SignatureDetailItem";
-import Skeleton from "@/components/skeleton/Skeleton";
+
 import SignatureDetailSkeleton from "./components/signature-detail-skeleton/SignatureDetailSkeleton";
 
 export default function SignatureDetail() {
   const { ticketId } = useParams();
+  const [activeSignature, setActiveSignature] = useState(null);
 
   const {
     data: signatureReservationDetailPages,
@@ -56,6 +57,8 @@ export default function SignatureDetail() {
                 <SignatureDetailItem
                   key={signatureReservation.reservationId}
                   signatureReservation={signatureReservation}
+                  activeSignature={activeSignature}
+                  setActiveSignature={setActiveSignature}
                 />
               ))}
           {!isFetching && <div ref={ref} />}

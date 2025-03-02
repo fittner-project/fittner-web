@@ -38,7 +38,7 @@ export default function SignatureDateSwiper({
                 [styles.active]: activeDate === date,
               })}
             >
-              {dayjs(date).format("M월 DD일 (ddd)")}
+              {dayjs(date).format("M월 D일 (ddd)")}
             </p>
           </SwiperSlide>
         ))}
