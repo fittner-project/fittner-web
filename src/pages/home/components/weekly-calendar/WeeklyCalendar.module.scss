@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  height: 15.2rem;
+  margin-bottom: 1.4rem;
+  margin-top: 3rem;
+  padding-top: 1.8rem;
+  border-radius: 10px;
+  width: 100%;
+  height: 15.2rem;
+
+  .calendar_title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    @include fm-ar(2rem, $text_1, 2.2rem, 700);
+    gap: 0.3rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .calendar {
+    border: 1px solid blueviolet;
+    width: 100%;
+    height: 9.5rem;
+  }
+}

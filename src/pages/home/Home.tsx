@@ -15,6 +15,7 @@ import {
 import Training from "@/components/training/Training";
 import { MotionDiv } from "@/components/animation/Motion";
 import PATH from "@/router/path";
+import WeeklyCalendar from "./components/weekly-calendar/WeeklyCalendar";
 
 function Home() {
   const navigate = useNavigate();
@@ -65,10 +66,7 @@ function Home() {
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <div className={styles.calendar_title}>
-              12월 4주차 <Image src={chevronRightGrey} width={2} height={2} />
-            </div>
-            <div className={styles.calendar}></div>
+            <WeeklyCalendar />
           </MotionDiv>
 
           <MotionDiv

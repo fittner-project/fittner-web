@@ -57,10 +57,9 @@ const Authorized = ({ children }: IProps) => {
   );
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
   const { data: reservations } = useGetUserReservations({
-    reservationSearchDto: {
-      reservationStartDate: currentMonthStart,
-      reservationEndDate: currentMonthEnd,
-    },
+    //@ts-ignore
+    reservationStartDate: currentMonthStart,
+    reservationEndDate: currentMonthEnd,
   });
   const { data: reservationColors } = useGetUserReservationColors();
 
