@@ -1,4 +1,5 @@
 import { FC, Fragment, ReactNode } from "react";
+import dayjs from "dayjs";
 
 import useAuthRouting from "./hooks/useAuthRouting";
 import PATH from "./router/path";
@@ -42,6 +43,9 @@ const EntryPoint: FC<IProps> = ({ children }) => {
 export default EntryPoint;
 
 const Authorized = ({ children }: IProps) => {
+  const currentMonthStart = dayjs().startOf("month").format("YYYY-MM-DD");
+  const currentMonthEnd = dayjs().endOf("month").format("YYYY-MM-DD");
+
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const setUserInfo = useUserStore((state) => state.setUserInfo);
   const setSelectedCenter = useUserStore((state) => state.setSelectedCenter);
@@ -53,10 +57,10 @@ const Authorized = ({ children }: IProps) => {
   );
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
   const { data: reservations } = useGetUserReservations({
-    //@ts-ignore
-    //서버에서 스웨거 타입 바꿔줘야함 타입에러나는데 정상적인 폼의 요청이라 200떨어짐
-    reservationStartDate: "2024-01-01",
-    reservationEndDate: "2024-12-31",
+    reservationSearchDto: {
+      reservationStartDate: currentMonthStart,
+      reservationEndDate: currentMonthEnd,
+    },
   });
   const { data: reservationColors } = useGetUserReservationColors();
 
