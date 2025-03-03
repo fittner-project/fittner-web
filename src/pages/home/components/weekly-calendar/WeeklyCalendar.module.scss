@@ -1,25 +1,81 @@
 .container {
-  width: 100%;
-  height: 15.2rem;
-  margin-bottom: 1.4rem;
   margin-top: 3rem;
-  padding-top: 1.8rem;
-  border-radius: 10px;
+  margin-bottom: 1.4rem;
   width: 100%;
   height: 15.2rem;
+  padding-top: 1.8rem;
+  padding-bottom: 1.4rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  border-radius: 1rem;
+  background-color: #fff;
+}
 
-  .calendar_title {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    @include fm-ar(2rem, $text_1, 2.2rem, 700);
-    gap: 0.3rem;
-    margin-bottom: 1.6rem;
+.calendar_title {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  @include fm-ar(2rem, $text_1, 2.2rem, 700);
+}
+
+.calendar {
+  width: 100%;
+}
+
+.week_container {
+  height: 100%;
+  margin-top: 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.day_column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .day_label {
+    @include fm-ar(1.5rem, $text_1, 2.2rem, 500);
+    margin-bottom: 0.4rem;
   }
 
-  .calendar {
-    border: 1px solid blueviolet;
-    width: 100%;
-    height: 9.5rem;
+  .sunday {
+    color: $text_7;
   }
+
+  .saturday {
+    color: $text_6;
+  }
+}
+
+.date_circle {
+  width: 3.3rem;
+  height: 3.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  @include fm-ar(1.5rem, $text_1, 2.2rem, 500);
+}
+
+.today {
+  .date_circle {
+    background-color: $primary_1;
+    color: white;
+  }
+}
+
+.schedule_dots {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.2rem;
+  margin-top: 0.8rem;
+}
+
+.dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background-color: $primary_1;
 }
