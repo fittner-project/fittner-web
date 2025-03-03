@@ -5,20 +5,94 @@ import BottomSheetUserSection from "../bottom-sheet-user-section/BottomSheetUser
 import Button from "@/components/button/Button";
 import { useForm } from "react-hook-form";
 import Image from "@/components/image/Image";
-import { gallery } from "@/assets/assets";
+import { gallery, imageClose } from "@/assets/assets";
+import {
+  getUserSignReservationsTicketId,
+  usePostUserSign,
+} from "@/api/generated/서명/서명";
+import { useQueryClient } from "@tanstack/react-query";
+import { openModal } from "@/utils/modal";
+import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
+import { closeBottomSheet } from "@/utils/bottomSheet";
+import useFileUpload from "@/hooks/useFileUpload";
 
+import { useState, useRef, useEffect, ChangeEvent } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { FreeMode } from "swiper/modules";
+import { uniqueId } from "lodash";
 interface NoshowBottomSheetProps {
   activeSignature: SignResrvationForMemberResDto | null;
+}
+
+interface ImagePreview {
+  file: File;
+  preview: string;
 }
 
 export default function NoshowBottomSheet({
   activeSignature,
 }: NoshowBottomSheetProps) {
+  const [images, setImages] = useState<ImagePreview[]>([]);
   const { register, watch } = useForm();
   const noshowReason = watch("noshowReason");
+  const queryClient = useQueryClient();
+  const { ticketId } = useParams();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { uploadFiles } = useFileUpload();
+  const [isTouching, setIsTouching] = useState(false);
+  const { mutateAsync: signature, isPending: isSigning } = usePostUserSign({
+    mutation: {
+      onSuccess: () => {
+        if (!ticketId) return;
+        queryClient.invalidateQueries({
+          queryKey: getUserSignReservationsTicketId(ticketId),
+        });
+        openModal({
+          component: SuccessModal,
+          props: {
+            successMessage: "노쇼처리가 \n 완료 되었습니다.",
+            onCloseComplete: () => {
+              closeBottomSheet();
+            },
+          },
+        });
+      },
+    },
+  });
+
+  const handleImageAdd = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (images.length >= 5) {
+      alert("최대 5개의 이미지만 추가할 수 있습니다.");
+      return;
+    }
+
+    const preview = URL.createObjectURL(file);
+    setImages([...images, { file, preview }]);
+
+    e.target.value = "";
+  };
+
+  const handleImageRemove = (index: number) => {
+    setImages((prev) => {
+      const newImages = [...prev];
+      URL.revokeObjectURL(newImages[index].preview);
+      newImages.splice(index, 1);
+      return newImages;
+    });
+  };
+
+  useEffect(() => {
+    return () => {
+      images.forEach((image) => URL.revokeObjectURL(image.preview));
+    };
+  }, []);
 
   return (
-    <BottomSheet>
+    <BottomSheet disableDrag={isTouching}>
       <div className={styles.container}>
         <BottomSheetUserSection
           signatureReservation={
@@ -48,12 +122,98 @@ export default function NoshowBottomSheet({
 
         <div className={styles.image_container}>
           <div className={styles.add_image}>
-            <Image src={gallery} alt="gallery" width={2.8} height={2.8} />
-            <p>0/5</p>
+            <input
+              disabled={images.length >= 5}
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageAdd}
+            />
+            <Image
+              onClick={() => fileInputRef.current?.click()}
+              src={gallery}
+              alt="gallery"
+              width={2.8}
+              height={2.8}
+            />
+            <p>{images.length}/5</p>
+          </div>
+
+          <div className={styles.preview_container}>
+            <Swiper
+              slidesOffsetAfter={26}
+              onTouchStart={() => {
+                setIsTouching(true);
+              }}
+              onTouchEnd={() => {
+                setIsTouching(false);
+              }}
+              slidesPerView={"auto"}
+              spaceBetween={8}
+              freeMode
+              modules={[FreeMode]}
+              className={styles.swiper}
+            >
+              {images.map((image, index) => (
+                <SwiperSlide
+                  style={{
+                    width: "6.4rem",
+                    backgroundImage: `url(${image.preview})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                  key={uniqueId()}
+                  className={styles.preview_item}
+                >
+                  <button
+                    onClick={() => handleImageRemove(index)}
+                    className={styles.remove_button}
+                  >
+                    <Image
+                      src={imageClose}
+                      alt="imageClose"
+                      width={1.6}
+                      height={1.6}
+                    />
+                  </button>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
 
-        <Button disabled={!noshowReason} fullWidth backgroundColor="primary_1">
+        <Button
+          onClick={async () => {
+            if (images.length > 0) {
+              const files = images.map((img) => img.file);
+              const { result } = await uploadFiles(files);
+              const fileGroupId = result[0].fileGroupId;
+
+              signature({
+                data: {
+                  memberId: activeSignature?.memberId ?? "",
+                  reservationId: activeSignature?.reservationId ?? "",
+                  signType: "NOSHOW",
+                  fileGroupId: fileGroupId ?? "",
+                  signMemo: noshowReason,
+                },
+              });
+            } else {
+              signature({
+                data: {
+                  memberId: activeSignature?.memberId ?? "",
+                  reservationId: activeSignature?.reservationId ?? "",
+                  signType: "NOSHOW",
+                  signMemo: noshowReason,
+                },
+              });
+            }
+          }}
+          disabled={!noshowReason}
+          fullWidth
+          backgroundColor="primary_1"
+        >
           확인
         </Button>
       </div>
