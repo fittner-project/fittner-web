@@ -79,10 +79,8 @@ export default function NoshowBottomSheet({
 
   const handleImageRemove = (index: number) => {
     setImages((prev) => {
-      const newImages = [...prev];
-      URL.revokeObjectURL(newImages[index].preview);
-      newImages.splice(index, 1);
-      return newImages;
+      URL.revokeObjectURL(prev[index].preview);
+      return prev.filter((_, i) => i !== index);
     });
   };
 
