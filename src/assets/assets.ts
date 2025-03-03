@@ -37,3 +37,4 @@ export { default as userProfile } from "./icon/user-profile.svg";
 export { default as chevronDownGrey } from "./icon/chevron-down-grey.svg";
 export { default as gallery } from "./icon/gallery.svg";
 export { default as imageClose } from "./icon/image-close.svg";
+export { default as x } from "./icon/x.svg";

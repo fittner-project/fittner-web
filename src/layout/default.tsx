@@ -10,6 +10,7 @@ import BottomSheetManager from "@/components/bottom-sheet/bottom-sheet-manager/B
 import SubSearchHeader from "./sub-search-header/SubSearchHeader";
 import SubMyHeader from "./sub-my-header/SubMyHeader";
 import Navigation from "./navigation/Navigation";
+import ImageViewerManager from "@/components/image-viewer/image-viewer-manager/ImageViewerManager";
 
 export default function RootLayout() {
   const { currentRoute } = useGetCurrentRoute();
@@ -49,6 +50,7 @@ export default function RootLayout() {
         {renderNav()}
         <ModalManager />
         <BottomSheetManager />
+        <ImageViewerManager />
       </EntryPoint>
     </>
   );

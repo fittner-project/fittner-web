@@ -48,6 +48,7 @@
     "signIn": true,
     "auth": true,
     "user": true,
-    "useAuthStore": true
+    "useAuthStore": true,
+    "useImageViewerStore": true
   }
 }

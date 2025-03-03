@@ -21,6 +21,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { FreeMode } from "swiper/modules";
 import { uniqueId } from "lodash";
+import { openImageViewer } from "@/utils/imageViewer";
 interface NoshowBottomSheetProps {
   activeSignature: SignResrvationForMemberResDto | null;
 }
@@ -61,7 +62,7 @@ export default function NoshowBottomSheet({
     },
   });
 
-  const handleImageAdd = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageAdd = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -166,6 +167,9 @@ export default function NoshowBottomSheet({
                   }}
                   key={uniqueId()}
                   className={styles.preview_item}
+                  onClick={() => {
+                    openImageViewer({ imageUrl: image.preview });
+                  }}
                 >
                   <button
                     onClick={() => handleImageRemove(index)}

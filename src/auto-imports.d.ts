@@ -30,6 +30,7 @@ declare global {
   const useEffect: typeof import('react')['useEffect']
   const useHref: typeof import('react-router-dom')['useHref']
   const useId: typeof import('react')['useId']
+  const useImageViewerStore: typeof import('./store/imageViewer')['useImageViewerStore']
   const useImperativeHandle: typeof import('react')['useImperativeHandle']
   const useInRouterContext: typeof import('react-router-dom')['useInRouterContext']
   const useInsertionEffect: typeof import('react')['useInsertionEffect']
