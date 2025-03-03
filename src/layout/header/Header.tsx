@@ -5,6 +5,7 @@ import { bell, chevron_down } from "@/assets/assets";
 import Image from "@/components/image/Image";
 import { storage } from "@/utils/storage";
 import { storageKeys } from "@/constants/storageKeys";
+import PATH from "@/router/path";
 
 interface HeaderProps {
   fallback: string | "none";
@@ -25,22 +26,15 @@ export default function Header({
     else navigate(fallback);
   };
 
-  useEffect(() => {
-    // 메인 헤더에서 선택된 centerId 여기서 스토리지에 넣어주세용.
-    // 이건 그냥 예시로 1로 넣었음.
-
-    storage.set({
-      key: storageKeys.activeCenterId,
-      value: "1",
-      type: "local",
-    });
-  }, []);
+  const handleNavigateCenterList = () => {
+    navigate(PATH.CENTER_LIST);
+  };
 
   console.log(selectedCenter);
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
+      <div onClick={handleNavigateCenterList} className={styles.title}>
         {/* Todo:회원가입 시 선택한 디폴트 센터로 초기값, 전역 관리 + 선택한 센터 바꿀때마다 해당 센터로 변경, 전역 관리 */}
         <p>
           {type === "center"

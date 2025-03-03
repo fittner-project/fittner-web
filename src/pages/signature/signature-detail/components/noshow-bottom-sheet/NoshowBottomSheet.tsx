@@ -39,7 +39,7 @@ export default function NoshowBottomSheet({
   const queryClient = useQueryClient();
   const { ticketId } = useParams();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { uploadFiles } = useFileUpload();
+  const { uploadFiles, isUploadingImage } = useFileUpload();
   const [isTouching, setIsTouching] = useState(false);
   const { mutateAsync: signature, isPending: isSigning } = usePostUserSign({
     mutation: {
@@ -90,6 +90,7 @@ export default function NoshowBottomSheet({
       images.forEach((image) => URL.revokeObjectURL(image.preview));
     };
   }, []);
+  const isLoading = isUploadingImage || isSigning;
 
   return (
     <BottomSheet disableDrag={isTouching}>
@@ -210,7 +211,7 @@ export default function NoshowBottomSheet({
               });
             }
           }}
-          disabled={!noshowReason}
+          disabled={(!noshowReason && images.length === 0) || isLoading}
           fullWidth
           backgroundColor="primary_1"
         >
