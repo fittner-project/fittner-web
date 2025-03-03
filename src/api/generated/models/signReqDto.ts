@@ -8,7 +8,7 @@
 
 export interface SignReqDto {
   /** 파일그룹ID */
-  fileGroupId: string;
+  fileGroupId?: string;
   /** 회원ID */
   memberId: string;
   /** 예약ID */

@@ -35,10 +35,12 @@
   }
 
   .image_container {
-    margin-top: 2.2rem;
-    margin-bottom: 2.2rem;
+    margin: 2.2rem 0;
+    @include flex_row(flex-start, center);
+    @include flex_row_gap(0.8rem);
 
     .add_image {
+      flex-shrink: 0;
       width: 6.4rem;
       height: 6.4rem;
       padding-top: 0.9rem;
@@ -46,6 +48,30 @@
       border: 1px solid $grey_2;
       @include flex_col(flex-start, center);
       @include fm-ar(1.4rem, $grey_2, 2.2rem, 400);
+    }
+
+    .preview_container {
+      width: calc(100% - 4.6rem);
+
+      .swiper {
+        width: 100%;
+        padding-top: 0.6rem;
+        margin-top: -0.6rem;
+      }
+
+      .preview_item {
+        width: 6.4rem;
+        position: relative;
+        height: 6.4rem;
+        border-radius: 1rem;
+        border: 1px solid $grey_2;
+
+        .remove_button {
+          position: absolute;
+          top: -0.6rem;
+          right: -0.6rem;
+        }
+      }
     }
   }
 }

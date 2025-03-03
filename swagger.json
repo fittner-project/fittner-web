@@ -1847,7 +1847,7 @@
         }
       },
       "SignReqDto": {
-        "required": ["fileGroupId", "memberId", "reservationId", "signType"],
+        "required": ["memberId", "reservationId", "signType"],
         "type": "object",
         "properties": {
           "reservationId": {
