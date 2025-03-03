@@ -172,7 +172,10 @@ export default function NoshowBottomSheet({
                   }}
                 >
                   <button
-                    onClick={() => handleImageRemove(index)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleImageRemove(index);
+                    }}
                     className={styles.remove_button}
                   >
                     <Image
