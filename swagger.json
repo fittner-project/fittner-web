@@ -470,18 +470,33 @@
         "summary": "이미지 업로드",
         "description": "이미지를 업로드 합니다.",
         "operationId": "postCommonFileUpload",
-        "parameters": [
-          {
-            "name": "fileReqDto",
-            "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/FileReqDto" }
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": ["files"],
+                "type": "object",
+                "properties": {
+                  "fileReqDto": { "$ref": "#/components/schemas/FileReqDto" },
+                  "files": {
+                    "type": "array",
+                    "items": { "type": "string", "format": "binary" }
+                  }
+                }
+              }
+            }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
-            "content": { "*/*": { "schema": { "type": "object" } } }
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageListFileResDto"
+                }
+              }
+            }
           }
         }
       }
@@ -2094,6 +2109,72 @@
             "example": "N"
           }
         }
+      },
+      "ApiResponseMessageListFileResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": { "$ref": "#/components/schemas/FileResDto" }
+          },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "FileResDto": {
+        "type": "object",
+        "properties": {
+          "fileGroupId": {
+            "type": "string",
+            "description": "파일그룹ID",
+            "example": "d1e679af-d348-11ef-b7c9-0242ac190002"
+          },
+          "fileId": {
+            "type": "string",
+            "description": "파일ID",
+            "example": "A31IA2A5242"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "파일명",
+            "example": "test(3).jpeg"
+          },
+          "filePath": {
+            "type": "string",
+            "description": "파일경로",
+            "example": "/app/fittner/upload"
+          },
+          "fileUrl": {
+            "type": "string",
+            "description": "파일url",
+            "example": "https://api.fittner.co.kr/api/v1/common/file/show/2f2CfG55i25"
+          }
+        },
+        "description": "응답 데이터"
       },
       "AccessTokenReqDto": {
         "type": "object",

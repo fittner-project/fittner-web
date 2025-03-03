@@ -28,8 +28,8 @@ import type {
   UseQueryResult
 } from '@tanstack/react-query'
 import type {
-  PostCommonFileUpload200,
-  PostCommonFileUploadParams
+  ApiResponseMessageListFileResDto,
+  PostCommonFileUploadBody
 } from '.././models'
 import { axiosInstance } from '../../mutator/instance-wrapper';
 
@@ -40,14 +40,20 @@ import { axiosInstance } from '../../mutator/instance-wrapper';
  * @summary 이미지 업로드
  */
 export const postCommonFileUpload = (
-    params: PostCommonFileUploadParams,
+    postCommonFileUploadBody: PostCommonFileUploadBody,
  signal?: AbortSignal
 ) => {
       
-      
-      return axiosInstance<PostCommonFileUpload200>(
+      const formData = new FormData();
+if(postCommonFileUploadBody.fileReqDto !== undefined) {
+ formData.append('fileReqDto', JSON.stringify(postCommonFileUploadBody.fileReqDto));
+ }
+postCommonFileUploadBody.files.forEach(value => formData.append('files', value));
+
+      return axiosInstance<ApiResponseMessageListFileResDto>(
       {url: `/api/v1/common/file/upload`, method: 'POST',
-        params, signal
+      headers: {'Content-Type': 'multipart/form-data', },
+       data: formData, signal
     },
       );
     }
@@ -55,17 +61,17 @@ export const postCommonFileUpload = (
 
 
 export const getPostCommonFileUploadMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postCommonFileUpload>>, TError,{params: PostCommonFileUploadParams}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof postCommonFileUpload>>, TError,{params: PostCommonFileUploadParams}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postCommonFileUpload>>, TError,{data: PostCommonFileUploadBody}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postCommonFileUpload>>, TError,{data: PostCommonFileUploadBody}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postCommonFileUpload>>, {params: PostCommonFileUploadParams}> = (props) => {
-          const {params} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postCommonFileUpload>>, {data: PostCommonFileUploadBody}> = (props) => {
+          const {data} = props ?? {};
 
-          return  postCommonFileUpload(params,)
+          return  postCommonFileUpload(data,)
         }
 
         
@@ -74,18 +80,18 @@ const {mutation: mutationOptions} = options ?? {};
   return  { mutationFn, ...mutationOptions }}
 
     export type PostCommonFileUploadMutationResult = NonNullable<Awaited<ReturnType<typeof postCommonFileUpload>>>
-    
+    export type PostCommonFileUploadMutationBody = PostCommonFileUploadBody
     export type PostCommonFileUploadMutationError = unknown
 
     /**
  * @summary 이미지 업로드
  */
 export const usePostCommonFileUpload = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postCommonFileUpload>>, TError,{params: PostCommonFileUploadParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postCommonFileUpload>>, TError,{data: PostCommonFileUploadBody}, TContext>, }
 ): UseMutationResult<
         Awaited<ReturnType<typeof postCommonFileUpload>>,
         TError,
-        {params: PostCommonFileUploadParams},
+        {data: PostCommonFileUploadBody},
         TContext
       > => {
 
