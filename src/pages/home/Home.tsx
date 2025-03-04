@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Image from "@/components/image/Image";
+import dayjs from "dayjs";
+import "dayjs/locale/ko"; // 한국어 로케일 추가
 
 import styles from "./Home.module.scss";
 import BackgroundContainer from "@/layout/containers/background-container/BackgroundContainer";
@@ -19,6 +21,8 @@ import WeeklyCalendar from "./components/weekly-calendar/WeeklyCalendar";
 
 function Home() {
   const navigate = useNavigate();
+
+  const today = dayjs().format("M월 D일"); // 예: "12월 22일"
 
   return (
     <BackgroundContainer>
@@ -44,7 +48,7 @@ function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <div className={styles.day}>12월 22일</div>
+            <div className={styles.day}>{today}</div>
             <div className={styles.guide}>
               {true ? (
                 <>
