@@ -121,7 +121,10 @@ export default function NoshowBottomSheet({
         </div>
 
         <div className={styles.image_container}>
-          <div className={styles.add_image}>
+          <div
+            onClick={() => fileInputRef.current?.click()}
+            className={styles.add_image}
+          >
             <input
               disabled={images.length >= 5}
               ref={fileInputRef}
@@ -130,13 +133,7 @@ export default function NoshowBottomSheet({
               style={{ display: "none" }}
               onChange={handleImageAdd}
             />
-            <Image
-              onClick={() => fileInputRef.current?.click()}
-              src={gallery}
-              alt="gallery"
-              width={2.8}
-              height={2.8}
-            />
+            <Image src={gallery} alt="gallery" width={2.8} height={2.8} />
             <p>{images.length}/5</p>
           </div>
 
@@ -179,8 +176,8 @@ export default function NoshowBottomSheet({
                     <Image
                       src={imageClose}
                       alt="imageClose"
-                      width={1.6}
-                      height={1.6}
+                      width={1.8}
+                      height={1.8}
                     />
                   </button>
                 </SwiperSlide>
