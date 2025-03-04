@@ -165,12 +165,12 @@ export default function NoshowBottomSheet({
                   }}
                   key={uniqueId()}
                   className={styles.preview_item}
-                  onClick={() => {
+                  onPointerUp={() => {
                     openImageViewer({ imageUrl: image.preview });
                   }}
                 >
                   <button
-                    onClick={(e) => {
+                    onPointerUp={(e) => {
                       e.stopPropagation();
                       handleImageRemove(index);
                     }}
