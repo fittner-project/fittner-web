@@ -30,7 +30,7 @@ function Home() {
         <MotionDiv className={styles.container}>
           <MotionDiv
             className={styles.dumbbell_container}
-            transition={{ duration: 0.4, delay: 0.6 }}
+            transition={{ duration: 0.4, delay: 1 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
