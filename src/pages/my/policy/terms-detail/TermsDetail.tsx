@@ -22,7 +22,9 @@ export default function TermsDetail() {
               style={{
                 width: "100%",
                 height: "50rem",
-                marginBottom: index === urls.length - 1 ? "0" : "20px",
+                marginBottom: index === urls.length - 1 ? "0" : "60px",
+                WebkitOverflowScrolling: "touch",
+                overflow: "auto",
               }}
             />
           ))}
