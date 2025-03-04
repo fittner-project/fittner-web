@@ -4,6 +4,10 @@
     text-align: center;
     text-wrap: nowrap;
     transition: font-size 0.3s ease;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &.active {
       @include fm-ar(2.2rem, $text_1, 2.2rem, 700);
