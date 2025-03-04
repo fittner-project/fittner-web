@@ -29,6 +29,7 @@ const PATH = {
     },
   },
   REGISTER_TRAINEE: "/register-trainee",
+  MY_LESSONS: "/my-lessons",
   SIGNATURE: {
     LIST: "/signature/list",
     DETAIL: "/signature/list/:ticketId",

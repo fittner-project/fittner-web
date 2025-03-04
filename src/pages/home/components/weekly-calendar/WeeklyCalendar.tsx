@@ -6,12 +6,14 @@ import "dayjs/locale/ko";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import weekday from "dayjs/plugin/weekday";
 import classNames from "classnames";
+import PATH from "@/router/path";
 
 dayjs.extend(weekOfYear);
 dayjs.extend(weekday);
 dayjs.locale("ko");
 
 function WeeklyCalendar() {
+  const navigate = useNavigate();
   const getCurrentWeekText = () => {
     const now = dayjs();
     const month = now.format("M");
@@ -41,7 +43,10 @@ function WeeklyCalendar() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.calendar_title}>
+      <div
+        className={styles.calendar_title}
+        onClick={() => navigate(PATH.MY_LESSONS)}
+      >
         {getCurrentWeekText()}{" "}
         <Image src={chevronRightGrey} width={2} height={2} />
       </div>

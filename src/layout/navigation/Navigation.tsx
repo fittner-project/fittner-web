@@ -40,7 +40,7 @@ const navigationItems: NavigationItem[] = [
     name: "나의수업",
     icon: nav_calendar,
     selectedIcon: nav_calendar_selected,
-    path: "",
+    path: PATH.MY_LESSONS,
   },
   {
     id: 3,

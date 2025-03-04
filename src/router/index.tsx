@@ -26,6 +26,7 @@ import Ticket from "@/pages/my/ticket/Ticket";
 import TicketDetail from "@/pages/my/ticket/ticket-detail/TicketDetail";
 import SignatureList from "@/pages/signature/signature-list/SignatureList";
 import SignatureDetail from "@/pages/signature/signature-detail/SignatureDetail";
+import MyLessons from "@/pages/my-lessons/MyLessons";
 
 const queryClient = new QueryClient();
 
@@ -129,6 +130,10 @@ const router = createBrowserRouter([
       {
         path: PATH.SIGNATURE.DETAIL,
         element: <SignatureDetail />,
+      },
+      {
+        path: PATH.MY_LESSONS,
+        element: <MyLessons />,
       },
     ],
   },
