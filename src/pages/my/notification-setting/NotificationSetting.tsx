@@ -1,17 +1,12 @@
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import SwitchSection from "./components/SwitchSection";
 import styles from "./NotificationSetting.module.scss";
-import { useGetUserPushs } from "@/api/generated/푸시/푸시";
+
 import Skeleton from "@/components/skeleton/Skeleton";
+import { useGetUserMyPagePush } from "@/api/generated/마이페이지/마이페이지";
 
 export default function NotificationSetting() {
-  const centerId = useUserStore((state) => state.selectedCenter.centerId);
-  const { data: userPushData, isLoading } = useGetUserPushs(
-    {
-      centerId: centerId || "",
-    },
-    { query: { enabled: !!centerId } }
-  );
+  const { data: userPushData, isLoading } = useGetUserMyPagePush();
 
   const userPushsData = userPushData?.result;
 
