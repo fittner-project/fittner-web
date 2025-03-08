@@ -12,6 +12,8 @@
 export interface PushSetResDto {
   /** 푸시종류 */
   pushKind?: string;
+  /** 푸시종류명 */
+  pushKindName?: string;
   /** 푸시여부 */
   pushSetYn?: string;
 }

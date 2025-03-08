@@ -3511,6 +3511,11 @@
             "description": "푸시종류",
             "example": "ADVERTISE | RESERVATION"
           },
+          "pushKindName": {
+            "type": "string",
+            "description": "푸시종류명",
+            "example": "광고 동의 알림"
+          },
           "pushSetYn": {
             "type": "string",
             "description": "푸시여부",

@@ -53,7 +53,7 @@ export default function SwitchSection({ notification }: SwitchSectionProps) {
   });
   return (
     <div className={styles.container}>
-      <p className={styles.title}>{notification.pushKind}</p>
+      <p className={styles.title}>{notification.pushKindName}</p>
       <Switch
         isSwitchOn={notification.pushSetYn === "Y"}
         onChange={() => {

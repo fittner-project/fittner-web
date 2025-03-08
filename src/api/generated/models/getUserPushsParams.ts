@@ -11,12 +11,4 @@ export type GetUserPushsParams = {
  * 센터ID
  */
 centerId: string;
-/**
- * 페이지당 레코드 수
- */
-recordsPerPage?: string;
-/**
- * 현재 페이지 번호
- */
-currentPageNo?: string;
 };
