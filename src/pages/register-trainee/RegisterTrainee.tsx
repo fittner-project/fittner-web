@@ -32,12 +32,10 @@ export default function RegisterTrainee() {
 
   useHandleBackInject(() => {
     if (step === 1) {
-      console.log("step1");
       navigate(-1);
       return;
     } else {
-      console.log("step2");
-      // setStep(1);
+      setStep(1);
       return;
     }
   }, [step]);
