@@ -8,6 +8,7 @@ import useGetCurrentRoute from "@/hooks/useGetCurrentRoute";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ApprovalNoticeBottomSheet from "@/pages/center-list/components/approval-notice-bottom-sheet/ApprovalNoticeBottomSheet";
 import PATH from "@/router/path";
+import useAppStore from "@/store/app";
 interface SubHeaderProps {
   fallback: string | "none";
 }
@@ -17,8 +18,15 @@ export const SubHeader = ({ fallback }: SubHeaderProps) => {
   const rightSection = currentRoute?.subHeaderConfig?.rightSection;
   const navigate = useNavigate();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const injectedBackFunction = useAppStore(
+    (state) => state.injectedBackFunction
+  );
 
   const handleBack = () => {
+    if (injectedBackFunction) {
+      injectedBackFunction();
+      return;
+    }
     if (fallback === "none") navigate(-1);
     else navigate(fallback);
   };

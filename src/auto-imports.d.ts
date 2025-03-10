@@ -12,6 +12,7 @@ declare global {
   const Outlet: typeof import('react-router-dom')['Outlet']
   const Route: typeof import('react-router-dom')['Route']
   const Routes: typeof import('react-router-dom')['Routes']
+  const app: typeof import('./store/app')['default']
   const auth: typeof import('./store/auth')['default']
   const createRef: typeof import('react')['createRef']
   const forwardRef: typeof import('react')['forwardRef']

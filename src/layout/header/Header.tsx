@@ -6,7 +6,7 @@ import Image from "@/components/image/Image";
 import { storage } from "@/utils/storage";
 import { storageKeys } from "@/constants/storageKeys";
 import PATH from "@/router/path";
-
+import useAppStore from "@/store/app";
 interface HeaderProps {
   fallback: string | "none";
   title?: string | ReactNode;
@@ -18,6 +18,10 @@ export default function Header({
   title,
   type = "center",
 }: HeaderProps) {
+  const injectedBackFunction = useAppStore(
+    (state) => state.injectedBackFunction
+  );
+
   const navigate = useNavigate();
   const userInfo = useUserStore((state) => state.userInfo);
   const selectedCenter = useUserStore((state) => state.selectedCenter);
@@ -27,6 +31,10 @@ export default function Header({
   };
 
   const handleNavigateCenterList = () => {
+    if (injectedBackFunction) {
+      injectedBackFunction();
+      return;
+    }
     navigate(PATH.CENTER_LIST);
   };
 

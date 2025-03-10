@@ -6,6 +6,7 @@ import ProductFormView from "./components/product-form-view/ProductFormView";
 import Row from "@/components/flex/Row";
 import classNames from "classnames";
 import { MotionDiv } from "@/components/animation/Motion";
+import useHandleBackInject from "@/hooks/useHandleBackInject";
 
 export type RegisterTraineeForm = {
   memberName: string;
@@ -26,6 +27,10 @@ export default function RegisterTrainee() {
   const [step, setStep] = useState<1 | 2>(1);
   const form = useForm<RegisterTraineeForm>({
     mode: "onChange",
+  });
+
+  useHandleBackInject(() => {
+    console.log("뒤로가기");
   });
 
   return (
