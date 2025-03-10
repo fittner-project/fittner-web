@@ -3,8 +3,6 @@ import styles from "./Header.module.scss";
 import { ReactNode } from "react";
 import { bell, chevron_down } from "@/assets/assets";
 import Image from "@/components/image/Image";
-import { storage } from "@/utils/storage";
-import { storageKeys } from "@/constants/storageKeys";
 import PATH from "@/router/path";
 import useAppStore from "@/store/app";
 interface HeaderProps {
@@ -37,8 +35,6 @@ export default function Header({
     }
     navigate(PATH.CENTER_LIST);
   };
-
-  console.log(selectedCenter);
 
   return (
     <div className={styles.container}>

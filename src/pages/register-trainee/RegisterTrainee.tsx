@@ -25,13 +25,22 @@ export type RegisterTraineeForm = {
 
 export default function RegisterTrainee() {
   const [step, setStep] = useState<1 | 2>(1);
+  const navigate = useNavigate();
   const form = useForm<RegisterTraineeForm>({
     mode: "onChange",
   });
 
   useHandleBackInject(() => {
-    console.log("뒤로가기");
-  });
+    if (step === 1) {
+      console.log("step1");
+      navigate(-1);
+      return;
+    } else {
+      console.log("step2");
+      // setStep(1);
+      return;
+    }
+  }, [step]);
 
   return (
     <PaddingContainer>
