@@ -30,6 +30,9 @@ export default function MyLessons() {
           dayHeaderFormat={{
             weekday: "short",
           }}
+          dayCellContent={({ date, dayNumberText }) => {
+            return dayNumberText.replace("일", "");
+          }}
         />
       </div>
     </PaddingContainer>
