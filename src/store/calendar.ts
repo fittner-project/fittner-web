@@ -1,63 +1,52 @@
 import { create } from "zustand";
 import dayjs from "dayjs";
-
-// 날짜별 상태 타입
-export type LessonStatus = {
-  date: string; // YYYY-MM-DD 형식
-  status: "김영재" | "김당재" | "남기연"; // 필요한 상태값들
-  tags?: string[]; // 추가적인 태그들
-};
+import { GroupedReservationMemberDto } from "@/api/generated/models";
 
 interface CalendarStore {
-  // 날짜별 상태를 저장하는 맵
-  lessonStatuses: Record<string, LessonStatus>;
+  lessons: GroupedReservationMemberDto[];
+  setLessons: (lessons: GroupedReservationMemberDto[]) => void;
 
-  // 날짜 상태 추가/수정
-  setLessonStatus: (status: LessonStatus) => void;
+  //   // 특정 날짜에 해당하는 수업들 조회
+  //   getLessonsByDate: (date: string) => GroupedReservationMemberDto[];
 
-  // 날짜 상태 제거
-  removeLessonStatus: (date: string) => void;
-
-  // 특정 날짜의 상태 조회
-  getLessonStatus: (date: string) => LessonStatus | undefined;
-
-  // 특정 월의 모든 상태 조회
-  getMonthLessonStatuses: (year: number, month: number) => LessonStatus[];
+  //   // 특정 월에 해당하는 수업들 조회
+  //   getMonthLessons: (
+  //     year: number,
+  //     month: number
+  //   ) => GroupedReservationMemberDto[];
 }
 
 const useCalendarStore = create<CalendarStore>((set, get) => ({
-  lessonStatuses: {},
+  lessons: [],
 
-  setLessonStatus: (status) => {
-    set((state) => ({
-      lessonStatuses: {
-        ...state.lessonStatuses,
-        [status.date]: status,
-      },
-    }));
+  setLessons: (lessons) => {
+    set({ lessons });
   },
 
-  removeLessonStatus: (date) => {
-    set((state) => {
-      const newStatuses = { ...state.lessonStatuses };
-      delete newStatuses[date];
-      return { lessonStatuses: newStatuses };
-    });
-  },
+  //   getLessonsByDate: (date) => {
+  //     const targetDate = dayjs(date);
+  //     return get().lessons.filter((lesson) => {
+  //       const start = dayjs(lesson.startDate);
+  //       const end = dayjs(lesson.endDate);
+  //       return targetDate.isSameOrAfter(start) && targetDate.isSameOrBefore(end);
+  //     });
+  //   },
 
-  getLessonStatus: (date) => {
-    return get().lessonStatuses[date];
-  },
+  //   getMonthLessons: (year, month) => {
+  //     const startOfMonth = dayjs().year(year).month(month).startOf("month");
+  //     const endOfMonth = startOfMonth.endOf("month");
 
-  getMonthLessonStatuses: (year, month) => {
-    const startDate = dayjs().year(year).month(month).startOf("month");
-    const endDate = startDate.endOf("month");
+  //     return get().lessons.filter((lesson) => {
+  //       const lessonStart = dayjs(lesson.startDate);
+  //       const lessonEnd = dayjs(lesson.endDate);
 
-    return Object.values(get().lessonStatuses).filter((status) => {
-      const statusDate = dayjs(status.date);
-      return statusDate.isAfter(startDate) && statusDate.isBefore(endDate);
-    });
-  },
+  //       // 해당 월에 걸쳐있는 수업들 반환
+  //       return (
+  //         lessonStart.isSameOrBefore(endOfMonth) &&
+  //         lessonEnd.isSameOrAfter(startOfMonth)
+  //       );
+  //     });
+  //   },
 }));
 
 export default useCalendarStore;

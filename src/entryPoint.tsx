@@ -10,6 +10,7 @@ import {
   useGetUserReservationColors,
   useGetUserReservations,
 } from "./api/generated/수업/수업";
+import useCalendarStore from "./store/calendar";
 
 interface IProps {
   children: ReactNode;
@@ -52,9 +53,7 @@ const Authorized = ({ children }: IProps) => {
   const setReservationColors = useUserStore(
     (state) => state.setReservationColors
   );
-  const setCurrentMonthReservations = useUserStore(
-    (state) => state.setCurrentMonthReservations
-  );
+  const setLessons = useCalendarStore((state) => state.setLessons);
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
   const { data: reservations } = useGetUserReservations({
     //@ts-ignore
@@ -78,7 +77,7 @@ const Authorized = ({ children }: IProps) => {
 
   useEffect(() => {
     if (reservations) {
-      setCurrentMonthReservations(reservations.result || []);
+      setLessons(reservations.result || []);
     }
   }, [reservations]);
   //인증이 된 이후 앱 전체 적용 로직들
