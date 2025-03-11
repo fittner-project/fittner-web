@@ -50,6 +50,7 @@
     "user": true,
     "useAuthStore": true,
     "useImageViewerStore": true,
-    "app": true
+    "app": true,
+    "calendar": true
   }
 }
