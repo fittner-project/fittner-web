@@ -94,7 +94,7 @@ export const Routes: Routes = {
     path: PATH.MY_LESSONS,
     fallback: "none",
     headerType: "sub",
-    navType: "none",
+    navType: "default",
     subHeaderConfig: {
       rightSection: {
         type: "text",
