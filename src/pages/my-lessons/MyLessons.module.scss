@@ -1,0 +1,61 @@
+.container {
+  padding-top: 2.5rem;
+
+  :global {
+    // 헤더 스타일링
+    .fc-header-toolbar {
+      margin-bottom: 2rem !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      .fc-toolbar-title {
+        @include fm-ar(2.2rem, $text_1, 2.2rem, 700);
+        margin-left: 0.6rem;
+        margin-right: 0.6rem;
+      }
+
+      .fc-prev-button,
+      .fc-next-button {
+        background: none;
+        border: none;
+        @include fm-ar(2rem, $text_3, 2.2rem, 300);
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    // 요일 헤더
+    .fc-col-header-cell {
+      padding: 1rem 0;
+      font-size: 1.4rem;
+
+      &-cushion {
+        color: black;
+        text-decoration: none;
+      }
+    }
+
+    // 날짜 셀
+    .fc-daygrid-day {
+      height: 5rem;
+
+      &-number {
+        font-size: 1.4rem;
+        color: blue;
+      }
+    }
+
+    // 주말 색상
+    .fc-day-sun .fc-daygrid-day-number {
+      color: green;
+    }
+
+    .fc-day-sat .fc-daygrid-day-number {
+      color: brown;
+    }
+  }
+}
