@@ -67,21 +67,34 @@
 
     // 날짜 셀
     .fc-daygrid-day {
-      height: 5rem;
+      height: 10.5rem;
+      border-bottom: 2px solid $grey_1 !important;
 
       &-number {
-        font-size: 1.4rem;
-        color: blue;
+        @include fm-ar(1.6rem, $text_1, 2.2rem, 400);
       }
     }
 
     // 주말 색상
     .fc-day-sun .fc-daygrid-day-number {
-      color: green;
+      color: $text_7;
     }
 
     .fc-day-sat .fc-daygrid-day-number {
-      color: brown;
+      color: $text_6;
+    }
+
+    // 날짜 셀 스타일링
+    .fc-daygrid-day-number {
+      width: 100%;
+      text-align: center;
+      padding: 0.8rem 0;
+    }
+
+    // 날짜 컨테이너 스타일링
+    .fc-daygrid-day-top {
+      justify-content: center;
+      flex-direction: row;
     }
   }
 }
