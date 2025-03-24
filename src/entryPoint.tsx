@@ -46,6 +46,8 @@ export default EntryPoint;
 const Authorized = ({ children }: IProps) => {
   const currentMonthStart = dayjs().startOf("month").format("YYYY-MM-DD");
   const currentMonthEnd = dayjs().endOf("month").format("YYYY-MM-DD");
+  const currentWeekStart = dayjs().startOf("week").format("YYYY-MM-DD");
+  const currentWeekEnd = dayjs().endOf("week").format("YYYY-MM-DD");
 
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const setUserInfo = useUserStore((state) => state.setUserInfo);
@@ -54,6 +56,7 @@ const Authorized = ({ children }: IProps) => {
     (state) => state.setReservationColors
   );
   const setLessons = useCalendarStore((state) => state.setLessons);
+  const setWeeklyLessons = useCalendarStore((state) => state.setWeeklyLessons);
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
   const { data: reservations } = useGetUserReservations({
     //@ts-ignore
@@ -61,6 +64,11 @@ const Authorized = ({ children }: IProps) => {
     reservationEndDate: currentMonthEnd,
   });
   const { data: reservationColors } = useGetUserReservationColors();
+  const { data: weeklyReservations } = useGetUserReservations({
+    //@ts-ignore
+    reservationStartDate: currentWeekStart,
+    reservationEndDate: currentWeekEnd,
+  });
 
   useEffect(() => {
     if (data) {
@@ -80,6 +88,12 @@ const Authorized = ({ children }: IProps) => {
       setLessons(reservations.result || []);
     }
   }, [reservations]);
+
+  useEffect(() => {
+    if (weeklyReservations) {
+      setWeeklyLessons(weeklyReservations.result || []);
+    }
+  }, [weeklyReservations]);
   //인증이 된 이후 앱 전체 적용 로직들
 
   //브랜드별 컬러 API 작업이 끝나면 인증 후 여기서 받은 뒤 zustand에 저장하고 사용
