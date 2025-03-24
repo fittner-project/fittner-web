@@ -1,22 +1,43 @@
 import { ReservationMemberResDto } from "@/api/generated/models";
 import styles from "./Training.module.scss";
+import Row from "../flex/Row";
+import dayjs from "dayjs";
 
 const Training = ({ lesson }: { lesson: ReservationMemberResDto }) => {
-  const trainerName = useUserStore((state) => state.userInfo.trainerName);
+  const formatTime = (timeStr: string) => {
+    return dayjs(timeStr, "HHmm").format("A h:mm");
+  };
+
   console.log("다음 수업", lesson);
 
   return (
     <div className={styles.container}>
       <div
         className={styles.member_color}
-        style={{ backgroundColor: "purple" }}
+        style={{ backgroundColor: "#B0B8C1" }}
       />
       <div className={styles.member_info}>
         <div className={styles.member_name}>
-          <span>{trainerName}</span> 회원님
+          {!lesson ? (
+            <span>예정된 수업이 있다면</span>
+          ) : (
+            <Row>
+              <div>{lesson.memberName}</div>
+              <div>
+                <span>{lesson.ptnCnt ?? 1}회차</span>/10회차
+              </div>
+            </Row>
+          )}
         </div>
 
-        <div className={styles.time}>나의 수업에서 등록해주세요</div>
+        {!lesson ? (
+          <div className={styles.time}>나의 수업에서 등록해주세요</div>
+        ) : (
+          <div className={styles.time}>
+            {formatTime(lesson.reservationStartTime ?? "")} -{" "}
+            {formatTime(lesson.reservationEndTime ?? "")}
+          </div>
+        )}
       </div>
     </div>
   );
