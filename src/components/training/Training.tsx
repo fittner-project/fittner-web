@@ -1,7 +1,9 @@
+import { ReservationMemberResDto } from "@/api/generated/models";
 import styles from "./Training.module.scss";
 
-const Training = () => {
+const Training = ({ lesson }: { lesson: ReservationMemberResDto }) => {
   const trainerName = useUserStore((state) => state.userInfo.trainerName);
+  console.log("다음 수업", lesson);
 
   return (
     <div className={styles.container}>

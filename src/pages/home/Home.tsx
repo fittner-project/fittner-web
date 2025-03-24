@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Image from "@/components/image/Image";
 import dayjs from "dayjs";
 import "dayjs/locale/ko"; // 한국어 로케일 추가
+import useCalendarStore from "@/store/calendar";
 
 import styles from "./Home.module.scss";
 import BackgroundContainer from "@/layout/containers/background-container/BackgroundContainer";
@@ -21,8 +22,30 @@ import WeeklyCalendar from "./components/weekly-calendar/WeeklyCalendar";
 
 function Home() {
   const navigate = useNavigate();
+  const weeklyLessons = useCalendarStore((state) => state.weeklyLessons);
 
-  const today = dayjs().format("M월 D일"); // 예: "12월 22일"
+  // 오늘의 가장 가까운 수업 찾기
+  const findNearestLesson = () => {
+    const today = dayjs();
+    const todayStr = today.format("DD"); // 오늘 날짜의 일자
+    const currentTime = today.format("HHmm"); // 현재 시각 (예: "1430")
+
+    // 오늘 날짜의 수업들 찾기
+    const todayLessons =
+      weeklyLessons.find((day) => day.lastTwoDigits === todayStr)
+        ?.reservations || [];
+
+    // 현재 시각 이후의 수업들만 필터링하고, 시작 시간이 가장 가까운 수업 찾기
+    return todayLessons
+      .filter((lesson) => (lesson?.reservationStartTime ?? 0) >= currentTime)
+      .sort(
+        (a, b) =>
+          Number(a.reservationStartTime) - Number(b.reservationStartTime)
+      )[0];
+  };
+
+  const nearestLesson = findNearestLesson();
+  const today = dayjs().format("M월 D일");
 
   return (
     <BackgroundContainer>
@@ -50,18 +73,18 @@ function Home() {
           >
             <div className={styles.day}>{today}</div>
             <div className={styles.guide}>
-              {true ? (
+              {!nearestLesson ? (
                 <>
                   <span>등록된 수업</span>이 없어요!
                 </>
               ) : (
                 <>
-                  <span>4번째 </span>&nbsp; 수업이에요!
+                  <span>오늘의 다음 수업</span>이에요!
                 </>
               )}
             </div>
 
-            <Training />
+            <Training lesson={nearestLesson} />
           </MotionDiv>
 
           <MotionDiv
