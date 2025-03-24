@@ -7,6 +7,7 @@ import weekOfYear from "dayjs/plugin/weekOfYear";
 import weekday from "dayjs/plugin/weekday";
 import classNames from "classnames";
 import PATH from "@/router/path";
+import useCalendarStore from "@/store/calendar";
 
 dayjs.extend(weekOfYear);
 dayjs.extend(weekday);
@@ -14,6 +15,8 @@ dayjs.locale("ko");
 
 function WeeklyCalendar() {
   const navigate = useNavigate();
+  const weeklyLessons = useCalendarStore((state) => state.weeklyLessons);
+
   const getCurrentWeekText = () => {
     const now = dayjs();
     const month = now.format("M");
@@ -30,11 +33,18 @@ function WeeklyCalendar() {
 
     for (let i = 0; i < 7; i++) {
       const currentDay = startOfWeek.add(i, "day");
+      const dayStr = currentDay.format("DD");
+
+      // 해당 날짜의 예약 내역 찾기
+      const dayLessons =
+        weeklyLessons.find((day) => day.lastTwoDigits === dayStr)
+          ?.reservations || [];
+
       days.push({
         date: currentDay.date(),
         day: currentDay.format("ddd"),
         isToday: currentDay.isSame(dayjs(), "day"),
-        hasSchedule: true, // 스케줄 여부는 props로 받아와야 함
+        lessons: dayLessons,
       });
     }
 
@@ -67,18 +77,18 @@ function WeeklyCalendar() {
                 {day.day}
               </div>
               <div className={styles.date_circle}>{day.date}</div>
-              {day.hasSchedule && (
-                <div className={styles.schedule_dots}>
-                  <span className={styles.dot} />
-                  <span className={styles.dot} />
-                  <span className={styles.dot} />
-                  <span className={styles.dot} />
-                  <span className={styles.dot} />
-                  <span className={styles.dot} />
-                  <span className={styles.dot} />
-                  <span className={styles.dot} />
-                </div>
-              )}
+              <div className={styles.schedule_dots}>
+                {[...Array(8)].map((_, idx) => (
+                  <span
+                    key={idx}
+                    className={styles.dot}
+                    style={{
+                      backgroundColor:
+                        day.lessons[idx]?.reservationColor || "#B0B8C1",
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           ))}
         </div>
