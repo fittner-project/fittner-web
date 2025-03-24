@@ -3,11 +3,36 @@ import styles from "./MyLessons.module.scss";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { useCallback } from "react";
+import useCalendarStore from "@/store/calendar";
 
 export default function MyLessons() {
+  const weeklyLessons = useCalendarStore((state) => state.weeklyLessons);
+
   const handleDatesSet = useCallback((arg: any) => {
     console.log("현재 보여지는 달:", arg.view.title);
   }, []);
+
+  const renderDayCellContent = ({ date, dayNumberText }: any) => {
+    const dayStr = date.getDate().toString().padStart(2, "0");
+    const dayLessons =
+      weeklyLessons.find((day) => day.lastTwoDigits === dayStr)?.reservations ||
+      [];
+
+    return (
+      <div className={styles.day_cell}>
+        <div>{dayNumberText.replace("일", "")}</div>
+        {dayLessons.map((lesson, idx) => (
+          <div
+            key={idx}
+            className={styles.lesson_tag}
+            style={{ backgroundColor: lesson.reservationColor }}
+          >
+            {lesson.memberName}
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <PaddingContainer>
@@ -15,7 +40,7 @@ export default function MyLessons() {
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
-          locale="ko" // 한글 설정
+          locale="ko"
           headerToolbar={{
             start: "prev",
             center: "title",
@@ -30,9 +55,7 @@ export default function MyLessons() {
           dayHeaderFormat={{
             weekday: "short",
           }}
-          dayCellContent={({ date, dayNumberText }) => {
-            return dayNumberText.replace("일", "");
-          }}
+          dayCellContent={renderDayCellContent}
         />
       </div>
     </PaddingContainer>
