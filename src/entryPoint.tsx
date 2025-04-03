@@ -44,10 +44,10 @@ const EntryPoint: FC<IProps> = ({ children }) => {
 export default EntryPoint;
 
 const Authorized = ({ children }: IProps) => {
-  const currentMonthStart = dayjs().startOf("month").format("YYYY-MM-DD");
-  const currentMonthEnd = dayjs().endOf("month").format("YYYY-MM-DD");
-  const currentWeekStart = dayjs().startOf("week").format("YYYY-MM-DD");
-  const currentWeekEnd = dayjs().endOf("week").format("YYYY-MM-DD");
+  const currentMonthStart = dayjs().startOf("month").format("YYYYMMDD");
+  const currentMonthEnd = dayjs().endOf("month").format("YYYYMMDD");
+  const currentWeekStart = dayjs().startOf("week").format("YYYYMMDD");
+  const currentWeekEnd = dayjs().endOf("week").format("YYYYMMDD");
 
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const setUserInfo = useUserStore((state) => state.setUserInfo);

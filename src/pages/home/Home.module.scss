@@ -1,7 +1,9 @@
 .container {
   width: 100%;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   padding-top: 3rem;
   height: calc(100vh - $main_header_height - $navigation_height);
 
