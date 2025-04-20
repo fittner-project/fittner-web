@@ -4,6 +4,8 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { useCallback } from "react";
 import useCalendarStore from "@/store/calendar";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import DailyLessonBottomSheet from "./components/daily-lesson-bottom-sheet/DailyLessonBottomSheet";
 
 export default function MyLessons() {
   const weeklyLessons = useCalendarStore((state) => state.weeklyLessons);
@@ -12,6 +14,15 @@ export default function MyLessons() {
     console.log("현재 보여지는 달:", arg.view.title);
   }, []);
 
+  const handleDateClick = (date: Date) => {
+    openBottomSheet({
+      component: DailyLessonBottomSheet,
+      props: {
+        date: date,
+      },
+    });
+  };
+
   const renderDayCellContent = ({ date, dayNumberText }: any) => {
     const dayStr = date.getDate().toString().padStart(2, "0");
     const dayLessons =
@@ -19,7 +30,7 @@ export default function MyLessons() {
       [];
 
     return (
-      <div className={styles.day_cell}>
+      <div className={styles.day_cell} onClick={() => handleDateClick(date)}>
         <div>{dayNumberText.replace("일", "")}</div>
         {dayLessons.map((lesson, idx) => (
           <div

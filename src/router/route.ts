@@ -28,7 +28,7 @@ export type SubHeaderRightSection = {
   src?: string;
   imageWidth?: number;
   imageHeight?: number;
-  actionType?: "add-center" | "my-trainee" | "none";
+  actionType?: "add-center" | "my-trainee" | "my-lesson" | "none";
 };
 
 type RouteKeys =
@@ -99,6 +99,7 @@ export const Routes: Routes = {
       rightSection: {
         type: "text",
         textContent: "주별일정",
+        actionType: "my-lesson",
       },
     },
   },

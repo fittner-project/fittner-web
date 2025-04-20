@@ -8,8 +8,6 @@ const Training = ({ lesson }: { lesson: ReservationMemberResDto }) => {
     return dayjs(timeStr, "HHmm").format("A h:mm");
   };
 
-  console.log("다음 수업", lesson);
-
   return (
     <div className={styles.container}>
       <div

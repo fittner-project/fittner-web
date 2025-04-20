@@ -9,6 +9,7 @@ import { openBottomSheet } from "@/utils/bottomSheet";
 import ApprovalNoticeBottomSheet from "@/pages/center-list/components/approval-notice-bottom-sheet/ApprovalNoticeBottomSheet";
 import PATH from "@/router/path";
 import useAppStore from "@/store/app";
+import WeeklyLessonBottomSheet from "@/pages/my-lessons/components/weekly-lesson-bottom-sheet/WeeklyLessonBottomSheet";
 interface SubHeaderProps {
   fallback: string | "none";
 }
@@ -45,6 +46,13 @@ export const SubHeader = ({ fallback }: SubHeaderProps) => {
 
       case "my-trainee":
         navigate(PATH.REGISTER_TRAINEE);
+        break;
+
+      case "my-lesson":
+        openBottomSheet({
+          component: WeeklyLessonBottomSheet,
+          props: {},
+        });
         break;
 
       default:

@@ -1,0 +1,7 @@
+.container {
+  min-height: 60rem;
+
+  .date {
+    @include fm-ar(2.4rem, $text_1, 2.2rem, 700);
+  }
+}
