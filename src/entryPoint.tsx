@@ -11,6 +11,7 @@ import {
   useGetUserReservations,
 } from "./api/generated/수업/수업";
 import useCalendarStore from "./store/calendar";
+import { useLocation } from "react-router-dom";
 
 interface IProps {
   children: ReactNode;
@@ -22,7 +23,7 @@ const EntryPoint: FC<IProps> = ({ children }) => {
   const { splashImgUrl } = useSplash();
 
   return (
-    <Authorized>
+    <>
       {location.pathname === PATH.ROOT && splashImgUrl && (
         <div style={{ width: "100dvw", height: "100dvh" }}>
           <Image
@@ -36,12 +37,21 @@ const EntryPoint: FC<IProps> = ({ children }) => {
           />
         </div>
       )}
-      {children}
-    </Authorized>
+      <AuthDataProvider>{children}</AuthDataProvider>
+    </>
   );
 };
 
-export default EntryPoint;
+// 인증된 사용자의 데이터만 관리하는 컴포넌트
+const AuthDataProvider = ({ children }: IProps) => {
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  if (!isAuthenticated) {
+    return <>{children}</>; // 인증되지 않은 경우 데이터 로딩 없이 children만 렌더링
+  }
+
+  return <Authorized>{children}</Authorized>;
+};
 
 const Authorized = ({ children }: IProps) => {
   const currentMonthStart = dayjs().startOf("month").format("YYYYMMDD");
@@ -49,7 +59,6 @@ const Authorized = ({ children }: IProps) => {
   const currentWeekStart = dayjs().startOf("week").format("YYYYMMDD");
   const currentWeekEnd = dayjs().endOf("week").format("YYYYMMDD");
 
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const setUserInfo = useUserStore((state) => state.setUserInfo);
   const setSelectedCenter = useUserStore((state) => state.setSelectedCenter);
   const setReservationColors = useUserStore(
@@ -57,28 +66,18 @@ const Authorized = ({ children }: IProps) => {
   );
   const setLessons = useCalendarStore((state) => state.setLessons);
   const setWeeklyLessons = useCalendarStore((state) => state.setWeeklyLessons);
-  const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
-  const { data: reservations } = useGetUserReservations(
-    {
-      //@ts-ignore
-      reservationStartDate: currentMonthStart,
-      reservationEndDate: currentMonthEnd,
-    },
-    { query: { enabled: !!isAuthenticated } }
-  );
-  const { data: reservationColors } = useGetUserReservationColors({
-    query: {
-      enabled: !!isAuthenticated,
-    },
+  const { data } = useGetUserInfo();
+  const { data: reservations } = useGetUserReservations({
+    //@ts-ignore
+    reservationStartDate: currentMonthStart,
+    reservationEndDate: currentMonthEnd,
   });
-  const { data: weeklyReservations } = useGetUserReservations(
-    {
-      //@ts-ignore
-      reservationStartDate: currentWeekStart,
-      reservationEndDate: currentWeekEnd,
-    },
-    { query: { enabled: !!isAuthenticated } }
-  );
+  const { data: reservationColors } = useGetUserReservationColors();
+  const { data: weeklyReservations } = useGetUserReservations({
+    //@ts-ignore
+    reservationStartDate: currentWeekStart,
+    reservationEndDate: currentWeekEnd,
+  });
 
   useEffect(() => {
     if (data) {
@@ -104,11 +103,11 @@ const Authorized = ({ children }: IProps) => {
       setWeeklyLessons(weeklyReservations.result || []);
     }
   }, [weeklyReservations]);
-  //인증이 된 이후 앱 전체 적용 로직들
 
-  //브랜드별 컬러 API 작업이 끝나면 인증 후 여기서 받은 뒤 zustand에 저장하고 사용
   return <Fragment>{children}</Fragment>;
 };
 
 //로딩인디케이터, 모달 레이어 처리 등 전역적인 처리가 필요한경우 이곳에서
 //기타 Provider적용이 필요한경우 이곳에서
+
+export default EntryPoint;
