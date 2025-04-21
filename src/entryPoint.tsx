@@ -58,17 +58,27 @@ const Authorized = ({ children }: IProps) => {
   const setLessons = useCalendarStore((state) => state.setLessons);
   const setWeeklyLessons = useCalendarStore((state) => state.setWeeklyLessons);
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
-  const { data: reservations } = useGetUserReservations({
-    //@ts-ignore
-    reservationStartDate: currentMonthStart,
-    reservationEndDate: currentMonthEnd,
+  const { data: reservations } = useGetUserReservations(
+    {
+      //@ts-ignore
+      reservationStartDate: currentMonthStart,
+      reservationEndDate: currentMonthEnd,
+    },
+    { query: { enabled: !!isAuthenticated } }
+  );
+  const { data: reservationColors } = useGetUserReservationColors({
+    query: {
+      enabled: !!isAuthenticated,
+    },
   });
-  const { data: reservationColors } = useGetUserReservationColors();
-  const { data: weeklyReservations } = useGetUserReservations({
-    //@ts-ignore
-    reservationStartDate: currentWeekStart,
-    reservationEndDate: currentWeekEnd,
-  });
+  const { data: weeklyReservations } = useGetUserReservations(
+    {
+      //@ts-ignore
+      reservationStartDate: currentWeekStart,
+      reservationEndDate: currentWeekEnd,
+    },
+    { query: { enabled: !!isAuthenticated } }
+  );
 
   useEffect(() => {
     if (data) {
