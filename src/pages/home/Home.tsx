@@ -102,7 +102,10 @@ function Home() {
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <div className={styles.my_class}>
+            <div
+              className={styles.my_class}
+              onClick={() => navigate(PATH.MY_LESSONS)}
+            >
               <div className={styles.menu_title}>
                 나의 수업
                 <Image src={chevronRightGrey} width={2} height={2} />

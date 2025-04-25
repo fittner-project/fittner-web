@@ -7,6 +7,7 @@ import Image from "@/components/image/Image";
 import { registration } from "@/assets/assets";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import weekday from "dayjs/plugin/weekday";
+import PATH from "@/router/path";
 
 dayjs.extend(weekOfYear);
 dayjs.extend(weekday);
@@ -19,6 +20,7 @@ interface DailyLessonBottomSheetProps {
 export default function WeeklyLessonBottomSheet({
   date,
 }: DailyLessonBottomSheetProps) {
+  const navigate = useNavigate();
   const formattedDate = dayjs(date).locale("ko").format("M월 D일 dddd"); // 예: "12월 22일 일요일"
 
   // 현재 날짜 기준의 주차 정보
@@ -49,7 +51,12 @@ export default function WeeklyLessonBottomSheet({
         <Row justifyContent="space-between">
           <div className={styles.date}>{weekInfo}</div>
           <div>
-            <Image src={registration} width={2.6} height={2.6} />
+            <Image
+              src={registration}
+              width={2.6}
+              height={2.6}
+              onClick={() => navigate(PATH.REGISTER_LESSON)}
+            />
           </div>
         </Row>
         <div className={styles.week_range}>{weekRange}</div>

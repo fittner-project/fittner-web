@@ -48,6 +48,7 @@ type RouteKeys =
   | "redirect"
   | "root"
   | "register-trainee"
+  | "register-lesson"
   | "my-notice-detail"
   | "my-terms-detail"
   | "my-revenue-trainee-detail"
@@ -84,6 +85,13 @@ export const Routes: Routes = {
   "register-trainee": {
     name: "register-trainee",
     path: PATH.REGISTER_TRAINEE,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+  "register-lesson": {
+    name: "register-lesson",
+    path: PATH.REGISTER_LESSON,
     fallback: "none",
     headerType: "sub",
     navType: "none",
