@@ -6,6 +6,7 @@ import { usePostUserDrop } from "@/api/generated/유저/유저";
 import PATH from "@/router/path";
 import { openModal } from "@/utils/modal";
 import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
+import { storage } from "@/utils/storage";
 
 export default function SecessionBottomSheet() {
   const logout = useAuthStore((state) => state.logout);
@@ -21,6 +22,7 @@ export default function SecessionBottomSheet() {
             onCloseComplete: () => {
               logout();
               navigate(PATH.SIGN_IN);
+              storage.clear();
             },
           },
         });
