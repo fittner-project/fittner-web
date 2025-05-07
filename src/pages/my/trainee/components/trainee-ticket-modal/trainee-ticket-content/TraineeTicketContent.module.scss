@@ -1,0 +1,68 @@
+.container {
+  border-radius: 1.6rem;
+  border: 0.2rem solid $grey_1;
+  padding: 1.6rem 2rem;
+
+  .ticket_after_badge {
+    @include flex_row(center, center);
+    background-color: $grey_4;
+    border-radius: 0.6rem;
+    width: 6.3rem;
+    height: 2.2rem;
+    @include fm-ar(1.4rem, white, 2.2rem, 700);
+    margin-bottom: 0.9rem;
+  }
+
+  .ticket_name {
+    @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+  }
+
+  .ticket_period {
+    margin-top: 0.8rem;
+    @include fm-ar(1.7rem, $grey_3, 2.2rem, 400);
+  }
+
+  .ticket_bottom_section {
+    border-top: 0.2rem solid $grey_1;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+
+    .ticket_remaining_count {
+      @include flex_row(space-between, center);
+
+      .ticket_remaining_count_title {
+        @include fm-ar(1.7rem, $grey_3, 2.2rem, 700);
+      }
+
+      .ticket_remaining_count_value {
+        @include fm-ar(1.7rem, $grey_3, 2.2rem, 700);
+
+        span:first-child {
+          @include fm-ar(1.7rem, $primary_1, 2.2rem, 700);
+        }
+      }
+    }
+
+    .ticket_attendance_count {
+      @include flex_row(space-between, center);
+      @include flex_row_gap(0.8rem);
+      margin-top: 4rem;
+
+      div {
+        width: 100%;
+        height: 4rem;
+        background-color: $grey_1;
+        border-radius: 1rem;
+        @include flex_row(center, center);
+      }
+
+      div:first-child {
+        @include fm-ar(1.8rem, $primary_1, 2.2rem, 700);
+      }
+
+      div:last-child {
+        @include fm-ar(1.8rem, $sub_1, 2.2rem, 700);
+      }
+    }
+  }
+}

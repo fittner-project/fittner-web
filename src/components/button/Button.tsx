@@ -8,6 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   width?: number | string;
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  height?: number;
 }
 
 function Button({
@@ -19,6 +20,7 @@ function Button({
   className,
   onClick,
   children,
+  height,
   ...props
 }: PropsWithChildren<ButtonProps>) {
   const navigate = useNavigate();
@@ -57,7 +59,7 @@ function Button({
         width: typeof width === "number" ? `${width}rem` : width,
         ...(fullWidth && { width: "100%" }),
         borderRadius: "1.6rem",
-        height: "6rem",
+        height: height ? `${height}rem` : "6rem",
         fontFeatureSettings: "liga off, clig off",
         fontFamily: "Pretendard",
         fontSize: "2rem",

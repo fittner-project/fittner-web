@@ -44,3 +44,5 @@ export { default as tag } from "./icon/tag.png";
 export { default as alaram } from "./icon/alarm.png";
 export { default as memo } from "./icon/memo.png";
 export { default as plus } from "./icon/plus.png";
+export { default as pause } from "./icon/pause.svg";
+export { default as caretRight } from "./icon/caret-right.svg";

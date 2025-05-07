@@ -8,6 +8,8 @@ import { useSearch } from "@/hooks/useSearch";
 import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import Skeleton from "@/components/skeleton/Skeleton";
+import { openModal } from "@/utils/modal";
+import TraineeTicketModal from "./components/trainee-ticket-modal/TraineeTicketModal";
 
 export default function Trainee() {
   const { data: traineeData, isLoading } = useGetUserMembers();
@@ -19,6 +21,22 @@ export default function Trainee() {
     searchFields: ["memberName", "memberPhone"],
   });
   const searchValue = watch("searchValue");
+
+  const handleClickTrainee = ({
+    memberId,
+    memberName,
+  }: {
+    memberId: string;
+    memberName: string;
+  }) => {
+    openModal({
+      component: TraineeTicketModal,
+      props: {
+        memberId,
+        memberName,
+      },
+    });
+  };
 
   return (
     <PaddingContainer>
@@ -99,7 +117,18 @@ export default function Trainee() {
                 </Skeleton>
               ))
             : filteredData?.map((trainee) => (
-                <div key={trainee.memberId} className={styles.trainee_item}>
+                <div
+                  key={trainee.memberId}
+                  className={styles.trainee_item}
+                  onClick={() => {
+                    if (trainee.memberId) {
+                      handleClickTrainee({
+                        memberId: trainee.memberId,
+                        memberName: trainee.memberName || "",
+                      });
+                    }
+                  }}
+                >
                   <section className={styles.left_section}>
                     <div
                       className={classNames(styles.trainee_profile, {

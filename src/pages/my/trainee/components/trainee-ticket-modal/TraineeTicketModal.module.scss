@@ -1,0 +1,49 @@
+.container {
+  padding: 2.4rem 1.6rem;
+
+  .header {
+    @include flex_row(space-between, center);
+
+    .member_name {
+      @include fm-ar(2.4rem, $text_1, 3.6rem, 700);
+      @include text_ellipsis();
+    }
+
+    .setting_button {
+      border: 0.1rem solid $grey_2;
+      padding: 0.6rem 1.6rem;
+      border-radius: 10rem;
+      @include fm-ar(1.9rem, $grey_2, 2.2rem, 600);
+    }
+  }
+
+  .ticket_content_container {
+    margin-top: 1.4rem;
+  }
+
+  .button_container {
+    margin-top: 2.5rem;
+
+    button {
+      position: relative;
+
+      .button_icon {
+        position: absolute;
+        right: 1.4rem;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+    }
+
+    .description_container {
+      @include flex_row(center, center);
+      @include flex_row_gap(0.4rem);
+      margin-top: 1.2rem;
+
+      p {
+        text-align: center;
+        @include fm-ar(1.4rem, $grey_3, 2.2rem, 500);
+      }
+    }
+  }
+}
