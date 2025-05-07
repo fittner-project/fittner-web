@@ -10,6 +10,8 @@ import { pause, caretRight, infoCircle } from "@/assets/assets";
 import { closeModal } from "@/utils/modal";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import TraineeTicketSettingBottomSheet from "./trainee-ticket-setting-bottom-sheet/TraineeTicketSettingBottomSheet";
+import Skeleton from "@/components/skeleton/Skeleton";
+import TraineeTicketSkeleton from "./trainee-ticket-skeleton/TraineeTicketSkeleton";
 
 interface TraineeTicketModalProps {
   memberId: string;
@@ -20,7 +22,7 @@ export default function TraineeTicketModal({
   memberId,
   memberName,
 }: TraineeTicketModalProps) {
-  const { data: traineeData } = useGetUserMemberMemberId(memberId);
+  const { data: traineeData, isLoading } = useGetUserMemberMemberId(memberId);
   const trainees = traineeData?.result;
   const buttonColor: any = {
     ING: "sub_1",
@@ -44,37 +46,45 @@ export default function TraineeTicketModal({
         </div>
 
         <div className={styles.ticket_content_container}>
-          <Swiper>
-            {trainees?.map((trainee) => (
-              <SwiperSlide key={trainee.ticketId}>
-                <TraineeTicketContent trainee={trainee} />
-                {(trainee.ticketCode === "ING" ||
-                  trainee.ticketCode === "STOP") && (
-                  <div className={styles.button_container}>
-                    <Button
-                      fullWidth
-                      backgroundColor={
-                        buttonColor[trainee.ticketCode as string]
-                      }
-                      height={5.4}
-                    >
-                      {trainee.ticketCode === "ING" ? "기간 정지" : "기간 만료"}
-                      <Image
-                        src={trainee.ticketCode === "ING" ? pause : caretRight}
-                        width={2.4}
-                        height={2.4}
-                        className={styles.button_icon}
-                      />
-                    </Button>
-                    <div className={styles.description_container}>
-                      <Image src={infoCircle} width={2} height={2} />
-                      <p>정지시킨 기간 만큼 자동 연장됩니다</p>
+          {isLoading ? (
+            <TraineeTicketSkeleton />
+          ) : (
+            <Swiper>
+              {trainees?.map((trainee) => (
+                <SwiperSlide key={trainee.ticketId}>
+                  <TraineeTicketContent trainee={trainee} />
+                  {(trainee.ticketCode === "ING" ||
+                    trainee.ticketCode === "STOP") && (
+                    <div className={styles.button_container}>
+                      <Button
+                        fullWidth
+                        backgroundColor={
+                          buttonColor[trainee.ticketCode as string]
+                        }
+                        height={5.4}
+                      >
+                        {trainee.ticketCode === "ING"
+                          ? "기간 정지"
+                          : "기간 만료"}
+                        <Image
+                          src={
+                            trainee.ticketCode === "ING" ? pause : caretRight
+                          }
+                          width={2.4}
+                          height={2.4}
+                          className={styles.button_icon}
+                        />
+                      </Button>
+                      <div className={styles.description_container}>
+                        <Image src={infoCircle} width={2} height={2} />
+                        <p>정지시킨 기간 만큼 자동 연장됩니다</p>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                  )}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </div>
       </div>
     </Modal>
