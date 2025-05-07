@@ -1,6 +1,6 @@
-import { UseFormReturn } from "react-hook-form";
-import styles from "./ProductFormView.module.scss";
-import { RegisterTraineeForm } from "../../RegisterTrainee";
+import { useForm, UseFormReturn } from "react-hook-form";
+import styles from "./ExtraRegisterTicketFormView.module.scss";
+// import { RegisterTraineeForm } from "../../RegisterTrainee";
 import Input from "@/components/input/Input";
 import Button from "@/components/button/Button";
 import Picker from "react-mobile-picker";
@@ -10,13 +10,9 @@ import classNames from "classnames";
 import { chevronDownGrey } from "@/assets/assets";
 import Image from "@/components/image/Image";
 import { openBottomSheet } from "@/utils/bottomSheet";
-import RegistrationPathBottomSheet from "../registration-path-bottom-sheet/RegistrationPathBottomSheet";
-import { useNavigate } from "react-router-dom";
-import TraineeConfirmBottomSheet from "../trainee-confirm-bottom-sheet/TraineeConfirmBottomSheet";
 
-interface IProductFormViewProps {
-  form: UseFormReturn<RegisterTraineeForm, any, undefined>;
-}
+import RegistrationPathBottomSheet from "@/pages/register-trainee/components/registration-path-bottom-sheet/RegistrationPathBottomSheet";
+import { MotionDiv } from "@/components/animation/Motion";
 
 const createDateOptions = () => {
   const currentYear = dayjs().year();
@@ -36,7 +32,10 @@ const createDateOptions = () => {
   return { years, months, days };
 };
 
-export default function ProductFormView({ form }: IProductFormViewProps) {
+export default function ExtraRegisterTicketFormView() {
+  const form = useForm<any>({
+    mode: "onChange",
+  });
   const dateOptions = useMemo(() => createDateOptions(), []);
 
   const today = dayjs();
@@ -82,14 +81,14 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
     values.productCount &&
     values.productPrice;
 
-  const handleProductConfirm = () => {
-    openBottomSheet({
-      component: TraineeConfirmBottomSheet,
-      props: {
-        form,
-      },
-    });
-  };
+  //   const handleProductConfirm = () => {
+  //     openBottomSheet({
+  //       component: TraineeConfirmBottomSheet,
+  //       props: {
+  //         form,
+  //       },
+  //     });
+  //   };
 
   return (
     <div className={styles.container}>
@@ -342,18 +341,23 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
         />
       </div>
 
-      <div className={styles.button_container}>
+      <MotionDiv
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.7 }}
+        className={styles.button_container}
+      >
         <Button
           type="button"
           backgroundColor="primary_1"
           fullWidth
           className={styles.next_button}
           disabled={!isFormComplete}
-          onClick={handleProductConfirm}
+          //   onClick={handleProductConfirm}
         >
           등록
         </Button>
-      </div>
+      </MotionDiv>
     </div>
   );
 }

@@ -28,6 +28,7 @@ import SignatureList from "@/pages/signature/signature-list/SignatureList";
 import SignatureDetail from "@/pages/signature/signature-detail/SignatureDetail";
 import MyLessons from "@/pages/my-lessons/MyLessons";
 import RegisterLesson from "@/pages/register-lesson/RegisterLesson";
+import ExtraRegisterTicket from "@/pages/extra-register-ticket/ExtraRegisterTicket";
 
 const queryClient = new QueryClient();
 
@@ -139,6 +140,10 @@ const router = createBrowserRouter([
       {
         path: PATH.REGISTER_LESSON,
         element: <RegisterLesson />,
+      },
+      {
+        path: PATH.EXTRA_REGISTER_TICKET,
+        element: <ExtraRegisterTicket />,
       },
     ],
   },
