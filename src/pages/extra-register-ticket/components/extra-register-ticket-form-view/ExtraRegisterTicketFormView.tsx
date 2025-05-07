@@ -307,41 +307,6 @@ export default function ExtraRegisterTicketFormView() {
         />
       </div>
 
-      <div
-        className={styles.field}
-        onClick={() => {
-          openBottomSheet({
-            component: RegistrationPathBottomSheet,
-            props: {
-              onSelect: handleRegistrationPathSelect,
-            },
-          });
-        }}
-      >
-        <p className={styles.title}>가입 경로</p>
-        <Input
-          inputType="line"
-          maxLength={0}
-          readOnly
-          className={styles.name_input}
-          {...form.register("memberJoinPath", {
-            required: true,
-          })}
-          placeholder="가입 경로를 선택해주세요"
-          endAdornment={
-            <div>
-              <Image
-                src={chevronDownGrey}
-                alt="arrow"
-                width={2.8}
-                height={2.8}
-                className={styles.arrow}
-              />
-            </div>
-          }
-        />
-      </div>
-
       <MotionDiv
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
