@@ -10,7 +10,6 @@ import { pause, caretRight, infoCircle } from "@/assets/assets";
 import { closeModal } from "@/utils/modal";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import TraineeTicketSettingBottomSheet from "./trainee-ticket-setting-bottom-sheet/TraineeTicketSettingBottomSheet";
-import Skeleton from "@/components/skeleton/Skeleton";
 import TraineeTicketSkeleton from "./trainee-ticket-skeleton/TraineeTicketSkeleton";
 
 interface TraineeTicketModalProps {
