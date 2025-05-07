@@ -1,0 +1,15 @@
+.container {
+  .title {
+    @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
+  }
+
+  .setting_list {
+    margin-top: 1rem;
+
+    .setting {
+      height: 4.6rem;
+      @include flex_row(flex-start, center);
+      @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+    }
+  }
+}

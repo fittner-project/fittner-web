@@ -7,6 +7,9 @@ import TraineeTicketContent from "./trainee-ticket-content/TraineeTicketContent"
 import Button from "@/components/button/Button";
 import Image from "@/components/image/Image";
 import { pause, caretRight, infoCircle } from "@/assets/assets";
+import { closeModal } from "@/utils/modal";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import TraineeTicketSettingBottomSheet from "./trainee-ticket-setting-bottom-sheet/TraineeTicketSettingBottomSheet";
 
 interface TraineeTicketModalProps {
   memberId: string;
@@ -18,7 +21,6 @@ export default function TraineeTicketModal({
   memberName,
 }: TraineeTicketModalProps) {
   const { data: traineeData } = useGetUserMemberMemberId(memberId);
-  console.log("traineeData", traineeData);
   const trainees = traineeData?.result;
   const buttonColor: any = {
     ING: "sub_1",
@@ -30,7 +32,15 @@ export default function TraineeTicketModal({
       <div className={styles.container}>
         <div className={styles.header}>
           <p className={styles.member_name}>{memberName} 회원님</p>
-          <button className={styles.setting_button}>설정</button>
+          <button
+            onClick={() => {
+              closeModal();
+              openBottomSheet({ component: TraineeTicketSettingBottomSheet });
+            }}
+            className={styles.setting_button}
+          >
+            설정
+          </button>
         </div>
 
         <div className={styles.ticket_content_container}>
