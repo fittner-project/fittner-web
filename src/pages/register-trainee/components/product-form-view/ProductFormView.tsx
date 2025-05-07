@@ -323,6 +323,7 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
         <Input
           inputType="line"
           maxLength={0}
+          readOnly
           className={styles.name_input}
           {...form.register("memberJoinPath", {
             required: true,

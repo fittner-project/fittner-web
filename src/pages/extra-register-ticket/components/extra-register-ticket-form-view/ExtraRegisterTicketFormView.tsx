@@ -322,6 +322,7 @@ export default function ExtraRegisterTicketFormView() {
         <Input
           inputType="line"
           maxLength={0}
+          readOnly
           className={styles.name_input}
           {...form.register("memberJoinPath", {
             required: true,
