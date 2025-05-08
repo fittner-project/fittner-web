@@ -1,15 +1,15 @@
 // 무채색 계열
-$grey_1: #f2f4f6;
-$grey_2: #b0b8c1;
-$grey_3: #7f848d;
-$grey_4: #4d5662;
+$grey_1: var(--grey-type-a, #f2f4f6);
+$grey_2: var(--grey-type-b, #b0b8c1);
+$grey_3: var(--grey-type-c, #7f848d);
+$grey_4: var(--grey-type-d, #4d5662);
 
-$primary_1: #4c6aff;
-$sub_1: #ff8194;
-$text_1: #191f28;
-$text_2: #ffffff;
-$text_3: #b0b8c1;
-$text_4: #7f848d;
-$text_5: #4d5662;
-$text_6: #4c6aff;
-$text_7: #ff8194;
+$primary_1: var(--primary, #4c6aff);
+$sub_1: var(--sub, #ff8194);
+$text_1: var(--text-type-a, #191f28);
+$text_2: var(--text-type-b, #ffffff);
+$text_3: var(--text-type-c, #b0b8c1);
+$text_4: var(--text-type-d, #7f848d);
+$text_5: var(--text-type-e, #4d5662);
+$text_6: var(--text-type-f, #4c6aff);
+$text_7: var(--text-type-g, #ff8194);

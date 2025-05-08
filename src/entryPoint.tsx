@@ -12,8 +12,9 @@ import {
   useGetUserReservations,
 } from "./api/generated/수업/수업";
 import useCalendarStore from "./store/calendar";
-import LoadingIndicator from "./components/loadingIndicator/LoadingIndicator";
+import LoadingIndicator from "./components/loading-indicator/LoadingIndicator";
 import { useGetUserCommonBrandColor } from "./api/generated/공통/공통";
+import BrandColorProvider from "./components/brand-color-provider/BrandColorProvider";
 
 interface IProps {
   children: ReactNode;
@@ -27,21 +28,23 @@ const EntryPoint: FC<IProps> = ({ children }) => {
 
   return (
     <Authorized>
-      {isFetching > 0 && <LoadingIndicator />}
-      {location.pathname === PATH.ROOT && splashImgUrl && (
-        <div style={{ width: "100dvw", height: "100dvh" }}>
-          <Image
-            src={splashImgUrl}
-            alt="splash"
-            width="100%"
-            height="100%"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-      )}
-      {children}
+      <BrandColorProvider>
+        {isFetching > 0 && <LoadingIndicator />}
+        {location.pathname === PATH.ROOT && splashImgUrl && (
+          <div style={{ width: "100dvw", height: "100dvh" }}>
+            <Image
+              src={splashImgUrl}
+              alt="splash"
+              width="100%"
+              height="100%"
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        )}
+        {children}
+      </BrandColorProvider>
     </Authorized>
   );
 };
