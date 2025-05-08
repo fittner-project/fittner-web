@@ -1,5 +1,6 @@
 import { FC, Fragment, ReactNode } from "react";
 import dayjs from "dayjs";
+import { useIsFetching } from "@tanstack/react-query";
 
 import useAuthRouting from "./hooks/useAuthRouting";
 import PATH from "./router/path";
@@ -11,6 +12,8 @@ import {
   useGetUserReservations,
 } from "./api/generated/수업/수업";
 import useCalendarStore from "./store/calendar";
+import LoadingIndicator from "./components/loadingIndicator/LoadingIndicator";
+import { useGetUserCommonBrandColor } from "./api/generated/공통/공통";
 
 interface IProps {
   children: ReactNode;
@@ -20,9 +23,11 @@ const EntryPoint: FC<IProps> = ({ children }) => {
   useAuthRouting();
   const location = useLocation();
   const { splashImgUrl } = useSplash();
+  const isFetching = useIsFetching();
 
   return (
     <Authorized>
+      {isFetching > 0 && <LoadingIndicator />}
       {location.pathname === PATH.ROOT && splashImgUrl && (
         <div style={{ width: "100dvw", height: "100dvh" }}>
           <Image
@@ -57,6 +62,7 @@ const Authorized = ({ children }: IProps) => {
   );
   const setLessons = useCalendarStore((state) => state.setLessons);
   const setWeeklyLessons = useCalendarStore((state) => state.setWeeklyLessons);
+  const setBrandColors = useUserStore((state) => state.setBrandColors);
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
   const { data: reservations } = useGetUserReservations(
     {
@@ -73,6 +79,13 @@ const Authorized = ({ children }: IProps) => {
   const { data: reservationColors } = useGetUserReservationColors({
     query: {
       enabled: !!isAuthenticated,
+    },
+  });
+  const { data: brandColors } = useGetUserCommonBrandColor({
+    query: {
+      enabled: !!isAuthenticated,
+      staleTime: 1000 * 60 * 60 * 24,
+      gcTime: 1000 * 60 * 60 * 24 * 7, // 7일 동안 캐시 유지
     },
   });
   const { data: weeklyReservations } = useGetUserReservations(
@@ -112,6 +125,12 @@ const Authorized = ({ children }: IProps) => {
       setWeeklyLessons(weeklyReservations.result || []);
     }
   }, [weeklyReservations]);
+
+  useEffect(() => {
+    if (brandColors) {
+      setBrandColors(brandColors.result || {});
+    }
+  }, [brandColors]);
   //인증이 된 이후 앱 전체 적용 로직들
 
   //브랜드별 컬러 API 작업이 끝나면 인증 후 여기서 받은 뒤 zustand에 저장하고 사용

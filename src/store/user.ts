@@ -1,4 +1,5 @@
 import {
+  BrandColorResDto,
   CenterInfo,
   DefaultInfo,
   ReservationColorResDto,
@@ -11,12 +12,14 @@ interface IUserDispatcher {
   setUserInfo: (userInfo: DefaultInfo) => void;
   setSelectedCenter: (center: CenterInfo) => void;
   setReservationColors: (reservationColors: ReservationColorResDto) => void;
+  setBrandColors: (brandColors: BrandColorResDto) => void;
 }
 
 interface UserStore extends IUserDispatcher {
   userInfo: DefaultInfo;
   selectedCenter: CenterInfo;
   reservationColors: ReservationColorResDto;
+  brandColors: BrandColorResDto;
 }
 
 export const useUserStore = create(
@@ -25,11 +28,13 @@ export const useUserStore = create(
       userInfo: {},
       selectedCenter: {},
       reservationColors: {},
+      brandColors: {},
       setUserInfo: (userInfo: DefaultInfo) => set({ userInfo }),
       setSelectedCenter: (center: CenterInfo) =>
         set({ selectedCenter: center }),
       setReservationColors: (reservationColors: ReservationColorResDto) =>
         set({ reservationColors }),
+      setBrandColors: (brandColors: BrandColorResDto) => set({ brandColors }),
     }),
     {
       name: storageKeys.user,
