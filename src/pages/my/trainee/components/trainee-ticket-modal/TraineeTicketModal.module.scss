@@ -1,3 +1,5 @@
+@import "@/styles/_mixin.scss";
+
 .container {
   padding: 2.4rem 1.6rem;
 
@@ -21,14 +23,8 @@
     margin-top: 1.4rem;
 
     :global(.swiper-pagination) {
-      position: static;
       margin-top: 1.8rem;
-      text-align: center;
-      --swiper-pagination-color: #{$grey_2};
-      --swiper-pagination-bullet-inactive-color: #{$grey_1};
-      --swiper-pagination-bullet-size: 0.7rem;
-      --swiper-pagination-bullet-inactive-opacity: 1;
-      --swiper-pagination-bullet-opacity: 1;
+      @include swiper-pagination-theme();
     }
 
     .button_container {

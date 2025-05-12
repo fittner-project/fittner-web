@@ -82,3 +82,13 @@
   bottom: 0;
   text-align: center;
 }
+
+@mixin swiper-pagination-theme {
+  position: static;
+  text-align: center;
+  --swiper-pagination-color: #{$grey_2};
+  --swiper-pagination-bullet-inactive-color: #{$grey_1};
+  --swiper-pagination-bullet-size: 0.7rem;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-opacity: 1;
+}

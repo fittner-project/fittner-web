@@ -57,7 +57,6 @@ export default function TraineeTicketModal({
               spaceBetween={15}
               modules={[Pagination]}
               pagination={{ clickable: true }}
-              className={styles.swiper}
               loop
             >
               {trainees?.map((trainee) => (
