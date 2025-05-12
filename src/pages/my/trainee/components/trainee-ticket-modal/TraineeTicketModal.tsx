@@ -3,6 +3,7 @@ import Modal from "@/components/modal/Modal";
 import styles from "./TraineeTicketModal.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/pagination";
 import TraineeTicketContent from "./trainee-ticket-content/TraineeTicketContent";
 import Button from "@/components/button/Button";
 import Image from "@/components/image/Image";
@@ -11,6 +12,7 @@ import { closeModal } from "@/utils/modal";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import TraineeTicketSettingBottomSheet from "./trainee-ticket-setting-bottom-sheet/TraineeTicketSettingBottomSheet";
 import TraineeTicketSkeleton from "./trainee-ticket-skeleton/TraineeTicketSkeleton";
+import { Pagination } from "swiper/modules";
 
 interface TraineeTicketModalProps {
   memberId: string;
@@ -51,7 +53,13 @@ export default function TraineeTicketModal({
           {isLoading ? (
             <TraineeTicketSkeleton />
           ) : (
-            <Swiper>
+            <Swiper
+              spaceBetween={15}
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              className={styles.swiper}
+              loop
+            >
               {trainees?.map((trainee) => (
                 <SwiperSlide key={trainee.ticketId}>
                   <TraineeTicketContent trainee={trainee} />
@@ -77,10 +85,12 @@ export default function TraineeTicketModal({
                           className={styles.button_icon}
                         />
                       </Button>
-                      <div className={styles.description_container}>
-                        <Image src={infoCircle} width={2} height={2} />
-                        <p>정지시킨 기간 만큼 자동 연장됩니다</p>
-                      </div>
+                      {trainee.ticketCode !== "STOP" && (
+                        <div className={styles.description_container}>
+                          <Image src={infoCircle} width={2} height={2} />
+                          <p>정지시킨 기간 만큼 자동 연장됩니다</p>
+                        </div>
+                      )}
                     </div>
                   )}
                 </SwiperSlide>

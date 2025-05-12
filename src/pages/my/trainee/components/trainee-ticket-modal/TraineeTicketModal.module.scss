@@ -19,30 +19,41 @@
 
   .ticket_content_container {
     margin-top: 1.4rem;
-  }
 
-  .button_container {
-    margin-top: 2.5rem;
-
-    button {
-      position: relative;
-
-      .button_icon {
-        position: absolute;
-        right: 1.4rem;
-        top: 50%;
-        transform: translate(0, -50%);
-      }
+    :global(.swiper-pagination) {
+      position: static;
+      margin-top: 1.8rem;
+      text-align: center;
+      --swiper-pagination-color: #{$grey_2};
+      --swiper-pagination-bullet-inactive-color: #{$grey_1};
+      --swiper-pagination-bullet-size: 0.7rem;
+      --swiper-pagination-bullet-inactive-opacity: 1;
+      --swiper-pagination-bullet-opacity: 1;
     }
 
-    .description_container {
-      @include flex_row(center, center);
-      @include flex_row_gap(0.4rem);
-      margin-top: 1.2rem;
+    .button_container {
+      margin-top: 2.5rem;
 
-      p {
-        text-align: center;
-        @include fm-ar(1.4rem, $grey_3, 2.2rem, 500);
+      button {
+        position: relative;
+
+        .button_icon {
+          position: absolute;
+          right: 1.4rem;
+          top: 50%;
+          transform: translate(0, -50%);
+        }
+      }
+
+      .description_container {
+        @include flex_row(center, center);
+        @include flex_row_gap(0.4rem);
+        margin-top: 1.2rem;
+
+        p {
+          text-align: center;
+          @include fm-ar(1.4rem, $grey_3, 2.2rem, 500);
+        }
       }
     }
   }
