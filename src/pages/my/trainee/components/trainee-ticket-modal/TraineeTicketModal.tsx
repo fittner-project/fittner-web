@@ -13,6 +13,7 @@ import { openBottomSheet } from "@/utils/bottomSheet";
 import TraineeTicketSettingBottomSheet from "./trainee-ticket-setting-bottom-sheet/TraineeTicketSettingBottomSheet";
 import TraineeTicketSkeleton from "./trainee-ticket-skeleton/TraineeTicketSkeleton";
 import { Pagination } from "swiper/modules";
+import PauseTicketBottomSheet from "./pause-ticket-bottom-sheet/PauseTicketBottomSheet";
 
 interface TraineeTicketModalProps {
   memberId: string;
@@ -28,6 +29,22 @@ export default function TraineeTicketModal({
   const buttonColor: any = {
     ING: "sub_1",
     STOP: "primary_1",
+  };
+
+  const handleClickTicketStatusButton = ({
+    ticketId,
+    ticketCode,
+  }: {
+    ticketId: string;
+    ticketCode: string;
+  }) => {
+    if (ticketCode === "ING") {
+      closeModal();
+      openBottomSheet({
+        component: PauseTicketBottomSheet,
+        props: { ticketId: ticketId },
+      });
+    }
   };
 
   return (
@@ -70,6 +87,14 @@ export default function TraineeTicketModal({
                         backgroundColor={
                           buttonColor[trainee.ticketCode as string]
                         }
+                        onClick={() => {
+                          if (trainee.ticketCode && trainee.ticketId) {
+                            handleClickTicketStatusButton({
+                              ticketId: trainee.ticketId,
+                              ticketCode: trainee.ticketCode,
+                            });
+                          }
+                        }}
                         height={5.4}
                       >
                         {trainee.ticketCode === "ING"
