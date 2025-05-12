@@ -40,7 +40,7 @@ export default function TraineeTicketModal({
               closeModal();
               openBottomSheet({
                 component: TraineeTicketSettingBottomSheet,
-                props: { memberId },
+                props: { memberId, memberName },
               });
             }}
             className={styles.setting_button}
