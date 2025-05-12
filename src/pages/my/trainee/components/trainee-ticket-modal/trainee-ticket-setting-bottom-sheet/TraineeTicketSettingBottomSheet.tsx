@@ -2,7 +2,13 @@ import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import styles from "./TraineeTicketSettingBottomSheet.module.scss";
 import PATH from "@/router/path";
 
-export default function TraineeTicketSettingBottomSheet() {
+interface TraineeTicketSettingBottomSheetProps {
+  memberId: string;
+}
+
+export default function TraineeTicketSettingBottomSheet({
+  memberId,
+}: TraineeTicketSettingBottomSheetProps) {
   type Setting = "이용권 추가 등록" | "회원권 양도" | "환불" | "회원 삭제";
   const settings: Setting[] = [
     "이용권 추가 등록",
@@ -14,7 +20,10 @@ export default function TraineeTicketSettingBottomSheet() {
 
   const handleClickSetting = (setting: Setting) => {
     if (setting === "이용권 추가 등록") {
-      navigate(PATH.EXTRA_REGISTER_TICKET);
+      navigate({
+        pathname: PATH.EXTRA_REGISTER_TICKET,
+        search: `?memberId=${memberId}`,
+      });
     }
   };
 

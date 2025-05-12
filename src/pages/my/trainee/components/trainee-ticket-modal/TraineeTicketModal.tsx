@@ -36,7 +36,10 @@ export default function TraineeTicketModal({
           <button
             onClick={() => {
               closeModal();
-              openBottomSheet({ component: TraineeTicketSettingBottomSheet });
+              openBottomSheet({
+                component: TraineeTicketSettingBottomSheet,
+                props: { memberId },
+              });
             }}
             className={styles.setting_button}
           >

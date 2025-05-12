@@ -7,12 +7,10 @@ import Picker from "react-mobile-picker";
 import { useState, useMemo, useEffect } from "react";
 import dayjs from "dayjs";
 import classNames from "classnames";
-import { chevronDownGrey } from "@/assets/assets";
-import Image from "@/components/image/Image";
-import { openBottomSheet } from "@/utils/bottomSheet";
 
-import RegistrationPathBottomSheet from "@/pages/register-trainee/components/registration-path-bottom-sheet/RegistrationPathBottomSheet";
 import { MotionDiv } from "@/components/animation/Motion";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import ExtraTicketConfirmBottomSheet from "./extra-ticket-confirm--bottom-sheet/ExtraTicketConfirmBottomSheet";
 
 const createDateOptions = () => {
   const currentYear = dayjs().year();
@@ -32,8 +30,17 @@ const createDateOptions = () => {
   return { years, months, days };
 };
 
+export type ExtraRegisterTicketForm = {
+  productName: string;
+  productStartDate: string;
+  productEndDate: string;
+  productCount: number;
+  productPrice: number;
+  memberMemo: string;
+};
+
 export default function ExtraRegisterTicketFormView() {
-  const form = useForm<any>({
+  const form = useForm<ExtraRegisterTicketForm>({
     mode: "onChange",
   });
   const dateOptions = useMemo(() => createDateOptions(), []);
@@ -66,10 +73,6 @@ export default function ExtraRegisterTicketFormView() {
     updateFormDates();
   }, [startPickerValue, endPickerValue]);
 
-  const handleRegistrationPathSelect = (path: string) => {
-    form.setValue("memberJoinPath", path);
-  };
-
   const { watch } = form;
 
   const values = watch();
@@ -80,15 +83,6 @@ export default function ExtraRegisterTicketFormView() {
     values.productEndDate?.trim() &&
     values.productCount &&
     values.productPrice;
-
-  //   const handleProductConfirm = () => {
-  //     openBottomSheet({
-  //       component: TraineeConfirmBottomSheet,
-  //       props: {
-  //         form,
-  //       },
-  //     });
-  //   };
 
   return (
     <div className={styles.container}>
@@ -301,7 +295,7 @@ export default function ExtraRegisterTicketFormView() {
           maxLength={100}
           className={styles.name_input}
           {...form.register("memberMemo", {
-            required: true,
+            required: false,
           })}
           placeholder="회원 메모를 입력해주세요"
         />
@@ -310,7 +304,7 @@ export default function ExtraRegisterTicketFormView() {
       <MotionDiv
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.7 }}
+        transition={{ duration: 0.4, delay: 0.9 }}
         className={styles.button_container}
       >
         <Button
@@ -319,7 +313,14 @@ export default function ExtraRegisterTicketFormView() {
           fullWidth
           className={styles.next_button}
           disabled={!isFormComplete}
-          //   onClick={handleProductConfirm}
+          onClick={() => {
+            openBottomSheet({
+              component: ExtraTicketConfirmBottomSheet,
+              props: {
+                form,
+              },
+            });
+          }}
         >
           등록
         </Button>
