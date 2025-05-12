@@ -68,22 +68,18 @@ export default function Policy({ type }: PolicyProps) {
       <div className={styles.container}>
         {type === "terms" &&
           terms?.map((term) => (
-            <div
+            <PolicyLink
               onClick={() => {
                 if (term && term.intTermsStartDate) {
                   setSelectedTerm(term);
                   setSelectedTermDate(term.intTermsStartDate);
                 }
               }}
-              key={term.ingTermsTitle}
-            >
-              <PolicyLink
-                date={term.intTermsStartDate ?? ""}
-                title={term.ingTermsTitle ?? ""}
-                to={`${term.ingTermsTitle}?date=${term.intTermsStartDate}&urls=${term.totalTermList?.map((t) => t.termsUrl).join(",")}`}
-                type="main"
-              />
-            </div>
+              date={term.intTermsStartDate ?? ""}
+              title={term.ingTermsTitle ?? ""}
+              to={`${term.ingTermsTitle}?date=${term.intTermsStartDate}&urls=${term.totalTermList?.map((t) => t.termsUrl).join(",")}`}
+              type="main"
+            />
           ))}
 
         {type === "notice" &&

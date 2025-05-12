@@ -10,9 +10,16 @@ interface PolicyLinkProps {
   date: string;
   to?: string;
   type: "main" | "notice-detail" | "term-detail" | "detail";
+  onClick?: () => void;
 }
 
-export default function PolicyLink({ title, date, to, type }: PolicyLinkProps) {
+export default function PolicyLink({
+  title,
+  date,
+  to,
+  type,
+  onClick,
+}: PolicyLinkProps) {
   const handleClickTermDate = () => {
     openBottomSheet({
       component: TermDateBottomSheet,
@@ -50,7 +57,7 @@ export default function PolicyLink({ title, date, to, type }: PolicyLinkProps) {
       )}
 
       {type === "main" && (
-        <Link to={to ?? ""} className={styles.main_container}>
+        <Link to={to ?? ""} className={styles.main_container} onClick={onClick}>
           <section className={styles.left_section}>
             <p className={styles.title}>{title}</p>
             <p className={styles.date}>{dayjs(date).format("YYYY.MM.DD")}</p>
