@@ -1,0 +1,23 @@
+.container {
+  margin: 0 -1rem;
+
+  .title {
+    padding: 0 1.8rem;
+    @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
+  }
+
+  .date_container {
+    margin-top: 1.6rem;
+
+    .date {
+      @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+      height: 4.6rem;
+      padding: 1.2rem 1.8rem;
+
+      &.active {
+        background-color: $grey_1;
+        border-radius: 1.2rem;
+      }
+    }
+  }
+}

@@ -10,7 +10,7 @@ export default function NoticeDetail() {
 
   return (
     <PaddingContainer>
-      <PolicyLink title={title} date={date} to={content} type="detail" />
+      <PolicyLink title={title} date={date} to={content} type="notice-detail" />
       <p className={styles.content}>{content}</p>
     </PaddingContainer>
   );

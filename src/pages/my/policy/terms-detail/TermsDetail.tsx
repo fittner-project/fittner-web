@@ -1,33 +1,44 @@
 import PolicyLink from "../components/policy-link/PolicyLink";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import styles from "./TermsDetail.module.scss";
+import useSelectedTermStore from "../store/selected-term";
 
 export default function TermsDetail() {
   const { title } = useParams() as { title: string };
   const [searchParams] = useSearchParams();
-  const date = searchParams.get("date") as string;
-  const urls = searchParams.get("urls")?.split(",") ?? [];
+  const initialDate = searchParams.get("date") as string;
+  const selectedTerm = useSelectedTermStore((state) => state.selectedTerm);
+  const selectedTermDate = useSelectedTermStore(
+    (state) => state.selectedTermDate
+  );
+  const selectedTermUrl = useSelectedTermStore(
+    (state) => state.selectedTermUrl
+  );
+  const initialTermUrl = selectedTerm?.totalTermList?.find(
+    (term) => term.termsStartDate === initialDate
+  )?.termsUrl;
 
   return (
     <PaddingContainer>
       <div className={styles.container}>
-        <PolicyLink title={title} date={date} type="detail" />
+        <PolicyLink
+          title={title}
+          date={selectedTermDate || initialDate}
+          type="term-detail"
+        />
         <div className={styles.content}>
-          {urls.map((url, index) => (
-            <iframe
-              key={`${url}-${index}`}
-              src={url}
-              allowFullScreen
-              frameBorder="0"
-              style={{
-                width: "100%",
-                height: "50rem",
-                marginBottom: index === urls.length - 1 ? "0" : "60px",
-                WebkitOverflowScrolling: "touch",
-                overflow: "auto",
-              }}
-            />
-          ))}
+          <iframe
+            key={selectedTermUrl || initialTermUrl}
+            src={selectedTermUrl || initialTermUrl}
+            allowFullScreen
+            frameBorder="0"
+            style={{
+              width: "100%",
+              height: "calc(100vh - 16.8rem)",
+              WebkitOverflowScrolling: "touch",
+              overflow: "auto",
+            }}
+          />
         </div>
       </div>
     </PaddingContainer>

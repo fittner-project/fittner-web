@@ -10,6 +10,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import PolicyLinkSkeleton from "./components/policy-link-skeleton/PolicyLinkSkeleton";
+import useSelectedTermStore from "./store/selected-term";
 
 interface PolicyProps {
   type: "terms" | "notice";
@@ -21,6 +22,12 @@ export default function Policy({ type }: PolicyProps) {
     query: { enabled: type === "terms" },
   });
   const terms = termsData?.result;
+  const setSelectedTerm = useSelectedTermStore(
+    (state) => state.setSelectedTerm
+  );
+  const setSelectedTermDate = useSelectedTermStore(
+    (state) => state.setSelectedTermDate
+  );
 
   const {
     data: noticePages,
@@ -61,13 +68,22 @@ export default function Policy({ type }: PolicyProps) {
       <div className={styles.container}>
         {type === "terms" &&
           terms?.map((term) => (
-            <PolicyLink
+            <div
+              onClick={() => {
+                if (term && term.intTermsStartDate) {
+                  setSelectedTerm(term);
+                  setSelectedTermDate(term.intTermsStartDate);
+                }
+              }}
               key={term.ingTermsTitle}
-              date={term.intTermsStartDate ?? ""}
-              title={term.ingTermsTitle ?? ""}
-              to={`${term.ingTermsTitle}?date=${term.intTermsStartDate}&urls=${term.totalTermList?.map((t) => t.termsUrl).join(",")}`}
-              type="main"
-            />
+            >
+              <PolicyLink
+                date={term.intTermsStartDate ?? ""}
+                title={term.ingTermsTitle ?? ""}
+                to={`${term.ingTermsTitle}?date=${term.intTermsStartDate}&urls=${term.totalTermList?.map((t) => t.termsUrl).join(",")}`}
+                type="main"
+              />
+            </div>
           ))}
 
         {type === "notice" &&

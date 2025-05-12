@@ -11,4 +11,5 @@ export const storageKeys = {
   revenueActiveDate: "revenueActiveDate",
   ticketActiveFilter: "ticketActiveFilter",
   signatureActiveDate: "signatureActiveDate",
+  selectedTerm: "selectedTerm",
 };
