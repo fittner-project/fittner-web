@@ -24,12 +24,12 @@ const EntryPoint: FC<IProps> = ({ children }) => {
   useAuthRouting();
   const location = useLocation();
   const { splashImgUrl } = useSplash();
-  const isFetching = useIsFetching();
+  // const isFetching = useIsFetching();
 
   return (
     <Authorized>
       <BrandColorProvider>
-        {isFetching > 0 && <LoadingIndicator />}
+        {/* {isFetching > 0 && <LoadingIndicator />} */}
         {location.pathname === PATH.ROOT && splashImgUrl && (
           <div style={{ width: "100dvw", height: "100dvh" }}>
             <Image
