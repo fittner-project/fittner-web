@@ -27,19 +27,12 @@ export default function useAuthRouting() {
     ?.trainerStatus as ApprovalStatus;
 
   useEffect(() => {
-    if (userCommonStatusChkData?.status === "FAIL") {
-      navigate(PATH.SIGN_IN);
-      return;
-    }
-
     if (location.pathname !== PATH.ROOT) return;
 
-    if (!trainerEmail) {
+    if (!trainerEmail || !trainerStatus) {
       navigate(PATH.SIGN_IN);
       return;
     }
-
-    if (!trainerStatus) return;
 
     setApprovalStatus(trainerStatus);
 
