@@ -103,10 +103,10 @@ export const usePutUserTicketAgainstSuspend = <TError = unknown,
       return useMutation(mutationOptions);
     }
     /**
- * 티켓 일시정지 API 입니다.
- * @summary 티켓 일시정지 API
+ * 티켓 일시정지 요청 API 입니다.
+ * @summary 티켓 일시정지 요청 API
  */
-export const postUserTicketSuspend = (
+export const postUserTicketSuspendAllow = (
     suspendTicketReqDto: SuspendTicketReqDto,
  signal?: AbortSignal
 ) => {
@@ -122,18 +122,18 @@ export const postUserTicketSuspend = (
   
 
 
-export const getPostUserTicketSuspendMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketSuspend>>, TError,{data: SuspendTicketReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketSuspend>>, TError,{data: SuspendTicketReqDto}, TContext> => {
+export const getPostUserTicketSuspendAllowMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketSuspendAllow>>, TError,{data: SuspendTicketReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketSuspendAllow>>, TError,{data: SuspendTicketReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketSuspend>>, {data: SuspendTicketReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketSuspendAllow>>, {data: SuspendTicketReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  postUserTicketSuspend(data,)
+          return  postUserTicketSuspendAllow(data,)
         }
 
         
@@ -141,31 +141,31 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type PostUserTicketSuspendMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketSuspend>>>
-    export type PostUserTicketSuspendMutationBody = SuspendTicketReqDto
-    export type PostUserTicketSuspendMutationError = unknown
+    export type PostUserTicketSuspendAllowMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketSuspendAllow>>>
+    export type PostUserTicketSuspendAllowMutationBody = SuspendTicketReqDto
+    export type PostUserTicketSuspendAllowMutationError = unknown
 
     /**
- * @summary 티켓 일시정지 API
+ * @summary 티켓 일시정지 요청 API
  */
-export const usePostUserTicketSuspend = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketSuspend>>, TError,{data: SuspendTicketReqDto}, TContext>, }
+export const usePostUserTicketSuspendAllow = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketSuspendAllow>>, TError,{data: SuspendTicketReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof postUserTicketSuspend>>,
+        Awaited<ReturnType<typeof postUserTicketSuspendAllow>>,
         TError,
         {data: SuspendTicketReqDto},
         TContext
       > => {
 
-      const mutationOptions = getPostUserTicketSuspendMutationOptions(options);
+      const mutationOptions = getPostUserTicketSuspendAllowMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
     /**
- * 이용권 환불 API 입니다.
- * @summary 이용권 환불 API
+ * 이용권 환불 요청 API 입니다.
+ * @summary 이용권 환불 요청 API
  */
-export const postUserTicketRefund = (
+export const postUserTicketRefundAllow = (
     refundReqDto: RefundReqDto,
  signal?: AbortSignal
 ) => {
@@ -181,18 +181,18 @@ export const postUserTicketRefund = (
   
 
 
-export const getPostUserTicketRefundMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRefund>>, TError,{data: RefundReqDto}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRefund>>, TError,{data: RefundReqDto}, TContext> => {
+export const getPostUserTicketRefundAllowMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRefundAllow>>, TError,{data: RefundReqDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRefundAllow>>, TError,{data: RefundReqDto}, TContext> => {
 const {mutation: mutationOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketRefund>>, {data: RefundReqDto}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postUserTicketRefundAllow>>, {data: RefundReqDto}> = (props) => {
           const {data} = props ?? {};
 
-          return  postUserTicketRefund(data,)
+          return  postUserTicketRefundAllow(data,)
         }
 
         
@@ -200,23 +200,23 @@ const {mutation: mutationOptions} = options ?? {};
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type PostUserTicketRefundMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketRefund>>>
-    export type PostUserTicketRefundMutationBody = RefundReqDto
-    export type PostUserTicketRefundMutationError = unknown
+    export type PostUserTicketRefundAllowMutationResult = NonNullable<Awaited<ReturnType<typeof postUserTicketRefundAllow>>>
+    export type PostUserTicketRefundAllowMutationBody = RefundReqDto
+    export type PostUserTicketRefundAllowMutationError = unknown
 
     /**
- * @summary 이용권 환불 API
+ * @summary 이용권 환불 요청 API
  */
-export const usePostUserTicketRefund = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRefund>>, TError,{data: RefundReqDto}, TContext>, }
+export const usePostUserTicketRefundAllow = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUserTicketRefundAllow>>, TError,{data: RefundReqDto}, TContext>, }
 ): UseMutationResult<
-        Awaited<ReturnType<typeof postUserTicketRefund>>,
+        Awaited<ReturnType<typeof postUserTicketRefundAllow>>,
         TError,
         {data: RefundReqDto},
         TContext
       > => {
 
-      const mutationOptions = getPostUserTicketRefundMutationOptions(options);
+      const mutationOptions = getPostUserTicketRefundAllowMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

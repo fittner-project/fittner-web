@@ -51,9 +51,9 @@
     "/api/v1/user/ticket/suspend": {
       "post": {
         "tags": ["이용권"],
-        "summary": "티켓 일시정지 API",
-        "description": "티켓 일시정지 API 입니다.",
-        "operationId": "postUserTicketSuspend",
+        "summary": "티켓 일시정지 요청 API",
+        "description": "티켓 일시정지 요청 API 입니다.",
+        "operationId": "postUserTicketSuspendAllow",
         "requestBody": {
           "content": {
             "application/json": {
@@ -79,9 +79,9 @@
     "/api/v1/user/ticket/refund": {
       "post": {
         "tags": ["이용권"],
-        "summary": "이용권 환불 API",
-        "description": "이용권 환불 API 입니다.",
-        "operationId": "postUserTicketRefund",
+        "summary": "이용권 환불 요청 API",
+        "description": "이용권 환불 요청 API 입니다.",
+        "operationId": "postUserTicketRefundAllow",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1604,6 +1604,34 @@
           }
         }
       }
+    },
+    "/api/v1/user/{memberId}": {
+      "delete": {
+        "tags": ["유저"],
+        "summary": "트레이너가 회원을 삭제하는 API",
+        "description": "트레이너가 회원을 삭제하는 API 입니다.",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageObject"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1659,7 +1687,7 @@
       },
       "PlusReqDto": {
         "required": [
-          "cneterId",
+          "centerId",
           "memberId",
           "productCount",
           "productEndDate",
@@ -1674,7 +1702,7 @@
             "description": "회원ID",
             "example": "3c7ba936-d4d3-11ef-b7c9-0242ac190002"
           },
-          "cneterId": {
+          "centerId": {
             "type": "string",
             "description": "센터ID",
             "example": "3c7ba936-d4d3-11ef-b7c9-0242ac190002"
@@ -1862,6 +1890,11 @@
             "description": "회원 키값",
             "example": "1"
           },
+          "ticketId": {
+            "type": "string",
+            "description": "티켓 키값",
+            "example": "1"
+          },
           "reservationStartDate": {
             "type": "string",
             "description": "예약 시작일자",
@@ -1935,12 +1968,12 @@
           "productStartDate": {
             "type": "string",
             "description": "상품 시작일",
-            "example": "2021-01-01"
+            "example": "20210101"
           },
           "productEndDate": {
             "type": "string",
             "description": "상품 종료일",
-            "example": "2021-12-31"
+            "example": "20211231"
           },
           "productCount": {
             "type": "integer",
@@ -3010,6 +3043,12 @@
             "description": "PTN회차",
             "format": "int32",
             "example": 1
+          },
+          "totalCnt": {
+            "type": "integer",
+            "description": "전체회차",
+            "format": "int32",
+            "example": 10
           }
         },
         "description": "예액 정보들",

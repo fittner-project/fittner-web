@@ -56,8 +56,8 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
   const [showEndPicker, setShowEndPicker] = useState(false);
 
   const updateFormDates = () => {
-    const startDate = `${startPickerValue.year}-${startPickerValue.month}-${startPickerValue.day}`;
-    const endDate = `${endPickerValue.year}-${endPickerValue.month}-${endPickerValue.day}`;
+    const startDate = `${startPickerValue.year}${startPickerValue.month}${startPickerValue.day}`;
+    const endDate = `${endPickerValue.year}${endPickerValue.month}${endPickerValue.day}`;
 
     form.setValue("productStartDate", startDate);
     form.setValue("productEndDate", endDate);

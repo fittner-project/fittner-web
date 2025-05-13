@@ -28,4 +28,6 @@ export interface ReservationMemberResDto {
   reservationStartDate?: string;
   /** 예약시작시간 */
   reservationStartTime?: string;
+  /** 전체회차 */
+  totalCnt?: number;
 }

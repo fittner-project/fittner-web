@@ -50,7 +50,7 @@ export default function ExtraTicketConfirmBottomSheet({
 
     registerExtraTicket({
       data: {
-        cneterId: selectedCenterId,
+        centerId: selectedCenterId,
         memberId: memberId,
         productCount: data.productCount.toString(),
         productStartDate: dayjs(data.productStartDate).format("YYYYMMDD"),

@@ -23,4 +23,6 @@ export interface ReservationReqDto {
   reservationStartDate?: string;
   /** 예약 시작시간 */
   reservationStartTime?: string;
+  /** 티켓 키값 */
+  ticketId?: string;
 }

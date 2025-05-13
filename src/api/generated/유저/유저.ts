@@ -1260,3 +1260,60 @@ export function useGetUserCenterList<TData = Awaited<ReturnType<typeof getUserCe
 
 
 
+/**
+ * 트레이너가 회원을 삭제하는 API 입니다.
+ * @summary 트레이너가 회원을 삭제하는 API
+ */
+export const deleteUser = (
+    memberId: string,
+ ) => {
+      
+      
+      return axiosInstance<ApiResponseMessageObject>(
+      {url: `/api/v1/user/${memberId}`, method: 'DELETE'
+    },
+      );
+    }
+  
+
+
+export const getDeleteUserMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteUser>>, TError,{memberId: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof deleteUser>>, TError,{memberId: string}, TContext> => {
+const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteUser>>, {memberId: string}> = (props) => {
+          const {memberId} = props ?? {};
+
+          return  deleteUser(memberId,)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DeleteUserMutationResult = NonNullable<Awaited<ReturnType<typeof deleteUser>>>
+    
+    export type DeleteUserMutationError = unknown
+
+    /**
+ * @summary 트레이너가 회원을 삭제하는 API
+ */
+export const useDeleteUser = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteUser>>, TError,{memberId: string}, TContext>, }
+): UseMutationResult<
+        Awaited<ReturnType<typeof deleteUser>>,
+        TError,
+        {memberId: string},
+        TContext
+      > => {
+
+      const mutationOptions = getDeleteUserMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    

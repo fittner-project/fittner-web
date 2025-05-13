@@ -8,7 +8,7 @@
 
 export interface PlusReqDto {
   /** 센터ID */
-  cneterId: string;
+  centerId: string;
   /** 회원ID */
   memberId: string;
   /** 회원 메모 */

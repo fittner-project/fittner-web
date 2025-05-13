@@ -3,9 +3,9 @@ import styles from "./PauseTicketBottomSheet.module.scss";
 import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import { closeBottomSheet } from "@/utils/bottomSheet";
 import { useForm } from "react-hook-form";
-import { usePostUserTicketSuspend } from "@/api/generated/이용권/이용권";
 import { openModal } from "@/utils/modal";
 import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
+import { usePostUserTicketSuspendAllow } from "@/api/generated/이용권/이용권";
 
 interface PauseTicketBottomSheetProps {
   ticketId: string;
@@ -17,7 +17,7 @@ export default function PauseTicketBottomSheet({
   const { register, watch, handleSubmit } = useForm<{ suspendReason: string }>({
     mode: "onChange",
   });
-  const { mutate: pauseTicket } = usePostUserTicketSuspend({
+  const { mutate: pauseTicket } = usePostUserTicketSuspendAllow({
     mutation: {
       onSuccess: () => {
         openModal({
