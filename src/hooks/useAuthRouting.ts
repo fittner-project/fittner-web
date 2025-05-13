@@ -48,6 +48,11 @@ export default function useAuthRouting() {
       return;
     }
 
+    if (trainerStatus === "DROP") {
+      navigate(PATH.SIGN_IN);
+      return;
+    }
+
     if (isAuthenticated) {
       navigate(PATH.HOME);
       return;
