@@ -27,12 +27,12 @@ export default function useAuthRouting() {
     ?.trainerStatus as ApprovalStatus;
 
   useEffect(() => {
-    if (location.pathname !== PATH.ROOT) return;
-
     if (userCommonStatusChkData?.errorCode === "H001") {
       navigate(PATH.SIGN_IN);
       return;
     }
+
+    if (location.pathname !== PATH.ROOT) return;
 
     if (!trainerEmail) {
       navigate(PATH.SIGN_IN);
