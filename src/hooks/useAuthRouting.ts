@@ -19,6 +19,7 @@ export default function useAuthRouting() {
     {
       query: {
         enabled: location.pathname === PATH.ROOT && !!trainerEmail,
+        retry: false,
       },
     }
   );
