@@ -121,12 +121,13 @@ function SignUpTerms() {
                       <p className={styles.term_title}>{term.termsTitle}</p>
                     </div>
 
-                    <p
-                      onClick={() => (location.href = term.termsUrl || "")}
+                    <Link
+                      to={term.termsUrl || ""}
+                      target="_blank"
                       className={styles.more_button}
                     >
                       더보기
-                    </p>
+                    </Link>
                   </div>
                 ))}
           </div>
