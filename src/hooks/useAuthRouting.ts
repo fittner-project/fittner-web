@@ -29,7 +29,7 @@ export default function useAuthRouting() {
   useEffect(() => {
     if (location.pathname !== PATH.ROOT) return;
 
-    if (!trainerEmail || !trainerStatus) {
+    if (!trainerEmail || trainerStatus === null) {
       navigate(PATH.SIGN_IN);
       return;
     }
