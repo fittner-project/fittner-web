@@ -11,33 +11,15 @@ import { chevronDownGrey } from "@/assets/assets";
 import Image from "@/components/image/Image";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import RegistrationPathBottomSheet from "../registration-path-bottom-sheet/RegistrationPathBottomSheet";
-import { useNavigate } from "react-router-dom";
 import TraineeConfirmBottomSheet from "../trainee-confirm-bottom-sheet/TraineeConfirmBottomSheet";
+import { createDatePickerDates } from "@/utils/datePicker";
 
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
 }
 
-const createDateOptions = () => {
-  const currentYear = dayjs().year();
-  const years = Array.from(
-    { length: currentYear - 2020 + 10 },
-    (_, i) => `${2020 + i}`
-  );
-  const months = Array.from(
-    { length: 12 },
-    (_, i) => `${(i + 1).toString().padStart(2, "0")}`
-  );
-  const days = Array.from(
-    { length: 31 },
-    (_, i) => `${(i + 1).toString().padStart(2, "0")}`
-  );
-
-  return { years, months, days };
-};
-
 export default function ProductFormView({ form }: IProductFormViewProps) {
-  const dateOptions = useMemo(() => createDateOptions(), []);
+  const dateOptions = useMemo(() => createDatePickerDates(), []);
 
   const today = dayjs();
   const [startPickerValue, setStartPickerValue] = useState({
