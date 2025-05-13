@@ -27,7 +27,7 @@ export default function useAuthRouting() {
     ?.trainerStatus as ApprovalStatus;
 
   useEffect(() => {
-    if (userCommonStatusChkData?.errorCode === "H001") {
+    if (userCommonStatusChkData?.status === "FAIL") {
       navigate(PATH.SIGN_IN);
       return;
     }
