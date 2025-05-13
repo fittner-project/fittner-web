@@ -30,7 +30,16 @@ import MyLessons from "@/pages/my-lessons/MyLessons";
 import RegisterLesson from "@/pages/register-lesson/RegisterLesson";
 import ExtraRegisterTicket from "@/pages/extra-register-ticket/ExtraRegisterTicket";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+    mutations: {
+      retry: false,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
