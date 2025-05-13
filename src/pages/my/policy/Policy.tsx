@@ -77,7 +77,7 @@ export default function Policy({ type }: PolicyProps) {
               }}
               date={term.intTermsStartDate ?? ""}
               title={term.ingTermsTitle ?? ""}
-              to={`${term.ingTermsTitle}?date=${term.intTermsStartDate}&urls=${term.totalTermList?.map((t) => t.termsUrl).join(",")}`}
+              to={`${encodeURIComponent(term.ingTermsTitle ?? "")}?date=${encodeURIComponent(term.intTermsStartDate ?? "")}&urls=${term.totalTermList?.map((t) => encodeURIComponent(t.termsUrl ?? "")).join(",")}`}
               type="main"
             />
           ))}
@@ -88,10 +88,7 @@ export default function Policy({ type }: PolicyProps) {
               key={notice.noticeTitle}
               date={notice.noticeDate ?? ""}
               title={notice.noticeTitle ?? ""}
-              to={
-                `${notice.noticeTitle}?content=${notice.noticeContent}&date=${notice.noticeDate}` ||
-                ""
-              }
+              to={`${encodeURIComponent(notice.noticeTitle ?? "")}?content=${encodeURIComponent(notice.noticeContent ?? "")}&date=${encodeURIComponent(notice.noticeDate ?? "")}`}
               type="main"
             />
           ))}
