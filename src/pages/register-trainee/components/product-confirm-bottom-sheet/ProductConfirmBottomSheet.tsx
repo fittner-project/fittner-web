@@ -10,6 +10,7 @@ import { openModal } from "@/utils/modal";
 import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
 import PATH from "@/router/path";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
 interface ProductConfirmBottomSheetProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
@@ -64,11 +65,15 @@ export default function ProductConfirmBottomSheet({
           </Row>
           <Row className={styles.content_item} justifyContent="space-between">
             <div>시작일</div>
-            <div>{form.getValues().productStartDate}</div>
+            <div>
+              {dayjs(form.getValues().productStartDate).format("YYYY-MM-DD")}
+            </div>
           </Row>
           <Row className={styles.content_item} justifyContent="space-between">
             <div>종료일</div>
-            <div>{form.getValues().productEndDate}</div>
+            <div>
+              {dayjs(form.getValues().productEndDate).format("YYYY-MM-DD")}
+            </div>
           </Row>
           <Row className={styles.content_item} justifyContent="space-between">
             <div>수업횟수</div>
