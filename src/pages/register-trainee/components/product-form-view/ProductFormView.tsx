@@ -302,7 +302,7 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           maxLength={100}
           className={styles.name_input}
           {...form.register("memberMemo", {
-            required: true,
+            required: false,
           })}
           placeholder="회원 메모를 입력해주세요"
         />
@@ -326,7 +326,7 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           readOnly
           className={styles.name_input}
           {...form.register("memberJoinPath", {
-            required: true,
+            required: false,
           })}
           placeholder="가입 경로를 선택해주세요"
           endAdornment={
