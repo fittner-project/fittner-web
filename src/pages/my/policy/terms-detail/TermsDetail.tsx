@@ -37,6 +37,7 @@ export default function TermsDetail() {
               height: "calc(100vh - 16.8rem)",
               WebkitOverflowScrolling: "touch",
               overflow: "auto",
+              display: "block",
             }}
           />
         </div>

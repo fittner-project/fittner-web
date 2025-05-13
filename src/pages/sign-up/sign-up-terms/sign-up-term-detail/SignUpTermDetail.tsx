@@ -8,12 +8,11 @@ export default function SignUpTermDetail() {
       key={termUrl}
       src={termUrl}
       allowFullScreen
-      frameBorder="0"
+      frameBorder={0}
       style={{
         width: "100%",
         height: "calc(100dvh - 5.8rem)",
-        WebkitOverflowScrolling: "touch",
-        overflow: "auto",
+        display: "block",
       }}
     />
   );
