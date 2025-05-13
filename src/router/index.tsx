@@ -29,6 +29,7 @@ import SignatureDetail from "@/pages/signature/signature-detail/SignatureDetail"
 import MyLessons from "@/pages/my-lessons/MyLessons";
 import RegisterLesson from "@/pages/register-lesson/RegisterLesson";
 import ExtraRegisterTicket from "@/pages/extra-register-ticket/ExtraRegisterTicket";
+import SignUpTermDetail from "@/pages/sign-up/sign-up-terms/sign-up-term-detail/SignUpTermDetail";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -63,8 +64,12 @@ const router = createBrowserRouter([
         element: <Redirect />,
       },
       {
-        path: PATH.SIGN_UP.TERMS,
+        path: PATH.SIGN_UP.TERMS.DEFAULT,
         element: <SignUpTerms />,
+      },
+      {
+        path: PATH.SIGN_UP.TERMS.DETAIL,
+        element: <SignUpTermDetail />,
       },
       {
         path: PATH.SIGN_UP.PHONE_NUMBER,

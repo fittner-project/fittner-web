@@ -21,7 +21,7 @@ function AuthModal() {
           backgroundColor="primary_1"
           fullWidth
           className={styles.sign_up_button}
-          href={PATH.SIGN_UP.TERMS}
+          href={PATH.SIGN_UP.TERMS.DEFAULT}
         >
           회원가입
         </Button>

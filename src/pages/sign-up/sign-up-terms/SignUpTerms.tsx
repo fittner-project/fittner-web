@@ -122,8 +122,7 @@ function SignUpTerms() {
                     </div>
 
                     <Link
-                      to={term.termsUrl || ""}
-                      target="_blank"
+                      to={`${encodeURIComponent(term.termsUrl || "")}`}
                       className={styles.more_button}
                     >
                       더보기

@@ -35,6 +35,7 @@ type RouteKeys =
   | "sign-in"
   | "lobby"
   | "sign-up-terms"
+  | "sign-up-term-detail"
   | "sign-up-name"
   | "find-centers"
   | "sign-up-phone-number"
@@ -90,6 +91,7 @@ export const Routes: Routes = {
     headerType: "sub",
     navType: "none",
   },
+
   "register-lesson": {
     name: "register-lesson",
     path: PATH.REGISTER_LESSON,
@@ -131,7 +133,7 @@ export const Routes: Routes = {
 
   "sign-up-terms": {
     name: "sign-up-terms",
-    path: PATH.SIGN_UP.TERMS,
+    path: PATH.SIGN_UP.TERMS.DEFAULT,
     fallback: "none",
     headerType: "sub",
     navType: "none",
@@ -140,6 +142,14 @@ export const Routes: Routes = {
         type: "none",
       },
     },
+  },
+
+  "sign-up-term-detail": {
+    name: "sign-up-term-detail",
+    path: PATH.SIGN_UP.TERMS.DETAIL,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
   },
 
   "sign-up-phone-number": {

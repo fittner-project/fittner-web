@@ -3,7 +3,10 @@ const PATH = {
   HOME: "/home",
   SIGN_IN: "/sign-in",
   SIGN_UP: {
-    TERMS: "/sign-up-terms",
+    TERMS: {
+      DEFAULT: "/sign-up-terms",
+      DETAIL: "/sign-up-terms/:termUrl",
+    },
     PHONE_NUMBER: "/sign-up-phone-number",
     NAME: "/sign-up-name",
     COMPLETE: "/sign-up-complete",
