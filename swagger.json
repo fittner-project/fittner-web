@@ -48,7 +48,7 @@
         }
       }
     },
-    "/api/v1/user/ticket/suspend": {
+    "/api/v1/user/ticket/suspend-allow": {
       "post": {
         "tags": ["이용권"],
         "summary": "티켓 일시정지 요청 API",
@@ -76,7 +76,7 @@
         }
       }
     },
-    "/api/v1/user/ticket/refund": {
+    "/api/v1/user/ticket/refund-allow": {
       "post": {
         "tags": ["이용권"],
         "summary": "이용권 환불 요청 API",

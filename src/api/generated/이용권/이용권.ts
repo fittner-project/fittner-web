@@ -113,7 +113,7 @@ export const postUserTicketSuspendAllow = (
       
       
       return axiosInstance<ApiResponseMessageObject>(
-      {url: `/api/v1/user/ticket/suspend`, method: 'POST',
+      {url: `/api/v1/user/ticket/suspend-allow`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: suspendTicketReqDto, signal
     },
@@ -172,7 +172,7 @@ export const postUserTicketRefundAllow = (
       
       
       return axiosInstance<ApiResponseMessageObject>(
-      {url: `/api/v1/user/ticket/refund`, method: 'POST',
+      {url: `/api/v1/user/ticket/refund-allow`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: refundReqDto, signal
     },
