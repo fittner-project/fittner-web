@@ -86,12 +86,13 @@ export default function TraineeFormView({
         <p className={styles.title}>생년월일</p>
         <Input
           inputType="line"
-          maxLength={6}
+          type="number"
           className={styles.name_input}
           {...form.register("memberBirth", {
             required: true,
           })}
           placeholder="YYMMDD (6자리)"
+          maxLength={6}
         />
       </div>
 
