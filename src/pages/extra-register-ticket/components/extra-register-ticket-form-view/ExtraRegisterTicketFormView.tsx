@@ -287,7 +287,7 @@ export default function ExtraRegisterTicketFormView() {
       <MotionDiv
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.9 }}
+        transition={{ duration: 0.4, delay: 1.2 }}
         className={styles.button_container}
       >
         <Button

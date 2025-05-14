@@ -29,6 +29,13 @@ export default function RegisterTrainee() {
   const form = useForm<RegisterTraineeForm>({
     mode: "onChange",
   });
+  const [showNextButtonAnimation, setShowNextButtonAnimation] = useState(true);
+
+  useEffect(() => {
+    if (step === 2) {
+      setShowNextButtonAnimation(false);
+    }
+  }, [step]);
 
   useHandleBackInject(() => {
     if (step === 1) {
@@ -74,7 +81,11 @@ export default function RegisterTrainee() {
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
-              <TraineeFormView form={form} setStep={setStep} />
+              <TraineeFormView
+                form={form}
+                setStep={setStep}
+                showNextButtonAnimation={showNextButtonAnimation}
+              />
             </MotionDiv>
           ) : (
             <MotionDiv
