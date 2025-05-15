@@ -46,3 +46,5 @@ export { default as memo } from "./icon/memo.png";
 export { default as plus } from "./icon/plus.png";
 export { default as pause } from "./icon/pause.svg";
 export { default as caretRight } from "./icon/caret-right.svg";
+export { default as pinAngleSel } from "./icon/pin-angle-sel.svg";
+export { default as pinAngleNor } from "./icon/pin-angle-nor.svg";

@@ -9,6 +9,11 @@
   .center_info {
     width: 100%;
     max-width: 60%;
+
+    &.active {
+      max-width: 52.5%;
+    }
+
     @include flex_col(flex-start, flex-start);
     @include flex_col_gap(0.6rem);
 
