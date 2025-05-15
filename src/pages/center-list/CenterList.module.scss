@@ -1,5 +1,5 @@
 .container {
-  min-height: calc(100vh - $sub_header_height);
+  min-height: calc(100dvh - $sub_header_height);
   @include flex_col(flex-start, flex-start);
   @include flex_col_gap(2.8rem);
 

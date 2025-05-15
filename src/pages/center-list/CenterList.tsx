@@ -20,11 +20,11 @@ export default function CenterList() {
     });
 
   const connectedCenters = userCenterData?.result?.filter(
-    (center) => center.centerJoinMainYn === "Y"
+    (center) => center.centerJoinApprovalYn === "Y"
   );
 
   const notConnectedCenters = userCenterData?.result?.filter(
-    (center) => center.centerJoinMainYn === "N"
+    (center) => center.centerJoinApprovalYn === "N"
   );
 
   useEffect(() => {
