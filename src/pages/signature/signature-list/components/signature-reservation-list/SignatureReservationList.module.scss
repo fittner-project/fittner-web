@@ -1,7 +1,7 @@
 .container {
   .count {
     margin-top: 1.6rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
     @include flex_row(flex-start, flex-start);
     @include flex_row_gap(0.8rem);

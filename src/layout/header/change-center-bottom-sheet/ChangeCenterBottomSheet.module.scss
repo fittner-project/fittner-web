@@ -6,17 +6,18 @@
     @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
   }
 
-  .date_container {
+  .center_list {
     margin-top: 1rem;
 
-    .date {
-      @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+    .center {
+      padding: 0 1.8rem;
+      border-radius: 1.2rem;
+      @include flex_row(flex-start, center);
       height: 4.6rem;
-      padding: 1.2rem 1.8rem;
+      @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
 
       &.active {
         background-color: $grey_1;
-        border-radius: 1.2rem;
       }
     }
   }

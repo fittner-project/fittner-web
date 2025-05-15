@@ -5,6 +5,9 @@ import { bell, chevron_down } from "@/assets/assets";
 import Image from "@/components/image/Image";
 import PATH from "@/router/path";
 import useAppStore from "@/store/app";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import ChangeCenterBottomSheet from "./change-center-bottom-sheet/ChangeCenterBottomSheet";
+
 interface HeaderProps {
   fallback: string | "none";
   title?: string | ReactNode;
@@ -33,7 +36,8 @@ export default function Header({
       injectedBackFunction();
       return;
     }
-    navigate(PATH.CENTER_LIST);
+
+    openBottomSheet({ component: ChangeCenterBottomSheet });
   };
 
   return (
