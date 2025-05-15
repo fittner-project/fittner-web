@@ -16,12 +16,16 @@ export default function Center({ isConnected, center }: CenterProps) {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const selectedCenter = useUserStore((state) => state.selectedCenter);
   const isSelectedCenter = selectedCenter.centerName === center.centerName;
+  const setSelectedCenter = useUserStore((state) => state.setSelectedCenter);
 
   return (
     <div className={styles.container}>
       {isConnected && isAuthenticated && (
         <Image
           src={isSelectedCenter ? pinAngleSel : pinAngleNor}
+          onClick={() => {
+            setSelectedCenter(center);
+          }}
           style={{
             marginBottom: "auto",
             marginRight: "0.9rem",
@@ -31,7 +35,7 @@ export default function Center({ isConnected, center }: CenterProps) {
       )}
       <section
         className={classNames(styles.center_info, {
-          [styles.active]: isConnected && isSelectedCenter && isAuthenticated,
+          [styles.active]: isConnected && isAuthenticated,
         })}
       >
         <p className={styles.center_name}>{center?.centerName}</p>
