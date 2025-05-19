@@ -23,4 +23,6 @@ export interface MemberListResDto {
   memberPhone?: string;
   /** 회원 총 수 */
   memberTotalCount?: number;
+  /** 예약데이터가 있는지 유무 */
+  reservation?: boolean;
 }

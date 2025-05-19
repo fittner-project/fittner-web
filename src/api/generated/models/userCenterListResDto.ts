@@ -12,6 +12,8 @@
 export interface UserCenterListResDto {
   /** 센터 주소 */
   centerAddress?: string;
+  /** 센터 ID */
+  centerId?: string;
   /** 센터 승인여부 */
   centerJoinApprovalYn?: string;
   /** 센터 가입 ID */

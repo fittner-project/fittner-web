@@ -34,6 +34,7 @@ import type {
   ApiResponseMessageListTermsResDto,
   ApiResponseMessageListUserCenterListResDto,
   ApiResponseMessageObject,
+  ApiResponseMessageTrainerResDto,
   ApiResponseMessageUserInfoResDto,
   CancelCenterApprovalReqDto,
   CenterRegisterReqDto,
@@ -337,6 +338,160 @@ export const useDeleteUserCenter = <TError = unknown,
       return useMutation(mutationOptions);
     }
     /**
+ * 트레이너 목록 조회 API 입니다.
+ * @summary 트레이너 목록 조회 API
+ */
+export const getUserTrainers = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ApiResponseMessageTrainerResDto>(
+      {url: `/api/v1/user/trainers`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+export const getGetUserTrainersQueryKey = () => {
+    return [`/api/v1/user/trainers`] as const;
+    }
+
+    
+export const getGetUserTrainersInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getUserTrainers>>>, TError = unknown>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTrainersQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTrainers>>> = ({ signal }) => getUserTrainers(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetUserTrainersInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTrainers>>>
+export type GetUserTrainersInfiniteQueryError = unknown
+
+
+export function useGetUserTrainersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTrainers>>>, TError = unknown>(
+  options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getUserTrainers>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetUserTrainersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTrainers>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getUserTrainers>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetUserTrainersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTrainers>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 트레이너 목록 조회 API
+ */
+
+export function useGetUserTrainersInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getUserTrainers>>>, TError = unknown>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetUserTrainersInfiniteQueryOptions(options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const getGetUserTrainersQueryOptions = <TData = Awaited<ReturnType<typeof getUserTrainers>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetUserTrainersQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserTrainers>>> = ({ signal }) => getUserTrainers(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData> & { queryKey: DataTag<QueryKey, TData> }
+}
+
+export type GetUserTrainersQueryResult = NonNullable<Awaited<ReturnType<typeof getUserTrainers>>>
+export type GetUserTrainersQueryError = unknown
+
+
+export function useGetUserTrainers<TData = Awaited<ReturnType<typeof getUserTrainers>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getUserTrainers>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetUserTrainers<TData = Awaited<ReturnType<typeof getUserTrainers>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getUserTrainers>>,
+          TError,
+          TData
+        > , 'initialData'
+      >, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+export function useGetUserTrainers<TData = Awaited<ReturnType<typeof getUserTrainers>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> }
+/**
+ * @summary 트레이너 목록 조회 API
+ */
+
+export function useGetUserTrainers<TData = Awaited<ReturnType<typeof getUserTrainers>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUserTrainers>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
+
+  const queryOptions = getGetUserTrainersQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+/**
  * 회원가입 약관 조회 API 입니다.
  * @summary 회원가입 약관 조회 API
  */

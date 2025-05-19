@@ -59,6 +59,7 @@ const Authorized = ({ children }: IProps) => {
 
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const setUserInfo = useUserStore((state) => state.setUserInfo);
+  const selectedCenter = useUserStore((state) => state.selectedCenter);
   const setSelectedCenter = useUserStore((state) => state.setSelectedCenter);
   const setReservationColors = useUserStore(
     (state) => state.setReservationColors
@@ -107,7 +108,12 @@ const Authorized = ({ children }: IProps) => {
   useEffect(() => {
     if (data) {
       setUserInfo(data.result?.defaultInfo || {});
-      setSelectedCenter(data.result?.centerInfo?.[0] || {});
+
+      const centerInfo = data.result?.centerInfo?.find(
+        (center) => center.centerId === selectedCenter.centerId
+      );
+
+      setSelectedCenter(centerInfo || data.result?.centerInfo?.[0] || {});
     }
   }, [data]);
 

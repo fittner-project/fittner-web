@@ -578,6 +578,26 @@
         }
       }
     },
+    "/api/v1/user/trainers": {
+      "get": {
+        "tags": ["유저"],
+        "summary": "트레이너 목록 조회 API",
+        "description": "트레이너 목록 조회 API 입니다.",
+        "operationId": "getUserTrainers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMessageTrainerResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/user/tickets": {
       "get": {
         "tags": ["이용권"],
@@ -2257,6 +2277,67 @@
           }
         }
       },
+      "ApiResponseMessageTrainerResDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "응답 코드",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상처리"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "오류 메시지",
+            "example": ""
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "오류 코드",
+            "example": ""
+          },
+          "result": { "$ref": "#/components/schemas/TrainerResDto" },
+          "error": {
+            "type": "string",
+            "writeOnly": true,
+            "enum": ["COMMON_FAIL"]
+          }
+        }
+      },
+      "TrainerResDto": {
+        "type": "object",
+        "properties": {
+          "trainerTotal": {
+            "type": "integer",
+            "description": "전체 갯수",
+            "format": "int32",
+            "example": 5
+          },
+          "trainerInfo": {
+            "type": "array",
+            "description": "트레이너이름",
+            "example": "김영재",
+            "items": { "$ref": "#/components/schemas/TrainerResultDto" }
+          }
+        },
+        "description": "응답 데이터"
+      },
+      "TrainerResultDto": {
+        "type": "object",
+        "properties": {
+          "trainerName": {
+            "type": "string",
+            "description": "트레이너이름",
+            "example": "김영재"
+          }
+        },
+        "description": "트레이너이름",
+        "example": "김영재"
+      },
       "ApiResponseMessageListTicketListResDto": {
         "type": "object",
         "properties": {
@@ -3750,6 +3831,11 @@
             "description": "회원 총 수",
             "format": "int64",
             "example": 10
+          },
+          "reservation": {
+            "type": "boolean",
+            "description": "예약데이터가 있는지 유무",
+            "example": true
           }
         },
         "description": "응답 데이터"
@@ -4500,6 +4586,11 @@
           "centerJoinId": {
             "type": "string",
             "description": "센터 가입 ID",
+            "example": "1"
+          },
+          "centerId": {
+            "type": "string",
+            "description": "센터 ID",
             "example": "1"
           },
           "centerName": {
