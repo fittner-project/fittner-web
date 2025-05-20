@@ -38,6 +38,11 @@ export default function ConfirmInfo() {
        내역을 확인해주세요`;
     }
 
+    if (type === "assign") {
+      titleText = `기존 회원 양도 신청을 위해
+       내역을 확인해주세요.`;
+    }
+
     return titleText;
   };
 
@@ -46,6 +51,10 @@ export default function ConfirmInfo() {
 
     if (type === "refund") {
       buttonText = "환불 신청";
+    }
+
+    if (type === "assign") {
+      buttonText = "양도 신청";
     }
 
     return buttonText;
@@ -142,8 +151,8 @@ export default function ConfirmInfo() {
               ticketRemainCnt={Number(
                 ticketRemainCntMap[type as keyof typeof ticketRemainCntMap]
               )}
-              refundInfo={type === "refund" && refundInfo ? refundInfo : null}
-              assignInfo={type === "assign" && assignInfo ? assignInfo : null}
+              refundInfo={refundInfo}
+              assignInfo={assignInfo}
             />
           </div>
         </div>
