@@ -9,22 +9,27 @@ import {
 import dayjs from "dayjs";
 import { openModal } from "@/utils/modal";
 import ConfirmRefundModal from "./components/confirm-refund-modal/ConfirmRefundModal";
+import Skeleton from "@/components/skeleton/Skeleton";
 
 export default function ConfirmInfo() {
   const [searchParams] = useSearchParams();
   const type = searchParams.get("type");
   const ticketId = searchParams.get("ticketId");
   const memberId = searchParams.get("memberId");
-  const { data: refundInfoData } = useGetUserTicketRefundInfo(
-    { ticketId: ticketId ?? "" },
-    { query: { enabled: !!ticketId && type === "refund" } }
-  );
-  const { data: assignInfoData } = useGetUserTicketAssignInfo(
-    { ticketId: ticketId ?? "", memberId: memberId ?? "" },
-    { query: { enabled: !!ticketId && !!memberId && type === "assign" } }
-  );
+  const { data: refundInfoData, isLoading: isRefundInfoLoading } =
+    useGetUserTicketRefundInfo(
+      { ticketId: ticketId ?? "" },
+      { query: { enabled: !!ticketId && type === "refund" } }
+    );
+  const { data: assignInfoData, isLoading: isAssignInfoLoading } =
+    useGetUserTicketAssignInfo(
+      { ticketId: ticketId ?? "", memberId: memberId ?? "" },
+      { query: { enabled: !!ticketId && !!memberId && type === "assign" } }
+    );
+
   const refundInfo = refundInfoData?.result;
   const assignInfo = assignInfoData?.result;
+  const isLoading = isRefundInfoLoading || isAssignInfoLoading;
 
   const renderTitleText = () => {
     let titleText = "";
@@ -88,20 +93,49 @@ export default function ConfirmInfo() {
       <div className={styles.container}>
         <p className={styles.title}>{renderTitleText()}</p>
         <div className={styles.content_section}>
-          <p className={styles.trainee_name}>
-            {traineeNameMap[type as keyof typeof traineeNameMap]} 회원님
-          </p>
+          {isLoading ? (
+            <Skeleton
+              backgroundColor="skeleton_2"
+              height={3.6}
+              width={15}
+              borderRadius={1}
+            />
+          ) : (
+            <p className={styles.trainee_name}>
+              {traineeNameMap[type as keyof typeof traineeNameMap]} 회원님
+            </p>
+          )}
 
           <div className={styles.ticket_info_section}>
             <div className={styles.ticket_info_top_section}>
-              <p className={styles.ticket_name}>
-                {ticketNameMap[type as keyof typeof ticketNameMap]}
-              </p>
-              <p className={styles.ticket_period}>
-                {ticketPeriodMap[type as keyof typeof ticketPeriodMap]}
-              </p>
+              {isLoading ? (
+                <Skeleton
+                  backgroundColor="skeleton_2"
+                  height={2.2}
+                  width={18}
+                  borderRadius={1}
+                />
+              ) : (
+                <p className={styles.ticket_name}>
+                  {ticketNameMap[type as keyof typeof ticketNameMap]}
+                </p>
+              )}
+              {isLoading ? (
+                <Skeleton
+                  backgroundColor="skeleton_2"
+                  height={2.2}
+                  width={19}
+                  borderRadius={1}
+                  style={{ marginTop: "0.9rem" }}
+                />
+              ) : (
+                <p className={styles.ticket_period}>
+                  {ticketPeriodMap[type as keyof typeof ticketPeriodMap]}
+                </p>
+              )}
             </div>
             <TicketInfoBottomSection
+              isLoading={isLoading}
               ticketTotalCnt={Number(
                 ticketTotalCntMap[type as keyof typeof ticketTotalCntMap]
               )}

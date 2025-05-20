@@ -1,9 +1,11 @@
-import Flex from "@/components/flex/Flex";
 import styles from "./TicketInfoBottomSection.module.scss";
 import { AssignToInfoResDto, RefundInfoResDto } from "@/api/generated/models";
 import COLORS from "@/constants/colors";
+import Skeleton from "@/components/skeleton/Skeleton";
+import Row from "@/components/flex/Row";
 
 interface TicketInfoBottomSectionProps {
+  isLoading: boolean;
   ticketTotalCnt: number;
   ticketRemainCnt: number;
   refundInfo: RefundInfoResDto | null;
@@ -11,6 +13,7 @@ interface TicketInfoBottomSectionProps {
 }
 
 export default function TicketInfoBottomSection({
+  isLoading,
   ticketTotalCnt,
   ticketRemainCnt,
   refundInfo,
@@ -18,18 +21,43 @@ export default function TicketInfoBottomSection({
 }: TicketInfoBottomSectionProps) {
   return (
     <div className={styles.container}>
-      <Flex justifyContent="space-between">
-        <p>잔여횟수</p>
-        <p className={styles.ticket_remaining_count_value}>
-          <span>{ticketRemainCnt}회</span> 총 <span>{ticketTotalCnt}회</span>
-        </p>
-      </Flex>
-      {refundInfo && <RefundInfoSection refundInfo={refundInfo} />}
+      {isLoading ? (
+        <Row justifyContent="space-between">
+          <Skeleton
+            backgroundColor="skeleton_2"
+            height={2.2}
+            width={5.877}
+            borderRadius={1}
+          />
+          <Skeleton
+            backgroundColor="skeleton_2"
+            height={2.2}
+            width={9.513}
+            borderRadius={1}
+          />
+        </Row>
+      ) : (
+        <Row justifyContent="space-between">
+          <p>잔여횟수</p>
+          <p className={styles.ticket_remaining_count_value}>
+            <span>{ticketRemainCnt}회</span> 총 <span>{ticketTotalCnt}회</span>
+          </p>
+        </Row>
+      )}
+      {refundInfo && (
+        <RefundInfoSection isLoading={isLoading} refundInfo={refundInfo} />
+      )}
     </div>
   );
 }
 
-function RefundInfoSection({ refundInfo }: { refundInfo: RefundInfoResDto }) {
+function RefundInfoSection({
+  isLoading,
+  refundInfo,
+}: {
+  isLoading: boolean;
+  refundInfo: RefundInfoResDto;
+}) {
   return (
     <div
       style={{
@@ -39,27 +67,78 @@ function RefundInfoSection({ refundInfo }: { refundInfo: RefundInfoResDto }) {
         gap: "1.5rem",
       }}
     >
-      <Flex style={{ width: "100%" }} justifyContent="space-between">
-        <p>총액</p>
-        <p style={{ color: COLORS.text_4, fontWeight: 700 }}>
-          {Number(refundInfo.ticketPrice).toLocaleString()}원
-        </p>
-      </Flex>
-      <Flex style={{ width: "100%" }} justifyContent="space-between">
-        <p>사용금액</p>
-        <p style={{ color: COLORS.text_4, fontWeight: 700 }}>
-          {Number(refundInfo.ticketUsePrice).toLocaleString()}원
-        </p>
-      </Flex>
-      <Flex
-        style={{ width: "100%", color: COLORS.text_7 }}
-        justifyContent="space-between"
-      >
-        <p>환불 예상금액</p>
-        <p style={{ color: COLORS.text_4, fontWeight: 700 }}>
-          {Number(refundInfo.refundPrice).toLocaleString()}원
-        </p>
-      </Flex>
+      {isLoading ? (
+        <Row justifyContent="space-between">
+          <Skeleton
+            backgroundColor="skeleton_2"
+            height={2.2}
+            width={2.939}
+            borderRadius={1}
+          />
+          <Skeleton
+            backgroundColor="skeleton_2"
+            height={2.2}
+            width={8.509}
+            borderRadius={1}
+          />
+        </Row>
+      ) : (
+        <Row style={{ width: "100%" }} justifyContent="space-between">
+          <p>총액</p>
+          <p style={{ color: COLORS.text_4, fontWeight: 700 }}>
+            {Number(refundInfo.ticketPrice).toLocaleString()}원
+          </p>
+        </Row>
+      )}
+      {isLoading ? (
+        <Row justifyContent="space-between">
+          <Skeleton
+            backgroundColor="skeleton_2"
+            height={2.2}
+            width={5.877}
+            borderRadius={1}
+          />
+          <Skeleton
+            backgroundColor="skeleton_2"
+            height={2.2}
+            width={8.509}
+            borderRadius={1}
+          />
+        </Row>
+      ) : (
+        <Row style={{ width: "100%" }} justifyContent="space-between">
+          <p>사용금액</p>
+          <p style={{ color: COLORS.text_4, fontWeight: 700 }}>
+            {Number(refundInfo.ticketUsePrice).toLocaleString()}원
+          </p>
+        </Row>
+      )}
+      {isLoading ? (
+        <Row justifyContent="space-between">
+          <Skeleton
+            backgroundColor="skeleton_2"
+            height={2.2}
+            width={9.23}
+            borderRadius={1}
+          />
+          <Skeleton
+            backgroundColor="skeleton_2"
+            height={2.2}
+            width={8.509}
+            borderRadius={1}
+          />
+        </Row>
+      ) : (
+        <Row
+          style={{ width: "100%", color: COLORS.text_7 }}
+          justifyContent="space-between"
+        >
+          <p>환불 예상금액</p>
+          <p style={{ color: COLORS.text_4, fontWeight: 700 }}>
+            {Number(refundInfo.refundPrice).toLocaleString()}원
+          </p>
+        </Row>
+      )}
     </div>
   );
 }
