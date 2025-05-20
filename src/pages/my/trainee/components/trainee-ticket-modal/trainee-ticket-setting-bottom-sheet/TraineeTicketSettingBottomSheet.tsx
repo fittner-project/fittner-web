@@ -3,16 +3,20 @@ import styles from "./TraineeTicketSettingBottomSheet.module.scss";
 import PATH from "@/router/path";
 import DeleteTraineeModal from "./delete-trainee-modal/DeleteTraineeModal";
 import { openModal } from "@/utils/modal";
-import { closeBottomSheet } from "@/utils/bottomSheet";
+import { closeBottomSheet, openBottomSheet } from "@/utils/bottomSheet";
+import RefundBlockBottomSheet from "./refund-block-bottom-sheet/RefundBlockBottomSheet";
+import { WaitForSeconds } from "@/utils/coroutine";
 
 interface TraineeTicketSettingBottomSheetProps {
   memberId: string;
   memberName: string;
+  hasReservedClass: boolean;
 }
 
 export default function TraineeTicketSettingBottomSheet({
   memberId,
   memberName,
+  hasReservedClass,
 }: TraineeTicketSettingBottomSheetProps) {
   type Setting = "이용권 추가 등록" | "회원권 양도" | "환불" | "회원 삭제";
   const settings: Setting[] = [
@@ -29,6 +33,17 @@ export default function TraineeTicketSettingBottomSheet({
         pathname: PATH.EXTRA_REGISTER_TICKET,
         search: `?memberId=${memberId}`,
       });
+    }
+
+    if (setting === "환불") {
+      if (hasReservedClass) {
+        closeBottomSheet();
+        WaitForSeconds(300).then(() => {
+          openBottomSheet({
+            component: RefundBlockBottomSheet,
+          });
+        });
+      }
     }
 
     if (setting === "회원 삭제") {

@@ -18,11 +18,13 @@ import PauseTicketBottomSheet from "./pause-ticket-bottom-sheet/PauseTicketBotto
 interface TraineeTicketModalProps {
   memberId: string;
   memberName: string;
+  hasReservedClass: boolean;
 }
 
 export default function TraineeTicketModal({
   memberId,
   memberName,
+  hasReservedClass,
 }: TraineeTicketModalProps) {
   const { data: traineeData, isLoading } = useGetUserMemberMemberId(memberId);
   const trainees = traineeData?.result;
@@ -42,7 +44,7 @@ export default function TraineeTicketModal({
       closeModal();
       openBottomSheet({
         component: PauseTicketBottomSheet,
-        props: { ticketId: ticketId },
+        props: { ticketId },
       });
     }
   };
@@ -57,7 +59,7 @@ export default function TraineeTicketModal({
               closeModal();
               openBottomSheet({
                 component: TraineeTicketSettingBottomSheet,
-                props: { memberId, memberName },
+                props: { memberId, memberName, hasReservedClass },
               });
             }}
             className={styles.setting_button}

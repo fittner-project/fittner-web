@@ -25,15 +25,18 @@ export default function Trainee() {
   const handleClickTrainee = ({
     memberId,
     memberName,
+    hasReservedClass,
   }: {
     memberId: string;
     memberName: string;
+    hasReservedClass: boolean | undefined;
   }) => {
     openModal({
       component: TraineeTicketModal,
       props: {
         memberId,
         memberName,
+        hasReservedClass,
       },
     });
   };
@@ -121,10 +124,11 @@ export default function Trainee() {
                   key={trainee.memberId}
                   className={styles.trainee_item}
                   onClick={() => {
-                    if (trainee.memberId) {
+                    if (trainee.memberId && trainee.memberName) {
                       handleClickTrainee({
                         memberId: trainee.memberId,
-                        memberName: trainee.memberName || "",
+                        memberName: trainee.memberName,
+                        hasReservedClass: trainee.reservation,
                       });
                     }
                   }}

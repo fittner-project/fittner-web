@@ -1,0 +1,19 @@
+.container {
+  .title {
+    @include fm-ar(2.4rem, $text_1, 3.2rem, 500);
+  }
+
+  .description_section {
+    @include flex_row(flex-start, center);
+    @include flex_row_gap(0.4rem);
+    margin-top: 1.4rem;
+
+    .description {
+      @include fm-ar(1.5rem, $text_7, 2.2rem, 500);
+    }
+  }
+
+  button {
+    margin-top: 3.6rem;
+  }
+}
