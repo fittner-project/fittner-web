@@ -15,9 +15,20 @@
 
   div:first-child {
     @include fm-ar(1.8rem, $grey_3, 2.2rem, 500);
+    margin-bottom: auto;
   }
+
   div:last-child {
     @include fm-ar(1.8rem, $text_1, 2.2rem, 600);
+    text-align: right;
+    word-break: break-all;
+    word-wrap: break-word;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 }
 

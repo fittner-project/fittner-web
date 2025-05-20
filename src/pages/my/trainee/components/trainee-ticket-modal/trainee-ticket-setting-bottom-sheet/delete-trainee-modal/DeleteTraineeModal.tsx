@@ -1,7 +1,3 @@
-import Modal from "@/components/modal/Modal";
-import styles from "./DeleteTraineeModal.module.scss";
-import Input from "@/components/input/Input";
-import { useForm } from "react-hook-form";
 import {
   getGetUserMembersQueryKey,
   useDeleteUser,
@@ -9,6 +5,7 @@ import {
 import { closeModal, openModal } from "@/utils/modal";
 import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
 import { useQueryClient } from "@tanstack/react-query";
+import ConfirmTraineeNameModal from "@/components/modal/system-modal/confirm-trainee-name-modal/ConfirmTraineeNameModal";
 
 interface DeleteTraineeModalProps {
   memberId: string;
@@ -19,8 +16,6 @@ export default function DeleteTraineeModal({
   memberId,
   memberName,
 }: DeleteTraineeModalProps) {
-  const { register, watch } = useForm();
-  const memberNameValue = watch("memberName");
   const queryClient = useQueryClient();
 
   const { mutate: deleteUser } = useDeleteUser({
@@ -41,26 +36,13 @@ export default function DeleteTraineeModal({
     },
   });
 
-  useEffect(() => {
-    if (memberName === memberNameValue) {
-      deleteUser({ memberId });
-    }
-  }, [memberNameValue]);
-
   return (
-    <Modal>
-      <div className={styles.container}>
-        <p className={styles.title}>
-          확인을 위해 회원님의 <br />
-          이름을 작성해주세요
-        </p>
-        <Input
-          autoFocus
-          inputType="line"
-          placeholder={memberName}
-          {...register("memberName")}
-        />
-      </div>
-    </Modal>
+    <ConfirmTraineeNameModal
+      callback={() => deleteUser({ memberId })}
+      memberName={memberName}
+    >
+      확인을 위해 회원님의 <br />
+      이름을 작성해주세요
+    </ConfirmTraineeNameModal>
   );
 }

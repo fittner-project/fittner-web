@@ -7,6 +7,8 @@ import {
   useGetUserTicketRefundInfo,
 } from "@/api/generated/이용권/이용권";
 import dayjs from "dayjs";
+import { openModal } from "@/utils/modal";
+import ConfirmRefundModal from "./components/confirm-refund-modal/ConfirmRefundModal";
 
 export default function ConfirmInfo() {
   const [searchParams] = useSearchParams();
@@ -69,6 +71,18 @@ export default function ConfirmInfo() {
     assign: `${dayjs(assignInfo?.ticketStartDate).format("YYYY.MM.DD")} ~ ${dayjs(assignInfo?.ticketEndDate).format("YYYY.MM.DD")}`,
   };
 
+  const handleClickButton = () => {
+    if (type === "refund") {
+      openModal({
+        component: ConfirmRefundModal,
+        props: {
+          memberName: refundInfo?.memberName,
+          ticketId: ticketId ?? "",
+        },
+      });
+    }
+  };
+
   return (
     <PaddingContainer>
       <div className={styles.container}>
@@ -100,7 +114,11 @@ export default function ConfirmInfo() {
           </div>
         </div>
 
-        <Button backgroundColor="primary_1" fullWidth>
+        <Button
+          backgroundColor="primary_1"
+          fullWidth
+          onClick={handleClickButton}
+        >
           {renderButtonText()}
         </Button>
       </div>

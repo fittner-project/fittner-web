@@ -86,7 +86,11 @@ export default function ProductConfirmBottomSheet({
 
           <Row className={styles.content_item} justifyContent="space-between">
             <div>메모</div>
-            <div>{form.getValues().memberMemo}</div>
+            <div>
+              {form.getValues().memberMemo}ㅁㄴㅇ피ㅏ
+              ㄴㅁ우파ㅣㅇㄴ무피ㅏㅜㅁㅇㄴ피ㅏㅇㄴ무피ㅏㅜㅇㅁ나ㅣㅍ
+              ㅁㄴ위ㅏ품ㄴ이ㅏ푼ㅁ이ㅏ풍ㄴ미ㅓ퓽ㄴ머ㅣ퓽니ㅓㅁ퓸ㅇ니ㅓ퓸이너
+            </div>
           </Row>
 
           <Row className={styles.content_item} justifyContent="space-between">
