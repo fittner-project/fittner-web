@@ -59,7 +59,8 @@ type RouteKeys =
   | "signature-list"
   | "signature-detail"
   | "my-lessons"
-  | "extra-register-ticket";
+  | "extra-register-ticket"
+  | "confirm-info";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -322,6 +323,14 @@ export const Routes: Routes = {
   "extra-register-ticket": {
     name: "extra-register-ticket",
     path: PATH.EXTRA_REGISTER_TICKET,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+
+  "confirm-info": {
+    name: "confirm-info",
+    path: PATH.CONFIRM_INFO,
     fallback: "none",
     headerType: "sub",
     navType: "none",

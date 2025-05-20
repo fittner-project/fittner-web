@@ -1,0 +1,50 @@
+.container {
+  @include flex_col(flex-start, flex-start);
+  min-height: calc(100dvh - $sub_header_height);
+
+  .title {
+    @include fm-ar(2.2rem, $text_1, 3rem, 700);
+    white-space: pre-line;
+  }
+
+  .content_section {
+    width: 100%;
+    border-radius: 2rem;
+    background-color: $grey_1;
+    padding: 3.2rem 1.6rem 3.6rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    .trainee_name {
+      @include fm-ar(2.4rem, $text_1, 3.6rem, 700);
+    }
+
+    .ticket_info_section {
+      margin-top: 1.3rem;
+      width: 100%;
+      border-radius: 1.6rem;
+      background-color: white;
+      padding: 0 2rem;
+
+      .ticket_info_top_section {
+        padding-top: 3.4rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 0.2rem solid $grey_1;
+
+        .ticket_name {
+          @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+        }
+
+        .ticket_period {
+          margin-top: 0.9rem;
+          @include fm-ar(1.7rem, $grey_3, 2.2rem, 400);
+        }
+      }
+    }
+  }
+
+  button {
+    margin-top: auto;
+    margin-bottom: 1.8rem;
+  }
+}

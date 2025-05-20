@@ -11,12 +11,14 @@ interface TraineeTicketSettingBottomSheetProps {
   memberId: string;
   memberName: string;
   hasReservedClass: boolean;
+  ticketId: string;
 }
 
 export default function TraineeTicketSettingBottomSheet({
   memberId,
   memberName,
   hasReservedClass,
+  ticketId,
 }: TraineeTicketSettingBottomSheetProps) {
   type Setting = "이용권 추가 등록" | "회원권 양도" | "환불" | "회원 삭제";
   const settings: Setting[] = [
@@ -42,6 +44,11 @@ export default function TraineeTicketSettingBottomSheet({
           openBottomSheet({
             component: RefundBlockBottomSheet,
           });
+        });
+      } else {
+        navigate({
+          pathname: PATH.CONFIRM_INFO,
+          search: `?type=refund&ticketId=${encodeURIComponent(ticketId)}`,
         });
       }
     }

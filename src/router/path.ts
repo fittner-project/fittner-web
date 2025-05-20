@@ -39,6 +39,7 @@ const PATH = {
     LIST: "/signature/list",
     DETAIL: "/signature/list/:ticketId",
   },
+  CONFIRM_INFO: "/confirm-info",
 };
 
 export default PATH;

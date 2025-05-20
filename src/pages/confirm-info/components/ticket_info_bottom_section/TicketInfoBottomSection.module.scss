@@ -1,0 +1,14 @@
+.container {
+  padding-top: 1.5rem;
+  padding-bottom: 3.2rem;
+
+  @include fm-ar(1.7rem, $text_4, 2.2rem, 500);
+
+  .ticket_remaining_count_value {
+    @include fm-ar(1.7rem, $grey_3, 2.2rem, 700);
+
+    span:first-child {
+      @include fm-ar(1.7rem, $primary_1, 2.2rem, 700);
+    }
+  }
+}

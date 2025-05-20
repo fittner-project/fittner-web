@@ -32,6 +32,7 @@ export default function TraineeTicketModal({
     ING: "sub_1",
     STOP: "primary_1",
   };
+  const [ticketId, setTicketId] = useState("");
 
   const handleClickTicketStatusButton = ({
     ticketId,
@@ -49,6 +50,19 @@ export default function TraineeTicketModal({
     }
   };
 
+  const handleClickSettingButton = () => {
+    closeModal();
+    openBottomSheet({
+      component: TraineeTicketSettingBottomSheet,
+      props: {
+        memberId,
+        memberName,
+        hasReservedClass,
+        ticketId,
+      },
+    });
+  };
+
   return (
     <Modal>
       <div className={styles.container}>
@@ -56,11 +70,7 @@ export default function TraineeTicketModal({
           <p className={styles.member_name}>{memberName} 회원님</p>
           <button
             onClick={() => {
-              closeModal();
-              openBottomSheet({
-                component: TraineeTicketSettingBottomSheet,
-                props: { memberId, memberName, hasReservedClass },
-              });
+              handleClickSettingButton();
             }}
             className={styles.setting_button}
           >
@@ -77,6 +87,12 @@ export default function TraineeTicketModal({
               modules={[Pagination]}
               pagination={{ clickable: true }}
               loop
+              onSlideChange={(swiper) => {
+                const idx = swiper.activeIndex;
+                if (trainees && trainees[idx] && trainees[idx].ticketId) {
+                  setTicketId(trainees[idx].ticketId);
+                }
+              }}
             >
               {trainees?.map((trainee) => (
                 <SwiperSlide key={trainee.ticketId}>
