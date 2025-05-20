@@ -87,6 +87,7 @@ export default function TraineeTicketModal({
               modules={[Pagination]}
               pagination={{ clickable: true }}
               loop
+              autoHeight
               onSlideChange={(swiper) => {
                 const idx = swiper.activeIndex;
                 if (trainees && trainees[idx] && trainees[idx].ticketId) {
