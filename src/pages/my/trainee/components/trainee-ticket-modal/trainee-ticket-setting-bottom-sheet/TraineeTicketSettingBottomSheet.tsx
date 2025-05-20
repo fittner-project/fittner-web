@@ -6,6 +6,7 @@ import { openModal } from "@/utils/modal";
 import { closeBottomSheet, openBottomSheet } from "@/utils/bottomSheet";
 import RefundBlockBottomSheet from "./refund-block-bottom-sheet/RefundBlockBottomSheet";
 import { WaitForSeconds } from "@/utils/coroutine";
+import AssignTicketSettingBottomSheet from "./assign-ticket-setting-bottom-sheet/AssignTicketSettingBottomSheet";
 
 interface TraineeTicketSettingBottomSheetProps {
   memberId: string;
@@ -37,6 +38,16 @@ export default function TraineeTicketSettingBottomSheet({
       });
     }
 
+    if (setting === "회원권 양도") {
+      closeBottomSheet();
+      WaitForSeconds(300).then(() => {
+        openBottomSheet({
+          component: AssignTicketSettingBottomSheet,
+          props: { memberId, ticketId },
+        });
+      });
+    }
+
     if (setting === "환불") {
       if (hasReservedClass) {
         closeBottomSheet();
@@ -48,7 +59,7 @@ export default function TraineeTicketSettingBottomSheet({
       } else {
         navigate({
           pathname: PATH.CONFIRM_INFO,
-          search: `?type=refund&ticketId=${encodeURIComponent(ticketId)}`,
+          search: `?type=refund&ticket-id=${encodeURIComponent(ticketId)}`,
         });
       }
     }

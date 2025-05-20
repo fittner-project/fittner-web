@@ -10,6 +10,8 @@ interface TicketInfoBottomSectionProps {
   ticketRemainCnt: number;
   refundInfo?: RefundInfoResDto;
   assignInfo?: AssignToInfoResDto;
+  assigneeMemberName: string;
+  type: "refund" | "assign";
 }
 
 export default function TicketInfoBottomSection({
@@ -18,6 +20,8 @@ export default function TicketInfoBottomSection({
   ticketRemainCnt,
   refundInfo,
   assignInfo,
+  assigneeMemberName,
+  type,
 }: TicketInfoBottomSectionProps) {
   return (
     <div className={styles.container}>
@@ -44,9 +48,14 @@ export default function TicketInfoBottomSection({
           </p>
         </Row>
       )}
-      {refundInfo && <RefundInfoSection refundInfo={refundInfo} />}
-      {assignInfo && (
-        <AssignInfoSection assigneeMember="몰라" assignInfo={assignInfo} />
+      {type === "refund" && refundInfo && (
+        <RefundInfoSection refundInfo={refundInfo} />
+      )}
+      {type === "assign" && assignInfo && (
+        <AssignInfoSection
+          assigneeMemberName={assigneeMemberName}
+          assignInfo={assignInfo}
+        />
       )}
     </div>
   );
@@ -90,10 +99,10 @@ function RefundInfoSection({ refundInfo }: { refundInfo: RefundInfoResDto }) {
 }
 
 function AssignInfoSection({
-  assigneeMember,
+  assigneeMemberName,
   assignInfo,
 }: {
-  assigneeMember: string;
+  assigneeMemberName: string;
   assignInfo: AssignToInfoResDto;
 }) {
   return (
@@ -101,7 +110,7 @@ function AssignInfoSection({
       <Row style={{ width: "100%" }} justifyContent="space-between">
         <p>양도 회원</p>
         <p style={{ color: COLORS.text_7, fontWeight: 700 }}>
-          {`${assigneeMember}(${assignInfo.memberPhoneEnd})`}
+          {`${assigneeMemberName}(${assignInfo.memberPhoneEnd})`}
         </p>
       </Row>
     </div>

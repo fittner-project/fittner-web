@@ -1,4 +1,8 @@
 .container {
+  @include flex_col(flex-start, flex-start);
+  min-height: calc(100dvh - $sub_header_height);
+  max-height: calc(100dvh - $sub_header_height);
+
   .trainee_count {
     @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
     margin-top: 2.6rem;
@@ -9,49 +13,17 @@
 
   .scroll_container {
     max-height: calc(100dvh - $sub_header_height - 9.6rem - 0.9rem);
+    width: 100%;
 
     &.loading_finish {
+      margin-bottom: 1.6rem;
       overflow-y: auto;
     }
+  }
 
-    .trainee_item {
-      padding: 2rem 0;
-      border-top: 0.2rem solid $grey_1;
-      @include flex_row(space-between, center);
-
-      .left_section {
-        @include flex_row(flex-start, center);
-        @include flex_row_gap(1.4rem);
-
-        .trainee_profile {
-          width: 5.3rem;
-          height: 5.3rem;
-          border-radius: 50%;
-
-          @include flex_row(center, center);
-
-          &.male {
-            background-color: $primary_1;
-          }
-
-          &.female {
-            background-color: $sub_1;
-          }
-        }
-
-        .trainee_info {
-          .trainee_name {
-            @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
-          }
-
-          .trainee_info_detail {
-            margin-top: 0.6rem;
-            @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
-            @include flex_row(center, center);
-            @include flex_row_gap(1.4rem);
-          }
-        }
-      }
-    }
+  button {
+    margin-top: auto;
+    min-height: 5.6rem;
+    margin-bottom: 1.8rem;
   }
 }

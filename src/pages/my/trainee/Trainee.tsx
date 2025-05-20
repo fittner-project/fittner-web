@@ -2,14 +2,17 @@ import PaddingContainer from "@/layout/containers/padding-container/PaddingConta
 import styles from "./Trainee.module.scss";
 import Input from "@/components/input/Input";
 import { useGetUserMembers } from "@/api/generated/유저/유저";
-import Image from "@/components/image/Image";
-import { chevronRightGrey, userProfile } from "@/assets/assets";
 import { useSearch } from "@/hooks/useSearch";
 import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import Skeleton from "@/components/skeleton/Skeleton";
 import { openModal } from "@/utils/modal";
 import TraineeTicketModal from "./components/trainee-ticket-modal/TraineeTicketModal";
+import TraineeItem from "./components/trainee-item/TraineeItem";
+import Button from "@/components/button/Button";
+import AssignDuplicateTraineeBottomSheet from "./components/assign-duplicate-trainee-bottom-sheet/AssignDuplicateTraineeBottomSheet";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import PATH from "@/router/path";
 
 export default function Trainee() {
   const { data: traineeData, isLoading } = useGetUserMembers();
@@ -21,24 +24,55 @@ export default function Trainee() {
     searchFields: ["memberName", "memberPhone"],
   });
   const searchValue = watch("searchValue");
+  const [searchParams] = useSearchParams();
+  const type = searchParams.get("type");
+  const isSelectType = type?.includes("select");
+  const [selectedTraineeId, setSelectedTraineeId] = useState<
+    string | undefined
+  >("");
+  const memberId = searchParams.get("member-id");
+  const ticketId = searchParams.get("ticket-id");
+  const navigate = useNavigate();
 
   const handleClickTrainee = ({
     memberId,
     memberName,
     hasReservedClass,
   }: {
-    memberId: string;
-    memberName: string;
+    memberId: string | undefined;
+    memberName: string | undefined;
     hasReservedClass: boolean | undefined;
   }) => {
-    openModal({
-      component: TraineeTicketModal,
-      props: {
-        memberId,
-        memberName,
-        hasReservedClass,
-      },
-    });
+    if (!isSelectType) {
+      openModal({
+        component: TraineeTicketModal,
+        props: {
+          memberId,
+          memberName,
+          hasReservedClass,
+        },
+      });
+    } else {
+      setSelectedTraineeId(memberId);
+    }
+  };
+
+  const handleClickNextButton = () => {
+    if (type === "select-member-assign") {
+      if (memberId === selectedTraineeId) {
+        openBottomSheet({
+          component: AssignDuplicateTraineeBottomSheet,
+        });
+      } else {
+        navigate({
+          pathname: PATH.CONFIRM_INFO,
+          search: `?type=assign&member-id=${selectedTraineeId}&assignee-member-name=${
+            trainees?.find((trainee) => trainee.memberId === selectedTraineeId)
+              ?.memberName
+          }&ticket-id=${ticketId}`,
+        });
+      }
+    }
   };
 
   return (
@@ -120,53 +154,31 @@ export default function Trainee() {
                 </Skeleton>
               ))
             : filteredData?.map((trainee) => (
-                <div
+                <TraineeItem
                   key={trainee.memberId}
-                  className={styles.trainee_item}
-                  onClick={() => {
-                    if (trainee.memberId && trainee.memberName) {
-                      handleClickTrainee({
-                        memberId: trainee.memberId,
-                        memberName: trainee.memberName,
-                        hasReservedClass: trainee.reservation,
-                      });
-                    }
+                  trainee={trainee}
+                  isSelectType={Boolean(isSelectType)}
+                  selectedTraineeId={selectedTraineeId}
+                  handleClickTrainee={() => {
+                    handleClickTrainee({
+                      memberId: trainee.memberId,
+                      memberName: trainee.memberName,
+                      hasReservedClass: trainee.reservation,
+                    });
                   }}
-                >
-                  <section className={styles.left_section}>
-                    <div
-                      className={classNames(styles.trainee_profile, {
-                        [styles.male]: trainee.memberGender === "M",
-                        [styles.female]: trainee.memberGender === "F",
-                      })}
-                    >
-                      <Image
-                        src={userProfile}
-                        alt="프로필 이미지"
-                        width={3}
-                        height={3}
-                      />
-                    </div>
-                    <div className={styles.trainee_info}>
-                      <p className={styles.trainee_name}>
-                        {trainee.memberName}
-                      </p>
-                      <div className={styles.trainee_info_detail}>
-                        <p>{trainee.memberPhone}</p>
-                        <p>만 {trainee.memberAge}세</p>
-                      </div>
-                    </div>
-                  </section>
-
-                  <Image
-                    src={chevronRightGrey}
-                    alt=""
-                    width={2.8}
-                    height={2.8}
-                  />
-                </div>
+                />
               ))}
         </div>
+
+        {isSelectType && (
+          <Button
+            onClick={handleClickNextButton}
+            backgroundColor="primary_1"
+            fullWidth
+          >
+            다음
+          </Button>
+        )}
       </div>
     </PaddingContainer>
   );

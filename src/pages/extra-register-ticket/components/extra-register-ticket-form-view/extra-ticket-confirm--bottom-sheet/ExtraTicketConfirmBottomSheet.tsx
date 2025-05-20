@@ -23,7 +23,7 @@ export default function ExtraTicketConfirmBottomSheet({
     (state) => state.selectedCenter
   ).centerId;
   const [searchParams] = useSearchParams();
-  const memberId = searchParams.get("memberId");
+  const memberId = searchParams.get("member-id");
 
   const { mutate: registerExtraTicket } = usePostUserTicketPlus({
     mutation: {

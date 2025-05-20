@@ -5,17 +5,21 @@ import TicketInfoBottomSection from "./components/ticket_info_bottom_section/Tic
 import {
   useGetUserTicketAssignInfo,
   useGetUserTicketRefundInfo,
+  usePostUserTicketAssignOldMember,
 } from "@/api/generated/이용권/이용권";
 import dayjs from "dayjs";
 import { openModal } from "@/utils/modal";
 import ConfirmRefundModal from "./components/confirm-refund-modal/ConfirmRefundModal";
 import Skeleton from "@/components/skeleton/Skeleton";
+import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
 
 export default function ConfirmInfo() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const type = searchParams.get("type");
-  const ticketId = searchParams.get("ticketId");
-  const memberId = searchParams.get("memberId");
+  const ticketId = searchParams.get("ticket-id");
+  const memberId = searchParams.get("member-id");
+  const assigneeMemberName = searchParams.get("assignee-member-name");
   const { data: refundInfoData, isLoading: isRefundInfoLoading } =
     useGetUserTicketRefundInfo(
       { ticketId: ticketId ?? "" },
@@ -26,6 +30,22 @@ export default function ConfirmInfo() {
       { ticketId: ticketId ?? "", memberId: memberId ?? "" },
       { query: { enabled: !!ticketId && !!memberId && type === "assign" } }
     );
+
+  const { mutate: assignOldMember } = usePostUserTicketAssignOldMember({
+    mutation: {
+      onSuccess: () => {
+        openModal({
+          component: SuccessModal,
+          props: {
+            onCloseComplete: () => {
+              navigate(-2);
+            },
+            successMessage: "기존 회원 양도가 \n 완료 되었습니다",
+          },
+        });
+      },
+    },
+  });
 
   const refundInfo = refundInfoData?.result;
   const assignInfo = assignInfoData?.result;
@@ -95,6 +115,12 @@ export default function ConfirmInfo() {
         },
       });
     }
+
+    if (type === "assign") {
+      assignOldMember({
+        data: { memberId: memberId ?? "", originalTicketId: ticketId ?? "" },
+      });
+    }
   };
 
   return (
@@ -144,6 +170,7 @@ export default function ConfirmInfo() {
               )}
             </div>
             <TicketInfoBottomSection
+              type={type as "refund" | "assign"}
               isLoading={isLoading}
               ticketTotalCnt={Number(
                 ticketTotalCntMap[type as keyof typeof ticketTotalCntMap]
@@ -153,6 +180,7 @@ export default function ConfirmInfo() {
               )}
               refundInfo={refundInfo}
               assignInfo={assignInfo}
+              assigneeMemberName={assigneeMemberName ?? ""}
             />
           </div>
         </div>

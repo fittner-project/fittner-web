@@ -1,0 +1,13 @@
+.container {
+  .title {
+    @include fm-ar(2.4rem, $text_1, 3.2rem, 500);
+
+    span {
+      @include fm-ar(2.4rem, $text_1, 3.2rem, 700);
+    }
+  }
+
+  button {
+    margin-top: 7.2rem;
+  }
+}
