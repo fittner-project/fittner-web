@@ -31,6 +31,7 @@ import RegisterLesson from "@/pages/register-lesson/RegisterLesson";
 import ExtraRegisterTicket from "@/pages/extra-register-ticket/ExtraRegisterTicket";
 import SignUpTermDetail from "@/pages/sign-up/sign-up-terms/sign-up-term-detail/SignUpTermDetail";
 import ConfirmInfo from "@/pages/confirm-info/ConfirmInfo";
+import AssignNewTrainee from "@/pages/assign-new-trainee/AssignNewTrainee";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -163,6 +164,10 @@ const router = createBrowserRouter([
       {
         path: PATH.CONFIRM_INFO,
         element: <ConfirmInfo />,
+      },
+      {
+        path: PATH.ASSIGN_NEW_TRAINEE,
+        element: <AssignNewTrainee />,
       },
     ],
   },

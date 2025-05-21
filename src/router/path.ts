@@ -40,6 +40,7 @@ const PATH = {
     DETAIL: "/signature/list/:ticketId",
   },
   CONFIRM_INFO: "/confirm-info",
+  ASSIGN_NEW_TRAINEE: "/assign-new-trainee",
 };
 
 export default PATH;

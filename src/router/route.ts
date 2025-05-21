@@ -60,7 +60,8 @@ type RouteKeys =
   | "signature-detail"
   | "my-lessons"
   | "extra-register-ticket"
-  | "confirm-info";
+  | "confirm-info"
+  | "assign-new-trainee";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -331,6 +332,14 @@ export const Routes: Routes = {
   "confirm-info": {
     name: "confirm-info",
     path: PATH.CONFIRM_INFO,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+
+  "assign-new-trainee": {
+    name: "assign-new-trainee",
+    path: PATH.ASSIGN_NEW_TRAINEE,
     fallback: "none",
     headerType: "sub",
     navType: "none",

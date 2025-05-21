@@ -1,0 +1,28 @@
+.container {
+  .title {
+    @include fm-ar(2.8rem, $text_1, 2.2rem, 700);
+  }
+
+  .step {
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 100%;
+    @include flex-row();
+    @include fm-ar(1.8rem, $text_3, 2.2rem, 400);
+    border: 1px solid $text_3;
+
+    &.active {
+      background-color: $primary_1;
+      color: $text_2;
+    }
+  }
+
+  .dot_container {
+    .dot {
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 100%;
+      background-color: #d9d9d9;
+    }
+  }
+}

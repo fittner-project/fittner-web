@@ -24,6 +24,12 @@ export default function AssignTicketSettingBottomSheet({
         search: `?type=select-member-assign&member-id=${memberId}&ticket-id=${ticketId}`,
       });
     }
+
+    if (setting === "신규 회원") {
+      navigate({
+        pathname: PATH.ASSIGN_NEW_TRAINEE,
+      });
+    }
   };
 
   return (
