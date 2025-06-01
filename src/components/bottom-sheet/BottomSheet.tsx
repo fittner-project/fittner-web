@@ -41,7 +41,7 @@ export default function BottomSheet({
       onClose={closeBottomSheet}
       tweenConfig={{
         ease: "easeInOut",
-        duration: 0.2,
+        duration: 0.35,
       }}
       style={{
         maxWidth: "100%",
