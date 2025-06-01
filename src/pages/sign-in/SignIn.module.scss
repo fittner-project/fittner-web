@@ -1,32 +1,28 @@
 .container {
   min-height: 100dvh;
   padding-bottom: 2.5rem;
-  @include flex_col(space-between, center);
+  @include flex_col(flex-start, flex-start);
 
   .logo_section {
-    flex: 1;
-    @include flex_col();
-    @include flex_col_gap(1.5rem);
-
-    .logo_text {
-      color: $grey_4;
-      text-align: center;
-      font-feature-settings:
-        "liga" off,
-        "clig" off;
-      font-family: Pretendard;
-      font-size: 1.6rem;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 2.2rem;
-    }
+    margin-top: 2.5rem;
   }
 
   .login_section {
     width: 100%;
-    margin-top: auto;
-    @include flex_col();
-    @include flex_col_gap(1rem);
+    flex: 1;
+    @include flex_col(space-evenly, center);
+
+    .login_text {
+      @include fm-ar(2.4rem, black, 3.2rem, 700);
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .login_button_container {
+      width: 100%;
+      @include flex_col();
+      @include flex_col_gap(1rem);
+    }
 
     .login_button {
       position: relative;
@@ -48,10 +44,6 @@
         font-size: 1.6rem;
       }
     }
-
-    // img {
-    //   margin-left: 6.6rem;
-    // }
 
     .kakao_button {
       background-color: #fee500;
@@ -75,6 +67,11 @@
       .login_button_text {
         color: #ffffff;
       }
+    }
+
+    .forgot_password_text {
+      @include fm-ar(1.6rem, black, 2.2rem, 400);
+      text-decoration: underline;
     }
   }
 }
