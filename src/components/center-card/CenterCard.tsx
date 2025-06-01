@@ -18,7 +18,7 @@ export default function CenterCard({ center, handleCenterClick }: CenterProps) {
       />
       <div className={styles.center_info}>
         <div className={styles.center_name}>{center.centerName}</div>
-        <div className={styles.center_address}>{center.centerAddress}</div>
+        <div className={styles.center_address}>- {center.centerAddress}</div>
       </div>
     </div>
   );
