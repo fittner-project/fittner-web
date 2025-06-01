@@ -6,6 +6,8 @@ import BackgroundContainer from "@/layout/containers/background-container/Backgr
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import { useSocialAuth } from "./hooks/useSocialAuth";
 import Image from "@/components/image/Image";
+import { openModal } from "@/utils/modal";
+import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
 
 function SignIn() {
   const { initSocialLogin } = useSocialAuth();
@@ -48,7 +50,19 @@ function SignIn() {
                 <p className={styles.login_button_text}>Apple로 시작하기</p>
               </button>
             </div>
-            <p className={styles.forgot_password_text}>계정을 잊으셨나요?</p>
+            <p
+              onClick={() => {
+                openModal({
+                  component: AlertModal,
+                  props: {
+                    errorMessage: "현재 개발중입니다.",
+                  },
+                });
+              }}
+              className={styles.forgot_password_text}
+            >
+              계정을 잊으셨나요?
+            </p>
           </section>
         </div>
       </PaddingContainer>
