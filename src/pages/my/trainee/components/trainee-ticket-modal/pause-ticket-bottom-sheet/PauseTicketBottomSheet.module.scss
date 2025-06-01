@@ -1,6 +1,6 @@
 .container {
   .title {
-    @include fm-ar(2.4rem, $text_1, 3.2rem, 500);
+    @include fm-ar(2rem, $text_1, 2.4rem, 500, "Pretendard");
 
     span {
       font-weight: 700;

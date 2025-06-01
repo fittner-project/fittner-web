@@ -1,14 +1,6 @@
 .container {
   .title {
-    color: $text_1;
-    font-feature-settings:
-      "liga" off,
-      "clig" off;
-    font-family: Pretendard;
-    font-size: 2.4rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 3.2rem;
+    @include fm-ar(2rem, $text_1, 3.2rem, 500, "Pretendard");
 
     .sign_out {
       font-weight: 700;
