@@ -1,10 +1,9 @@
 .container {
   min-height: 100dvh;
-  padding-bottom: 2.5rem;
   @include flex_col(flex-start, flex-start);
 
   .logo_section {
-    margin-top: 2.5rem;
+    margin-top: 1.8rem;
   }
 
   .login_section {
