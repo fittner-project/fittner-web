@@ -25,22 +25,22 @@ function SignIn() {
               className={classNames(styles.login_button, styles.kakao_button)}
               onClick={() => initSocialLogin({ socialType: "KAKAO" })}
             >
-              <Image width={2.4} height={2.4} src={kakao} alt="kakao" />
+              <Image width={2} height={2} src={kakao} alt="kakao" />
               <p className={styles.login_button_text}>카카오로 시작하기</p>
             </button>
             <button
               className={classNames(styles.login_button, styles.google_button)}
               onClick={() => initSocialLogin({ socialType: "GOOGLE" })}
             >
-              <Image width={2.4} height={2.4} src={google} alt="google" />
-              <p className={styles.login_button_text}>구글로 시작하기</p>
+              <Image width={2} height={2} src={google} alt="google" />
+              <p className={styles.login_button_text}>Google로 시작하기</p>
             </button>
             <button
               className={classNames(styles.login_button, styles.apple_button)}
               onClick={() => initSocialLogin({ socialType: "APPLE" })}
             >
-              <Image width={2.4} height={2.4} src={apple} alt="apple" />
-              <p className={styles.login_button_text}>애플로 시작하기</p>
+              <Image width={2} height={2} src={apple} alt="apple" />
+              <p className={styles.login_button_text}>Apple로 시작하기</p>
             </button>
           </section>
         </div>
