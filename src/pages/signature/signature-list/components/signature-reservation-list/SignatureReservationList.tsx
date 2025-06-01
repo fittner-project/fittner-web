@@ -21,7 +21,7 @@ export default function SignatureReservationList({
             <Skeleton width={10} height={2.2} borderRadius={1} />
           ) : (
             <>
-              <p>예약목록</p>
+              <p>수업목록</p>
               <p>{signatureReservations?.length}건</p>
             </>
           )}
