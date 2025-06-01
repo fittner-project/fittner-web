@@ -8,6 +8,7 @@ import Skeleton from "@/components/skeleton/Skeleton";
 import PATH from "@/router/path";
 import { useNavigate } from "react-router-dom";
 import { storage } from "@/utils/storage";
+import { Link } from "react-router-dom";
 
 import { storageKeys } from "@/constants/storageKeys";
 import { TermsResDto } from "@/api/generated/models";
@@ -65,6 +66,20 @@ function SignUpTerms() {
     });
   };
 
+  const handleAllCheck = () => {
+    if (!terms) return;
+
+    const isAllChecked = terms.length === checkedTerms.length;
+    const newCheckedTerms = isAllChecked ? [] : [...terms];
+
+    setCheckedTerms(newCheckedTerms);
+    storage.set({
+      key: storageKeys.termsAgreement,
+      value: newCheckedTerms,
+      type: "local",
+    });
+  };
+
   const isAllEssentialTermsChecked = () => {
     return essentialTerms.every((term) =>
       checkedTerms.some(
@@ -89,17 +104,38 @@ function SignUpTerms() {
           </p>
 
           <div className={styles.terms_container}>
-            {isLoading
-              ? Array.from({ length: terms?.length || 3 }).map((_, index) => (
+            {isLoading ? (
+              Array.from({ length: (terms?.length || 3) + 1 }).map(
+                (_, index) => (
                   <div key={index} className={styles.term}>
                     <div className={styles.term_content}>
                       <Skeleton width={2.2} height={2.2} borderRadius={1000} />
                       <Skeleton width={15} height={2.2} borderRadius={0.4} />
                     </div>
-                    <Skeleton width={4} height={2.2} borderRadius={0.4} />
+                    {index === 0 && (
+                      <Skeleton width={4} height={2.2} borderRadius={0.4} />
+                    )}
                   </div>
-                ))
-              : terms?.map((term) => (
+                )
+              )
+            ) : (
+              <>
+                <div className={styles.term}>
+                  <div onClick={handleAllCheck} className={styles.term_content}>
+                    <Image
+                      width={1.6}
+                      height={1.6}
+                      src={
+                        terms?.length === checkedTerms.length
+                          ? checkSel
+                          : checkNor
+                      }
+                      alt="check"
+                    />
+                    <p className={styles.term_title}>전체 동의</p>
+                  </div>
+                </div>
+                {terms?.map((term) => (
                   <div key={term.termsTitle} className={styles.term}>
                     <div
                       onClick={() => handleCheck(term)}
@@ -129,6 +165,8 @@ function SignUpTerms() {
                     </Link>
                   </div>
                 ))}
+              </>
+            )}
           </div>
         </div>
         <Button
