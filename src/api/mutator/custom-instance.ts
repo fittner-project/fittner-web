@@ -161,15 +161,22 @@ instance.interceptors.response.use(
     );
 
     if (!shouldSkipErrorHandling) {
-      const alertMessage = (error.response?.data as ErrorResponse)
+      const apiAlertMessage = (error.response?.data as ErrorResponse)
         ? (error.response?.data as ErrorResponse).errorMessage ||
           (error.response?.data as ErrorResponse).message ||
           "오류가 발생했습니다."
         : error.message || "오류가 발생했습니다.";
 
+      const alertMessage =
+        error.status !== 200
+          ? "시스템 에러가 발생했습니다 \n 관리자에게 문의해주세요."
+          : apiAlertMessage;
+
       openModal({
         component: AlertModal,
-        props: { errorMessage: alertMessage },
+        props: {
+          errorMessage: alertMessage,
+        },
       });
     }
 
