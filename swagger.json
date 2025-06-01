@@ -4691,7 +4691,10 @@
       },
       "CancelCenterApprovalReqDto": {
         "type": "object",
-        "properties": { "centerJoinId": { "type": "string" } }
+        "properties": {
+          "centerJoinId": { "type": "string" },
+          "userEmail": { "type": "string" }
+        }
       }
     },
     "securitySchemes": {

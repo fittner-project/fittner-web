@@ -8,4 +8,5 @@
 
 export interface CancelCenterApprovalReqDto {
   centerJoinId?: string;
+  userEmail?: string;
 }

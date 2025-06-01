@@ -60,7 +60,12 @@ export default function CancelApprovalBottomSheet({
           </Button>
           <Button
             onClick={() =>
-              deleteUserCenter({ data: { centerJoinId: center.centerJoinId } })
+              deleteUserCenter({
+                data: {
+                  centerJoinId: center.centerJoinId,
+                  userEmail: trainerEmail,
+                },
+              })
             }
             backgroundColor="primary_1"
             fullWidth
