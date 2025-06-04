@@ -16,7 +16,7 @@ import {
   main_sign,
 } from "@/assets/assets";
 import Training from "@/components/training/Training";
-import { MotionDiv } from "@/components/animation/Motion";
+
 import PATH from "@/router/path";
 import WeeklyCalendar from "./components/weekly-calendar/WeeklyCalendar";
 
@@ -49,27 +49,17 @@ function Home() {
 
   return (
     <BackgroundContainer>
-      <MotionDiv className={styles.container}>
-        <MotionDiv
-          className={styles.dumbbell_container}
-          transition={{ duration: 0.4, delay: 1 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
+      <div className={styles.container}>
+        <div className={styles.dumbbell_container}>
           <Image
             src={dumbbell}
             width={13.3}
             height={19}
             className={styles.dumbbell}
           />
-        </MotionDiv>
+        </div>
 
-        <MotionDiv
-          className={styles.class_info}
-          transition={{ duration: 1 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
+        <div className={styles.class_info}>
           <div className={styles.day}>{today}</div>
           <div className={styles.guide}>
             {!nearestLesson ? (
@@ -84,23 +74,13 @@ function Home() {
           </div>
 
           <Training lesson={nearestLesson} />
-        </MotionDiv>
+        </div>
 
-        <MotionDiv
-          className={styles.calendar_container}
-          transition={{ duration: 0.4, delay: 0.6 }}
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-        >
+        <div className={styles.calendar_container}>
           <WeeklyCalendar />
-        </MotionDiv>
+        </div>
 
-        <MotionDiv
-          className={styles.menu_container}
-          transition={{ duration: 0.4, delay: 0.6 }}
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-        >
+        <div className={styles.menu_container}>
           <div
             className={styles.my_class}
             onClick={() => navigate(PATH.MY_LESSONS)}
@@ -139,13 +119,10 @@ function Home() {
               </div>
             </div>
           </div>
-        </MotionDiv>
+        </div>
 
-        <MotionDiv
+        <div
           className={styles.search}
-          transition={{ duration: 0.4, delay: 0.6 }}
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
           onClick={() => navigate(PATH.MY.TRAINEE)}
         >
           <Image src={main_search} width={4.3} height={4.3} />
@@ -163,8 +140,8 @@ function Home() {
             height={2}
             className={styles.search_icon}
           />
-        </MotionDiv>
-      </MotionDiv>
+        </div>
+      </div>
     </BackgroundContainer>
   );
 }
