@@ -5,6 +5,7 @@ import Input from "@/components/input/Input";
 import Radio from "@/components/radio/Radio";
 import Button from "@/components/button/Button";
 import formatPhoneNumber from "@/utils/formatPhoneNumber";
+import { formatNumberOnly } from "@/utils/formatNumber";
 import { MotionDiv } from "@/components/animation/Motion";
 
 interface ITraineeFormViewProps {
@@ -93,6 +94,10 @@ export default function TraineeFormView({
           className={styles.name_input}
           {...form.register("memberBirth", {
             required: true,
+            onChange: (e) => {
+              const formatted = formatNumberOnly({ value: e.target.value });
+              form.setValue("memberBirth", formatted);
+            },
           })}
           placeholder="YYMMDD (6자리)"
           maxLength={6}
