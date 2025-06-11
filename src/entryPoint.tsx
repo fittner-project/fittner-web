@@ -1,6 +1,6 @@
 import { FC, Fragment, ReactNode } from "react";
 import dayjs from "dayjs";
-import { useIsMutating } from "@tanstack/react-query";
+import { useIsFetching, useIsMutating } from "@tanstack/react-query";
 
 import useAuthRouting from "./hooks/useAuthRouting";
 import PATH from "./router/path";
@@ -25,11 +25,13 @@ const EntryPoint: FC<IProps> = ({ children }) => {
   const location = useLocation();
   const { splashImgUrl } = useSplash();
   const isMutating = useIsMutating();
+  const isFetching = useIsFetching();
+  const isLoading = isMutating > 0 || isFetching > 0;
 
   return (
     <Authorized>
       <BrandColorProvider>
-        {isMutating > 0 && <LoadingIndicator />}
+        {isLoading && <LoadingIndicator />}
         {location.pathname === PATH.ROOT && splashImgUrl && (
           <div style={{ width: "100dvw", height: "100dvh" }}>
             <Image
