@@ -5,7 +5,7 @@ import TraineeFormView from "./components/trainee-form-view/TraineeFormView";
 import ProductFormView from "./components/product-form-view/ProductFormView";
 import Row from "@/components/flex/Row";
 import classNames from "classnames";
-import { MotionDiv } from "@/components/animation/Motion";
+
 import useHandleBackInject from "@/hooks/useHandleBackInject";
 
 export type RegisterTraineeForm = {
@@ -29,13 +29,6 @@ export default function RegisterTrainee() {
   const form = useForm<RegisterTraineeForm>({
     mode: "onChange",
   });
-  const [showNextButtonAnimation, setShowNextButtonAnimation] = useState(true);
-
-  useEffect(() => {
-    if (step === 2) {
-      setShowNextButtonAnimation(false);
-    }
-  }, [step]);
 
   useHandleBackInject(() => {
     if (step === 1) {
@@ -75,27 +68,13 @@ export default function RegisterTrainee() {
         </Row>
         <form className={styles.container}>
           {step === 1 ? (
-            <MotionDiv
-              className={styles.menu_container}
-              transition={{ duration: 0.4, delay: 0.6 }}
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
-              <TraineeFormView
-                form={form}
-                setStep={setStep}
-                showNextButtonAnimation={showNextButtonAnimation}
-              />
-            </MotionDiv>
+            <div className={styles.menu_container}>
+              <TraineeFormView form={form} setStep={setStep} />
+            </div>
           ) : (
-            <MotionDiv
-              className={styles.menu_container}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
+            <div className={styles.menu_container}>
               <ProductFormView form={form} />
-            </MotionDiv>
+            </div>
           )}
         </form>
       </div>

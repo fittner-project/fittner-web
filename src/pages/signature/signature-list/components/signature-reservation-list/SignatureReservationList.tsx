@@ -38,6 +38,13 @@ export default function SignatureReservationList({
                 />
               ))}
         </div>
+        {signatureReservations?.length === 0 && (
+          <div className={styles.no_reservation_container}>
+            <p className={styles.no_reservation_text}>
+              예약된 수업이 없습니다.
+            </p>
+          </div>
+        )}
       </div>
     </PaddingContainer>
   );

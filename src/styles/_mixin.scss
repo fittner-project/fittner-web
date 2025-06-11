@@ -37,6 +37,13 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin fixed_center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @mixin fm-ar(
   $fontSize: 1.6rem,
   $fontColor: $text_1,
