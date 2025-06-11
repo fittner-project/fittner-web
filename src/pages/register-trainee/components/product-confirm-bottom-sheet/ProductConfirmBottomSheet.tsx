@@ -23,7 +23,6 @@ export default function ProductConfirmBottomSheet({
   const { mutate: registerTrainee } = usePostUserRegister({
     mutation: {
       onSuccess: (data) => {
-        console.log(data);
         closeBottomSheet();
       },
       onError: () => {},

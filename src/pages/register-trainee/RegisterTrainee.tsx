@@ -17,7 +17,7 @@ export type RegisterTraineeForm = {
   productName: string;
   productStartDate: string;
   productEndDate: string;
-  productCount: number;
+  productCount: string;
   productPrice: number;
   memberMemo: string;
   memberJoinPath: string;

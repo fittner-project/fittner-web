@@ -12,12 +12,13 @@ import { MotionDiv } from "@/components/animation/Motion";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ExtraTicketConfirmBottomSheet from "./extra-ticket-confirm--bottom-sheet/ExtraTicketConfirmBottomSheet";
 import { createDatePickerDates } from "@/utils/datePicker";
+import { formatNumberOnly } from "@/utils/formatNumber";
 
 export type ExtraRegisterTicketForm = {
   productName: string;
   productStartDate: string;
   productEndDate: string;
-  productCount: number;
+  productCount: string;
   productPrice: number;
   memberMemo: string;
 };
@@ -251,9 +252,13 @@ export default function ExtraRegisterTicketFormView() {
           className={styles.name_input}
           {...form.register("productCount", {
             required: true,
+            onChange: (e) => {
+              const formatted = formatNumberOnly({ value: e.target.value });
+              form.setValue("productCount", formatted);
+            },
           })}
           placeholder="수업횟수를 입력해주세요 (회)"
-          type="number"
+          type="text"
         />
       </div>
 
@@ -265,9 +270,21 @@ export default function ExtraRegisterTicketFormView() {
           className={styles.name_input}
           {...form.register("productPrice", {
             required: true,
+            onChange: (e) => {
+              const value = e.target.value.replace(/[^0-9]/g, "");
+              e.target.value = value;
+              form.setValue("productPrice", value);
+            },
+            setValueAs: (value) => value.replace(/,/g, ""),
           })}
           placeholder="금액을 입력해주세요 (원)"
-          type="number"
+          type="text"
+          value={
+            form
+              .watch("productPrice")
+              ?.toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",") || ""
+          }
         />
       </div>
 

@@ -13,6 +13,7 @@ import { openBottomSheet } from "@/utils/bottomSheet";
 import RegistrationPathBottomSheet from "../registration-path-bottom-sheet/RegistrationPathBottomSheet";
 import TraineeConfirmBottomSheet from "../trainee-confirm-bottom-sheet/TraineeConfirmBottomSheet";
 import { createDatePickerDates } from "@/utils/datePicker";
+import { formatNumberOnly } from "@/utils/formatNumber";
 
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
@@ -257,9 +258,13 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           className={styles.name_input}
           {...form.register("productCount", {
             required: true,
+            onChange: (e) => {
+              const formatted = formatNumberOnly({ value: e.target.value });
+              form.setValue("productCount", formatted);
+            },
           })}
           placeholder="수업횟수를 입력해주세요 (회)"
-          type="number"
+          type="text"
         />
       </div>
 

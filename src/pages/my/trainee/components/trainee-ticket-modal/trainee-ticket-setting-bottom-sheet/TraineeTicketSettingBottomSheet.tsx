@@ -34,7 +34,7 @@ export default function TraineeTicketSettingBottomSheet({
     if (setting === "이용권 추가 등록") {
       navigate({
         pathname: PATH.EXTRA_REGISTER_TICKET,
-        search: `?memberId=${memberId}`,
+        search: `?member-id=${memberId}`,
       });
     }
 

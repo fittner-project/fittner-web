@@ -13,6 +13,7 @@ import { openBottomSheet } from "@/utils/bottomSheet";
 // import TraineeConfirmBottomSheet from "../trainee-confirm-bottom-sheet/TraineeConfirmBottomSheet";
 import { createDatePickerDates } from "@/utils/datePicker";
 import { RegisterTraineeForm } from "../../AssignNewTrainee";
+import { formatNumberOnly } from "@/utils/formatNumber";
 
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
@@ -257,9 +258,13 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           className={styles.name_input}
           {...form.register("productCount", {
             required: true,
+            onChange: (e) => {
+              const formatted = formatNumberOnly({ value: e.target.value });
+              form.setValue("productCount", formatted);
+            },
           })}
           placeholder="수업횟수를 입력해주세요 (회)"
-          type="number"
+          type="text"
         />
       </div>
 
@@ -271,9 +276,21 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           className={styles.name_input}
           {...form.register("productPrice", {
             required: true,
+            onChange: (e) => {
+              const value = e.target.value.replace(/[^0-9]/g, "");
+              e.target.value = value;
+              form.setValue("productPrice", value);
+            },
+            setValueAs: (value) => value.replace(/,/g, ""),
           })}
           placeholder="금액을 입력해주세요 (원)"
-          type="number"
+          type="text"
+          value={
+            form
+              .watch("productPrice")
+              ?.toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",") || ""
+          }
         />
       </div>
 
