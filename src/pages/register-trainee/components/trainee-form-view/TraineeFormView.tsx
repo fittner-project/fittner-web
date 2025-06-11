@@ -90,7 +90,7 @@ export default function TraineeFormView({
         <p className={styles.title}>생년월일</p>
         <Input
           inputType="line"
-          type="number"
+          type="text"
           className={styles.name_input}
           {...form.register("memberBirth", {
             required: true,

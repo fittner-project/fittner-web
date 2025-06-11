@@ -85,7 +85,7 @@ export default function ExtraTicketConfirmBottomSheet({
           </Row>
           <Row className={styles.content_item} justifyContent="space-between">
             <div>금액</div>
-            <div>{form.getValues().productPrice}</div>
+            <div>{Number(form.getValues().productPrice).toLocaleString()}</div>
           </Row>
 
           <Row className={styles.content_item} justifyContent="space-between">

@@ -271,9 +271,21 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
           className={styles.name_input}
           {...form.register("productPrice", {
             required: true,
+            onChange: (e) => {
+              const value = e.target.value.replace(/[^0-9]/g, "");
+              e.target.value = value;
+              form.setValue("productPrice", value);
+            },
+            setValueAs: (value) => value.replace(/,/g, ""),
           })}
           placeholder="금액을 입력해주세요 (원)"
-          type="number"
+          type="text"
+          value={
+            form
+              .watch("productPrice")
+              ?.toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",") || ""
+          }
         />
       </div>
 
