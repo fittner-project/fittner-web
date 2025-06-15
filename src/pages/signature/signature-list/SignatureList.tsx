@@ -6,7 +6,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import SignatureReservationList from "./components/signature-reservation-list/SignatureReservationList";
-import { MotionDiv } from "@/components/animation/Motion";
+
 import { useSignatureActiveDateStore } from "./stores/signatureActiveDate";
 
 export default function SignatureList() {
@@ -60,30 +60,20 @@ export default function SignatureList() {
 
   return (
     <div className={styles.container}>
-      <MotionDiv
-        className={styles.dumbbell_container}
-        transition={{ duration: 0.4, delay: 0.6 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
+      <div className={styles.dumbbell_container}>
         <SignatureDateSwiper
           dateArray={dateArray}
           activeDate={activeDate}
           setActiveDate={setActiveDate}
         />
-      </MotionDiv>
+      </div>
 
-      <MotionDiv
-        className={styles.calendar_container}
-        transition={{ duration: 0.4, delay: 0.6 }}
-        initial={{ y: 10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-      >
+      <div className={styles.calendar_container}>
         <SignatureReservationList
           signatureReservations={signatureReservations}
           isLoading={isLoading}
         />
-      </MotionDiv>
+      </div>
       {!isFetching && <div ref={ref} />}
     </div>
   );
