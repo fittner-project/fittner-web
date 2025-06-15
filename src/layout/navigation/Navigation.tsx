@@ -92,7 +92,7 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
   };
 
   return (
-    <div className={styles.item} onClick={handleClickItem}>
+    <button className={styles.item} onClick={handleClickItem}>
       <div className={styles.ico}>
         <Image
           src={isSelected ? item.selectedIcon : item.icon}
@@ -103,6 +103,6 @@ const NavigationItem = ({ item }: { item: NavigationItem }) => {
       <div className={classNames(styles.name, isSelected && styles.selected)}>
         {item.name}
       </div>
-    </div>
+    </button>
   );
 };

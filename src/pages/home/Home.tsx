@@ -81,7 +81,7 @@ function Home() {
         </div>
 
         <div className={styles.menu_container}>
-          <div
+          <button
             className={styles.my_class}
             onClick={() => navigate(PATH.MY_LESSONS)}
           >
@@ -94,10 +94,10 @@ function Home() {
               쉽게 관리해요!
             </div>
             <Image src={main_calendar} width={3.5} height={4} />
-          </div>
+          </button>
 
           <div className={styles.registration_sign_container}>
-            <div
+            <button
               onClick={() => navigate(PATH.REGISTER_TRAINEE)}
               className={styles.registration}
             >
@@ -106,9 +106,9 @@ function Home() {
                 회원 등록
                 <Image src={chevronRightGrey} width={2} height={2} />
               </div>
-            </div>
+            </button>
 
-            <div
+            <button
               onClick={() => navigate(PATH.SIGNATURE.LIST)}
               className={styles.sign}
             >
@@ -117,11 +117,11 @@ function Home() {
                 서명 요청
                 <Image src={chevronRightGrey} width={2} height={2} />
               </div>
-            </div>
+            </button>
           </div>
         </div>
 
-        <div
+        <button
           className={styles.search}
           onClick={() => navigate(PATH.MY.TRAINEE)}
         >
@@ -140,7 +140,7 @@ function Home() {
             height={2}
             className={styles.search_icon}
           />
-        </div>
+        </button>
       </div>
     </BackgroundContainer>
   );

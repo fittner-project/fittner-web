@@ -37,8 +37,10 @@
     @include flex_row();
     gap: 1.3rem;
 
-    div {
+    button {
+      width: 100%;
       border-radius: 10px;
+      text-align: left;
     }
 
     .my_class {
@@ -89,6 +91,7 @@
 
     .search_content {
       margin-left: 1.8rem;
+      text-align: left;
     }
 
     .search_title {
