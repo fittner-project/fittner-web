@@ -2,11 +2,9 @@
   width: 100%;
   padding: 0 1.8rem;
   position: relative;
-  overflow-y: auto;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  // -webkit-overflow-scrolling: touch;
   padding-top: 3rem;
-  height: calc(100vh - $main_header_height - $navigation_height);
 
   & > .dumbbell_container {
     position: absolute;

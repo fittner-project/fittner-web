@@ -12,8 +12,12 @@ import SubMyHeader from "./sub-my-header/SubMyHeader";
 import Navigation from "./navigation/Navigation";
 import ImageViewerManager from "@/components/image-viewer/image-viewer-manager/ImageViewerManager";
 
+import usePullToRefresh from "@/hooks/usePullToRefresh";
+
 export default function RootLayout() {
   const { currentRoute } = useGetCurrentRoute();
+  const { isRefreshing, pullDistance, containerRef, isPulling } =
+    usePullToRefresh();
 
   const renderHeader = () => {
     if (!currentRoute || currentRoute.headerType === "none") {
@@ -41,8 +45,13 @@ export default function RootLayout() {
       <EntryPoint>
         {renderHeader()}
         <div
+          ref={containerRef}
           style={{
             paddingBottom: currentRoute?.navType !== "none" ? "7rem" : "0",
+            transform: isPulling.current
+              ? `translateY(${pullDistance}px)`
+              : "none",
+            transition: isRefreshing ? "transform 0.3s ease" : "none",
           }}
         >
           <Outlet />
