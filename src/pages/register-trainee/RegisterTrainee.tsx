@@ -6,8 +6,6 @@ import ProductFormView from "./components/product-form-view/ProductFormView";
 import Row from "@/components/flex/Row";
 import classNames from "classnames";
 
-import useHandleBackInject from "@/hooks/useHandleBackInject";
-
 export type RegisterTraineeForm = {
   memberName: string;
   memberPhone: string;
@@ -30,13 +28,20 @@ export default function RegisterTrainee() {
     mode: "onChange",
   });
 
-  useHandleBackInject(() => {
-    if (step === 1) {
-      navigate(-1);
-      return;
-    } else {
-      setStep(1);
-      return;
+  useEffect(() => {
+    const handlePopState = () => {
+      if (step === 2) {
+        setStep(1);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [step, navigate]);
+
+  useEffect(() => {
+    if (step === 2) {
+      window.history.pushState(null, "", window.location.href);
     }
   }, [step]);
 

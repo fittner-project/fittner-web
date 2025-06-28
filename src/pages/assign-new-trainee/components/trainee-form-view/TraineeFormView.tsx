@@ -4,18 +4,16 @@ import Input from "@/components/input/Input";
 import Radio from "@/components/radio/Radio";
 import Button from "@/components/button/Button";
 import formatPhoneNumber from "@/utils/formatPhoneNumber";
-import { MotionDiv } from "@/components/animation/Motion";
+
 import { formatNumberOnly } from "@/utils/formatNumber";
 
 interface ITraineeFormViewProps {
   form: UseFormReturn<any, any, undefined>;
   setStep: React.Dispatch<React.SetStateAction<1 | 2>>;
-  showNextButtonAnimation: boolean;
 }
 export default function TraineeFormView({
   form,
   setStep,
-  showNextButtonAnimation,
 }: ITraineeFormViewProps) {
   const { watch } = form;
 
@@ -144,16 +142,7 @@ export default function TraineeFormView({
         />
       </div>
 
-      <MotionDiv
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={
-          showNextButtonAnimation
-            ? { duration: 0.4, delay: 1.2 }
-            : { duration: 0 }
-        }
-        className={styles.button_container}
-      >
+      <div className={styles.button_container}>
         <Button
           type="submit"
           backgroundColor="primary_1"
@@ -164,7 +153,7 @@ export default function TraineeFormView({
         >
           다음
         </Button>
-      </MotionDiv>
+      </div>
     </div>
   );
 }

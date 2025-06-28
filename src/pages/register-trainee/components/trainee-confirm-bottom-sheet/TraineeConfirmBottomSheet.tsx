@@ -15,6 +15,8 @@ interface TraineeConfirmBottomSheetProps {
 export default function TraineeConfirmBottomSheet({
   form,
 }: TraineeConfirmBottomSheetProps) {
+  const navigate = useNavigate();
+
   return (
     <BottomSheet>
       <div className={styles.container}>
@@ -50,7 +52,10 @@ export default function TraineeConfirmBottomSheet({
             backgroundColor="grey_1"
             fullWidth
             className={styles.next_button}
-            onClick={() => closeBottomSheet()}
+            onClick={() => {
+              navigate(-1);
+              closeBottomSheet();
+            }}
           >
             수정
           </Button>
