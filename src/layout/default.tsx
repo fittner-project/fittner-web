@@ -16,6 +16,7 @@ import usePullToRefresh from "@/hooks/usePullToRefresh";
 
 export default function RootLayout() {
   const { currentRoute } = useGetCurrentRoute();
+  const brandColors = useUserStore((state) => state.brandColors);
   const { isRefreshing, pullDistance, containerRef, isPulling } =
     usePullToRefresh();
 
@@ -54,6 +55,22 @@ export default function RootLayout() {
             transition: isRefreshing ? "transform 0.3s ease" : "none",
           }}
         >
+          {isPulling.current && (
+            <div
+              style={{
+                position: "absolute",
+                top: "-6.5rem",
+                left: "50%",
+                transform: "translateX(-50%)",
+                zIndex: 1000,
+                color: brandColors.primary,
+                fontSize: "1.8rem",
+                fontWeight: "bold",
+              }}
+            >
+              당겨서 새로고침
+            </div>
+          )}
           <Outlet />
         </div>
         {renderNav()}
