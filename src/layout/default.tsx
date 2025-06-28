@@ -59,7 +59,7 @@ export default function RootLayout() {
             <div
               style={{
                 position: "absolute",
-                top: "-6.5rem",
+                top: "-5.5rem",
                 left: "50%",
                 transform: "translateX(-50%)",
                 zIndex: 1000,
