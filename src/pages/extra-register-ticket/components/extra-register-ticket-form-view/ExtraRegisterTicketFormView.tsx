@@ -1,6 +1,5 @@
-import { useForm, UseFormReturn } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import styles from "./ExtraRegisterTicketFormView.module.scss";
-// import { RegisterTraineeForm } from "../../RegisterTrainee";
 import Input from "@/components/input/Input";
 import Button from "@/components/button/Button";
 import Picker from "react-mobile-picker";
@@ -8,7 +7,6 @@ import { useState, useMemo, useEffect } from "react";
 import dayjs from "dayjs";
 import classNames from "classnames";
 
-import { MotionDiv } from "@/components/animation/Motion";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ExtraTicketConfirmBottomSheet from "./extra-ticket-confirm--bottom-sheet/ExtraTicketConfirmBottomSheet";
 import { createDatePickerDates } from "@/utils/datePicker";
@@ -301,12 +299,7 @@ export default function ExtraRegisterTicketFormView() {
         />
       </div>
 
-      <MotionDiv
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 1.2 }}
-        className={styles.button_container}
-      >
+      <div className={styles.button_container}>
         <Button
           type="button"
           backgroundColor="primary_1"
@@ -324,7 +317,7 @@ export default function ExtraRegisterTicketFormView() {
         >
           등록
         </Button>
-      </MotionDiv>
+      </div>
     </div>
   );
 }
