@@ -45,6 +45,12 @@ export default function CenterList() {
               <Center isConnected={false} center={center} />
             ))}
 
+            {notConnectedCenters?.length === 0 && (
+              <div className={styles.no_center_container}>
+                <p className={styles.no_center_text}>연동된 센터가 없습니다.</p>
+              </div>
+            )}
+
             {isUserCenterLoading && (
               <>
                 {Array.from({ length: 3 }).map((_, index) => (

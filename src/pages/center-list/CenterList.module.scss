@@ -11,6 +11,18 @@
     margin-top: 0.6rem;
     @include flex_col(flex-start, flex-start);
     @include flex_col_gap(1.6rem);
+
+    .no_center_container {
+      margin-top: 2.8rem;
+      @include flex_col(center, center);
+      min-height: 10rem;
+      min-width: 100%;
+      flex: 1;
+
+      .no_center_text {
+        @include fm-ar(1.6rem, $grey_2, 2.2rem, 600, "Pretendard");
+      }
+    }
   }
 
   .no_center_container {
