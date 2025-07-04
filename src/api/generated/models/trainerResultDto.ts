@@ -10,6 +10,10 @@
  * 트레이너이름
  */
 export interface TrainerResultDto {
+  /** 트레이너키값 */
+  trainerId?: string;
   /** 트레이너이름 */
   trainerName?: string;
+  /** 트레이너폰번호 */
+  trainerPhone?: string;
 }

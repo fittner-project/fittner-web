@@ -7,6 +7,12 @@
  */
 
 export interface SuspendTicketReqDto {
+  /** 티켓일시정지이유 */
   suspendReason?: string;
+  /** 티켓키값 */
   ticketId?: string;
+  /** 티켓정지종료일자 */
+  ticketSuspendEndDate?: string;
+  /** 티켓정지시작일자 */
+  ticketSuspendStartDate?: string;
 }

@@ -1690,8 +1690,26 @@
       "SuspendTicketReqDto": {
         "type": "object",
         "properties": {
-          "ticketId": { "type": "string" },
-          "suspendReason": { "type": "string" }
+          "ticketId": {
+            "type": "string",
+            "description": "티켓키값",
+            "example": "1234"
+          },
+          "suspendReason": {
+            "type": "string",
+            "description": "티켓일시정지이유",
+            "example": "배아파서"
+          },
+          "ticketSuspendStartDate": {
+            "type": "string",
+            "description": "티켓정지시작일자",
+            "example": "20250628"
+          },
+          "ticketSuspendEndDate": {
+            "type": "string",
+            "description": "티켓정지종료일자",
+            "example": "20250728"
+          }
         }
       },
       "RefundReqDto": {
@@ -2329,9 +2347,19 @@
       "TrainerResultDto": {
         "type": "object",
         "properties": {
+          "trainerId": {
+            "type": "string",
+            "description": "트레이너키값",
+            "example": "키값"
+          },
           "trainerName": {
             "type": "string",
             "description": "트레이너이름",
+            "example": "김영재"
+          },
+          "trainerPhone": {
+            "type": "string",
+            "description": "트레이너폰번호",
             "example": "김영재"
           }
         },
