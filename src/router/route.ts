@@ -274,7 +274,7 @@ export const Routes: Routes = {
 
   "my-trainee": {
     name: "my-trainee",
-    path: PATH.MY.TRAINEE,
+    path: PATH.MY.TRAINEE_OR_TRAINER,
     fallback: "none",
     headerType: "sub",
     navType: "none",

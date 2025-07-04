@@ -1,0 +1,57 @@
+.container {
+  padding: 2rem 0;
+  border-top: 0.2rem solid $grey_1;
+  @include flex_row(space-between, center);
+
+  .left_section {
+    @include flex_row(flex-start, center);
+    @include flex_row_gap(1.4rem);
+
+    .select_circle {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: 0.1rem solid $grey_2;
+
+      &.selected {
+        border-color: $primary_1;
+      }
+
+      .select_circle_check {
+        width: 0.9rem;
+        height: 0.9rem;
+        border-radius: 50%;
+        background-color: $primary_1;
+      }
+    }
+
+    .trainee_profile {
+      width: 5.3rem;
+      height: 5.3rem;
+      border-radius: 50%;
+
+      @include flex_row(center, center);
+
+      &.male {
+        background-color: $primary_1;
+      }
+
+      &.female {
+        background-color: $sub_1;
+      }
+    }
+
+    .trainee_info {
+      .trainee_name {
+        @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+      }
+
+      .trainee_info_detail {
+        margin-top: 0.6rem;
+        @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
+        @include flex_row(center, center);
+        @include flex_row_gap(1.4rem);
+      }
+    }
+  }
+}

@@ -123,7 +123,12 @@ function Home() {
 
         <button
           className={styles.search}
-          onClick={() => navigate(PATH.MY.TRAINEE)}
+          onClick={() =>
+            navigate({
+              pathname: PATH.MY.TRAINEE_OR_TRAINER,
+              search: "?type=trainee",
+            })
+          }
         >
           <Image src={main_search} width={4.3} height={4.3} />
           <div className={styles.search_content}>

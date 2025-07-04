@@ -21,7 +21,6 @@ import RevenueDetail from "@/pages/my/revenue-detail/RevenueDetail";
 import NoticeDetail from "@/pages/my/policy/notice-detail/NoticeDetail";
 import TermsDetail from "@/pages/my/policy/terms-detail/TermsDetail";
 import RevenueTraineeDetail from "@/pages/my/revenue-detail/revenue-trainee-detail/RevenueTraineeDetail";
-import Trainee from "@/pages/my/trainee/Trainee";
 import Ticket from "@/pages/my/ticket/Ticket";
 import TicketDetail from "@/pages/my/ticket/ticket-detail/TicketDetail";
 import SignatureList from "@/pages/signature/signature-list/SignatureList";
@@ -32,6 +31,7 @@ import ExtraRegisterTicket from "@/pages/extra-register-ticket/ExtraRegisterTick
 import SignUpTermDetail from "@/pages/sign-up/sign-up-terms/sign-up-term-detail/SignUpTermDetail";
 import ConfirmInfo from "@/pages/confirm-info/ConfirmInfo";
 import AssignNewTrainee from "@/pages/assign-new-trainee/AssignNewTrainee";
+import TraineeOrTrainer from "@/pages/my/trainee-or-trainer/TraineeOrTrainer";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -130,8 +130,8 @@ const router = createBrowserRouter([
         element: <RevenueTraineeDetail />,
       },
       {
-        path: PATH.MY.TRAINEE,
-        element: <Trainee />,
+        path: PATH.MY.TRAINEE_OR_TRAINER,
+        element: <TraineeOrTrainer />,
       },
       {
         path: PATH.MY.TICKET.DEFAULT,

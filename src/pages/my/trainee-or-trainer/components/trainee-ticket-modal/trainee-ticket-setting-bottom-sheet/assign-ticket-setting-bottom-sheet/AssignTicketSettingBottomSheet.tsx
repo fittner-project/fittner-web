@@ -20,8 +20,8 @@ export default function AssignTicketSettingBottomSheet({
     if (setting === "기존 회원") {
       closeBottomSheet();
       navigate({
-        pathname: PATH.MY.TRAINEE,
-        search: `?type=select-member-assign&member-id=${memberId}&ticket-id=${ticketId}`,
+        pathname: PATH.MY.TRAINEE_OR_TRAINER,
+        search: `?type=trainee&select-type=select-member-assign-old&member-id=${memberId}&ticket-id=${ticketId}`,
       });
     }
 

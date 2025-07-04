@@ -9,7 +9,10 @@ export default function MyInfo() {
       <MyTitle>정보 관리</MyTitle>
 
       <div className={styles.link_container}>
-        <MyLink to={PATH.MY.TRAINEE} title="회원 목록" />
+        <MyLink
+          to={`${PATH.MY.TRAINEE_OR_TRAINER}?type=trainee`}
+          title="회원 목록"
+        />
         <MyLink to={PATH.CENTER_LIST} title="센터 목록" />
         <MyLink to={PATH.MY.TICKET.DEFAULT} title="이용권 목록" />
       </div>

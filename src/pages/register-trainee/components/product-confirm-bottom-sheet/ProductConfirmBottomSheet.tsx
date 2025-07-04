@@ -44,7 +44,10 @@ export default function ProductConfirmBottomSheet({
       props: {
         successMessage: "회원등록이\n 완료 되었습니다",
         onCloseComplete: () => {
-          navigate(PATH.MY.TRAINEE);
+          navigate({
+            pathname: PATH.MY.TRAINEE_OR_TRAINER,
+            search: "?type=trainee",
+          });
         },
       },
     });

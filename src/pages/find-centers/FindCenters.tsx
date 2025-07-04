@@ -12,8 +12,13 @@ import { CenterListResDto } from "@/api/generated/models";
 import { useEffect, useRef } from "react";
 import { useSearchValueStore } from "@/store/searchValue";
 import { useGetUserCenterList } from "@/api/generated/유저/유저";
+import { useSearchParams } from "react-router-dom";
+import useAssignNewTraineeValueStore from "../assign-new-trainee/stores/assignNewTraineeValue";
 
 function FindCenters() {
+  const [searchParams] = useSearchParams();
+  const type = searchParams.get("type");
+  const navigate = useNavigate();
   const searchValue = useSearchValueStore((state) => state.searchValue);
   const reset = useSearchValueStore((state) => state.reset);
   const showCenterList = useRef(false);
@@ -25,6 +30,9 @@ function FindCenters() {
     data: centerList,
     searchFields: ["centerName", "centerAddress"],
   });
+  const setSelectedCenter = useAssignNewTraineeValueStore(
+    (state) => state.setSelectedCenter
+  );
 
   useEffect(() => {
     return () => {
@@ -33,6 +41,12 @@ function FindCenters() {
   }, []);
 
   const handleCenterClick = (center: CenterListResDto) => {
+    if (type === "assign-new") {
+      setSelectedCenter(center);
+      navigate(-1);
+      return;
+    }
+
     openBottomSheet({
       component: SelectCenterBottomSheet,
       props: {

@@ -6,6 +6,8 @@ import Button from "@/components/button/Button";
 import formatPhoneNumber from "@/utils/formatPhoneNumber";
 
 import { formatNumberOnly } from "@/utils/formatNumber";
+import PATH from "@/router/path";
+import useAssignNewTraineeValueStore from "../../stores/assignNewTraineeValue";
 
 interface ITraineeFormViewProps {
   form: UseFormReturn<any, any, undefined>;
@@ -16,6 +18,25 @@ export default function TraineeFormView({
   setStep,
 }: ITraineeFormViewProps) {
   const { watch } = form;
+  const navigate = useNavigate();
+  const selectedCenter = useAssignNewTraineeValueStore(
+    (state) => state.selectedCenter
+  );
+  const selectedTrainer = useAssignNewTraineeValueStore(
+    (state) => state.selectedTrainer
+  );
+  const reset = useAssignNewTraineeValueStore((state) => state.reset);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      reset();
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   // 모든 필드의 값을 감시
   const values = watch();
@@ -37,10 +58,12 @@ export default function TraineeFormView({
         <Input
           inputType="line-search"
           maxLength={10}
+          onClick={() => navigate(`${PATH.FIND_CENTERS}?type=assign-new`)}
           className={styles.name_input}
           {...form.register("centerName", {
             required: true,
           })}
+          value={selectedCenter?.centerName}
           placeholder="센터 이름을 입력해주세요"
           readOnly
         />
@@ -50,10 +73,17 @@ export default function TraineeFormView({
         <Input
           inputType="line-search"
           maxLength={10}
+          onClick={() =>
+            navigate({
+              pathname: PATH.MY.TRAINEE_OR_TRAINER,
+              search: "?type=trainer&select-type=select-member-assign-new",
+            })
+          }
           className={styles.name_input}
           {...form.register("trainerName", {
             required: true,
           })}
+          value={selectedTrainer?.memberName}
           placeholder="양도 회원의 트레이너를 검색해주세요"
           readOnly
         />

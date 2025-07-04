@@ -29,8 +29,8 @@ export default function TraineeTicketModal({
   const { data: traineeData, isLoading } = useGetUserMemberMemberId(memberId);
   const trainees = traineeData?.result;
   const buttonColor: any = {
-    ING: "sub_1",
-    STOP: "primary_1",
+    ING: "primary_1",
+    STOP: "sub_1",
   };
   const [ticketId, setTicketId] = useState("");
 
@@ -117,8 +117,8 @@ export default function TraineeTicketModal({
                         height={5.4}
                       >
                         {trainee.ticketCode === "ING"
-                          ? "기간 정지"
-                          : "기간 만료"}
+                          ? "이용 정지 신청"
+                          : "이용 정지 신청 취소"}
                         <Image
                           src={
                             trainee.ticketCode === "ING" ? pause : caretRight

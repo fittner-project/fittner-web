@@ -12,4 +12,5 @@ export const storageKeys = {
   ticketActiveFilter: "ticketActiveFilter",
   signatureActiveDate: "signatureActiveDate",
   selectedTerm: "selectedTerm",
+  assignNewTraineeValues: "assignNewTraineeValues",
 };
