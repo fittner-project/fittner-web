@@ -14,6 +14,7 @@ const PATH = {
   REDIRECT: "/redirect",
   FIND_CENTERS: "/find-centers",
   CENTER_LIST: "/center-list",
+  PAUSE_TICKET: "/pause-ticket/:ticketId",
   MY: {
     DEFAULT: "/my",
     POLICY: {

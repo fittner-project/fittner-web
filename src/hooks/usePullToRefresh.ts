@@ -17,10 +17,14 @@ function usePullToRefresh() {
     PATH.REGISTER_TRAINEE,
     PATH.ASSIGN_NEW_TRAINEE,
     PATH.EXTRA_REGISTER_TICKET,
+    PATH.PAUSE_TICKET,
   ];
 
   const handleTouchStart = (e: TouchEvent) => {
-    if (window.scrollY === 0 && !pathToExclude.includes(location.pathname)) {
+    const shouldExclude = pathToExclude.some((path) =>
+      location.pathname.startsWith(path.replace(/:\w+/g, ""))
+    );
+    if (window.scrollY === 0 && !shouldExclude) {
       startY.current = e.touches[0].clientY;
       isPulling.current = true;
     }

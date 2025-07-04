@@ -1,0 +1,25 @@
+.container {
+  .title {
+    @include fm-ar(2.2rem, $text_1, 3.2rem, 500);
+
+    span {
+      font-weight: 700;
+    }
+  }
+
+  .info_section {
+    @include flex_row(flex-start, center);
+    @include flex_row_gap(0.4rem);
+    margin-top: 0.5rem;
+
+    p {
+      @include fm-ar(1.5rem, $sub_1, 2.2rem, 500);
+    }
+  }
+
+  .button_section {
+    margin-top: 2.85rem;
+    @include flex_row(space-between, center);
+    @include flex_row_gap(1.4rem);
+  }
+}

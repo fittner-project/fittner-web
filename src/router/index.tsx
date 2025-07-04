@@ -32,6 +32,7 @@ import SignUpTermDetail from "@/pages/sign-up/sign-up-terms/sign-up-term-detail/
 import ConfirmInfo from "@/pages/confirm-info/ConfirmInfo";
 import AssignNewTrainee from "@/pages/assign-new-trainee/AssignNewTrainee";
 import TraineeOrTrainer from "@/pages/my/trainee-or-trainer/TraineeOrTrainer";
+import PauseTicket from "@/pages/pause-ticket/PauseTicket";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -168,6 +169,10 @@ const router = createBrowserRouter([
       {
         path: PATH.ASSIGN_NEW_TRAINEE,
         element: <AssignNewTrainee />,
+      },
+      {
+        path: PATH.PAUSE_TICKET,
+        element: <PauseTicket />,
       },
     ],
   },

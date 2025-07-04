@@ -61,7 +61,8 @@ type RouteKeys =
   | "my-lessons"
   | "extra-register-ticket"
   | "confirm-info"
-  | "assign-new-trainee";
+  | "assign-new-trainee"
+  | "pause-ticket";
 
 type Routes = {
   [K in RouteKeys]: RouteSpec;
@@ -340,6 +341,14 @@ export const Routes: Routes = {
   "assign-new-trainee": {
     name: "assign-new-trainee",
     path: PATH.ASSIGN_NEW_TRAINEE,
+    fallback: "none",
+    headerType: "sub",
+    navType: "none",
+  },
+
+  "pause-ticket": {
+    name: "pause-ticket",
+    path: PATH.PAUSE_TICKET,
     fallback: "none",
     headerType: "sub",
     navType: "none",

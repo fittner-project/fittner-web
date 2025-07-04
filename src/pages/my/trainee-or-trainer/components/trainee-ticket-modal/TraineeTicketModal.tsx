@@ -13,7 +13,6 @@ import { openBottomSheet } from "@/utils/bottomSheet";
 import TraineeTicketSettingBottomSheet from "./trainee-ticket-setting-bottom-sheet/TraineeTicketSettingBottomSheet";
 import TraineeTicketSkeleton from "./trainee-ticket-skeleton/TraineeTicketSkeleton";
 import { Pagination } from "swiper/modules";
-import PauseTicketBottomSheet from "./pause-ticket-bottom-sheet/PauseTicketBottomSheet";
 
 interface TraineeTicketModalProps {
   memberId: string;
@@ -33,6 +32,7 @@ export default function TraineeTicketModal({
     STOP: "sub_1",
   };
   const [ticketId, setTicketId] = useState("");
+  const navigate = useNavigate();
 
   const handleClickTicketStatusButton = ({
     ticketId,
@@ -43,10 +43,7 @@ export default function TraineeTicketModal({
   }) => {
     if (ticketCode === "ING") {
       closeModal();
-      openBottomSheet({
-        component: PauseTicketBottomSheet,
-        props: { ticketId },
-      });
+      navigate(`/pause-ticket/${ticketId}`);
     }
   };
 
