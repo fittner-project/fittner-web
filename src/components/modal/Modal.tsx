@@ -5,9 +5,14 @@ import styles from "./Modal.module.scss";
 export interface ModalProps {
   children: React.ReactNode;
   width?: number;
+  closeOnBackdropClick?: boolean;
 }
 
-export default function Modal({ children, width = 32 }: ModalProps) {
+export default function Modal({
+  children,
+  width = 32,
+  closeOnBackdropClick = true,
+}: ModalProps) {
   const modals = useModalStore((state) => state.modals);
   const closeModal = useModalStore((state) => state.closeModal);
   const isFirstRender = useRef(true);
@@ -30,7 +35,9 @@ export default function Modal({ children, width = 32 }: ModalProps) {
   if (modals.length === 0) return;
 
   const handleClose = () => {
-    closeModal();
+    if (closeOnBackdropClick) {
+      closeModal();
+    }
   };
 
   const handleModalClick = (e: React.MouseEvent) => {

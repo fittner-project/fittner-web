@@ -40,7 +40,7 @@ function AlertModal({ errorMessage, onCloseComplete }: AlertModalProps) {
   }, []);
 
   return (
-    <Modal>
+    <Modal closeOnBackdropClick={false}>
       <div className={styles.container}>
         <Image
           width={4.6611}
