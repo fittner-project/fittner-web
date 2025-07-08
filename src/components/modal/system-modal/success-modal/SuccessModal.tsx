@@ -40,7 +40,7 @@ function SuccessModal({ successMessage, onCloseComplete }: SuccessModalProps) {
   }, []);
 
   return (
-    <Modal closeOnBackdropClick={false}>
+    <Modal onCloseComplete={handleCloseComplete}>
       <div className={styles.container}>
         <Image width={3.8} height={3.8} src={checkSel} alt="check-sel" />
         <p className={styles.success_message}>{successMessage}</p>

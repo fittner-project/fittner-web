@@ -6,12 +6,14 @@ export interface ModalProps {
   children: React.ReactNode;
   width?: number;
   closeOnBackdropClick?: boolean;
+  onCloseComplete?: () => void;
 }
 
 export default function Modal({
   children,
   width = 32,
   closeOnBackdropClick = true,
+  onCloseComplete,
 }: ModalProps) {
   const modals = useModalStore((state) => state.modals);
   const closeModal = useModalStore((state) => state.closeModal);
@@ -37,6 +39,7 @@ export default function Modal({
   const handleClose = () => {
     if (closeOnBackdropClick) {
       closeModal();
+      onCloseComplete?.();
     }
   };
 
