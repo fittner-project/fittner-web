@@ -19,6 +19,7 @@ declare global {
   const forwardRef: typeof import('react')['forwardRef']
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']
+  const scroll: typeof import('./store/scroll')['default']
   const signIn: typeof import('./store/signIn')['default']
   const startTransition: typeof import('react')['startTransition']
   const useAppStore: typeof import('./store/app')['useAppStore']

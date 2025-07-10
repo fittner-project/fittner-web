@@ -19,6 +19,7 @@ function usePullToRefresh() {
     PATH.EXTRA_REGISTER_TICKET,
     PATH.PAUSE_TICKET,
     PATH.MY.TRAINEE_OR_TRAINER,
+    PATH.MY.TICKET.DEFAULT,
   ];
 
   const handleTouchStart = (e: TouchEvent) => {

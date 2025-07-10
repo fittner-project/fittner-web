@@ -25,28 +25,21 @@
       }
     }
 
-    .trainee_profile {
+    .trainer_profile {
       width: 5.3rem;
       height: 5.3rem;
       border-radius: 50%;
 
       @include flex_row(center, center);
-
-      &.male {
-        background-color: $primary_1;
-      }
-
-      &.female {
-        background-color: $sub_1;
-      }
+      background-color: $grey_2;
     }
 
-    .trainee_info {
-      .trainee_name {
+    .trainer_info {
+      .trainer_name {
         @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
       }
 
-      .trainee_info_detail {
+      .trainer_info_detail {
         margin-top: 0.6rem;
         @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
         @include flex_row(center, center);

@@ -83,7 +83,7 @@ export default function TraineeFormView({
           {...form.register("trainerName", {
             required: true,
           })}
-          value={selectedTrainer?.memberName}
+          value={selectedTrainer?.trainerName}
           placeholder="양도 회원의 트레이너를 검색해주세요"
           readOnly
         />

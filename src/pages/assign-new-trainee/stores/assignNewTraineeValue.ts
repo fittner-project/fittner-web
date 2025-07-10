@@ -1,4 +1,4 @@
-import { CenterListResDto, MemberListResDto } from "@/api/generated/models";
+import { CenterListResDto, TrainerResultDto } from "@/api/generated/models";
 import { storageKeys } from "@/constants/storageKeys";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
@@ -6,8 +6,8 @@ import { persist, createJSONStorage } from "zustand/middleware";
 interface AssignNewTraineeValueStore {
   selectedCenter: CenterListResDto | null;
   setSelectedCenter: (center: CenterListResDto) => void;
-  selectedTrainer: MemberListResDto | null;
-  setSelectedTrainer: (trainer: MemberListResDto) => void;
+  selectedTrainer: TrainerResultDto | null;
+  setSelectedTrainer: (trainer: TrainerResultDto) => void;
   reset: () => void;
 }
 
@@ -18,7 +18,7 @@ const useAssignNewTraineeValueStore = create(
       setSelectedCenter: (center: CenterListResDto) =>
         set(() => ({ selectedCenter: center })),
       selectedTrainer: null,
-      setSelectedTrainer: (trainer: MemberListResDto) =>
+      setSelectedTrainer: (trainer: TrainerResultDto) =>
         set(() => ({ selectedTrainer: trainer })),
       reset: () => set(() => ({ selectedCenter: null, selectedTrainer: null })),
     }),

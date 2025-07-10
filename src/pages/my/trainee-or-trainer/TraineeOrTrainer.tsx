@@ -16,7 +16,7 @@ import Button from "@/components/button/Button";
 import AssignDuplicateTraineeBottomSheet from "./components/assign-duplicate-trainee-bottom-sheet/AssignDuplicateTraineeBottomSheet";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import PATH from "@/router/path";
-import useAssignNewTraineeValueStore from "@/pages/assign-new-trainee/stores/assignNewTraineeValue";
+
 import TrainerItem from "./components/trainer-item/TrainerItem";
 import { uniqueId } from "lodash";
 
@@ -51,19 +51,12 @@ export default function Trainee() {
 
   const searchValue = watch("searchValue");
 
-  const [selectedTrainerId, setSelectedTrainerId] = useState<
-    string | undefined
-  >("");
-
   const [selectedTraineeId, setSelectedTraineeId] = useState<
     string | undefined
   >("");
   const memberId = searchParams.get("member-id");
   const ticketId = searchParams.get("ticket-id");
   const navigate = useNavigate();
-  const setSelectedTrainer = useAssignNewTraineeValueStore(
-    (state) => state.setSelectedTrainer
-  );
 
   const handleClickTrainee = ({
     memberId,
@@ -106,10 +99,6 @@ export default function Trainee() {
     }
 
     if (selectType === "select-member-assign-new") {
-      const selected = trainees?.find(
-        (trainee) => trainee.memberId === selectedTraineeId
-      );
-      if (selected) setSelectedTrainer(selected);
       navigate(-1);
     }
   };
@@ -216,14 +205,6 @@ export default function Trainee() {
                     key={uniqueId()}
                     trainer={trainer}
                     isSelectType={Boolean(selectType)}
-                    selectedTrainerId={selectedTrainerId}
-                    handleClickTrainee={() => {
-                      // handleClickTrainee({
-                      //   memberId: trainer.memberId,
-                      //   memberName: trainer.memberName,
-                      //   hasReservedClass: trainer.reservation,
-                      // });
-                    }}
                   />
                 ))}
             </>
