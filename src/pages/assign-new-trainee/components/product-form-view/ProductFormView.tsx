@@ -9,11 +9,12 @@ import classNames from "classnames";
 import { chevronDownGrey } from "@/assets/assets";
 import Image from "@/components/image/Image";
 import { openBottomSheet } from "@/utils/bottomSheet";
-// import RegistrationPathBottomSheet from "../registration-path-bottom-sheet/RegistrationPathBottomSheet";
-// import TraineeConfirmBottomSheet from "../trainee-confirm-bottom-sheet/TraineeConfirmBottomSheet";
 import { createDatePickerDates } from "@/utils/datePicker";
 import { RegisterTraineeForm } from "../../AssignNewTrainee";
 import { formatNumberOnly } from "@/utils/formatNumber";
+import useAssignNewTraineeValueStore from "../../stores/assignNewTraineeValue";
+import RegistrationPathBottomSheet from "../registration-path-bottom-sheet/RegistrationPathBottomSheet";
+import AssignNewTraineeConfirmBottomSheet from "../assign-new-trainee-confirm-bottom-sheet/AssignNewTraineeConfirmBottomSheet";
 
 interface IProductFormViewProps {
   form: UseFormReturn<RegisterTraineeForm, any, undefined>;
@@ -21,6 +22,17 @@ interface IProductFormViewProps {
 
 export default function ProductFormView({ form }: IProductFormViewProps) {
   const dateOptions = useMemo(() => createDatePickerDates(), []);
+  const selectedCenter = useAssignNewTraineeValueStore(
+    (state) => state.selectedCenter
+  );
+  const selectedTrainer = useAssignNewTraineeValueStore(
+    (state) => state.selectedTrainer
+  );
+
+  useEffect(() => {
+    form.setValue("centerId", selectedCenter?.centerId || "");
+    form.setValue("trainerId", selectedTrainer?.trainerId || "");
+  }, [selectedCenter, selectedTrainer]);
 
   const today = dayjs();
   const [startPickerValue, setStartPickerValue] = useState({
@@ -66,12 +78,12 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
     values.productPrice;
 
   const handleProductConfirm = () => {
-    // openBottomSheet({
-    //   component: TraineeConfirmBottomSheet,
-    //   props: {
-    //     form,
-    //   },
-    // });
+    openBottomSheet({
+      component: AssignNewTraineeConfirmBottomSheet,
+      props: {
+        form,
+      },
+    });
   };
 
   return (
@@ -310,12 +322,12 @@ export default function ProductFormView({ form }: IProductFormViewProps) {
       <div
         className={styles.field}
         onClick={() => {
-          //   openBottomSheet({
-          //     component: RegistrationPathBottomSheet,
-          //     props: {
-          //       onSelect: handleRegistrationPathSelect,
-          //     },
-          //   });
+          openBottomSheet({
+            component: RegistrationPathBottomSheet,
+            props: {
+              onSelect: handleRegistrationPathSelect,
+            },
+          });
         }}
       >
         <p className={styles.title}>가입 경로</p>

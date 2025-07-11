@@ -13,4 +13,5 @@ export const storageKeys = {
   signatureActiveDate: "signatureActiveDate",
   selectedTerm: "selectedTerm",
   assignNewTraineeValues: "assignNewTraineeValues",
+  assignNewTraineeFormValues: "assignNewTraineeFormValues",
 };

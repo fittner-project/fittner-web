@@ -2,6 +2,7 @@ import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import styles from "./AssignTicketSettingBottomSheet.module.scss";
 import PATH from "@/router/path";
 import { closeBottomSheet } from "@/utils/bottomSheet";
+import useAssignNewTraineeValueStore from "@/pages/assign-new-trainee/stores/assignNewTraineeValue";
 
 interface AssignTicketSettingBottomSheetProps {
   memberId: string;
@@ -15,6 +16,9 @@ export default function AssignTicketSettingBottomSheet({
   type Setting = "기존 회원" | "신규 회원";
   const settings: Setting[] = ["기존 회원", "신규 회원"];
   const navigate = useNavigate();
+  const setOriginalTicketId = useAssignNewTraineeValueStore(
+    (state) => state.setOriginalTicketId
+  );
 
   const handleClickSetting = (setting: Setting) => {
     if (setting === "기존 회원") {
@@ -26,6 +30,7 @@ export default function AssignTicketSettingBottomSheet({
     }
 
     if (setting === "신규 회원") {
+      setOriginalTicketId(ticketId);
       navigate({
         pathname: PATH.ASSIGN_NEW_TRAINEE,
       });

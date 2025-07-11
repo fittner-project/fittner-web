@@ -1,0 +1,12 @@
+.title {
+  @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
+  margin-bottom: 2.2rem;
+}
+
+.content {
+  .content_item {
+    @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+    height: 4.6rem;
+    @include flex-row(flex-start);
+  }
+}

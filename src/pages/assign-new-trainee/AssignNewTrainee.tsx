@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import useFormPersist from "react-hook-form-persist";
 import styles from "./AssignNewTrainee.module.scss";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import Row from "@/components/flex/Row";
@@ -6,12 +7,12 @@ import classNames from "classnames";
 
 import TraineeFormView from "./components/trainee-form-view/TraineeFormView";
 import ProductFormView from "./components/product-form-view/ProductFormView";
+import { storageKeys } from "@/constants/storageKeys";
 
 export type RegisterTraineeForm = {
+  originalTicketId: string;
   centerId: string;
-  centerName: string;
   trainerId: string;
-  trainerName: string;
   memberName: string;
   memberPhone: string;
   memberGender: "M" | "F";
@@ -33,16 +34,25 @@ export default function RegisterTrainee() {
     mode: "onChange",
   });
 
+  useFormPersist(storageKeys.assignNewTraineeFormValues, {
+    watch: form.watch,
+    setValue: form.setValue,
+    storage: window.sessionStorage,
+  });
+
   useEffect(() => {
     const handlePopState = () => {
       if (step === 2) {
         setStep(1);
+      } else {
+        form.reset();
+        sessionStorage.removeItem(storageKeys.assignNewTraineeFormValues);
       }
     };
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, [step, navigate]);
+  }, [step, navigate, form]);
 
   useEffect(() => {
     if (step === 2) {

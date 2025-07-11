@@ -17,7 +17,7 @@ export default function TraineeFormView({
   form,
   setStep,
 }: ITraineeFormViewProps) {
-  const { watch } = form;
+  const { watch, reset: resetFormValues } = form;
   const navigate = useNavigate();
   const selectedCenter = useAssignNewTraineeValueStore(
     (state) => state.selectedCenter
@@ -30,6 +30,7 @@ export default function TraineeFormView({
   useEffect(() => {
     const handlePopState = () => {
       reset();
+      resetFormValues();
     };
 
     window.addEventListener("popstate", handlePopState);
@@ -38,13 +39,18 @@ export default function TraineeFormView({
     };
   }, []);
 
+  useEffect(() => {
+    form.setValue("centerId", selectedCenter?.centerId || "");
+    form.setValue("trainerId", selectedTrainer?.trainerId || "");
+  }, [selectedCenter, selectedTrainer, form]);
+
   // 모든 필드의 값을 감시
   const values = watch();
 
   // 모든 필수 필드가 채워졌는지 확인
   const isFormComplete =
-    values.centerName?.trim() &&
-    values.trainerName?.trim() &&
+    values.centerId?.trim() &&
+    values.trainerId?.trim() &&
     values.memberName?.trim() &&
     values.memberPhone?.trim() &&
     values.memberGender &&
@@ -60,9 +66,6 @@ export default function TraineeFormView({
           maxLength={10}
           onClick={() => navigate(`${PATH.FIND_CENTERS}?type=assign-new`)}
           className={styles.name_input}
-          {...form.register("centerName", {
-            required: true,
-          })}
           value={selectedCenter?.centerName}
           placeholder="센터 이름을 입력해주세요"
           readOnly
@@ -80,9 +83,6 @@ export default function TraineeFormView({
             })
           }
           className={styles.name_input}
-          {...form.register("trainerName", {
-            required: true,
-          })}
           value={selectedTrainer?.trainerName}
           placeholder="양도 회원의 트레이너를 검색해주세요"
           readOnly
