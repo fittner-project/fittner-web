@@ -46,11 +46,9 @@
         @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
       }
 
-      .trainee_info_detail {
+      .trainee_memo {
         margin-top: 0.6rem;
         @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
-        @include flex_row(center, center);
-        @include flex_row_gap(1.4rem);
       }
     }
   }

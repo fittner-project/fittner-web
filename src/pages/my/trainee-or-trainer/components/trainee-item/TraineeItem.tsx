@@ -50,10 +50,9 @@ export default function TraineeItem({
         </div>
         <div className={styles.trainee_info}>
           <p className={styles.trainee_name}>{trainee.memberName}</p>
-          <div className={styles.trainee_info_detail}>
-            <p>{trainee.memberPhone}</p>
-            <p>만 {trainee.memberAge}세</p>
-          </div>
+          <p className={styles.trainee_memo}>
+            - {trainee.memberMemo ? trainee.memberMemo : "메모 없음"}
+          </p>
         </div>
       </section>
 
