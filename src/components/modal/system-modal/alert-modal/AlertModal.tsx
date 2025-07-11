@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { alertTriangle } from "@/assets/assets";
+import { alertModalIcon } from "@/assets/assets";
 import Modal from "../../Modal";
 import Image from "@/components/image/Image";
 import styles from "./AlertModal.module.scss";
@@ -45,7 +45,7 @@ function AlertModal({ errorMessage, onCloseComplete }: AlertModalProps) {
         <Image
           width={4.6611}
           height={4.4788}
-          src={alertTriangle}
+          src={alertModalIcon}
           alt="alert-triangle"
         />
         <p className={styles.error_message}>{errorMessage}</p>
