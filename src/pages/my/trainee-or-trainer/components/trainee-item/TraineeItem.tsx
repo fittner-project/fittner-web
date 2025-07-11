@@ -2,7 +2,12 @@ import { MemberListResDto } from "@/api/generated/models";
 import styles from "./TraineeItem.module.scss";
 import classNames from "classnames";
 import Image from "@/components/image/Image";
-import { chevronRightGrey, userProfile } from "@/assets/assets";
+import {
+  chevronRightGrey,
+  userFemale,
+  userMale,
+  userProfile,
+} from "@/assets/assets";
 import Flex from "@/components/flex/Flex";
 
 interface TraineeItemProps {
@@ -46,12 +51,23 @@ export default function TraineeItem({
             [styles.female]: trainee.memberGender === "F",
           })}
         >
-          <Image src={userProfile} alt="프로필 이미지" width={3} height={3} />
+          <Image
+            src={
+              trainee.memberGender === "M"
+                ? userMale
+                : trainee.memberGender === "F"
+                  ? userFemale
+                  : userProfile
+            }
+            alt="프로필 이미지"
+            width={3}
+            height={3}
+          />
         </div>
         <div className={styles.trainee_info}>
           <p className={styles.trainee_name}>{trainee.memberName}</p>
           <p className={styles.trainee_memo}>
-            - {trainee.memberMemo ? trainee.memberMemo : "메모 없음"}
+            {trainee.memberMemo ? trainee.memberMemo : "메모 없음"}
           </p>
         </div>
       </section>

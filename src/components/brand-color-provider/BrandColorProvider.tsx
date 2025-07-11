@@ -28,13 +28,24 @@ const BrandColorProvider: FC<{ children: React.ReactNode }> = ({
 
       // Brand Colors
       document.documentElement.style.setProperty(
-        "--primary",
+        "--primary-a",
         brandColors.primary || "#4c6aff"
       );
+
+      // document.documentElement.style.setProperty(
+      //   "--primary-b",
+      //   brandColors.primary2 || "#d8e2ff"
+      // );
+
       document.documentElement.style.setProperty(
-        "--sub",
+        "--sub-a",
         brandColors.sub || "#ff8194"
       );
+
+      // document.documentElement.style.setProperty(
+      //   "--sub-b",
+      //   brandColors.sub2 || "#ffe5eb"
+      // );
 
       // Text Colors
       document.documentElement.style.setProperty(

@@ -6,8 +6,10 @@ const COLORS = {
   grey_4: "var(--grey-type-d, #4d5662)",
 
   // 브랜드 컬러
-  primary_1: "var(--primary, #4c6aff)",
-  sub_1: "var(--sub, #ff8194)",
+  primary_1: "var(--primary-a, #4c6aff)",
+  primary_2: "var(--primary-b, #d8e2ff)",
+  sub_1: "var(--sub-a, #ff8194)",
+  sub_2: "var(--sub-b, #ffe5eb)",
 
   // 텍스트 컬러
   text_1: "var(--text-type-a, #191f28)",

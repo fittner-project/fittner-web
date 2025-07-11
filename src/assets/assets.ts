@@ -48,3 +48,5 @@ export { default as pause } from "./icon/pause.svg";
 export { default as caretRight } from "./icon/caret-right.svg";
 export { default as pinAngleSel } from "./icon/pin-angle-sel.svg";
 export { default as pinAngleNor } from "./icon/pin-angle-nor.svg";
+export { default as userMale } from "./icon/user-male.svg";
+export { default as userFemale } from "./icon/user-female.svg";

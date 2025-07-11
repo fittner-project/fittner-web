@@ -6,6 +6,7 @@
   .left_section {
     @include flex_row(flex-start, center);
     @include flex_row_gap(1.4rem);
+    min-width: 0;
 
     .select_circle {
       width: 2rem;
@@ -33,22 +34,25 @@
       @include flex_row(center, center);
 
       &.male {
-        background-color: $primary_1;
+        background-color: $primary_2;
       }
 
       &.female {
-        background-color: $sub_1;
+        background-color: $sub_2;
       }
     }
 
     .trainee_info {
+      min-width: 0;
+      flex: 1 1 0;
+
       .trainee_name {
         @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
       }
-
       .trainee_memo {
         margin-top: 0.6rem;
         @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
+        @include text_ellipsis();
       }
     }
   }
