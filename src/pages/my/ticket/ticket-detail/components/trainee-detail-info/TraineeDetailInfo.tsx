@@ -48,13 +48,13 @@ export default function TraineeDetailInfo({
         <TicketDetailContent
           title="메모"
           contentType="text"
-          content={traineeInfo?.memberMemo}
+          content={traineeInfo?.memberMemo || "메모 없음"}
           isLoading={isLoading}
         />
         <TicketDetailContent
           title="가입경로"
           contentType="text"
-          content={traineeInfo?.memberJoinPath}
+          content={traineeInfo?.memberJoinPath || "가입경로 없음"}
           isLoading={isLoading}
         />
       </TicketDetailContainer>
