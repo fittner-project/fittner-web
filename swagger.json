@@ -3848,6 +3848,11 @@
             "description": "회원 나이",
             "example": "30"
           },
+          "memberMemo": {
+            "type": "string",
+            "description": "회원 메모",
+            "example": "메모입니다."
+          },
           "memberGender": {
             "type": "string",
             "description": "회원 성별",

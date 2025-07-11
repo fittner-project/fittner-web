@@ -17,6 +17,8 @@ export interface MemberListResDto {
   memberGender?: MemberListResDtoMemberGender;
   /** 회원 ID */
   memberId?: string;
+  /** 회원 메모 */
+  memberMemo?: string;
   /** 회원 이름 */
   memberName?: string;
   /** 회원 전화번호 */
