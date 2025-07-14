@@ -5,7 +5,7 @@ import Row from "@/components/flex/Row";
 
 import ExtraRegisterTicketFormView from "./components/extra-register-ticket-form-view/ExtraRegisterTicketFormView";
 
-export default function RegisterTrainee() {
+export default function ExtraRegisterTicket() {
   return (
     <PaddingContainer>
       <div className={styles.container}>
