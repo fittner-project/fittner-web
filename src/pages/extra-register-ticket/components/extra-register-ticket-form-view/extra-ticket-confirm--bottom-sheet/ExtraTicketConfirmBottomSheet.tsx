@@ -31,7 +31,7 @@ export default function ExtraTicketConfirmBottomSheet({
         openModal({
           component: SuccessModal,
           props: {
-            successMessage: "회원등록이\n 완료 되었습니다",
+            successMessage: "이용권 추가 등록이\n 완료 되었습니다",
             onCloseComplete: () => {
               navigate(-1);
             },

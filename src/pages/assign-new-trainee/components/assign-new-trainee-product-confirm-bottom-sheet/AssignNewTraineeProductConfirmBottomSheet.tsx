@@ -35,10 +35,7 @@ export default function AssignNewTraineeProductConfirmBottomSheet({
           props: {
             successMessage: "회원등록이\n 완료 되었습니다",
             onCloseComplete: () => {
-              navigate({
-                pathname: PATH.MY.TRAINEE_OR_TRAINER,
-                search: "?type=trainee",
-              });
+              navigate(-2);
             },
           },
         });
