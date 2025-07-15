@@ -23,6 +23,7 @@
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.18",
     "@tanstack/react-query": "^5.62.15",
     "@types/react-signature-canvas": "^1.0.7",
     "@types/swiper": "^6.0.0",
@@ -31,6 +32,7 @@
     "dayjs": "^1.11.13",
     "framer-motion": "^11.13.1",
     "lodash": "^4.17.21",
+    "main.css": "link:@fullcalendar/core/main.css",
     "mitt": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -48,7 +50,7 @@
     "zustand-persist": "^0.4.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.0",
+    "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@types/lodash": "^4.17.14",
     "@types/node": "^22.10.1",
