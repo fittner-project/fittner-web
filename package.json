@@ -20,6 +20,7 @@
     "generate-api": "orval --config orval.config.cjs"
   },
   "dependencies": {
+    "@fullcalendar/common": "^5.11.5",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",

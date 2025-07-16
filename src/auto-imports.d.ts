@@ -51,6 +51,7 @@ declare global {
   const useRef: typeof import('react')['useRef']
   const useResolvedPath: typeof import('react-router-dom')['useResolvedPath']
   const useRoutes: typeof import('react-router-dom')['useRoutes']
+  const useScrollStore: typeof import('./store/scroll')['useScrollStore']
   const useSearchParams: typeof import('react-router-dom')['useSearchParams']
   const useSearchValueStore: typeof import('./store/searchValue')['useSearchValueStore']
   const useSignInStore: typeof import('./store/signIn')['useSignInStore']

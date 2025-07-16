@@ -1,4 +1,6 @@
 .container {
+  height: calc(100dvh - $sub_header_height);
+  padding-bottom: 1.8rem;
 }
 
 :global {

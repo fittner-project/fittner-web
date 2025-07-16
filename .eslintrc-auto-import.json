@@ -52,6 +52,7 @@
     "useImageViewerStore": true,
     "app": true,
     "calendar": true,
-    "scroll": true
+    "scroll": true,
+    "useScrollStore": true
   }
 }
