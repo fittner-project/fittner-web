@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import styles from "./MyLessonsFilter.module.scss";
-import { Dispatch, SetStateAction } from "react";
 import Image from "@/components/image/Image";
 import { registration } from "@/assets/assets";
 import PATH from "@/router/path";
@@ -8,7 +7,7 @@ import PATH from "@/router/path";
 interface MyLessonsFilterProps {
   tabArray: ("today" | "weekly")[];
   activeFilter: "today" | "weekly";
-  setActiveFilter: Dispatch<SetStateAction<"today" | "weekly">>;
+  setActiveFilter: (activeFilter: "today" | "weekly") => void;
 }
 
 function MyLessonsFilter({

@@ -3,6 +3,7 @@ import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import styles from "./MyLessons.module.scss";
 import MyLessonsFilter from "./components/my-lessons-filter/MyLessonsFilter";
+import useMyLessonsActiveFilterStore from "./stores/my-lessons-active-filter";
 
 const events = [
   {
@@ -18,8 +19,11 @@ const renderEventContent = (eventInfo: any) => (
 
 export default function MyLessons() {
   const tabArray: ("today" | "weekly")[] = ["today", "weekly"];
-  const [activeFilter, setActiveFilter] = useState<"today" | "weekly">(
-    tabArray[0]
+  const activeFilter = useMyLessonsActiveFilterStore(
+    (state) => state.activeFilter
+  );
+  const setActiveFilter = useMyLessonsActiveFilterStore(
+    (state) => state.setActiveFilter
   );
 
   return (

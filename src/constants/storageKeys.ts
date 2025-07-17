@@ -14,4 +14,5 @@ export const storageKeys = {
   selectedTerm: "selectedTerm",
   assignNewTraineeValues: "assignNewTraineeValues",
   assignNewTraineeFormValues: "assignNewTraineeFormValues",
+  myLessonsActiveFilter: "myLessonsActiveFilter",
 };
