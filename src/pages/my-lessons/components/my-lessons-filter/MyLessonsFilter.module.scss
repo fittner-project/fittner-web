@@ -1,0 +1,18 @@
+.container {
+  padding: 0.8rem 0;
+  @include flex_row(flex-start, center);
+  @include flex_row_gap(0.8rem);
+
+  .filter {
+    width: fit-content;
+    padding: 0.6rem 1.6rem;
+    border-radius: 100rem;
+    border: 0.1rem solid $grey_2;
+    @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
+
+    &.active {
+      @include fm-ar(1.6rem, $primary_1, 2.2rem, 600);
+      border: 0.1rem solid $primary_1;
+    }
+  }
+}
