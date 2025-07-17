@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import styles from "./RegisterLesson.module.scss";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
-import { MotionDiv } from "@/components/animation/Motion";
 import Row from "@/components/flex/Row";
 import Image from "@/components/image/Image";
 import {
@@ -16,6 +15,7 @@ import {
 import classNames from "classnames";
 import Column from "@/components/flex/Column";
 import dayjs from "dayjs";
+import PATH from "@/router/path";
 
 export type RegisterLessonForm = {
   //   memberName: string;
@@ -49,13 +49,17 @@ export default function RegisterLesson() {
   return (
     <PaddingContainer>
       <form className={styles.container}>
-        <MotionDiv
-          className={styles.menu_container}
-          transition={{ duration: 0.4, delay: 0.6 }}
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-        >
-          <Row className={styles.category} justifyContent="space-between">
+        <div className={styles.menu_container}>
+          <Row
+            onClick={() => {
+              navigate({
+                pathname: PATH.MY.TRAINEE_OR_TRAINER,
+                search: `?select=trainee&select-type=register-lesson`,
+              });
+            }}
+            className={styles.category}
+            justifyContent="space-between"
+          >
             <Row gap={"1.3rem"}>
               <Image src={user} width={2.3} height={2.3} />
               <p>회원 선택</p>
@@ -159,7 +163,7 @@ export default function RegisterLesson() {
             </Row>
             <Image src={plus} width={2.8} height={2.8} />
           </Row>
-        </MotionDiv>
+        </div>
       </form>
     </PaddingContainer>
   );
