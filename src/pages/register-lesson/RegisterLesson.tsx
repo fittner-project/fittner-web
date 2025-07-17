@@ -14,10 +14,10 @@ import {
 
 import dayjs from "dayjs";
 import PATH from "@/router/path";
-import { createDatePickerDates } from "@/utils/datePicker";
 import RegisterLessonDateTimePicker from "./components/register-lesson-date-time-picker/RegisterLessonDateTimePicker";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ColorTagBottomSheet from "./components/color-tag-bottom-sheet/ColorTagBottomSheet";
+import AlarmBottomSheet from "./components/alarm-bottom-sheet/AlarmBottomSheet";
 
 export type RegisterLessonForm = {
   //   memberName: string;
@@ -119,7 +119,15 @@ export default function RegisterLesson() {
             <Image src={chevronRightGrey} width={2.8} height={2.8} />
           </Row>
 
-          <Row className={styles.category} justifyContent="space-between">
+          <Row
+            onClick={() => {
+              openBottomSheet({
+                component: AlarmBottomSheet,
+              });
+            }}
+            className={styles.category}
+            justifyContent="space-between"
+          >
             <Row gap={"1.3rem"}>
               <Image src={alaram} width={2.3} height={2.3} />
               <p>일정 알림</p>

@@ -1,0 +1,23 @@
+.container {
+  .title {
+    @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
+  }
+
+  .alarm_container {
+    margin-top: 1rem;
+
+    .alarm {
+      @include flex_row(flex-start, center);
+      @include flex_row_gap(1.4rem);
+      height: 4.6rem;
+      margin: 0 -1rem;
+      padding: 0 1rem;
+      border-radius: 1.2rem;
+      @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+
+      &.selected {
+        background-color: $grey_1;
+      }
+    }
+  }
+}
