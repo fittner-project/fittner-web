@@ -18,6 +18,7 @@ import RegisterLessonDateTimePicker from "./components/register-lesson-date-time
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ColorTagBottomSheet from "./components/color-tag-bottom-sheet/ColorTagBottomSheet";
 import AlarmBottomSheet from "./components/alarm-bottom-sheet/AlarmBottomSheet";
+import MemoBottomSheet from "./components/memo-bottom-sheet/MemoBottomSheet";
 
 export type RegisterLessonForm = {
   //   memberName: string;
@@ -135,7 +136,15 @@ export default function RegisterLesson() {
             <Image src={chevronRightGrey} width={2.8} height={2.8} />
           </Row>
 
-          <Row className={styles.category} justifyContent="space-between">
+          <Row
+            onClick={() => {
+              openBottomSheet({
+                component: MemoBottomSheet,
+              });
+            }}
+            className={styles.category}
+            justifyContent="space-between"
+          >
             <Row gap={"1.3rem"}>
               <Image src={memo} width={2.3} height={2.3} />
               <p>메모</p>
