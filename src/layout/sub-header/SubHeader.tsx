@@ -8,7 +8,7 @@ import useGetCurrentRoute from "@/hooks/useGetCurrentRoute";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ApprovalNoticeBottomSheet from "@/pages/center-list/components/approval-notice-bottom-sheet/ApprovalNoticeBottomSheet";
 import PATH from "@/router/path";
-import useAppStore from "@/store/app";
+import useAppStore from "@/stores/app";
 
 interface SubHeaderProps {
   fallback: string | "none";

@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from "react";
-import useAppStore from "@/store/app";
+import useAppStore from "@/stores/app";
 
 /**
  * 뒤로가기 함수를 주입하고 언마운트 시 정리하는 훅

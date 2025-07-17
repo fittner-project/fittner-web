@@ -10,7 +10,7 @@ import SelectCenterBottomSheet from "./components/searched-centers/select-center
 import { CenterListResDto } from "@/api/generated/models";
 
 import { useEffect, useRef } from "react";
-import { useSearchValueStore } from "@/store/searchValue";
+import { useSearchValueStore } from "@/stores/searchValue";
 import { useGetUserCenterList } from "@/api/generated/유저/유저";
 import { useSearchParams } from "react-router-dom";
 import useAssignNewTraineeValueStore from "../assign-new-trainee/stores/assignNewTraineeValue";

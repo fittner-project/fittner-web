@@ -3,7 +3,7 @@ import styles from "./Header.module.scss";
 import { ReactNode } from "react";
 import { bell, chevron_down } from "@/assets/assets";
 import Image from "@/components/image/Image";
-import useAppStore from "@/store/app";
+import useAppStore from "@/stores/app";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ChangeCenterBottomSheet from "./change-center-bottom-sheet/ChangeCenterBottomSheet";
 

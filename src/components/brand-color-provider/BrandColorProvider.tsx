@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useUserStore } from "@/store/user";
+import { useUserStore } from "@/stores/user";
 
 const BrandColorProvider: FC<{ children: React.ReactNode }> = ({
   children,

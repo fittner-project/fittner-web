@@ -15,7 +15,7 @@ export default ({ command, mode }: ConfigEnv) => {
       AutoImport({
         imports: ["react", "react-router-dom"],
         dts: "./src/auto-imports.d.ts",
-        dirs: ["src/store"],
+        dirs: ["src/stores"],
         eslintrc: {
           enabled: true, // Default `false`
           filepath: "./.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`

@@ -1,6 +1,6 @@
 import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import styles from "./TermDateBottomSheet.module.scss";
-import useSelectedTermStore from "../../../store/selected-term";
+import useSelectedTermStore from "../../../stores/selected-term";
 import { uniqueId } from "lodash";
 import classNames from "classnames";
 

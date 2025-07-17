@@ -1,4 +1,4 @@
-import { useBottomSheetStore } from "@/store/bottomSheet";
+import { useBottomSheetStore } from "@/stores/bottomSheet";
 import styles from "./BottomSheetManager.module.scss";
 import { closeBottomSheet } from "@/utils/bottomSheet";
 import { useState, useEffect } from "react";

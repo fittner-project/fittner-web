@@ -10,7 +10,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { infiniteQueryKeys } from "@/constants/infinite-query-keys";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import PolicyLinkSkeleton from "./components/policy-link-skeleton/PolicyLinkSkeleton";
-import useSelectedTermStore from "./store/selected-term";
+import useSelectedTermStore from "./stores/selected-term";
 
 interface PolicyProps {
   type: "terms" | "notice";

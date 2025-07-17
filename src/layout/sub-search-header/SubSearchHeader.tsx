@@ -4,7 +4,7 @@ import Image from "@/components/image/Image";
 import styles from "./SubSearchHeader.module.scss";
 import Input from "@/components/input/Input";
 import useGetCurrentRoute from "@/hooks/useGetCurrentRoute";
-import { useSearchValueStore } from "@/store/searchValue";
+import { useSearchValueStore } from "@/stores/searchValue";
 
 interface SubSearchHeaderProps {
   fallback: string | "none";

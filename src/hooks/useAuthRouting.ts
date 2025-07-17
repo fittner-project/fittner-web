@@ -1,7 +1,7 @@
 import { useGetUserCommonStatusChk } from "@/api/generated/공통/공통";
 import { storageKeys } from "@/constants/storageKeys";
 import PATH from "@/router/path";
-import { ApprovalStatus } from "@/store/auth";
+import { ApprovalStatus } from "@/stores/auth";
 import { storage } from "@/utils/storage";
 
 export default function useAuthRouting() {

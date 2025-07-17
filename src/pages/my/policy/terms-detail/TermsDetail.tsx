@@ -1,7 +1,7 @@
 import PolicyLink from "../components/policy-link/PolicyLink";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import styles from "./TermsDetail.module.scss";
-import useSelectedTermStore from "../store/selected-term";
+import useSelectedTermStore from "../stores/selected-term";
 
 export default function TermsDetail() {
   const { title } = useParams() as { title: string };

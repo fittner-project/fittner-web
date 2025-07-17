@@ -11,7 +11,7 @@ import {
   useGetUserReservationColors,
   useGetUserReservations,
 } from "./api/generated/수업/수업";
-import useCalendarStore from "./store/calendar";
+import useCalendarStore from "./stores/calendar";
 import LoadingIndicator from "./components/loading-indicator/LoadingIndicator";
 import { useGetUserCommonBrandColor } from "./api/generated/공통/공통";
 import BrandColorProvider from "./components/brand-color-provider/BrandColorProvider";

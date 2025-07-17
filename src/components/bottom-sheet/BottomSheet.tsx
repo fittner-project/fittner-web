@@ -1,5 +1,5 @@
 import { Sheet } from "react-modal-sheet";
-import { useBottomSheetStore } from "@/store/bottomSheet";
+import { useBottomSheetStore } from "@/stores/bottomSheet";
 import styles from "./BottomSheet.module.scss";
 import { closeBottomSheet } from "@/utils/bottomSheet";
 import { useLocation } from "react-router-dom";
