@@ -6,16 +6,16 @@ import Image from "@/components/image/Image";
 import {
   alaram,
   chevronRightGrey,
-  clock,
   tag,
   user,
   memo,
   plus,
 } from "@/assets/assets";
-import classNames from "classnames";
-import Column from "@/components/flex/Column";
+
 import dayjs from "dayjs";
 import PATH from "@/router/path";
+import { createDatePickerDates } from "@/utils/datePicker";
+import RegisterLessonDateTimePicker from "./components/register-lesson-date-time-picker/RegisterLessonDateTimePicker";
 
 export type RegisterLessonForm = {
   //   memberName: string;
@@ -26,19 +26,46 @@ export type RegisterLessonForm = {
 };
 
 export default function RegisterLesson() {
-  const today = dayjs();
-  const [showStartPicker, setShowStartPicker] = useState(false);
-  const [showEndPicker, setShowEndPicker] = useState(false);
-  const [startPickerValue, setStartPickerValue] = useState({
-    year: today.format("YYYY"),
-    month: today.format("MM"),
-    day: today.format("DD"),
+  const now = dayjs();
+  const getPeriod = (hour: number) => (hour < 12 ? "오전" : "오후");
+  const get12Hour = (hour: number) => {
+    const h = hour % 12;
+    return h === 0 ? "12" : h.toString().padStart(2, "0");
+  };
+  const nowHour = now.hour();
+  const nowMinute = now.minute();
+  const nowPeriod = getPeriod(nowHour);
+  const nowHour12 = get12Hour(nowHour);
+  const nowMinuteStr = nowMinute.toString().padStart(2, "0");
+
+  const [start, setStart] = useState({
+    date: {
+      year: now.format("YYYY"),
+      month: now.format("MM"),
+      day: now.format("DD"),
+    },
+    time: {
+      period: nowPeriod,
+      hour: nowHour12,
+      minute: nowMinuteStr,
+    },
+    showDatePicker: false,
+    showTimePicker: false,
   });
 
-  const [endPickerValue, setEndPickerValue] = useState({
-    year: today.format("YYYY"),
-    month: today.format("MM"),
-    day: today.format("DD"),
+  const [end, setEnd] = useState({
+    date: {
+      year: now.format("YYYY"),
+      month: now.format("MM"),
+      day: now.format("DD"),
+    },
+    time: {
+      period: nowPeriod,
+      hour: nowHour12,
+      minute: nowMinuteStr,
+    },
+    showDatePicker: false,
+    showTimePicker: false,
   });
 
   const navigate = useNavigate();
@@ -67,78 +94,12 @@ export default function RegisterLesson() {
             <Image src={chevronRightGrey} width={2.8} height={2.8} />
           </Row>
 
-          <Column
-            className={classNames(styles.category, styles.time)}
-            justifyContent="space-between"
-          >
-            <Row
-              gap={"1.3rem"}
-              justifyContent="space-between"
-              className={styles.time_row}
-            >
-              <Row gap={"1.3rem"}>
-                <Image src={clock} width={2.3} height={2.3} />
-                <p>시작</p>
-              </Row>
-              <Row className={styles.period} gap={"0.8rem"}>
-                <div
-                  className={classNames(styles.date_selector, {
-                    [styles.active]: showStartPicker,
-                  })}
-                  onClick={() => {
-                    setShowStartPicker(true);
-                    setShowEndPicker(false);
-                  }}
-                >
-                  {`${startPickerValue.year}.${startPickerValue.month}.${startPickerValue.day}`}
-                </div>
-                <div
-                  className={classNames(styles.date_selector, {
-                    [styles.active]: showEndPicker,
-                  })}
-                  onClick={() => {
-                    setShowStartPicker(false);
-                    setShowEndPicker(true);
-                  }}
-                >
-                  {`${endPickerValue.year}.${endPickerValue.month}.${endPickerValue.day}`}
-                </div>
-              </Row>
-            </Row>
-            <Row
-              gap={"1.3rem"}
-              className={styles.time_row}
-              justifyContent="space-between"
-            >
-              <Row gap={"1.3rem"}>
-                <p>종료</p>
-              </Row>
-              <Row className={styles.period} gap={"0.8rem"}>
-                <div
-                  className={classNames(styles.date_selector, {
-                    [styles.active]: showStartPicker,
-                  })}
-                  onClick={() => {
-                    setShowStartPicker(true);
-                    setShowEndPicker(false);
-                  }}
-                >
-                  {`${startPickerValue.year}.${startPickerValue.month}.${startPickerValue.day}`}
-                </div>
-                <div
-                  className={classNames(styles.date_selector, {
-                    [styles.active]: showEndPicker,
-                  })}
-                  onClick={() => {
-                    setShowStartPicker(false);
-                    setShowEndPicker(true);
-                  }}
-                >
-                  {`${endPickerValue.year}.${endPickerValue.month}.${endPickerValue.day}`}
-                </div>
-              </Row>
-            </Row>
-          </Column>
+          <RegisterLessonDateTimePicker
+            start={start}
+            setStart={setStart}
+            end={end}
+            setEnd={setEnd}
+          />
 
           <Row className={styles.category} justifyContent="space-between">
             <Row gap={"1.3rem"}>

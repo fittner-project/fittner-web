@@ -5,37 +5,4 @@
     @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
     border-bottom: 2px solid $grey_1;
   }
-
-  .time {
-    height: 11.6rem;
-
-    .time_row {
-      width: 100%;
-      height: 100%;
-    }
-
-    .time_row:last-child {
-      padding-left: 3.6rem;
-    }
-
-    .period {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .date_selector {
-        @include fm-ar(1.7rem, $text_1, 2.2rem, 500);
-        width: 11.3rem;
-        height: 3.6rem;
-        background: $grey_1;
-        border-radius: 1rem;
-        @include flex-row;
-
-        &.active {
-          background: $primary_1;
-          color: $text_2;
-        }
-      }
-    }
-  }
 }
