@@ -109,13 +109,6 @@ export const Routes: Routes = {
     fallback: "none",
     headerType: "sub",
     navType: "none",
-    subHeaderConfig: {
-      rightSection: {
-        type: "text",
-        textContent: "주별일정",
-        actionType: "my-lesson",
-      },
-    },
   },
 
   "sign-in": {
