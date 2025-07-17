@@ -1,0 +1,28 @@
+.container {
+  .title {
+    @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
+  }
+
+  .color_tag_container {
+    margin-top: 1rem;
+
+    .color_tag {
+      @include flex_row(flex-start, center);
+      @include flex_row_gap(1.4rem);
+      height: 4.6rem;
+      margin: 0 -1rem;
+      padding: 0 1rem;
+      border-radius: 1.2rem;
+
+      &.selected {
+        background-color: $grey_1;
+      }
+
+      .color_tag_color {
+        width: 1rem;
+        height: 2.2rem;
+        border-radius: 100rem;
+      }
+    }
+  }
+}

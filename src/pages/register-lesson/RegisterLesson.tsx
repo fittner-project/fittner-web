@@ -16,6 +16,8 @@ import dayjs from "dayjs";
 import PATH from "@/router/path";
 import { createDatePickerDates } from "@/utils/datePicker";
 import RegisterLessonDateTimePicker from "./components/register-lesson-date-time-picker/RegisterLessonDateTimePicker";
+import { openBottomSheet } from "@/utils/bottomSheet";
+import ColorTagBottomSheet from "./components/color-tag-bottom-sheet/ColorTagBottomSheet";
 
 export type RegisterLessonForm = {
   //   memberName: string;
@@ -101,7 +103,15 @@ export default function RegisterLesson() {
             setEnd={setEnd}
           />
 
-          <Row className={styles.category} justifyContent="space-between">
+          <Row
+            onClick={() => {
+              openBottomSheet({
+                component: ColorTagBottomSheet,
+              });
+            }}
+            className={styles.category}
+            justifyContent="space-between"
+          >
             <Row gap={"1.3rem"}>
               <Image src={tag} width={2.3} height={2.3} />
               <p>색상 태그</p>
