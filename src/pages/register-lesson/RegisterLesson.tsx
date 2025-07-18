@@ -84,7 +84,7 @@ export default function RegisterLesson() {
             onClick={() => {
               navigate({
                 pathname: PATH.MY.TRAINEE_OR_TRAINER,
-                search: `?select=trainee&select-type=register-lesson`,
+                search: `?type=trainee&select-type=register-lesson`,
               });
             }}
             className={styles.category}
