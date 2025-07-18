@@ -17,16 +17,16 @@ function ColorTagBottomSheet() {
           {reservationColors.colors?.map((color) => (
             <div
               key={uniqueId()}
-              onClick={() => setSelectedColor(color)}
+              onClick={() => setSelectedColor(color.colorHex ?? "")}
               className={classNames(styles.color_tag, {
-                [styles.selected]: selectedColor === color,
+                [styles.selected]: selectedColor === color.colorHex,
               })}
             >
               <div
                 className={styles.color_tag_color}
-                style={{ backgroundColor: `#${color}` }}
+                style={{ backgroundColor: `#${color.colorHex}` }}
               />
-              <p className={styles.color_tag_text}>{color}</p>
+              <p className={styles.color_tag_text}>{color.colorName}</p>
             </div>
           ))}
         </div>

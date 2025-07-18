@@ -23,6 +23,10 @@
         height: 2.2rem;
         border-radius: 100rem;
       }
+
+      .color_tag_text {
+        @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+      }
     }
   }
 }
