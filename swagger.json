@@ -3194,10 +3194,20 @@
           }
         }
       },
+      "Color": {
+        "type": "object",
+        "properties": {
+          "colorHex": { "type": "string" },
+          "colorName": { "type": "string" }
+        }
+      },
       "ReservationColorResDto": {
         "type": "object",
         "properties": {
-          "colors": { "type": "array", "items": { "type": "string" } }
+          "colors": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Color" }
+          }
         },
         "description": "응답 데이터"
       },
@@ -4488,9 +4498,19 @@
             "description": "브랜드컬러",
             "example": "헥사값"
           },
+          "primaryTypeB": {
+            "type": "string",
+            "description": "브랜드컬러2",
+            "example": "헥사값"
+          },
           "sub": {
             "type": "string",
             "description": "브랜드 서브컬러",
+            "example": "헥사값"
+          },
+          "subTypeB": {
+            "type": "string",
+            "description": "브랜드 서브컬러2",
             "example": "헥사값"
           },
           "textTypeA": {

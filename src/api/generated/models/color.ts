@@ -5,11 +5,8 @@
  * Fittner API with Spring Boot
  * OpenAPI spec version: 1.0.0
  */
-import type { Color } from './color';
 
-/**
- * 응답 데이터
- */
-export interface ReservationColorResDto {
-  colors?: Color[];
+export interface Color {
+  colorHex?: string;
+  colorName?: string;
 }

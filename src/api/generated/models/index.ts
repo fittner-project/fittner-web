@@ -107,6 +107,7 @@ export * from './centerList1Params';
 export * from './centerListParams';
 export * from './centerListResDto';
 export * from './centerRegisterReqDto';
+export * from './color';
 export * from './defaultInfo';
 export * from './fileReqDto';
 export * from './fileResDto';

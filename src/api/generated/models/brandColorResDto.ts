@@ -20,8 +20,12 @@ export interface BrandColorResDto {
   greyTypeD?: string;
   /** 브랜드컬러 */
   primary?: string;
+  /** 브랜드컬러2 */
+  primaryTypeB?: string;
   /** 브랜드 서브컬러 */
   sub?: string;
+  /** 브랜드 서브컬러2 */
+  subTypeB?: string;
   /** 텍스트컬러1 */
   textTypeA?: string;
   /** 텍스트컬러2 */
