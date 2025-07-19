@@ -3,7 +3,7 @@ import { storageKeys } from "@/constants/storageKeys";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-interface RegisterLessonValues {
+export interface RegisterLessonValues {
   memberInfo: MemberListResDto | null;
   ticketId: string;
   reservationStartDate: string;
@@ -18,6 +18,7 @@ interface RegisterLessonValues {
 interface RegisterLessonValuesStore {
   registerLessonValues: RegisterLessonValues;
   setRegisterLessonValues: (values: Partial<RegisterLessonValues>) => void;
+  reset: () => void;
 }
 
 const useRegisterLessonValuesStore = create(
@@ -39,6 +40,20 @@ const useRegisterLessonValuesStore = create(
           registerLessonValues: {
             ...state.registerLessonValues,
             ...values,
+          },
+        })),
+      reset: () =>
+        set(() => ({
+          registerLessonValues: {
+            memberInfo: null,
+            ticketId: "",
+            reservationStartDate: "",
+            reservationEndDate: "",
+            reservationStartTime: "",
+            reservationEndTime: "",
+            reservationColor: null,
+            reservationPush: "",
+            reservationMemo: "",
           },
         })),
     }),

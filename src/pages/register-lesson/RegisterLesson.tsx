@@ -46,44 +46,46 @@ export default function RegisterLesson() {
   const nowPeriod = getPeriod(nowHour);
   const nowHour12 = get12Hour(nowHour);
   const nowMinuteStr = nowMinute.toString().padStart(2, "0");
+
   const registerLessonValues = useRegisterLessonValuesStore(
     (state) => state.registerLessonValues
   );
+  const setRegisterLessonValues = useRegisterLessonValuesStore(
+    (state) => state.setRegisterLessonValues
+  );
+  const reset = useRegisterLessonValuesStore((state) => state.reset);
 
-  const [start, setStart] = useState({
-    date: {
-      year: now.format("YYYY"),
-      month: now.format("MM"),
-      day: now.format("DD"),
-    },
-    time: {
-      period: nowPeriod,
-      hour: nowHour12,
-      minute: nowMinuteStr,
-    },
-    showDatePicker: false,
-    showTimePicker: false,
-  });
+  useEffect(() => {
+    if (
+      !registerLessonValues.reservationStartDate ||
+      !registerLessonValues.reservationEndDate
+    ) {
+      const currentDate = now.format("YYYY-MM-DD");
+      const currentTime = `${nowPeriod} ${nowHour12}:${nowMinuteStr}`;
 
-  const [end, setEnd] = useState({
-    date: {
-      year: now.format("YYYY"),
-      month: now.format("MM"),
-      day: now.format("DD"),
-    },
-    time: {
-      period: nowPeriod,
-      hour: nowHour12,
-      minute: nowMinuteStr,
-    },
-    showDatePicker: false,
-    showTimePicker: false,
-  });
+      setRegisterLessonValues({
+        reservationStartDate: currentDate,
+        reservationEndDate: currentDate,
+        reservationStartTime: currentTime,
+        reservationEndTime: currentTime,
+      });
+    }
+  }, []);
 
   const navigate = useNavigate();
   const form = useForm<RegisterLessonForm>({
     mode: "onChange",
   });
+
+  useEffect(() => {
+    const handlePopState = () => {
+      reset();
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   return (
     <PaddingContainer>
@@ -111,10 +113,8 @@ export default function RegisterLesson() {
           </Row>
 
           <RegisterLessonDateTimePicker
-            start={start}
-            setStart={setStart}
-            end={end}
-            setEnd={setEnd}
+            registerLessonValues={registerLessonValues}
+            setRegisterLessonValues={setRegisterLessonValues}
           />
 
           <Row
