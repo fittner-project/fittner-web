@@ -19,6 +19,7 @@ import { openBottomSheet } from "@/utils/bottomSheet";
 import ColorTagBottomSheet from "./components/color-tag-bottom-sheet/ColorTagBottomSheet";
 import AlarmBottomSheet from "./components/alarm-bottom-sheet/AlarmBottomSheet";
 import MemoBottomSheet from "./components/memo-bottom-sheet/MemoBottomSheet";
+import Button from "@/components/button/Button";
 
 export type RegisterLessonForm = {
   //   memberName: string;
@@ -152,6 +153,9 @@ export default function RegisterLesson() {
             <Image src={plus} width={2.8} height={2.8} />
           </Row>
         </div>
+        <Button fullWidth backgroundColor={"primary_1"}>
+          등록
+        </Button>
       </form>
     </PaddingContainer>
   );

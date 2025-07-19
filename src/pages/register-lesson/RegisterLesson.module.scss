@@ -1,8 +1,19 @@
 .container {
-  .category {
-    height: 6.6rem;
+  min-height: calc(100dvh - $sub_header_height);
+  @include flex_col(flex-start, flex-start);
+
+  .menu_container {
     width: 100%;
-    @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
-    border-bottom: 2px solid $grey_1;
+    flex: 1;
+    .category {
+      height: 6.6rem;
+      width: 100%;
+      @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+      border-bottom: 2px solid $grey_1;
+    }
+  }
+
+  button {
+    margin-bottom: 1.8rem;
   }
 }
