@@ -2,12 +2,17 @@ import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import styles from "./ColorTagBottomSheet.module.scss";
 import { useUserStore } from "@/stores/user";
 import { uniqueId } from "lodash";
-import { useState } from "react";
 import classNames from "classnames";
+import useRegisterLessonValuesStore from "../../stores/registerLessonValues";
 
 function ColorTagBottomSheet() {
   const reservationColors = useUserStore((state) => state.reservationColors);
-  const [selectedColor, setSelectedColor] = useState("");
+  const setRegisterLessonValues = useRegisterLessonValuesStore(
+    (state) => state.setRegisterLessonValues
+  );
+  const registerLessonValues = useRegisterLessonValuesStore(
+    (state) => state.registerLessonValues
+  );
 
   return (
     <BottomSheet>
@@ -17,9 +22,15 @@ function ColorTagBottomSheet() {
           {reservationColors.colors?.map((color) => (
             <div
               key={uniqueId()}
-              onClick={() => setSelectedColor(color.colorHex ?? "")}
+              onClick={() => {
+                setRegisterLessonValues({
+                  reservationColor: color,
+                });
+              }}
               className={classNames(styles.color_tag, {
-                [styles.selected]: selectedColor === color.colorHex,
+                [styles.selected]:
+                  registerLessonValues.reservationColor?.colorHex ===
+                  color.colorHex,
               })}
             >
               <div

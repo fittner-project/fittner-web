@@ -1,4 +1,4 @@
-import { MemberListResDto } from "@/api/generated/models";
+import { Color, MemberListResDto } from "@/api/generated/models";
 import { storageKeys } from "@/constants/storageKeys";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
@@ -10,7 +10,7 @@ interface RegisterLessonValues {
   reservationEndDate: string;
   reservationStartTime: string;
   reservationEndTime: string;
-  reservationColor: string;
+  reservationColor: Color | null;
   reservationPush: string;
   reservationMemo: string;
 }
@@ -30,7 +30,7 @@ const useRegisterLessonValuesStore = create(
         reservationEndDate: "",
         reservationStartTime: "",
         reservationEndTime: "",
-        reservationColor: "",
+        reservationColor: null,
         reservationPush: "",
         reservationMemo: "",
       },

@@ -128,7 +128,11 @@ export default function RegisterLesson() {
           >
             <Row gap={"1.3rem"}>
               <Image src={tag} width={2.3} height={2.3} />
-              <p>색상 태그</p>
+              <p>
+                {registerLessonValues.reservationColor?.colorName
+                  ? registerLessonValues.reservationColor?.colorName
+                  : "색상 태그"}
+              </p>
             </Row>
             <Image src={chevronRightGrey} width={2.8} height={2.8} />
           </Row>
