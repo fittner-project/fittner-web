@@ -19,11 +19,15 @@ import PATH from "@/router/path";
 
 import TrainerItem from "./components/trainer-item/TrainerItem";
 import { uniqueId } from "lodash";
+import useRegisterLessonValuesStore from "@/pages/register-lesson/stores/registerLessonValues";
 
 export default function Trainee() {
   const [searchParams] = useSearchParams();
   const type = searchParams.get("type");
   const selectType = searchParams.get("select-type");
+  const setRegisterLessonValues = useRegisterLessonValuesStore(
+    (state) => state.setRegisterLessonValues
+  );
 
   const { data: traineeData, isLoading } = useGetUserMembers({
     query: { enabled: type === "trainee" },
@@ -99,6 +103,18 @@ export default function Trainee() {
     }
 
     if (selectType === "select-member-assign-new") {
+      navigate(-1);
+    }
+
+    if (selectType === "select-member-register-lesson") {
+      const memberInfo = trainees?.find(
+        (trainee) => trainee.memberId === selectedTraineeId
+      );
+      if (memberInfo) {
+        setRegisterLessonValues({
+          memberInfo: memberInfo,
+        });
+      }
       navigate(-1);
     }
   };

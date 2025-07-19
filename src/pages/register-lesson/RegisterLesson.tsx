@@ -20,13 +20,18 @@ import ColorTagBottomSheet from "./components/color-tag-bottom-sheet/ColorTagBot
 import AlarmBottomSheet from "./components/alarm-bottom-sheet/AlarmBottomSheet";
 import MemoBottomSheet from "./components/memo-bottom-sheet/MemoBottomSheet";
 import Button from "@/components/button/Button";
+import useRegisterLessonValuesStore from "./stores/registerLessonValues";
 
 export type RegisterLessonForm = {
-  //   memberName: string;
-  //   memberPhone: string;
-  //   memberGender: "M" | "F";
-  //   memberBirth: string;
-  //   memberAddress: string;
+  // memberId: "1";
+  // ticketId: "1";
+  // reservationStartDate: "20250105";
+  // reservationEndDate: "20250106";
+  // reservationStartTime: "2030";
+  // reservationEndTime: "2130";
+  // reservationColor: "007AFF";
+  // reservationPush: "before_5m";
+  // reservationMemo: "예약 메모입니다.";
 };
 
 export default function RegisterLesson() {
@@ -41,6 +46,9 @@ export default function RegisterLesson() {
   const nowPeriod = getPeriod(nowHour);
   const nowHour12 = get12Hour(nowHour);
   const nowMinuteStr = nowMinute.toString().padStart(2, "0");
+  const registerLessonValues = useRegisterLessonValuesStore(
+    (state) => state.registerLessonValues
+  );
 
   const [start, setStart] = useState({
     date: {
@@ -85,7 +93,7 @@ export default function RegisterLesson() {
             onClick={() => {
               navigate({
                 pathname: PATH.MY.TRAINEE_OR_TRAINER,
-                search: `?type=trainee&select-type=register-lesson`,
+                search: `?type=trainee&select-type=select-member-register-lesson`,
               });
             }}
             className={styles.category}
@@ -93,7 +101,11 @@ export default function RegisterLesson() {
           >
             <Row gap={"1.3rem"}>
               <Image src={user} width={2.3} height={2.3} />
-              <p>회원 선택</p>
+              <p>
+                {registerLessonValues.memberInfo?.memberName
+                  ? registerLessonValues.memberInfo?.memberName
+                  : "회원 선택"}
+              </p>
             </Row>
             <Image src={chevronRightGrey} width={2.8} height={2.8} />
           </Row>
