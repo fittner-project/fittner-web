@@ -1928,11 +1928,6 @@
             "description": "회원 키값",
             "example": "1"
           },
-          "ticketId": {
-            "type": "string",
-            "description": "티켓 키값",
-            "example": "1"
-          },
           "reservationStartDate": {
             "type": "string",
             "description": "예약 시작일자",
