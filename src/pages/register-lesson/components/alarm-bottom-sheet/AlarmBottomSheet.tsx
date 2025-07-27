@@ -8,7 +8,7 @@ function AlarmBottomSheet() {
   const [selectedAlarm, setSelectedAlarm] = useState<string>("");
   const alarmList = [
     {
-      text: "시작",
+      text: "시작 전",
     },
     {
       text: "5분 전",
@@ -17,7 +17,7 @@ function AlarmBottomSheet() {
       text: "10분 전",
     },
     {
-      text: "1시간 전",
+      text: "15분 전",
     },
   ];
 

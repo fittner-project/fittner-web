@@ -13,6 +13,12 @@ export interface RegisterLessonValues {
   reservationColor: Color | null;
   reservationPush: string;
   reservationMemo: string;
+  reservationPushTime:
+    | string
+    | "before_reservation"
+    | "before_5m"
+    | "before_10m"
+    | "before_15m";
 }
 
 interface RegisterLessonValuesStore {
@@ -34,6 +40,7 @@ const useRegisterLessonValuesStore = create(
         reservationColor: null,
         reservationPush: "",
         reservationMemo: "",
+        reservationPushTime: "",
       },
       setRegisterLessonValues: (values: Partial<RegisterLessonValues>) =>
         set((state) => ({
@@ -54,6 +61,7 @@ const useRegisterLessonValuesStore = create(
             reservationColor: null,
             reservationPush: "",
             reservationMemo: "",
+            reservationPushTime: "",
           },
         })),
     }),
