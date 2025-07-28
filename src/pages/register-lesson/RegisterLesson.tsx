@@ -87,6 +87,13 @@ export default function RegisterLesson() {
     };
   }, []);
 
+  const pushTimeMap = {
+    before_reservation: "시작 전",
+    before_5m: "5분 전",
+    before_10m: "10분 전",
+    before_15m: "15분 전",
+  };
+
   return (
     <PaddingContainer>
       <form className={styles.container}>
@@ -148,7 +155,11 @@ export default function RegisterLesson() {
           >
             <Row gap={"1.3rem"}>
               <Image src={alaram} width={2.3} height={2.3} />
-              <p>일정 알림</p>
+              <p>
+                {pushTimeMap[
+                  registerLessonValues.reservationPushTime as keyof typeof pushTimeMap
+                ] || "일정 알림"}
+              </p>
             </Row>
             <Image src={chevronRightGrey} width={2.8} height={2.8} />
           </Row>
