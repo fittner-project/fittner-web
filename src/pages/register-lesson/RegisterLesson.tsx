@@ -10,6 +10,7 @@ import {
   user,
   memo,
   plus,
+  imageClose,
 } from "@/assets/assets";
 
 import dayjs from "dayjs";
@@ -23,15 +24,14 @@ import Button from "@/components/button/Button";
 import useRegisterLessonValuesStore from "./stores/registerLessonValues";
 
 export type RegisterLessonForm = {
-  // memberId: "1";
-  // ticketId: "1";
-  // reservationStartDate: "20250105";
-  // reservationEndDate: "20250106";
-  // reservationStartTime: "2030";
-  // reservationEndTime: "2130";
-  // reservationColor: "007AFF";
-  // reservationPush: "before_5m";
-  // reservationMemo: "예약 메모입니다.";
+  // "memberId": "1",
+  // "reservationStartDate": "20250105",
+  // "reservationEndDate": "20250106",
+  // "reservationStartTime": "2030",
+  // "reservationEndTime": "2130",
+  // "reservationColor": "007AFF",
+  // "reservationPush": "before_5m",
+  // "reservationMemo": "예약 메모입니다."
 };
 
 export default function RegisterLesson() {
@@ -177,8 +177,26 @@ export default function RegisterLesson() {
               <Image src={memo} width={2.3} height={2.3} />
               <p>메모</p>
             </Row>
-            <Image src={plus} width={2.8} height={2.8} />
+            {registerLessonValues.reservationMemo ? (
+              <Image
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setRegisterLessonValues({ reservationMemo: "" });
+                }}
+                src={imageClose}
+                width={2}
+                height={2}
+              />
+            ) : (
+              <Image src={plus} width={2.8} height={2.8} />
+            )}
           </Row>
+
+          {registerLessonValues.reservationMemo && (
+            <p className={styles.memo}>
+              {registerLessonValues.reservationMemo}
+            </p>
+          )}
         </div>
         <Button fullWidth backgroundColor={"primary_1"}>
           등록

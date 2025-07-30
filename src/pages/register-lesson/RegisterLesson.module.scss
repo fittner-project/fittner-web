@@ -5,11 +5,24 @@
   .menu_container {
     width: 100%;
     flex: 1;
+
     .category {
       height: 6.6rem;
       width: 100%;
       @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
       border-bottom: 2px solid $grey_1;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+
+    .memo {
+      @include fm-ar(1.6rem, $text_1, 2.2rem, 400);
+      padding: 1.6rem;
+      height: 8rem;
+      border: 0.1rem solid $grey_1;
+      border-radius: 1rem;
     }
   }
 
