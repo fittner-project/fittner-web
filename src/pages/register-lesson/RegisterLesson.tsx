@@ -22,17 +22,9 @@ import AlarmBottomSheet from "./components/alarm-bottom-sheet/AlarmBottomSheet";
 import MemoBottomSheet from "./components/memo-bottom-sheet/MemoBottomSheet";
 import Button from "@/components/button/Button";
 import useRegisterLessonValuesStore from "./stores/registerLessonValues";
-
-export type RegisterLessonForm = {
-  // "memberId": "1",
-  // "reservationStartDate": "20250105",
-  // "reservationEndDate": "20250106",
-  // "reservationStartTime": "2030",
-  // "reservationEndTime": "2130",
-  // "reservationColor": "007AFF",
-  // "reservationPush": "before_5m",
-  // "reservationMemo": "예약 메모입니다."
-};
+import { usePostUserReservation } from "@/api/generated/수업/수업";
+import { openModal } from "@/utils/modal";
+import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
 
 export default function RegisterLesson() {
   const now = dayjs();
@@ -46,6 +38,21 @@ export default function RegisterLesson() {
   const nowPeriod = getPeriod(nowHour);
   const nowHour12 = get12Hour(nowHour);
   const nowMinuteStr = nowMinute.toString().padStart(2, "0");
+  const { mutate: registerLesson } = usePostUserReservation({
+    mutation: {
+      onSuccess: () => {
+        openModal({
+          component: SuccessModal,
+          props: {
+            successMessage: "수업등록이 \n 완료 되었습니다",
+            onCloseComplete: () => {
+              navigate(-1);
+            },
+          },
+        });
+      },
+    },
+  });
 
   const registerLessonValues = useRegisterLessonValuesStore(
     (state) => state.registerLessonValues
@@ -73,9 +80,6 @@ export default function RegisterLesson() {
   }, []);
 
   const navigate = useNavigate();
-  const form = useForm<RegisterLessonForm>({
-    mode: "onChange",
-  });
 
   useEffect(() => {
     const handlePopState = () => {
@@ -96,7 +100,7 @@ export default function RegisterLesson() {
 
   return (
     <PaddingContainer>
-      <form className={styles.container}>
+      <div className={styles.container}>
         <div className={styles.menu_container}>
           <Row
             onClick={() => {
@@ -198,10 +202,59 @@ export default function RegisterLesson() {
             </p>
           )}
         </div>
-        <Button fullWidth backgroundColor={"primary_1"}>
+        <Button
+          onClick={() => {
+            const formatDate = (dateStr: string) => {
+              return dayjs(dateStr).format("YYYYMMDD");
+            };
+
+            const formatTime = (timeStr: string) => {
+              const [period, time] = timeStr.split(" ");
+              const [hour, minute] = time.split(":");
+
+              let hour24 = parseInt(hour);
+              if (period === "오후" && hour24 !== 12) {
+                hour24 += 12;
+              } else if (period === "오전" && hour24 === 12) {
+                hour24 = 0;
+              }
+
+              return `${hour24.toString().padStart(2, "0")}${minute}`;
+            };
+
+            registerLesson({
+              data: {
+                memberId: registerLessonValues.memberInfo?.memberId,
+                reservationStartDate: formatDate(
+                  registerLessonValues.reservationStartDate
+                ),
+                reservationEndDate: formatDate(
+                  registerLessonValues.reservationEndDate
+                ),
+                reservationStartTime: formatTime(
+                  registerLessonValues.reservationStartTime
+                ),
+                reservationEndTime: formatTime(
+                  registerLessonValues.reservationEndTime
+                ),
+                reservationColor:
+                  registerLessonValues.reservationColor?.colorHex,
+                reservationPush: registerLessonValues.reservationPushTime,
+                reservationMemo: registerLessonValues.reservationMemo,
+              },
+            });
+          }}
+          disabled={
+            !registerLessonValues.memberInfo ||
+            !registerLessonValues.reservationColor ||
+            !registerLessonValues.reservationPushTime
+          }
+          fullWidth
+          backgroundColor={"primary_1"}
+        >
           등록
         </Button>
-      </form>
+      </div>
     </PaddingContainer>
   );
 }
