@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Image from "@/components/image/Image";
 import dayjs from "dayjs";
 import "dayjs/locale/ko"; // 한국어 로케일 추가
-import useCalendarStore from "@/stores/calendar";
+import useCalendarStore from "@/stores/lessons";
 
 import styles from "./Home.module.scss";
 import BackgroundContainer from "@/layout/containers/background-container/BackgroundContainer";

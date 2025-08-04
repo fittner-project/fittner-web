@@ -4,6 +4,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import styles from "./MyLessons.module.scss";
 import MyLessonsFilter from "./components/my-lessons-filter/MyLessonsFilter";
 import useMyLessonsActiveFilterStore from "./stores/my-lessons-active-filter";
+import DailyLessons from "./components/daily-lessons/DailyLessons";
 
 const events = [
   {
@@ -34,9 +35,7 @@ export default function MyLessons() {
           activeFilter={activeFilter}
           setActiveFilter={setActiveFilter}
         />
-        {/* {activeFilter === "today" && (
-          
-        )} */}
+        {activeFilter === "today" && <DailyLessons />}
         {activeFilter === "weekly" && (
           <FullCalendar
             plugins={[timeGridPlugin]}

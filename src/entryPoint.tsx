@@ -11,10 +11,11 @@ import {
   useGetUserReservationColors,
   useGetUserReservations,
 } from "./api/generated/수업/수업";
-import useCalendarStore from "./stores/calendar";
+
 import LoadingIndicator from "./components/loading-indicator/LoadingIndicator";
 import { useGetUserCommonBrandColor } from "./api/generated/공통/공통";
 import BrandColorProvider from "./components/brand-color-provider/BrandColorProvider";
+import useLessonStore from "./stores/lessons";
 
 interface IProps {
   children: ReactNode;
@@ -54,11 +55,9 @@ const EntryPoint: FC<IProps> = ({ children }) => {
 export default EntryPoint;
 
 const Authorized = ({ children }: IProps) => {
-  const currentMonthStart = dayjs().startOf("month").format("YYYYMMDD");
-  const currentMonthEnd = dayjs().endOf("month").format("YYYYMMDD");
   const currentWeekStart = dayjs().startOf("week").format("YYYYMMDD");
   const currentWeekEnd = dayjs().endOf("week").format("YYYYMMDD");
-
+  const currentDay = dayjs().format("YYYYMMDD");
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const setUserInfo = useUserStore((state) => state.setUserInfo);
   const selectedCenter = useUserStore((state) => state.selectedCenter);
@@ -66,15 +65,15 @@ const Authorized = ({ children }: IProps) => {
   const setReservationColors = useUserStore(
     (state) => state.setReservationColors
   );
-  const setLessons = useCalendarStore((state) => state.setLessons);
-  const setWeeklyLessons = useCalendarStore((state) => state.setWeeklyLessons);
+  const setDailyLessons = useLessonStore((state) => state.setDailyLessons);
+  const setWeeklyLessons = useLessonStore((state) => state.setWeeklyLessons);
   const setBrandColors = useUserStore((state) => state.setBrandColors);
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
-  const { data: reservations } = useGetUserReservations(
+  const { data: dailyLessons } = useGetUserReservations(
     {
       //@ts-ignore
-      reservationStartDate: currentMonthStart,
-      reservationEndDate: currentMonthEnd,
+      reservationStartDate: currentDay,
+      reservationEndDate: currentDay,
     },
     {
       query: {
@@ -126,10 +125,10 @@ const Authorized = ({ children }: IProps) => {
   }, [reservationColors]);
 
   useEffect(() => {
-    if (reservations) {
-      setLessons(reservations.result || []);
+    if (dailyLessons) {
+      setDailyLessons(dailyLessons.result || []);
     }
-  }, [reservations]);
+  }, [dailyLessons]);
 
   useEffect(() => {
     if (weeklyReservations) {

@@ -7,7 +7,7 @@ import weekOfYear from "dayjs/plugin/weekOfYear";
 import weekday from "dayjs/plugin/weekday";
 import classNames from "classnames";
 import PATH from "@/router/path";
-import useCalendarStore from "@/stores/calendar";
+import useCalendarStore from "@/stores/lessons";
 
 dayjs.extend(weekOfYear);
 dayjs.extend(weekday);

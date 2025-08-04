@@ -1,0 +1,6 @@
+.container {
+  .empty {
+    @include fixed_center();
+    @include fm-ar(1.6rem, $grey_2, 2.2rem, 500);
+  }
+}
