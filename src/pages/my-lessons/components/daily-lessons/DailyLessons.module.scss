@@ -1,4 +1,72 @@
 .container {
+  .daily_lessons_container {
+    margin-top: 2.2rem;
+    max-height: calc(100dvh - $sub_header_height - 5.2rem - 2.2rem);
+    overflow-y: auto;
+
+    .lesson {
+      @include flex_row(flex-start, flex-start);
+      @include flex_row_gap(2.2rem);
+      width: 100%;
+      margin-bottom: 0.9rem;
+
+      .time {
+        @include fm-ar(1.8rem, $text_1, 2rem, 400);
+        margin-bottom: auto;
+      }
+
+      .lesson_card {
+        @include flex_row(space-between, center);
+        @include flex_row_gap(0.9rem);
+        width: 100%;
+        padding: 1rem;
+        border-radius: 1rem;
+
+        .lesson_left_section {
+          width: 100%;
+          @include flex_row(flex-start, stretch);
+          @include flex_row_gap(0.9rem);
+
+          .lesson_info {
+            width: 100%;
+
+            .lesson_detail_section {
+              @include flex_row(space-between, center);
+              @include flex_row_gap(0.9rem);
+
+              .lesson_top_section {
+                @include flex_row(flex-start, center);
+                @include flex_row_gap(0.9rem);
+
+                .member_name {
+                  @include fm-ar(1.8rem, $text_1, 2.2rem, 500);
+
+                  span {
+                    font-weight: 700;
+                  }
+                }
+              }
+            }
+
+            .lesson_time {
+              @include fm-ar(1.6rem, $grey_4, 2.2rem, 500);
+              margin-top: 0.4rem;
+            }
+
+            .lesson_memo {
+              margin-top: 0.4rem;
+              padding-top: 0.7rem;
+              @include fm-ar(1.4rem, $grey_4, 2.2rem, 500);
+              border-top: 0.1rem solid $grey_2;
+              white-space: pre-line;
+              word-break: break-all;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .empty {
     @include fixed_center();
     @include fm-ar(1.6rem, $grey_2, 2.2rem, 500);

@@ -93,7 +93,7 @@ const Authorized = ({ children }: IProps) => {
       gcTime: 1000 * 60 * 60 * 24 * 7, // 7일 동안 캐시 유지
     },
   });
-  const { data: weeklyReservations } = useGetUserReservations(
+  const { data: weeklyLessons } = useGetUserReservations(
     {
       //@ts-ignore
       reservationStartDate: currentWeekStart,
@@ -131,10 +131,10 @@ const Authorized = ({ children }: IProps) => {
   }, [dailyLessons]);
 
   useEffect(() => {
-    if (weeklyReservations) {
-      setWeeklyLessons(weeklyReservations.result || []);
+    if (weeklyLessons) {
+      setWeeklyLessons(weeklyLessons.result || []);
     }
-  }, [weeklyReservations]);
+  }, [weeklyLessons]);
 
   useEffect(() => {
     if (brandColors) {

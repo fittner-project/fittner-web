@@ -5,6 +5,7 @@ import styles from "./MyLessons.module.scss";
 import MyLessonsFilter from "./components/my-lessons-filter/MyLessonsFilter";
 import useMyLessonsActiveFilterStore from "./stores/my-lessons-active-filter";
 import DailyLessons from "./components/daily-lessons/DailyLessons";
+import useLessonStore from "@/stores/lessons";
 
 const events = [
   {
@@ -26,6 +27,8 @@ export default function MyLessons() {
   const setActiveFilter = useMyLessonsActiveFilterStore(
     (state) => state.setActiveFilter
   );
+  const dailyLessons = useLessonStore((state) => state.dailyLessons);
+  const weeklyLessons = useLessonStore((state) => state.weeklyLessons);
 
   return (
     <PaddingContainer>
@@ -35,8 +38,8 @@ export default function MyLessons() {
           activeFilter={activeFilter}
           setActiveFilter={setActiveFilter}
         />
-        {activeFilter === "today" && <DailyLessons />}
-        {activeFilter === "weekly" && (
+        {activeFilter === "today" && dailyLessons.length && <DailyLessons />}
+        {activeFilter === "weekly" && weeklyLessons.length && (
           <FullCalendar
             plugins={[timeGridPlugin]}
             initialView="timeGridWeek"
