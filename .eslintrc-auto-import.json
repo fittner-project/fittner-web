@@ -53,6 +53,7 @@
     "app": true,
     "calendar": true,
     "scroll": true,
-    "useScrollStore": true
+    "useScrollStore": true,
+    "lessons": true
   }
 }

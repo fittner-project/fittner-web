@@ -4,6 +4,7 @@ import { useUserStore } from "@/stores/user";
 import { uniqueId } from "lodash";
 import classNames from "classnames";
 import useRegisterLessonValuesStore from "../../stores/registerLessonValues";
+import { closeBottomSheet } from "@/utils/bottomSheet";
 
 function ColorTagBottomSheet() {
   const reservationColors = useUserStore((state) => state.reservationColors);
@@ -26,6 +27,7 @@ function ColorTagBottomSheet() {
                 setRegisterLessonValues({
                   reservationColor: color,
                 });
+                closeBottomSheet();
               }}
               className={classNames(styles.color_tag, {
                 [styles.selected]:

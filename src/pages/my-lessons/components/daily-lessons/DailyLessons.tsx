@@ -4,6 +4,7 @@ import useLessonStore from "@/stores/lessons";
 function DailyLessons() {
   const dailyLessons = useLessonStore((state) => state.dailyLessons);
   console.log("dailyLessons", dailyLessons);
+
   return (
     <div className={styles.container}>
       {dailyLessons.length === 0 && (

@@ -44,6 +44,7 @@ function AlarmBottomSheet() {
                 setRegisterLessonValues({
                   reservationPushTime: alarm.value,
                 });
+                closeBottomSheet();
               }}
               className={classNames(styles.alarm, {
                 [styles.selected]:

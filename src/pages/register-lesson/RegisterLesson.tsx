@@ -1,4 +1,3 @@
-import { useForm } from "react-hook-form";
 import styles from "./RegisterLesson.module.scss";
 import PaddingContainer from "@/layout/containers/padding-container/PaddingContainer";
 import Row from "@/components/flex/Row";
@@ -22,9 +21,14 @@ import AlarmBottomSheet from "./components/alarm-bottom-sheet/AlarmBottomSheet";
 import MemoBottomSheet from "./components/memo-bottom-sheet/MemoBottomSheet";
 import Button from "@/components/button/Button";
 import useRegisterLessonValuesStore from "./stores/registerLessonValues";
-import { usePostUserReservation } from "@/api/generated/수업/수업";
+import {
+  getGetUserReservationsQueryKey,
+  getUserReservations,
+  usePostUserReservation,
+} from "@/api/generated/수업/수업";
 import { openModal } from "@/utils/modal";
 import SuccessModal from "@/components/modal/system-modal/success-modal/SuccessModal";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function RegisterLesson() {
   const now = dayjs();
@@ -38,9 +42,29 @@ export default function RegisterLesson() {
   const nowPeriod = getPeriod(nowHour);
   const nowHour12 = get12Hour(nowHour);
   const nowMinuteStr = nowMinute.toString().padStart(2, "0");
+  const currentWeekStart = dayjs().startOf("week").format("YYYYMMDD");
+  const currentWeekEnd = dayjs().endOf("week").format("YYYYMMDD");
+  const queryClient = useQueryClient();
   const { mutate: registerLesson } = usePostUserReservation({
     mutation: {
       onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: getGetUserReservationsQueryKey({
+            reservationSearchDto: {
+              reservationStartDate: now.format("YYYYMMDD"),
+              reservationEndDate: now.format("YYYYMMDD"),
+            },
+          }),
+        });
+        queryClient.invalidateQueries({
+          queryKey: getGetUserReservationsQueryKey({
+            reservationSearchDto: {
+              reservationStartDate: currentWeekStart,
+              reservationEndDate: currentWeekEnd,
+            },
+          }),
+        });
+
         openModal({
           component: SuccessModal,
           props: {
