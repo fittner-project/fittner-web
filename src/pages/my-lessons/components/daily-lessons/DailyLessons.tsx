@@ -83,9 +83,6 @@ function DailyLessons() {
           </div>
         ))}
       </div>
-      {dailyLessons.length === 0 && (
-        <div className={styles.empty}>수업이 없습니다.</div>
-      )}
     </div>
   );
 }

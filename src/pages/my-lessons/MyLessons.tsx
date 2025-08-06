@@ -38,7 +38,12 @@ export default function MyLessons() {
           activeFilter={activeFilter}
           setActiveFilter={setActiveFilter}
         />
-        {activeFilter === "today" && dailyLessons.length && <DailyLessons />}
+        {activeFilter === "today" && dailyLessons.length !== 0 && (
+          <DailyLessons />
+        )}
+        {activeFilter === "today" && dailyLessons.length === 0 && (
+          <div className={styles.empty}>수업이 없습니다.</div>
+        )}
         {activeFilter === "weekly" && weeklyLessons.length && (
           <FullCalendar
             plugins={[timeGridPlugin]}
