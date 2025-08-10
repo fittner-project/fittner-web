@@ -7,16 +7,71 @@ import useMyLessonsActiveFilterStore from "./stores/my-lessons-active-filter";
 import DailyLessons from "./components/daily-lessons/DailyLessons";
 import useLessonStore from "@/stores/lessons";
 
-const events = [
-  {
-    title: "테스트",
-    start: "2024-07-22T03:00:00",
-    end: "2024-07-22T04:00:00",
-  },
-];
+const convertWeeklyLessonsToEvents = (weeklyLessons: any[]) => {
+  const events: any[] = [];
+
+  weeklyLessons.forEach((day) => {
+    day.reservations?.forEach((reservation: any) => {
+      const startDate = reservation.reservationStartDate;
+      const endDate = reservation.reservationEndDate;
+      const startTime = reservation.reservationStartTime;
+      const endTime = reservation.reservationEndTime;
+
+      const formattedStartDate = `${startDate.slice(0, 4)}-${startDate.slice(4, 6)}-${startDate.slice(6, 8)}`;
+      const formattedEndDate = `${endDate.slice(0, 4)}-${endDate.slice(4, 6)}-${endDate.slice(6, 8)}`;
+
+      const formattedStartTime = `${startTime.slice(0, 2)}:${startTime.slice(2, 4)}:00`;
+      const formattedEndTime = `${endTime.slice(0, 2)}:${endTime.slice(2, 4)}:00`;
+
+      const start = `${formattedStartDate}T${formattedStartTime}`;
+      const end = `${formattedEndDate}T${formattedEndTime}`;
+
+      events.push({
+        id: `${reservation.memberName}_${start}`,
+        title: `${reservation.memberName} 회원님`,
+        start: start,
+        end: end,
+        backgroundColor: `#${reservation.reservationColor?.slice(6)}`,
+        borderColor: `#${reservation.reservationColor?.slice(6)}`,
+        textColor: "#ffffff",
+        extendedProps: {
+          memberName: reservation.memberName,
+          ptnCnt: reservation.ptnCnt,
+          totalCnt: reservation.totalCnt,
+          reservationMemo: reservation.reservationMemo,
+          reservationColor: reservation.reservationColor,
+        },
+      });
+    });
+  });
+
+  return events;
+};
 
 const renderEventContent = (eventInfo: any) => (
-  <div>{eventInfo.event.title}</div>
+  <div
+    style={{
+      backgroundColor: eventInfo.event.backgroundColor,
+      color: eventInfo.event.textColor,
+      height: "100%",
+      width: "100%",
+      borderRadius: "8px",
+      fontSize: "12px",
+      fontWeight: "500",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "4px 8px",
+      boxSizing: "border-box",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      border: "none",
+      margin: "0",
+    }}
+  >
+    {eventInfo.event.title}
+  </div>
 );
 
 export default function MyLessons() {
@@ -29,6 +84,11 @@ export default function MyLessons() {
   );
   const dailyLessons = useLessonStore((state) => state.dailyLessons);
   const weeklyLessons = useLessonStore((state) => state.weeklyLessons);
+
+  console.log("weeklyLessons", weeklyLessons);
+
+  // weeklyLessons를 FullCalendar events로 변환
+  const events = convertWeeklyLessonsToEvents(weeklyLessons);
 
   return (
     <PaddingContainer>
@@ -44,7 +104,7 @@ export default function MyLessons() {
         {activeFilter === "today" && dailyLessons.length === 0 && (
           <div className={styles.empty}>수업이 없습니다.</div>
         )}
-        {activeFilter === "weekly" && weeklyLessons.length && (
+        {activeFilter === "weekly" && weeklyLessons.length > 0 && (
           <FullCalendar
             plugins={[timeGridPlugin]}
             initialView="timeGridWeek"
@@ -73,6 +133,9 @@ export default function MyLessons() {
             }}
             slotDuration="01:00:00"
           />
+        )}
+        {activeFilter === "weekly" && weeklyLessons.length === 0 && (
+          <div className={styles.empty}>수업이 없습니다.</div>
         )}
       </div>
     </PaddingContainer>
