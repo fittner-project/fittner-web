@@ -128,7 +128,6 @@ export default function MyLessons() {
             }}
             slotLabelFormat={{
               hour: "2-digit",
-              minute: "2-digit",
               hour12: false,
             }}
             slotDuration="01:00:00"
