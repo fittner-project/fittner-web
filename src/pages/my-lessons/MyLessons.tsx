@@ -28,12 +28,11 @@ const convertWeeklyLessonsToEvents = (weeklyLessons: any[]) => {
 
       events.push({
         id: `${reservation.memberName}_${start}`,
-        title: `${reservation.memberName} 회원님`,
+        title: reservation.memberName,
         start: start,
         end: end,
         backgroundColor: `#${reservation.reservationColor?.slice(6)}`,
-        borderColor: `#${reservation.reservationColor?.slice(6)}`,
-        textColor: "#ffffff",
+        textColor: "#191f28",
         extendedProps: {
           memberName: reservation.memberName,
           ptnCnt: reservation.ptnCnt,
@@ -48,31 +47,57 @@ const convertWeeklyLessonsToEvents = (weeklyLessons: any[]) => {
   return events;
 };
 
-const renderEventContent = (eventInfo: any) => (
-  <div
-    style={{
-      backgroundColor: eventInfo.event.backgroundColor,
-      color: eventInfo.event.textColor,
-      height: "100%",
-      width: "100%",
-      borderRadius: "8px",
-      fontSize: "12px",
-      fontWeight: "500",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "4px 8px",
-      boxSizing: "border-box",
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      border: "none",
-      margin: "0",
-    }}
-  >
-    {eventInfo.event.title}
-  </div>
-);
+const renderEventContent = (eventInfo: any) => {
+  const reservationColor = eventInfo.event.extendedProps.reservationColor;
+
+  const r = parseInt(reservationColor?.slice(6, 8) || "0", 16);
+  const g = parseInt(reservationColor?.slice(8, 10) || "0", 16);
+  const b = parseInt(reservationColor?.slice(10, 12) || "0", 16);
+  const formatMemberName = (memberName: string) => {
+    if (memberName.length > 3) {
+      return memberName.slice(0, 3) + "..";
+    }
+    return memberName;
+  };
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`,
+        borderRadius: "0.3rem",
+        display: "flex",
+        flexDirection: "column",
+        boxSizing: "border-box",
+        padding: "0",
+        margin: "0",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "0.6rem",
+          backgroundColor: `#${reservationColor?.slice(6)}`,
+          borderRadius: "1rem",
+        }}
+      />
+      <div
+        style={{
+          height: "100%",
+          color: "#191f28",
+          fontSize: "1.2rem",
+          fontWeight: "600",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {formatMemberName(eventInfo.event.title)}
+      </div>
+    </div>
+  );
+};
 
 export default function MyLessons() {
   const tabArray: ("today" | "weekly")[] = ["today", "weekly"];
