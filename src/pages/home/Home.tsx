@@ -68,7 +68,7 @@ function Home() {
               </>
             ) : (
               <>
-                <span>{nearestLesson.ptnCnt}번째 </span>&nbsp; 수업이에요!
+                <span>{nearestLesson.ptnCnt}번째 </span> 수업이에요!
               </>
             )}
           </div>
