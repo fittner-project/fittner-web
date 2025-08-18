@@ -129,7 +129,7 @@ export default function MyLessons() {
         {activeFilter === "today" && dailyLessons.length === 0 && (
           <div className={styles.empty}>수업이 없습니다.</div>
         )}
-        {activeFilter === "weekly" && weeklyLessons.length > 0 && (
+        {activeFilter === "weekly" && (
           <FullCalendar
             plugins={[timeGridPlugin]}
             initialView="timeGridWeek"
@@ -157,9 +157,6 @@ export default function MyLessons() {
             }}
             slotDuration="01:00:00"
           />
-        )}
-        {activeFilter === "weekly" && weeklyLessons.length === 0 && (
-          <div className={styles.empty}>수업이 없습니다.</div>
         )}
       </div>
     </PaddingContainer>
