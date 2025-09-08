@@ -2,14 +2,13 @@
   width: 100%;
   padding: 0 1.8rem;
   position: relative;
-  overflow-x: hidden;
   min-height: calc(100dvh - $main_header_height - $navigation_height);
   padding-top: 3rem;
 
-  & > .dumbbell_container {
+  & > .lesson_logo_container {
     position: absolute;
-    top: 3.8rem;
-    right: -2rem;
+    top: 3.6rem;
+    right: 0;
   }
 
   & > .class_info {

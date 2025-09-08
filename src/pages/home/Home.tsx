@@ -10,6 +10,7 @@ import BackgroundContainer from "@/layout/containers/background-container/Backgr
 import {
   chevronRightGrey,
   dumbbell,
+  lessonLogo,
   main_calendar,
   main_registration,
   main_search,
@@ -50,13 +51,8 @@ function Home() {
   return (
     <BackgroundContainer>
       <div className={styles.container}>
-        <div className={styles.dumbbell_container}>
-          <Image
-            src={dumbbell}
-            width={13.3}
-            height={19}
-            className={styles.dumbbell}
-          />
+        <div className={styles.lesson_logo_container}>
+          <Image src={lessonLogo} width={15.6} height={15.6} />
         </div>
 
         <div className={styles.class_info}>

@@ -52,3 +52,4 @@ export { default as userMale } from "./icon/user-male.svg";
 export { default as userFemale } from "./icon/user-female.svg";
 export { default as successModalIcon } from "./icon/success-modal-icon.svg";
 export { default as alertModalIcon } from "./icon/alert-modal-icon.svg";
+export { default as lessonLogo } from "./images/lessonLogo.png";
