@@ -21,6 +21,7 @@ function usePullToRefresh() {
     PATH.MY.TRAINEE_OR_TRAINER,
     PATH.MY.TICKET.DEFAULT,
     PATH.MY_LESSONS,
+    PATH.MY.REVENUE_DETAIL,
   ];
 
   const handleTouchStart = (e: TouchEvent) => {

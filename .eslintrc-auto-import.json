@@ -54,6 +54,8 @@
     "calendar": true,
     "scroll": true,
     "useScrollStore": true,
-    "lessons": true
+    "lessons": true,
+    "elementScroll": true,
+    "scrollElementAtTop": true
   }
 }
