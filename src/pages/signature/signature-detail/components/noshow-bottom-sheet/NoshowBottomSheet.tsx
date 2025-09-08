@@ -34,6 +34,8 @@ interface ImagePreview {
 export default function NoshowBottomSheet({
   activeSignature,
 }: NoshowBottomSheetProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [images, setImages] = useState<ImagePreview[]>([]);
   const { register, watch } = useForm();
   const noshowReason = watch("noshowReason");
@@ -72,7 +74,7 @@ export default function NoshowBottomSheet({
     }
 
     const preview = URL.createObjectURL(file);
-    setImages([...images, { file, preview }]);
+    setImages([{ file, preview }, ...images]);
 
     e.target.value = "";
   };
@@ -163,6 +165,10 @@ export default function NoshowBottomSheet({
                   key={uniqueId()}
                   className={styles.preview_item}
                   onPointerUp={() => {
+                    navigate({
+                      pathname: location.pathname,
+                      search: `?image-modal-open=true`,
+                    });
                     openImageViewer({ imageUrl: image.preview });
                   }}
                 >

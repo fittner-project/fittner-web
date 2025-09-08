@@ -7,4 +7,20 @@
   background-color: black;
   z-index: $image_viewer_layer;
   @include flex_row(center, center);
+
+  .close_button_container {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background-color: black;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+
+    .close_button {
+      @include absolute_center();
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+  }
 }
