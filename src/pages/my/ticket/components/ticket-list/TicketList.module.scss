@@ -1,5 +1,8 @@
 .container {
+  min-height: calc(100dvh - 18.9rem);
+
   .ticket_item {
+    width: 100%;
     padding: 1.8rem 0;
     border-top: 0.2rem solid $grey_1;
     @include flex_row(space-between, center);
@@ -24,5 +27,11 @@
         @include fm-ar(1.6rem, $grey_2, 2.2rem, 400);
       }
     }
+  }
+
+  .no_tickets {
+    min-height: inherit;
+    @include flex_row(center, center);
+    @include fm-ar(1.6rem, $grey_2, 2.2rem, 500);
   }
 }

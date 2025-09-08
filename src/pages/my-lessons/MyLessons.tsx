@@ -127,7 +127,7 @@ export default function MyLessons() {
           <DailyLessons />
         )}
         {activeFilter === "today" && dailyLessons.length === 0 && (
-          <div className={styles.empty}>수업이 없습니다.</div>
+          <div className={styles.no_lessons}>수업이 없습니다.</div>
         )}
         {activeFilter === "weekly" && (
           <FullCalendar

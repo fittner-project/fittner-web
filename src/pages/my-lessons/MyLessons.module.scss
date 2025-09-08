@@ -1,7 +1,7 @@
 .container {
   height: calc(100dvh - $sub_header_height - 5.2rem);
 
-  .empty {
+  .no_lessons {
     @include fixed_center();
     @include fm-ar(1.6rem, $grey_2, 2.2rem, 500);
   }

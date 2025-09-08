@@ -85,6 +85,10 @@ export default function TicketList({ tickets, isLoading }: TicketListProps) {
               />
             </Link>
           ))}
+
+      {tickets?.length === 0 && (
+        <div className={styles.no_tickets}>등록된 이용권이 없습니다.</div>
+      )}
     </div>
   );
 }

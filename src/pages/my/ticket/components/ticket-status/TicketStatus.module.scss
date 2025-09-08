@@ -4,7 +4,11 @@
 
   &.stop {
     @include fm-ar(1.4rem, $grey_3, 2.2rem, 700);
-    background-color: rgba($grey_2, 0.2);
+    background-color: color-mix(
+      in srgb,
+      var(--grey-type-b, #b0b8c1) 20%,
+      transparent
+    );
   }
 
   &.ing {
