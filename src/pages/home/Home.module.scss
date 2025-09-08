@@ -4,7 +4,6 @@
   position: relative;
   overflow-x: hidden;
   min-height: calc(100dvh - $main_header_height - $navigation_height);
-  // -webkit-overflow-scrolling: touch;
   padding-top: 3rem;
 
   & > .dumbbell_container {
