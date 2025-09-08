@@ -2,10 +2,18 @@ import { ReservationMemberResDto } from "@/api/generated/models";
 import styles from "./Training.module.scss";
 import Row from "../flex/Row";
 import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import "dayjs/locale/ko";
+
+dayjs.extend(customParseFormat);
+dayjs.locale("ko");
 
 const Training = ({ lesson }: { lesson: ReservationMemberResDto }) => {
-  const formatTime = (timeStr: string) => {
-    return dayjs(timeStr, "HHmm").format("A h:mm");
+  const formatTime = (timeStr?: string) => {
+    if (!timeStr) return "";
+    const parsed = dayjs(timeStr, "HHmm", true);
+    if (!parsed.isValid()) return "";
+    return parsed.format("A h:mm");
   };
 
   return (

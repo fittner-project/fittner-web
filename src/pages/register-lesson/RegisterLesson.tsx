@@ -74,7 +74,7 @@ export default function RegisterLesson() {
       !registerLessonValues.reservationEndDate
     ) {
       const currentDate = dayjs().format("YYYY-MM-DD");
-      const currentTime = `${nowPeriod} ${nowHour12}:${nowMinuteStr}`;
+      const currentTime = `오전 09:00`;
 
       setRegisterLessonValues({
         reservationStartDate: currentDate,
