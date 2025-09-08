@@ -51,6 +51,10 @@ function WeeklyCalendar() {
     return days;
   };
 
+  const getHexColor = (color: string) => {
+    return `#${color.slice(6)}`;
+  };
+
   return (
     <div className={styles.container}>
       <div
@@ -83,8 +87,9 @@ function WeeklyCalendar() {
                     key={idx}
                     className={styles.dot}
                     style={{
-                      backgroundColor:
-                        day.lessons[idx]?.reservationColor || "#B0B8C1",
+                      backgroundColor: getHexColor(
+                        day.lessons[idx]?.reservationColor || "#B0B8C1"
+                      ),
                     }}
                   />
                 ))}
