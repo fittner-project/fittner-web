@@ -13,12 +13,20 @@ import Navigation from "./navigation/Navigation";
 import ImageViewerManager from "@/components/image-viewer/image-viewer-manager/ImageViewerManager";
 
 import usePullToRefresh from "@/hooks/usePullToRefresh";
+import useFcmToken from "@/hooks/useFcmToken";
+import { useFcmTokenStore } from "@/stores/fcmToken";
 
 export default function RootLayout() {
   const { currentRoute } = useGetCurrentRoute();
   const brandColors = useUserStore((state) => state.brandColors);
   const { isRefreshing, pullDistance, containerRef, isPulling } =
     usePullToRefresh();
+  const fcmToken = useFcmTokenStore((state) => state.fcmToken);
+  useFcmToken();
+
+  useEffect(() => {
+    if (fcmToken) alert(`fcmToken: ${fcmToken}`);
+  }, [fcmToken]);
 
   const renderHeader = () => {
     if (!currentRoute || currentRoute.headerType === "none") {

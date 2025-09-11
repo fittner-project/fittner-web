@@ -16,4 +16,5 @@ export const storageKeys = {
   assignNewTraineeFormValues: "assignNewTraineeFormValues",
   myLessonsActiveFilter: "myLessonsActiveFilter",
   registerLessonValues: "registerLessonValues",
+  fcmToken: "fcmToken",
 };

@@ -34,6 +34,7 @@ declare global {
   const useDebugValue: typeof import('react')['useDebugValue']
   const useDeferredValue: typeof import('react')['useDeferredValue']
   const useEffect: typeof import('react')['useEffect']
+  const useFcmTokenStore: typeof import('./stores/fcmToken')['useFcmTokenStore']
   const useHref: typeof import('react-router-dom')['useHref']
   const useId: typeof import('react')['useId']
   const useImageViewerStore: typeof import('./stores/imageViewer')['useImageViewerStore']
