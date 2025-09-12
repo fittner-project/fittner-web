@@ -4,6 +4,7 @@
   position: relative;
   min-height: calc(100dvh - $main_header_height - $navigation_height);
   padding-top: 3rem;
+  padding-bottom: 2rem;
 
   & > .lesson_logo_container {
     position: absolute;
@@ -80,7 +81,6 @@
     border-radius: 10px;
     background: #fff;
     margin-top: 1.2rem;
-    margin-bottom: 2rem;
     width: 100%;
     height: 10.7rem;
     @include flex_row(flex-start);
