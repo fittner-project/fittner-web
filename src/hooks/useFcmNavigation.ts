@@ -53,6 +53,7 @@ export default function useFcmNavigation() {
     (data: FcmNotificationData) => {
       try {
         logFcmNotification("FCM 알림 데이터 처리:", data);
+        alert(`FCM 알림 데이터: ${JSON.stringify(data)}`);
 
         // 서버에서 항상 URL을 내려주므로 URL 기반으로만 처리
         if (data.url) {
