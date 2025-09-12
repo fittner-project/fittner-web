@@ -30,9 +30,9 @@ export default function RootLayout() {
   // FCM 푸시 메시지 네비게이션 처리
   useFcmNavigation();
 
-  useEffect(() => {
-    if (fcmToken) alert(`fcmToken: ${fcmToken}`);
-  }, [fcmToken]);
+  // useEffect(() => {
+  //   if (fcmToken) alert(`fcmToken: ${fcmToken}`);
+  // }, [fcmToken]);
 
   const renderHeader = () => {
     if (!currentRoute || currentRoute.headerType === "none") {
