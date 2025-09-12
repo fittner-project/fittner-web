@@ -23,6 +23,7 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const setApprovalStatus = useAuthStore((state) => state.setApprovalStatus);
   const setSelectedCenter = useUserStore((state) => state.setSelectedCenter);
+  const fcmToken = useFcmTokenStore((state) => state.fcmToken);
   const { mutate: registerCenter } = usePostUserCenter({
     mutation: {
       onSuccess: () => {
@@ -106,6 +107,7 @@ function SelectCenterBottomSheet({ center }: SelectCenterBottomSheetProps) {
           trainerEmail: trainerEmail as string,
           trainerSnsKind: trainerSnsKind as SocialType,
           centerId: center.centerId,
+          trainerFcmToken: fcmToken,
         },
       });
     }
