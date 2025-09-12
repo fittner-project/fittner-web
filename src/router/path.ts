@@ -3,6 +3,7 @@ const PATH = {
   HOME: "/home",
   SIGN_IN: "/sign-in",
   SIGN_UP: {
+    DEFAULT: "/sign-up",
     TERMS: {
       DEFAULT: "/sign-up-terms",
       DETAIL: "/sign-up-terms/:termUrl",
