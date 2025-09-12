@@ -1,6 +1,8 @@
 import EntryPoint from "@/entryPoint";
 
 import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { useUserStore } from "@/stores/user";
 import ModalManager from "@/components/modal/modal-manager/ModalManager";
 
 import Header from "./header/Header";
@@ -15,6 +17,7 @@ import ImageViewerManager from "@/components/image-viewer/image-viewer-manager/I
 import usePullToRefresh from "@/hooks/usePullToRefresh";
 import useFcmToken from "@/hooks/useFcmToken";
 import { useFcmTokenStore } from "@/stores/fcmToken";
+import useFcmNavigation from "@/hooks/useFcmNavigation";
 
 export default function RootLayout() {
   const { currentRoute } = useGetCurrentRoute();
@@ -23,6 +26,9 @@ export default function RootLayout() {
     usePullToRefresh();
   const fcmToken = useFcmTokenStore((state) => state.fcmToken);
   useFcmToken();
+
+  // FCM 푸시 메시지 네비게이션 처리
+  useFcmNavigation();
 
   useEffect(() => {
     if (fcmToken) alert(`fcmToken: ${fcmToken}`);
