@@ -1,12 +1,18 @@
 .container {
+  margin-top: 1rem;
+
   .ticket_count {
     @include fm-ar(1.6rem, $grey_3, 2.2rem, 400);
     @include flex_row(flex-start, center);
-    @include flex_row_gap(1.4rem);
+    @include flex_row_gap(0.8rem);
     padding-bottom: 0.9rem;
+
+    .ticket_count_value {
+      @include fm-ar(1.6rem, $grey_3, 2.2rem, 600);
+    }
   }
   .scroll_container {
-    max-height: calc(100dvh - 19.1rem);
+    max-height: calc(100dvh - 21.1rem);
 
     &.loading_finished {
       overflow-y: auto;

@@ -1,4 +1,6 @@
 .container {
+  margin-top: 1rem;
+
   .title {
     @include fm-ar(2.8rem, $text_1, 2.2rem, 700);
   }

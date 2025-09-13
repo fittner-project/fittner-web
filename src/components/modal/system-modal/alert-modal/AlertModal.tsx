@@ -43,8 +43,8 @@ function AlertModal({ errorMessage, onCloseComplete }: AlertModalProps) {
     <Modal onCloseComplete={handleCloseComplete}>
       <div className={styles.container}>
         <Image
-          width={4.6611}
-          height={4.4788}
+          width={3.8}
+          height={3.8}
           src={alertModalIcon}
           alt="alert-triangle"
         />

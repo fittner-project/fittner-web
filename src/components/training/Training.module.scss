@@ -2,10 +2,12 @@
   @include flex-row;
   width: fit-content;
   height: 5.4rem;
+  padding: 0.6rem 0;
+
   .member_color {
     width: 0.6rem;
     height: 5.4rem;
-    border-radius: 0.1rem;
+    border-radius: 10rem;
     margin-right: 0.8rem;
   }
 

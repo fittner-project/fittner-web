@@ -74,7 +74,7 @@ export default function Ticket() {
         ) : (
           <div className={styles.ticket_count}>
             <p>전체 </p>
-            <p>{tickets?.length}명</p>
+            <p className={styles.ticket_count_value}>{tickets?.length}명</p>
           </div>
         )}
         <div

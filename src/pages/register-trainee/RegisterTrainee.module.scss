@@ -1,4 +1,5 @@
 .container {
+  margin-top: 1rem;
   .title {
     @include fm-ar(2.8rem, $text_1, 2.2rem, 700);
   }
@@ -12,6 +13,7 @@
     border: 1px solid $text_3;
 
     &.active {
+      border: 1px solid $primary_1;
       background-color: $primary_1;
       color: $text_2;
     }

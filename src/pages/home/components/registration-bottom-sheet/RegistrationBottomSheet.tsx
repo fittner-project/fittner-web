@@ -1,7 +1,7 @@
 import BottomSheet from "@/components/bottom-sheet/BottomSheet";
 import styles from "./RegistrationBottomSheet.module.scss";
 import Image from "@/components/image/Image";
-import { register_center, register_user } from "@/assets/assets";
+import { register_center, user, calendar } from "@/assets/assets";
 import PATH from "@/router/path";
 
 export default function RegistrationBottomSheet() {
@@ -18,7 +18,7 @@ export default function RegistrationBottomSheet() {
             className={styles.content_item}
             onClick={() => navigate(PATH.REGISTER_TRAINEE)}
           >
-            <Image width={2.3} height={2.3} src={register_user} alt="user" />
+            <Image width={2.3} height={2.3} src={user} alt="user" />
             <div className={styles.content_item_title}>회원 등록</div>
           </div>
 
@@ -33,6 +33,14 @@ export default function RegistrationBottomSheet() {
               alt="center"
             />
             <div className={styles.content_item_title}>센터 등록</div>
+          </div>
+
+          <div
+            className={styles.content_item}
+            onClick={() => navigate(PATH.REGISTER_LESSON)}
+          >
+            <Image width={2.3} height={2.3} src={calendar} alt="center" />
+            <div className={styles.content_item_title}>수업 등록</div>
           </div>
         </div>
       </div>

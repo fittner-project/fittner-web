@@ -3,7 +3,7 @@
   border-radius: 0.6rem;
 
   &.stop {
-    @include fm-ar(1.4rem, $grey_3, 2.2rem, 700);
+    @include fm-ar(1.4rem, $grey_3, 2.2rem, 600);
     background-color: color-mix(
       in srgb,
       var(--grey-type-b, #b0b8c1) 20%,
@@ -12,27 +12,27 @@
   }
 
   &.ing {
-    @include fm-ar(1.4rem, white, 2.2rem, 700);
+    @include fm-ar(1.4rem, white, 2.2rem, 600);
     background-color: $primary_1;
   }
 
   &.refund {
-    @include fm-ar(1.4rem, white, 2.2rem, 700);
+    @include fm-ar(1.4rem, white, 2.2rem, 600);
     background-color: $sub_1;
   }
 
   &.assign_to {
-    @include fm-ar(1.4rem, white, 2.2rem, 700);
+    @include fm-ar(1.4rem, white, 2.2rem, 600);
     background-color: $grey_3;
   }
 
   &.assign_from {
-    @include fm-ar(1.4rem, white, 2.2rem, 700);
+    @include fm-ar(1.4rem, white, 2.2rem, 600);
     background-color: $primary_1;
   }
 
   &.after {
-    @include fm-ar(1.4rem, white, 2.2rem, 700);
+    @include fm-ar(1.4rem, white, 2.2rem, 600);
     background-color: $grey_4;
   }
 }

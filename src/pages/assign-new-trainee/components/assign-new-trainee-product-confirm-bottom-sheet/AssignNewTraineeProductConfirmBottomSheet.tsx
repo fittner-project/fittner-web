@@ -72,7 +72,7 @@ export default function AssignNewTraineeProductConfirmBottomSheet({
     <BottomSheet>
       <div className={styles.container}>
         <div className={styles.title}>
-          입력하신 <span>양도 상품정보</span>를<br /> 확인해주세요.
+          입력하신 <span>양도 상품정보</span>를<br /> 확인해주세요
         </div>
 
         <div className={styles.content}>

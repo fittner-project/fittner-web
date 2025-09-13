@@ -9,12 +9,11 @@ import BackgroundContainer from "@/layout/containers/background-container/Backgr
 
 import {
   chevronRightGrey,
-  dumbbell,
   lessonLogo,
-  main_calendar,
-  main_registration,
-  main_search,
-  main_sign,
+  mainCalendar,
+  mainRegistration,
+  mainSearch,
+  mainSign,
 } from "@/assets/assets";
 import Training from "@/components/training/Training";
 
@@ -81,6 +80,12 @@ function Home() {
             className={styles.my_class}
             onClick={() => navigate(PATH.MY_LESSONS)}
           >
+            <Image
+              src={mainCalendar}
+              width={2.9}
+              height={3.1}
+              style={{ marginBottom: "1.5rem" }}
+            />
             <div className={styles.menu_title}>
               나의 수업
               <Image src={chevronRightGrey} width={2} height={2} />
@@ -89,7 +94,6 @@ function Home() {
               나의 수업을 등록해 <br />
               쉽게 관리해요!
             </div>
-            <Image src={main_calendar} width={3.5} height={4} />
           </button>
 
           <div className={styles.registration_sign_container}>
@@ -97,7 +101,7 @@ function Home() {
               onClick={() => navigate(PATH.REGISTER_TRAINEE)}
               className={styles.registration}
             >
-              <Image src={main_registration} width={3.5} height={3.2} />
+              <Image src={mainRegistration} width={3.5} height={3.5} />
               <div className={styles.menu_title}>
                 회원 등록
                 <Image src={chevronRightGrey} width={2} height={2} />
@@ -108,7 +112,7 @@ function Home() {
               onClick={() => navigate(PATH.SIGNATURE.LIST)}
               className={styles.sign}
             >
-              <Image src={main_sign} width={4} height={4} />
+              <Image src={mainSign} width={2.9} height={2.7} />
               <div className={styles.menu_title}>
                 서명 요청
                 <Image src={chevronRightGrey} width={2} height={2} />
@@ -126,7 +130,7 @@ function Home() {
             })
           }
         >
-          <Image src={main_search} width={4.3} height={4.3} />
+          <Image src={mainSearch} width={3.5} height={2.9} />
           <div className={styles.search_content}>
             <div className={styles.search_title}>회원정보</div>
 

@@ -32,7 +32,7 @@ const EntryPoint: FC<IProps> = ({ children }) => {
   return (
     <Authorized>
       <BrandColorProvider>
-        {isLoading && <LoadingIndicator />}
+        {/* {isLoading && <LoadingIndicator />} */}
         {location.pathname === PATH.ROOT && splashImgUrl && (
           <div style={{ width: "100dvw", height: "100dvh" }}>
             <Image

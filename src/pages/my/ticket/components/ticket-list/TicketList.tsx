@@ -3,7 +3,6 @@ import styles from "./TicketList.module.scss";
 import { chevronRightGrey } from "@/assets/assets";
 import { TicketListResDto } from "@/api/generated/models";
 import dayjs from "dayjs";
-import classNames from "classnames";
 import Skeleton from "@/components/skeleton/Skeleton";
 import TicketStatus from "../ticket-status/TicketStatus";
 
@@ -67,7 +66,9 @@ export default function TicketList({ tickets, isLoading }: TicketListProps) {
                 <div className={styles.trainee_info}>
                   <p className={styles.trainee_name}>
                     {ticket.memberName}{" "}
-                    {`${ticket.ticketTotalCnt !== null ? `(${ticket.ticketTotalCnt})` : ""}`}
+                    <span className={styles.trainee_phone_end}>
+                      {`${ticket.memberPhoneEnd !== null ? `(${ticket.memberPhoneEnd})` : ""}`}
+                    </span>
                   </p>
                   <TicketStatus ticketCode={ticket.ticketCode} />
                 </div>

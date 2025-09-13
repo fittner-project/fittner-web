@@ -1,5 +1,5 @@
 .container {
-  min-height: calc(100dvh - 18.9rem);
+  min-height: calc(100dvh - 21.1rem);
 
   .ticket_item {
     width: 100%;
@@ -14,6 +14,10 @@
 
         .trainee_name {
           @include fm-ar(1.9rem, $text_1, 2.2rem, 600);
+
+          .trainee_phone_end {
+            @include fm-ar(1.9rem, $grey_4, 2.2rem, 400);
+          }
         }
       }
 

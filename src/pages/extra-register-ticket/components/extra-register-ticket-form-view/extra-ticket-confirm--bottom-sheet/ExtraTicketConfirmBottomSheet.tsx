@@ -63,7 +63,7 @@ export default function ExtraTicketConfirmBottomSheet({
     <BottomSheet>
       <div className={styles.container}>
         <div className={styles.title}>
-          입력하신 <span>이용권 추가 등록 정보</span>를 확인해주세요.
+          입력하신 <span>이용권 추가 등록 정보</span>를 확인해주세요
         </div>
 
         <div className={styles.content}>

@@ -60,7 +60,7 @@ export default function ConfirmInfo() {
 
     if (type === "assign") {
       titleText = `기존 회원 양도 신청을 위해
-       내역을 확인해주세요.`;
+       내역을 확인해주세요`;
     }
 
     return titleText;

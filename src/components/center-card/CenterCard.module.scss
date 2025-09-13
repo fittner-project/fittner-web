@@ -15,30 +15,38 @@
 
   .center_info {
     padding: 1.5rem 2rem;
+    @include flex_row(space-between, center);
 
-    .center_name {
-      color: $text_1;
-      font-feature-settings:
-        "liga" off,
-        "clig" off;
-      font-family: Pretendard;
-      font-size: 1.9rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 2.2rem;
-    }
+    .center_info_left {
+      .center_name {
+        color: $text_1;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-family: Pretendard;
+        font-size: 1.9rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 2.2rem;
+      }
 
-    .center_address {
-      margin-top: 0.5rem;
-      color: $grey_3;
-      font-feature-settings:
-        "liga" off,
-        "clig" off;
-      font-family: Pretendard;
-      font-size: 1.7rem;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 2.2rem;
+      .center_address {
+        margin-top: 0.5rem;
+        color: $grey_3;
+        font-feature-settings:
+          "liga" off,
+          "clig" off;
+        font-family: Pretendard;
+        font-size: 1.7rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 2.2rem;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }

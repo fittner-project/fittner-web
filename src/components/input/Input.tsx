@@ -67,8 +67,8 @@ function Input(
           }}
         />
         <Image
-          width={2.4}
-          height={2.4}
+          width={2.2}
+          height={2.2}
           src={search}
           alt="search"
           className={styles.search_icon}

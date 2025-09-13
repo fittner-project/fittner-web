@@ -24,6 +24,7 @@ function usePullToRefresh() {
     PATH.MY.REVENUE_DETAIL,
     PATH.SIGN_IN,
     PATH.SIGN_UP.DEFAULT,
+    PATH.SIGNATURE.LIST,
   ];
 
   const handleTouchStart = (e: TouchEvent) => {
