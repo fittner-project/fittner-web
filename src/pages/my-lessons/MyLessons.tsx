@@ -6,6 +6,7 @@ import MyLessonsFilter from "./components/my-lessons-filter/MyLessonsFilter";
 import useMyLessonsActiveFilterStore from "./stores/my-lessons-active-filter";
 import DailyLessons from "./components/daily-lessons/DailyLessons";
 import useLessonStore from "@/stores/lessons";
+import dayjs from "dayjs";
 
 const convertWeeklyLessonsToEvents = (weeklyLessons: any[]) => {
   const events: any[] = [];
@@ -132,7 +133,16 @@ export default function MyLessons() {
         {activeFilter === "weekly" && (
           <FullCalendar
             plugins={[timeGridPlugin]}
-            initialView="timeGridWeek"
+            initialView="rollingWeek"
+            views={{
+              rollingWeek: { type: "timeGrid", duration: { days: 7 } },
+            }}
+            visibleRange={(currentDate) => {
+              const start = dayjs(currentDate).startOf("day");
+              const end = start.add(7, "day");
+              return { start: start.toDate(), end: end.toDate() };
+            }}
+            initialDate={dayjs().toDate()}
             locale="ko"
             timeZone="local"
             headerToolbar={false}
