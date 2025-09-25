@@ -23,6 +23,9 @@ export default function TraineeItem({
   selectedTraineeId,
   handleClickTrainee,
 }: TraineeItemProps) {
+  const [searchParams] = useSearchParams();
+  const selectType = searchParams.get("select-type");
+
   return (
     <div
       key={trainee.memberId}
@@ -72,7 +75,9 @@ export default function TraineeItem({
         </div>
       </section>
 
-      <Image src={chevronRightGrey} alt="" width={2.8} height={2.8} />
+      {selectType !== "select-member-register-lesson" && (
+        <Image src={chevronRightGrey} alt="" width={2.8} height={2.8} />
+      )}
     </div>
   );
 }
