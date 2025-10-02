@@ -16,7 +16,7 @@ const Training = ({ lesson }: { lesson: ReservationMemberResDto }) => {
     return parsed.format("A h:mm");
   };
 
-  const color = lesson.reservationColor?.slice(6);
+  const color = lesson?.reservationColor?.slice(6) ?? "B0B8C1";
 
   return (
     <div className={styles.container}>
