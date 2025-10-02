@@ -7,19 +7,21 @@ import { closeBottomSheet, openBottomSheet } from "@/utils/bottomSheet";
 import RefundBlockBottomSheet from "./refund-block-bottom-sheet/RefundBlockBottomSheet";
 import { WaitForSeconds } from "@/utils/coroutine";
 import AssignTicketSettingBottomSheet from "./assign-ticket-setting-bottom-sheet/AssignTicketSettingBottomSheet";
+import { MemberDetailResDto } from "@/api/generated/models";
+import AlertModal from "@/components/modal/system-modal/alert-modal/AlertModal";
 
 interface TraineeTicketSettingBottomSheetProps {
   memberId: string;
   memberName: string;
   hasReservedClass: boolean;
-  ticketId: string;
+  ticket: MemberDetailResDto;
 }
 
 export default function TraineeTicketSettingBottomSheet({
   memberId,
   memberName,
   hasReservedClass,
-  ticketId,
+  ticket,
 }: TraineeTicketSettingBottomSheetProps) {
   type Setting = "이용권 추가 등록" | "회원권 양도" | "환불" | "회원 삭제";
   const settings: Setting[] = [
@@ -37,13 +39,34 @@ export default function TraineeTicketSettingBottomSheet({
         search: `?member-id=${memberId}`,
       });
     }
+    if (setting === "회원 삭제") {
+      openModal({
+        component: DeleteTraineeModal,
+        props: { memberId, memberName },
+      });
+      closeBottomSheet();
+    }
+
+    if (ticket.productRemainCnt === 0) {
+      closeBottomSheet();
+      WaitForSeconds(300).then(() => {
+        openModal({
+          component: AlertModal,
+          props: {
+            errorMessage: "이용권 잔여 횟수가 0입니다.",
+          },
+        });
+      });
+
+      return;
+    }
 
     if (setting === "회원권 양도") {
       closeBottomSheet();
       WaitForSeconds(300).then(() => {
         openBottomSheet({
           component: AssignTicketSettingBottomSheet,
-          props: { memberId, ticketId },
+          props: { memberId, ticketId: ticket.ticketId },
         });
       });
     }
@@ -59,17 +82,9 @@ export default function TraineeTicketSettingBottomSheet({
       } else {
         navigate({
           pathname: PATH.CONFIRM_INFO,
-          search: `?type=refund&ticket-id=${encodeURIComponent(ticketId)}`,
+          search: `?type=refund&ticket-id=${encodeURIComponent(ticket.ticketId ?? "")}`,
         });
       }
-    }
-
-    if (setting === "회원 삭제") {
-      openModal({
-        component: DeleteTraineeModal,
-        props: { memberId, memberName },
-      });
-      closeBottomSheet();
     }
   };
 

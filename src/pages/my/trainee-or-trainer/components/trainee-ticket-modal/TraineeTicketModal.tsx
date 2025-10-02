@@ -13,6 +13,7 @@ import { openBottomSheet } from "@/utils/bottomSheet";
 import TraineeTicketSettingBottomSheet from "./trainee-ticket-setting-bottom-sheet/TraineeTicketSettingBottomSheet";
 import TraineeTicketSkeleton from "./trainee-ticket-skeleton/TraineeTicketSkeleton";
 import { Pagination } from "swiper/modules";
+import { MemberDetailResDto } from "@/api/generated/models";
 
 interface TraineeTicketModalProps {
   memberId: string;
@@ -31,7 +32,7 @@ export default function TraineeTicketModal({
     ING: "primary_1",
     STOP: "sub_1",
   };
-  const [ticketId, setTicketId] = useState("");
+  const [ticket, setTicket] = useState<MemberDetailResDto | null>(null);
   const navigate = useNavigate();
 
   const handleClickTicketStatusButton = ({
@@ -49,15 +50,17 @@ export default function TraineeTicketModal({
 
   const handleClickSettingButton = () => {
     closeModal();
-    openBottomSheet({
-      component: TraineeTicketSettingBottomSheet,
-      props: {
-        memberId,
-        memberName,
-        hasReservedClass,
-        ticketId,
-      },
-    });
+    if (ticket) {
+      openBottomSheet({
+        component: TraineeTicketSettingBottomSheet,
+        props: {
+          memberId,
+          memberName,
+          hasReservedClass,
+          ticket: ticket,
+        },
+      });
+    }
   };
 
   return (
@@ -87,8 +90,8 @@ export default function TraineeTicketModal({
               autoHeight
               onSlideChange={(swiper) => {
                 const idx = swiper.activeIndex;
-                if (trainees && trainees[idx] && trainees[idx].ticketId) {
-                  setTicketId(trainees[idx].ticketId);
+                if (trainees && trainees[idx]) {
+                  setTicket(trainees[idx]);
                 }
               }}
             >
