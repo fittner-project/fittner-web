@@ -21,8 +21,8 @@ export default function SecessionBottomSheet() {
             successMessage: "탈퇴가 \n 완료되었습니다.",
             onCloseComplete: () => {
               logout();
-              navigate(PATH.SIGN_IN);
               storage.clear();
+              navigate(PATH.SIGN_IN);
             },
           },
         });
