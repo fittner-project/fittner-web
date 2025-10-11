@@ -69,92 +69,68 @@ const Authorized = ({ children }: IProps) => {
   const setDailyLessons = useLessonStore((state) => state.setDailyLessons);
   const setWeeklyLessons = useLessonStore((state) => state.setWeeklyLessons);
   const setBrandColors = useUserStore((state) => state.setBrandColors);
+  const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
 
-  const handleApiError = (error: any) => {
-    const errorMessage =
-      error?.response?.data?.errorMessage || error?.message || "";
-    if (errorMessage.includes("트레이너를 찾을 수 없습니다")) {
-      logout();
+  const { data: dailyLessons } = useGetUserReservations(
+    {
+      //@ts-ignore
+      reservationStartDate: currentDay,
+      reservationEndDate: currentDay,
+    },
+    {
+      query: {
+        enabled: !!isAuthenticated,
+      },
     }
-  };
-
-  const { data, error: userInfoError } = useGetUserInfo({
+  );
+  const { data: reservationColors } = useGetUserReservationColors({
     query: {
       enabled: !!isAuthenticated,
     },
   });
-
-  const { data: dailyLessons, error: dailyLessonsError } =
-    useGetUserReservations(
-      {
-        //@ts-ignore
-        reservationStartDate: currentDay,
-        reservationEndDate: currentDay,
-      },
-      {
-        query: {
-          enabled: !!isAuthenticated,
-        },
-      }
-    );
-  const { data: reservationColors, error: reservationColorsError } =
-    useGetUserReservationColors({
+  const { data: brandColors } = useGetUserCommonBrandColor({
+    query: {
+      enabled: !!isAuthenticated,
+      staleTime: 1000 * 60 * 60 * 24,
+      gcTime: 1000 * 60 * 60 * 24 * 7, // 7일 동안 캐시 유지
+    },
+  });
+  const { data: weeklyLessons } = useGetUserReservations(
+    {
+      //@ts-ignore
+      reservationStartDate: currentWeekStart,
+      reservationEndDate: currentWeekEnd,
+    },
+    {
       query: {
         enabled: !!isAuthenticated,
       },
-    });
-  const { data: brandColors, error: brandColorsError } =
-    useGetUserCommonBrandColor({
-      query: {
-        enabled: !!isAuthenticated,
-        staleTime: 1000 * 60 * 60 * 24,
-        gcTime: 1000 * 60 * 60 * 24 * 7, // 7일 동안 캐시 유지
-      },
-    });
-  const { data: weeklyLessons, error: weeklyLessonsError } =
-    useGetUserReservations(
-      {
-        //@ts-ignore
-        reservationStartDate: currentWeekStart,
-        reservationEndDate: currentWeekEnd,
-      },
-      {
-        query: {
-          enabled: !!isAuthenticated,
-        },
-      }
+    }
+  );
+
+  useEffect(() => {
+    const apiResponses = [
+      data,
+      dailyLessons,
+      weeklyLessons,
+      reservationColors,
+      brandColors,
+    ];
+    const hasTrainerNotFoundError = apiResponses.some((response) =>
+      response?.errorMessage?.includes("트레이너를 찾을 수 없습니다")
     );
 
-  // 각 API 에러 체크
-  useEffect(() => {
-    if (userInfoError) {
-      handleApiError(userInfoError);
+    if (hasTrainerNotFoundError) {
+      logout();
     }
-  }, [userInfoError]);
-
-  useEffect(() => {
-    if (dailyLessonsError) {
-      handleApiError(dailyLessonsError);
-    }
-  }, [dailyLessonsError]);
-
-  useEffect(() => {
-    if (reservationColorsError) {
-      handleApiError(reservationColorsError);
-    }
-  }, [reservationColorsError]);
-
-  useEffect(() => {
-    if (brandColorsError) {
-      handleApiError(brandColorsError);
-    }
-  }, [brandColorsError]);
-
-  useEffect(() => {
-    if (weeklyLessonsError) {
-      handleApiError(weeklyLessonsError);
-    }
-  }, [weeklyLessonsError]);
+  }, [
+    data,
+    dailyLessons,
+    weeklyLessons,
+    reservationColors,
+    brandColors,
+    logout,
+  ]);
 
   useEffect(() => {
     if (data) {
