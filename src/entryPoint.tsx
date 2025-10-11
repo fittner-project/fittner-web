@@ -16,7 +16,6 @@ import LoadingIndicator from "./components/loading-indicator/LoadingIndicator";
 import { useGetUserCommonBrandColor } from "./api/generated/공통/공통";
 import BrandColorProvider from "./components/brand-color-provider/BrandColorProvider";
 import useLessonStore from "./stores/lessons";
-import { storage } from "./utils/storage";
 
 interface IProps {
   children: ReactNode;
@@ -60,6 +59,7 @@ const Authorized = ({ children }: IProps) => {
   const currentWeekEnd = dayjs().endOf("week").format("YYYYMMDD");
   const currentDay = dayjs().format("YYYYMMDD");
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const logout = useAuthStore((state) => state.logout);
   const setUserInfo = useUserStore((state) => state.setUserInfo);
   const selectedCenter = useUserStore((state) => state.selectedCenter);
   const setSelectedCenter = useUserStore((state) => state.setSelectedCenter);
@@ -73,7 +73,7 @@ const Authorized = ({ children }: IProps) => {
 
   useEffect(() => {
     if (data?.errorMessage?.includes("트레이너를 찾을 수 없습니다")) {
-      storage.clear();
+      logout();
     }
   }, [data]);
 
