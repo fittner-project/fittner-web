@@ -31,7 +31,7 @@ export const useSocialAuth = () => {
         navigate(PATH.HOME);
       },
       onError: (error) => {
-        if (error?.toString().includes("트레이너를 찾을 수 없습니다.")) {
+        if (error?.toString().includes("트레이너를 찾을 수 없습니다")) {
           openModal({ component: SignUpModal });
         } else {
           openModal({
@@ -40,7 +40,7 @@ export const useSocialAuth = () => {
               errorMessage: error?.toString(),
               onCloseComplete: () => {
                 if (
-                  error?.toString().includes("승인 대기중인 트레이너입니다.")
+                  error?.toString().includes("승인 대기중인 트레이너입니다")
                 ) {
                   navigate(PATH.CENTER_LIST);
                 } else {

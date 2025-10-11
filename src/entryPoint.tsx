@@ -16,6 +16,7 @@ import LoadingIndicator from "./components/loading-indicator/LoadingIndicator";
 import { useGetUserCommonBrandColor } from "./api/generated/공통/공통";
 import BrandColorProvider from "./components/brand-color-provider/BrandColorProvider";
 import useLessonStore from "./stores/lessons";
+import { storage } from "./utils/storage";
 
 interface IProps {
   children: ReactNode;
@@ -32,7 +33,7 @@ const EntryPoint: FC<IProps> = ({ children }) => {
   return (
     <Authorized>
       <BrandColorProvider>
-        {/* {isLoading && <LoadingIndicator />} */}
+        {isLoading && <LoadingIndicator />}
         {location.pathname === PATH.ROOT && splashImgUrl && (
           <div style={{ width: "100dvw", height: "100dvh" }}>
             <Image
@@ -69,6 +70,13 @@ const Authorized = ({ children }: IProps) => {
   const setWeeklyLessons = useLessonStore((state) => state.setWeeklyLessons);
   const setBrandColors = useUserStore((state) => state.setBrandColors);
   const { data } = useGetUserInfo({ query: { enabled: !!isAuthenticated } });
+
+  useEffect(() => {
+    if (data?.errorMessage?.includes("트레이너를 찾을 수 없습니다")) {
+      storage.clear();
+    }
+  }, [data]);
+
   const { data: dailyLessons } = useGetUserReservations(
     {
       //@ts-ignore
