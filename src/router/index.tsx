@@ -33,6 +33,7 @@ import ConfirmInfo from "@/pages/confirm-info/ConfirmInfo";
 import AssignNewTrainee from "@/pages/assign-new-trainee/AssignNewTrainee";
 import TraineeOrTrainer from "@/pages/my/trainee-or-trainer/TraineeOrTrainer";
 import PauseTicket from "@/pages/pause-ticket/PauseTicket";
+import NotificationHistory from "@/pages/notification-history/NotificationHistory";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -173,6 +174,10 @@ const router = createBrowserRouter([
       {
         path: PATH.PAUSE_TICKET,
         element: <PauseTicket />,
+      },
+      {
+        path: PATH.NOTIFICATION_HISTORY,
+        element: <NotificationHistory />,
       },
     ],
   },

@@ -43,6 +43,7 @@ const PATH = {
   },
   CONFIRM_INFO: "/confirm-info",
   ASSIGN_NEW_TRAINEE: "/assign-new-trainee",
+  NOTIFICATION_HISTORY: "/notification-history",
 };
 
 export default PATH;
