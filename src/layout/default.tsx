@@ -1,7 +1,7 @@
 import EntryPoint from "@/entryPoint";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { Outlet } from "react-router-dom";
-import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import { useUserStore } from "@/stores/user";
 import ModalManager from "@/components/modal/modal-manager/ModalManager";
 
@@ -26,6 +26,7 @@ export default function RootLayout() {
     usePullToRefresh();
   const fcmToken = useFcmTokenStore((state) => state.fcmToken);
   useFcmToken();
+  const location = useLocation();
 
   // FCM 푸시 메시지 네비게이션 처리
   useFcmNavigation();
@@ -53,6 +54,30 @@ export default function RootLayout() {
       return;
     }
     if (currentRoute.navType === "default") return <Navigation />;
+  };
+
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      transform: "translateY(2rem)",
+      transition: {
+        duration: 0.3,
+      },
+    },
+    in: {
+      opacity: 1,
+      transform: "translateY(0)",
+      transition: {
+        duration: 0.3,
+      },
+    },
+    out: {
+      opacity: 0,
+      transform: "translateY(-2rem)",
+      transition: {
+        duration: 0.3,
+      },
+    },
   };
 
   return (
@@ -85,7 +110,7 @@ export default function RootLayout() {
               당겨서 새로고침
             </div>
           )}
-          <Outlet />
+              <Outlet />
         </div>
         {renderNav()}
         <ModalManager />
