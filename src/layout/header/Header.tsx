@@ -54,7 +54,10 @@ export default function Header({
 
       <div className={styles.ico}>
         <button
-          onClick={() => navigate(PATH.NOTIFICATION_HISTORY)}
+          onClick={() => {
+            console.log("Bell icon clicked!");
+            navigate(PATH.NOTIFICATION_HISTORY);
+          }}
           className={styles.bell_button}
         >
           <Image src={bell} width={2.4} height={2.4} />

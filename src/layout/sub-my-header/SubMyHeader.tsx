@@ -13,7 +13,10 @@ export default function SubMyHeader() {
       <p className={styles.trainer_name}>{String(trainerName)} 트레이너</p>
       <button
         className={styles.bell_button}
-        onClick={() => navigate(PATH.NOTIFICATION_HISTORY)}
+        onClick={() => {
+          console.log("Bell icon clicked in SubMyHeader!");
+          navigate(PATH.NOTIFICATION_HISTORY);
+        }}
       >
         <Image width={2.4} height={2.4} src={bell} alt="알림" />
       </button>
