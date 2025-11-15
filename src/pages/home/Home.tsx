@@ -59,7 +59,7 @@ function Home() {
           <div className={styles.guide}>
             {!nearestLesson ? (
               <>
-                <span>등록된 수업</span>이 없어요!!
+                <span>등록된 수업</span>이 없어요!
               </>
             ) : (
               <>
