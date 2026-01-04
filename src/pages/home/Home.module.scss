@@ -42,6 +42,7 @@
     }
 
     .my_class {
+      @include clickable;
       width: 50%;
       background: #fff;
       padding: 1.5rem;
@@ -58,6 +59,7 @@
 
     .registration,
     .sign {
+      @include clickable;
       height: 7.1rem;
       @include flex_row(space-between);
       padding-left: 1.7rem;
@@ -76,6 +78,7 @@
   }
 
   .search {
+    @include clickable;
     position: relative;
     border-radius: 10px;
     background: #fff;

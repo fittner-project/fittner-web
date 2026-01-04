@@ -6,6 +6,7 @@ import Image from "@/components/image/Image";
 import useAppStore from "@/stores/app";
 import { openBottomSheet } from "@/utils/bottomSheet";
 import ChangeCenterBottomSheet from "./change-center-bottom-sheet/ChangeCenterBottomSheet";
+import PATH from "@/router/path";
 
 interface HeaderProps {
   fallback: string | "none";
@@ -54,10 +55,7 @@ export default function Header({
 
       <div className={styles.ico}>
         <button
-          onClick={() => {
-            console.log("Bell icon clicked!");
-            navigate(PATH.NOTIFICATION_HISTORY);
-          }}
+          onClick={() => navigate(PATH.NOTIFICATION_HISTORY)}
           className={styles.bell_button}
         >
           <Image src={bell} width={2.4} height={2.4} />
