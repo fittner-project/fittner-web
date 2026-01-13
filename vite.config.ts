@@ -38,14 +38,33 @@ export default ({ command, mode }: ConfigEnv) => {
       open: true,
       //자동으로 사용 가능한 다음 포트 사용 여부
       strictPort: true,
-      //자동 proxy 설정
-      // proxy: {
-      //   '/api': {
-      //     target: 'http://xxxxxx.com',
-      //     changeOrigin: true,
-      //     rewrite: (path) => path.replace(/^\/api/, ''),
-      //   },
-      // },
+      //OAuth 프록시 설정 (CORS 우회)
+      proxy: {
+        "/oauth/kakao": {
+          target: "https://kauth.kakao.com",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/oauth\/kakao/, "/oauth"),
+          secure: true,
+        },
+        "/api/kakao": {
+          target: "https://kapi.kakao.com",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/kakao/, ""),
+          secure: true,
+        },
+        "/oauth/google": {
+          target: "https://oauth2.googleapis.com",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/oauth\/google/, ""),
+          secure: true,
+        },
+        "/api/google": {
+          target: "https://www.googleapis.com",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/google/, ""),
+          secure: true,
+        },
+      },
     },
     css: {
       // css预处理器

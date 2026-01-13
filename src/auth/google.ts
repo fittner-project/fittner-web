@@ -1,8 +1,17 @@
 import { SocialLoginResponse } from "./socialType";
 
+// 개발 환경에서는 프록시 경로 사용, 프로덕션에서는 직접 URL 사용
+const isDev = import.meta.env.DEV;
+const GOOGLE_AUTH_URL = isDev
+  ? "/oauth/google/token"
+  : "https://oauth2.googleapis.com/token";
+const GOOGLE_API_URL = isDev
+  ? "/api/google/oauth2/v2/userinfo"
+  : "https://www.googleapis.com/oauth2/v2/userinfo";
+
 export const googleLoginService = {
   getToken: async ({ code }: { code: string }): Promise<string> => {
-    const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
+    const tokenResponse = await fetch(GOOGLE_AUTH_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -30,14 +39,11 @@ export const googleLoginService = {
   }: {
     accessToken: string;
   }): Promise<SocialLoginResponse> => {
-    const userResponse = await fetch(
-      "https://www.googleapis.com/oauth2/v2/userinfo",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const userResponse = await fetch(GOOGLE_API_URL, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
     if (!userResponse.ok) {
       const errorData = await userResponse.json();

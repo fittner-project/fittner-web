@@ -1,8 +1,17 @@
 import { SocialLoginResponse } from "./socialType";
 
+// 개발 환경에서는 프록시 경로 사용, 프로덕션에서는 직접 URL 사용
+const isDev = import.meta.env.DEV;
+const KAKAO_AUTH_URL = isDev
+  ? "/oauth/kakao/token"
+  : "https://kauth.kakao.com/oauth/token";
+const KAKAO_API_URL = isDev
+  ? "/api/kakao/v2/user/me"
+  : "https://kapi.kakao.com/v2/user/me";
+
 export const kakaoLoginService = {
   getToken: async ({ code }: { code: string }): Promise<string> => {
-    const tokenResponse = await fetch("https://kauth.kakao.com/oauth/token", {
+    const tokenResponse = await fetch(KAKAO_AUTH_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
@@ -29,7 +38,7 @@ export const kakaoLoginService = {
   }: {
     accessToken: string;
   }): Promise<SocialLoginResponse> => {
-    const userResponse = await fetch("https://kapi.kakao.com/v2/user/me", {
+    const userResponse = await fetch(KAKAO_API_URL, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
